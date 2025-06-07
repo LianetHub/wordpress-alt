@@ -13,132 +13,16 @@
 
 //============ МОДУЛИ ====================
 
-h1,
-.h1 {
-	line-height: 100%;
-	text-transform: uppercase;
-	font-weight: 700;
-	font-size: 3rem;
-	@media (min-width: $md4) {
-		font-size: 3.75rem;
-	}
-	@media (min-width: $md2) {
-		font-size: 4.375rem;
-	}
-}
-h2,
-.h2 {
-	line-height: 100%;
-	text-transform: uppercase;
-	font-weight: 700;
-	font-size: 2.5rem;
-	@media (min-width: $md4) {
-		font-size: 3.125rem;
-	}
-	@media (min-width: $md2) {
-		font-size: 3.75rem;
-	}
-}
-h3,
-.h3 {
-	line-height: 120%;
-	text-transform: uppercase;
-	font-weight: 700;
-	font-size: 1.875rem;
-	@media (min-width: $md4) {
-		font-size: 2.5rem;
-	}
-	@media (min-width: $md2) {
-		font-size: 3.125rem;
-	}
-}
-h4,
-.h4 {
-	line-height: 120%;
-	text-transform: uppercase;
-	font-weight: 700;
-	font-size: 1.625rem;
-	@media (min-width: $md4) {
-		font-size: 2rem;
-	}
-	@media (min-width: $md2) {
-		font-size: 2.5rem;
-	}
-}
-h5,
-.h5 {
-	line-height: 120%;
-	text-transform: uppercase;
-	font-weight: 700;
-	font-size: 1.375rem;
-	@media (min-width: $md4) {
-		font-size: 1.625rem;
-	}
-	@media (min-width: $md2) {
-		font-size: 2rem;
-	}
-}
-h6,
-.h6 {
-	line-height: 120%;
-	text-transform: uppercase;
-	font-size: 1.25rem;
-	@media (min-width: $md4) {
-		font-size: 1.375rem;
-	}
-	@media (min-width: $md2) {
-		font-size: 1.5rem;
-	}
-}
-.h7 {
-	line-height: 120%;
-	text-transform: uppercase;
-	font-size: 1rem;
-	@media (min-width: $md4) {
-		font-size: 1.125rem;
-	}
-}
-.text-block-lg {
-	line-height: 140%;
-	font-size: 1rem;
-	@media (min-width: $md4) {
-		font-size: 1.125rem;
-	}
-	@media (min-width: $md2) {
-		font-size: 1.25rem;
-	}
-}
-.text-block-md {
-	line-height: 140%;
-	font-size: 0.875rem;
-	@media (min-width: $md4) {
-		font-size: 1rem;
-	}
-	@media (min-width: $md2) {
-		font-size: 1.125rem;
-	}
-}
-.text-block {
-	line-height: 140%;
-	font-size: 0.8125rem;
-	@media (min-width: $md4) {
-		font-size: 0.9375rem;
-	}
-	@media (min-width: $md2) {
-		font-size: 1rem;
-	}
+.title-lg {
+	font-size: 3.75rem;
+	font-weight: 500;
 }
 
-.color-red {
-	color: $red;
-}
-
-.color-blue {
-	color: #38b6ff;
-}
-
-.color-white {
-	color: #fff;
+.title {
+	font-size: 2.875rem;
+	font-weight: 700;
+	line-height: 121.739%;
+	text-transform: uppercase;
 }
 
 .fw-bold {

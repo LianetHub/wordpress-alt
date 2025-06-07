@@ -47,6 +47,12 @@
 </head>
 
 <body <?php body_class(); ?>>
+    <?php
+    $phone_number = get_field('phone_number', 'option');
+    $formatted_phone_number = preg_replace('/[^0-9+]/', '', $phone_number);
+    $email_address = get_field('email_address', 'option');
+    $organization_address = get_field('organization_address', 'option');
+    ?>
 
     <div class="wrapper">
         <header class="header">
@@ -70,11 +76,26 @@
                         <a href="<?= get_home_url() ?>" class="header__logo">
                             <img src="<?php echo get_template_directory_uri(); ?>/assets/img/logo.svg" alt="Логотип">
                         </a>
-                        <address class="header__location icon-location">Челябинск, ул. Тернопольская 6, Сколково, Челябинский Кластер</address>
-                        <div class="header__contacts">
-                            <a href="" class="header__contact icon-envelope">info@alt-ltd.ru</a>
-                            <a href="" class="header__contact icon-phone">+7 (351) 777-45-78</a>
-                        </div>
+                        <?php if (!empty($organization_address)): ?>
+                            <address class="header__location icon-location">
+                                <?= esc_html($organization_address) ?>
+                            </address>
+                        <?php endif; ?>
+                        <?php if (!empty($email_address) || !empty($phone_number)): ?>
+                            <div class="header__contacts">
+                                <?php if (!empty($email_address)): ?>
+                                    <a href="mailto:<?= esc_attr($email_address) ?>" class="header__contact icon-envelope">
+                                        <?= esc_html($email_address) ?>
+                                    </a>
+                                <?php endif; ?>
+
+                                <?php if (!empty($phone_number)): ?>
+                                    <a href="tel:<?= esc_attr($formatted_phone_number) ?>" class="header__contact icon-phone">
+                                        <?= esc_html($phone_number) ?>
+                                    </a>
+                                <?php endif; ?>
+                            </div>
+                        <?php endif; ?>
                         <a href="#callback" data-fancybox class="header__callback btn btn-primary">Обратный звонок</a>
                     </div>
                 </div>

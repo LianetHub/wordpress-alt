@@ -45,23 +45,63 @@ add_filter('upload_mimes', 'allow_svg_uploads');
 
 
 
-// function set_global_acf_fields()
-// {
-// 	$GLOBALS['global_acf_fields'] = [
-// 		'phone_number' => get_field('phone_number', 'option'),
-// 		'email_address' => get_field('email_address', 'option'),
-// 		'faq_items' => get_field('faq_items', 'option'),
-// 		'gallery_images' => get_field('gallery_images', 'option'),
-// 		'resume_email' => get_field('resume_email', 'option'),
-// 		'vk_url' => get_field('vk_url', 'option'),
-// 	];
-// }
-// add_action('wp', 'set_global_acf_fields');
+function set_global_acf_fields()
+{
+	$GLOBALS['global_acf_fields'] = [
+		'phone_number' => get_field('phone_number', 'option'),
+		'email_address' => get_field('email_address', 'option'),
+		'telegram_url' => get_field('telegram_url', 'option'),
+		'organization_address' => get_field('organization_address', 'option'),
+	];
+}
+add_action('wp', 'set_global_acf_fields');
+
 
 
 add_filter('wpcf7_autop_or_not', '__return_false');
 
 add_theme_support('post-thumbnails');
+
+
+
+function fix_widows_after_prepositions($text)
+{
+
+	$prepositions = [
+		'в',
+		'и',
+		'к',
+		'с',
+		'на',
+		'у',
+		'о',
+		'от',
+		'для',
+		'за',
+		'по',
+		'без',
+		'из',
+		'над',
+		'под',
+		'при',
+		'про',
+		'через',
+		'об',
+		'со'
+	];
+
+	$pattern = implode('|', array_map('preg_quote', $prepositions));
+
+	$regex = '/\b(' . $pattern . ')\s+/iu';
+
+
+	$text = preg_replace_callback($regex, function ($matches) {
+		return $matches[1] . "\xC2\xA0";
+	}, $text);
+
+	return $text;
+}
+
 
 // function register_teachers_post_type()
 // {
