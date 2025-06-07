@@ -13,3 +13,10 @@
 @use "modules/common";
 
 @use "pages/home";
+
+.nojq {
+	display: none !important;
+}
+html {
+	margin-top: 0 !important;
+}

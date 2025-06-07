@@ -50,6 +50,58 @@
 
     <div class="wrapper">
         <header class="header">
-
+            <div class="header__top">
+                <div class="container">
+                    <div class="header__top-body">
+                        <nav aria-label="Меню для госзаказчиков" class="header__top-menu">
+                            <ul>
+                                <li><a href="/state">Для госзаказчиков</a></li>
+                                <li><a href="/certificates">Сертификаты</a></li>
+                                <li><a href="/reviews">Отзывы</a></li>
+                            </ul>
+                        </nav>
+                        <div class="header__top-worktime">График работы: Пн-Пт 9:00 — 18:00</div>
+                    </div>
+                </div>
+            </div>
+            <div class="header__body">
+                <div class="container">
+                    <div class="header__body-content">
+                        <a href="<?= get_home_url() ?>" class="header__logo">
+                            <img src="<?php echo get_template_directory_uri(); ?>/assets/img/logo.svg" alt="Логотип">
+                        </a>
+                        <address class="header__location icon-location">Челябинск, ул. Тернопольская 6, Сколково, Челябинский Кластер</address>
+                        <div class="header__contacts">
+                            <a href="" class="header__contact icon-envelope">info@alt-ltd.ru</a>
+                            <a href="" class="header__contact icon-phone">+7 (351) 777-45-78</a>
+                        </div>
+                        <a href="#callback" data-fancybox class="header__callback btn btn-primary">Обратный звонок</a>
+                    </div>
+                </div>
+            </div>
+            <div class="header__bottom">
+                <div class="container">
+                    <div class="header__bottom-content">
+                        <nav aria-label="Основное меню" class="menu">
+                            <ul class="menu__list">
+                                <li class="menu__item"><a href="/catalog" class="menu__link">Каталог</a></li>
+                                <li class="menu__item menu-parent">
+                                    <a href="/industries" class="menu__link">Отрасли</a>
+                                    <button type="button" class="menu__arrow icon-chevron-down"></button>
+                                </li>
+                                <li class="menu__item"><a href="/about" class="menu__link">О компании</a></li>
+                                <li class="menu__item"><a href="/business" class="menu__link">Для бизнеса</a></li>
+                                <li class="menu__item"><a href="/projects" class="menu__link">Проекты</a></li>
+                                <li class="menu__item"><a href="/blog" class="menu__link">Блог</a></li>
+                                <li class="menu__item"><a href="/contacts" class="menu__link">Контакты</a></li>
+                            </ul>
+                        </nav>
+                        <form action="#" class="header__search">
+                            <input type="text" name="search" class="header__search-input" autocomplete="off" placeholder="Поиск по сайту">
+                            <button type="submit" class="header__search-btn icon-search"></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </header>
         <main class="page">

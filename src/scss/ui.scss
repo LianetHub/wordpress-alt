@@ -15,7 +15,6 @@
 
 h1,
 .h1 {
-	font-family: $font-bebas;
 	line-height: 100%;
 	text-transform: uppercase;
 	font-weight: 700;
@@ -29,7 +28,6 @@ h1,
 }
 h2,
 .h2 {
-	font-family: $font-bebas;
 	line-height: 100%;
 	text-transform: uppercase;
 	font-weight: 700;
@@ -43,7 +41,6 @@ h2,
 }
 h3,
 .h3 {
-	font-family: $font-bebas;
 	line-height: 120%;
 	text-transform: uppercase;
 	font-weight: 700;
@@ -57,7 +54,6 @@ h3,
 }
 h4,
 .h4 {
-	font-family: $font-bebas;
 	line-height: 120%;
 	text-transform: uppercase;
 	font-weight: 700;
@@ -71,7 +67,6 @@ h4,
 }
 h5,
 .h5 {
-	font-family: $font-bebas;
 	line-height: 120%;
 	text-transform: uppercase;
 	font-weight: 700;
@@ -85,7 +80,6 @@ h5,
 }
 h6,
 .h6 {
-	font-family: $font-bebas;
 	line-height: 120%;
 	text-transform: uppercase;
 	font-size: 1.25rem;
@@ -97,7 +91,6 @@ h6,
 	}
 }
 .h7 {
-	font-family: $font-bebas;
 	line-height: 120%;
 	text-transform: uppercase;
 	font-size: 1rem;
@@ -501,7 +494,7 @@ h6,
 
 // Стилизация скролла
 
-$scrollbarColor: $accent;
+$scrollbarColor: $blue;
 $scrollbarHover: color.adjust(
 	$color: $scrollbarColor,
 	$lightness: -10%,
