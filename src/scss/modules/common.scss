@@ -42,3 +42,35 @@
 		margin-top: 8.31rem;
 	}
 }
+
+.benefits {
+	padding: rem(40) 0 rem(70);
+	// .benefits__blocks
+	&__blocks {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: rem(30);
+	}
+	// .benefits__block
+	&__block {
+		border-radius: 1.25rem;
+		background: #dfe1eb;
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 0.75rem;
+		padding: 1.75rem 2.06rem;
+		border-left: rem(5) solid #313f69;
+	}
+	// .benefits__block-title
+	&__block-title {
+		color: #313f69;
+		font-size: 2.875rem;
+		font-weight: 500;
+		line-height: 100.12%;
+	}
+	// .benefits__block-text
+	&__block-text {
+		font-size: 1.125rem;
+	}
+}

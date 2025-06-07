@@ -52,6 +52,7 @@ function set_global_acf_fields()
 		'email_address' => get_field('email_address', 'option'),
 		'telegram_url' => get_field('telegram_url', 'option'),
 		'organization_address' => get_field('organization_address', 'option'),
+		'benefits_blocks' => get_field('benefits_blocks', 'option'),
 	];
 }
 add_action('wp', 'set_global_acf_fields');

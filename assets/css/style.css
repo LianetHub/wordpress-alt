@@ -2024,6 +2024,47 @@ body:has(.header.open-menu) .wrapper::before {
   margin-top: 8.31rem;
 }
 
+.benefits {
+  padding: 2.5rem 0 4.375rem;
+}
+
+.benefits__blocks {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[3];
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.875rem;
+}
+
+.benefits__block {
+  border-radius: 1.25rem;
+  background: #dfe1eb;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  gap: 0.75rem;
+  padding: 1.75rem 2.06rem;
+  border-left: 0.3125rem solid #313f69;
+}
+
+.benefits__block-title {
+  color: #313f69;
+  font-size: 2.875rem;
+  font-weight: 500;
+  line-height: 100.12%;
+}
+
+.benefits__block-text {
+  font-size: 1.125rem;
+}
+
 .nojq {
   display: none !important;
 }
