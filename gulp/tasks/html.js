@@ -2,41 +2,6 @@ import fileinclude from "gulp-file-include";
 import webpHtmlNosvg from "gulp-webp-html-nosvg";
 import versionNumber from "gulp-version-number";
 import htmlBeautify from "gulp-html-beautify";
-import through2 from 'through2';
-import cheerio from 'cheerio';
-
-function addWebpSources() {
-    return through2.obj(function (file, _, cb) {
-        if (file.isBuffer()) {
-            const $ = cheerio.load(file.contents.toString());
-            $('picture').each(function () {
-                const picture = $(this);
-                const img = picture.find('img');
-                const imgSrc = img.attr('src');
-
-                // Добавляем webp источники для существующих тегов <source>
-                const sources = picture.find('source');
-                sources.each(function () {
-                    const source = $(this);
-                    const media = source.attr('media');
-                    const srcset = source.attr('srcset');
-                    if (srcset && !source.attr('type')) {
-                        const webpSource = `<source type="image/webp" media="${media}" srcset="${srcset.replace('.jpg', '.webp')}">`;
-                        source.before(webpSource);
-                    }
-                });
-
-                // Добавляем webp источник для тега <img>
-                if (imgSrc) {
-                    const webpSource = `<source type="image/webp" srcset="${imgSrc.replace('.jpg', '.webp')}">`;
-                    img.before(webpSource);
-                }
-            });
-            file.contents = Buffer.from($.html());
-        }
-        cb(null, file);
-    });
-}
 
 
 export const html = () => {
