@@ -112,7 +112,7 @@
 		width: fit-content;
 
 		font-size: 0.875rem;
-
+		line-height: 1;
 		padding: 0 0 0 1.5rem;
 		cursor: pointer;
 		user-select: none;
@@ -156,6 +156,7 @@
 		& input[type="submit"] {
 			background: transparent;
 			padding: 0;
+			margin: -0.15rem 0;
 			font-family: inherit;
 			color: inherit;
 			font-size: inherit;
@@ -182,9 +183,9 @@
 		display: flex;
 		align-items: center;
 		gap: 0.44rem;
-		padding: 0.94rem 1.38rem;
+		padding: 0.8rem 1.38rem;
 		&::before {
-			font-size: 1.5rem;
+			font-size: 1.4rem;
 			width: 1.5rem;
 			height: 1.5rem;
 		}
@@ -196,10 +197,13 @@
 	}
 	// .form__bottom
 	&__bottom {
-		margin-top: rem(28);
+		margin-top: rem(20);
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
+		.form__checkbox {
+			max-width: rem(225);
+		}
 	}
 }
 

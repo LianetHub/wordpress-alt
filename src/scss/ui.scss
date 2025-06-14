@@ -25,6 +25,11 @@
 	text-transform: uppercase;
 }
 
+.title-sm {
+	font-size: 1.375rem;
+	line-height: 109.091%;
+}
+
 .fw-bold {
 	font-weight: 700;
 }
@@ -114,6 +119,11 @@
 // 	}
 // }
 
+.swiper {
+	min-width: 0;
+	max-width: 100%;
+}
+
 .swiper-button-next,
 .swiper-button-prev {
 	// position: static;
@@ -125,18 +135,16 @@
 	background-color: #fff;
 	transition: color 0.3s ease 0s, opacity 0.3s ease 0s, background-color 0.3s ease 0s, border-color 0.3s ease 0s;
 	z-index: 2;
-	font-size: 1.75rem;
-	width: 1.75rem;
-	height: 1.75rem;
+	width: 2.25rem;
+	height: 2.25rem;
+	font-size: 1rem;
 	border-radius: 50%;
 	color: #141414;
 	&::after {
 		display: none;
 	}
-	@media (min-width: $md3) {
-		width: 2.25rem;
-		height: 2.25rem;
-		font-size: 1rem;
+	&.swiper-button-dark {
+		background: #dfe1eb;
 	}
 	@media (any-hover: hover) {
 		&:hover {
@@ -146,12 +154,18 @@
 }
 
 .swiper-button-next {
-	right: -1.25rem;
+	right: -0.5rem;
+	@media (min-width: $md4) {
+		right: -1.25rem;
+	}
 	@extend %ic;
 	@extend .icon-next;
 }
 .swiper-button-prev {
-	left: -1.25rem;
+	left: -0.5rem;
+	@media (min-width: $md4) {
+		left: -1.25rem;
+	}
 	@extend %ic;
 	@extend .icon-prev;
 }
@@ -179,23 +193,55 @@
 	}
 }
 
+.swiper-scrollbar {
+	&.swiper-scrollbar-horizontal {
+		position: static;
+		margin-top: 0.75rem;
+		border-radius: 0.25rem;
+		margin-left: auto;
+		margin-right: auto;
+		background: #f3f3f5;
+
+		height: 0.25rem;
+		.swiper-scrollbar-drag {
+			border-radius: 0.25rem;
+			height: 0.25rem;
+			display: block;
+			background: #ea9d0f;
+		}
+	}
+}
+
 .pc-only {
 	@media (max-width: $md3) {
 		display: none !important;
 	}
 }
 
-// .uppercase-mobile {
-// 	@media (max-width: $md4) {
-// 		text-transform: uppercase;
-// 	}
-// }
-
-// .desktop-only {
-// 	@media (max-width: $md2) {
-// 		display: none;
-// 	}
-// }
+.more-link {
+	color: #ea9d0f;
+	font-size: 1.125rem;
+	font-weight: 500;
+	display: inline-flex;
+	gap: 0.62rem;
+	align-items: center;
+	&::before {
+		order: 1;
+		width: 1.625rem;
+		height: 1.625rem;
+		font-size: 1.625rem;
+		transition: transform 0.3s ease;
+	}
+	transition: color 0.3s ease;
+	@media (any-hover: hover) {
+		&:hover {
+			color: color.adjust($color: #ea9d0f, $lightness: -10%);
+			&::before {
+				transform: translateX(0.5rem);
+			}
+		}
+	}
+}
 
 .mobile-only {
 	@media (min-width: $md5) {

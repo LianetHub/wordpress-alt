@@ -1,5 +1,7 @@
 "use strict";
 
+
+
 //  init Fancybox
 if (typeof Fancybox !== "undefined" && Fancybox !== null) {
     Fancybox.bind("[data-fancybox]", {
@@ -247,6 +249,157 @@ $(function () {
         })
     }
 
+    if ($('.catalog__slider').length) {
+        getMobileSlider('.catalog__slider', {
+            spaceBetween: 30,
+            slidesPerView: 1,
+            navigation: {
+                prevEl: '.catalog__slider-prev',
+                nextEl: '.catalog__slider-next',
+            },
+            breakpoints: {
+                575.98: {
+                    slidesPerView: 2,
+                },
+                797.98: {
+                    slidesPerView: 3,
+
+                }
+            }
+        })
+    }
+
+    if ($('.cases__tabs-slider').length) {
+        new Swiper('.cases__tabs-slider', {
+            spaceBetween: 24,
+            slidesPerView: "auto",
+            initialSlide: $('.cases__tab-btn.active').index(),
+            observeParents: true,
+            watchSlidesProgress: true,
+            navigation: {
+                prevEl: '.cases__tabs-prev',
+                nextEl: '.cases__tabs-next',
+            },
+            scrollbar: {
+                el: '.cases__tabs-scrollbar',
+                draggable: true,
+            },
+
+        })
+    }
+
+    if ($('.cases__slider-block').length) {
+        $('.cases__slider-block').each(function () {
+            new Swiper($(this)[0], {
+                effect: 'coverflow',
+                centeredSlides: true,
+                slidesPerView: 'auto',
+                loop: true,
+                speed: 300,
+                coverflowEffect: {
+                    rotate: 0,
+                    stretch: 255,
+                    depth: 120,
+                    modifier: 3,
+                    slideShadows: false,
+                },
+                navigation: {
+                    nextEl: $(this).closest('.cases__slider').find('.swiper-button-next')[0],
+                    prevEl: $(this).closest('.cases__slider').find('.swiper-button-prev')[0],
+                },
+            });
+        });
+    }
+
+    if ($('.clients__slider').length) {
+        new Swiper('.clients__slider', {
+            spaceBetween: 30,
+            slidesPerView: 2,
+            navigation: {
+                prevEl: '.clients__slider-prev',
+                nextEl: '.clients__slider-next',
+            },
+            grid: {
+                rows: 2,
+                fill: 'row'
+            },
+            breakpoints: {
+                767.98: {
+                    slidesPerView: 2,
+                },
+                991.98: {
+                    slidesPerView: 3,
+                },
+                1199.98: {
+                    slidesPerView: 4,
+                }
+            }
+        })
+    }
+
+    if ($('.reviews__slider').length) {
+        new Swiper('.reviews__slider', {
+            spaceBetween: 30,
+            slidesPerView: 1,
+            navigation: {
+                prevEl: '.reviews__slider-prev',
+                nextEl: '.reviews__slider-next',
+            },
+            breakpoints: {
+                767.98: {
+                    slidesPerView: 2,
+                },
+                991.98: {
+                    slidesPerView: 3,
+                },
+                1199.98: {
+                    slidesPerView: 4,
+                }
+            }
+        })
+    }
+
+    if ($('.team__slider').length) {
+        new Swiper('.team__slider', {
+            spaceBetween: 30,
+            slidesPerView: 1,
+            navigation: {
+                prevEl: '.team__slider-prev',
+                nextEl: '.team__slider-next',
+            },
+            breakpoints: {
+                767.98: {
+                    slidesPerView: 2,
+                },
+                991.98: {
+                    slidesPerView: 3,
+                },
+                1199.98: {
+                    slidesPerView: 4,
+                }
+            }
+        })
+    }
+
+    if ($('.blog__slider').length) {
+        new Swiper('.blog__slider', {
+            spaceBetween: 30,
+            slidesPerView: 1,
+            watchOverflow: true,
+            navigation: {
+                prevEl: '.blog__slider-prev',
+                nextEl: '.blog__slider-next',
+            },
+            breakpoints: {
+                767.98: {
+                    slidesPerView: 2,
+                },
+                991.98: {
+                    slidesPerView: 3,
+                }
+            }
+        })
+    }
 
 
 
