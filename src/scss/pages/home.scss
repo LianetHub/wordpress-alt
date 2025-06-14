@@ -2,3 +2,130 @@
 @use "sass:color";
 @use "../_mixins" as *;
 @use "../_variables" as *;
+
+.industries {
+	padding: 0 0 2.5rem 0;
+	// .industries__body
+	&__body {
+		position: relative;
+	}
+	// .industries__slider
+	&__slider {
+	}
+	// .industries__slide
+	&__slide {
+		position: relative;
+		border-radius: 1.25rem;
+		overflow: hidden;
+		&::before {
+			content: "";
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background: linear-gradient(190deg, rgba(13, 21, 52, 0) 55.09%, rgba(0, 0, 0, 0.8) 92.69%);
+			z-index: 1;
+			pointer-events: none;
+		}
+	}
+	// .industries__slide-caption
+	&__slide-caption {
+		position: absolute;
+		z-index: 2;
+		top: 0;
+		left: 0;
+		bottom: 0;
+		right: 0;
+		color: #fff;
+		font-size: 1.375rem;
+		font-weight: 500;
+		line-height: 109.091%;
+		display: flex;
+		align-items: flex-end;
+		padding: 1.25rem;
+	}
+	// .industries__slider-prev
+	&__slider-prev {
+	}
+	// .industries__slider-next
+	&__slider-next {
+	}
+}
+
+.catalog {
+	padding: rem(70) 0 rem(110);
+	// .catalog__title
+	&__title {
+	}
+	// .catalog__list
+	&__list {
+		margin-top: rem(30);
+		display: grid;
+		gap: rem(30);
+		grid-template-columns: repeat(3, 1fr);
+	}
+	// .catalog__item
+	&__item {
+	}
+	// .catalog__card
+	&__card {
+		border-radius: 1.25rem;
+		background: #f3f3f5;
+		min-height: 100%;
+		display: flex;
+		align-items: flex-end;
+		position: relative;
+		overflow: hidden;
+		height: 16.25rem;
+		padding: rem(30);
+		z-index: 1;
+		&::before {
+			content: "";
+			position: absolute;
+			top: -2rem;
+			right: -15.3rem;
+			border-radius: 50%;
+			background: #dfe1eb;
+			width: 25.4375rem;
+			height: 25.4375rem;
+			z-index: -1;
+			flex-shrink: 0;
+			transition: background-color 0.3s ease 0s;
+		}
+		transition: box-shadow 0.3s ease 0s;
+		@media (any-hover: hover) {
+			&:hover {
+				box-shadow: rem(14) rem(134) rem(38) 0px rgba(0, 0, 0, 0), rem(2) rem(21) rem(22) 0 rgba(0, 0, 0, 0.09), rem(1) rem(5) rem(12) 0 rgba(0, 0, 0, 0.1);
+				&::before {
+					background: #313f69;
+				}
+				.catalog__card-image img {
+					transform: scale(1.1);
+				}
+			}
+		}
+	}
+	// .catalog__card-image
+	&__card-image {
+		position: absolute;
+		top: 1rem;
+		right: 1.5rem;
+		width: 15.0625rem;
+		height: 12.9375rem;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		& img {
+			transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+		}
+	}
+	// .catalog__card-name
+	&__card-name {
+		color: #141414;
+		font-size: 1.375rem;
+		font-weight: 500;
+		line-height: 109.091%;
+		max-width: 11.625rem;
+	}
+}

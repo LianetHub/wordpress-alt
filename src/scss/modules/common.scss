@@ -23,6 +23,9 @@
 		background: linear-gradient(268deg, rgba(13, 21, 52, 0) 12.46%, rgba(0, 0, 0, 0.9) 98.65%);
 		z-index: -1;
 	}
+	& + .industries {
+		margin-top: -6rem;
+	}
 	// .promo__caption
 	&__caption {
 	}
@@ -59,7 +62,7 @@
 		flex-direction: column;
 		align-items: flex-start;
 		gap: 0.75rem;
-		padding: 1.75rem 2.06rem;
+		padding: 1.75rem 2.06rem 1.5rem 2.06rem;
 		border-left: rem(5) solid #313f69;
 	}
 	// .benefits__block-title

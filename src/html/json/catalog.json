@@ -1,0 +1,38 @@
+[
+    {
+        "image": "@img/catalog/microchips.png",
+        "name": "Микрочипы"
+    },
+    {
+        "image": "@img/catalog/valves.png",
+        "name": "Клапаны"
+    },
+    {
+        "image": "@img/catalog/brands.png",
+        "name": "Мировые бренды автоматики"
+    },
+    {
+        "image": "@img/catalog/spare-parts-for-refrigeration-equipment.png",
+        "name": "Запчасти для холодильного оборудования"
+    },
+    {
+        "image": "@img/catalog/robot-parts.png",
+        "name": "Запчасти для роботов"
+    },
+    {
+        "image": "@img/catalog/laboratory-equipment.png",
+        "name": "Лабораторное оборудование"
+    },
+    {
+        "image": "@img/catalog/spare-parts-for-medical-equipment.png",
+        "name": "Запчасти для медицинского оборудования"
+    },
+    {
+        "image": "@img/catalog/measuring-instruments-GRSI.png",
+        "name": "Средства измерения находящиеся в ГРСИ"
+    },
+    {
+        "image": "@img/catalog/measuring-equipment.png",
+        "name": "Измерительное оборудование"
+    }
+]

@@ -122,7 +122,8 @@
 	&__search-input {
 		transition: all 0.3s ease;
 		border: rem(1) solid #dfe1eb;
-		padding: 0.625rem 0.9375rem;
+		padding: 0.4rem 0.9375rem;
+		min-height: rem(36);
 		width: 100%;
 		color: $text;
 		text-overflow: ellipsis;

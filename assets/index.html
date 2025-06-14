@@ -1,158 +1,305 @@
 <!DOCTYPE html>
-<html lang="en">
-<!DOCTYPE html>
 <html lang="ru">
 
-<head>
-	<meta charset="UTF-8">
-	<meta name="format-detection" content="telephone=no">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="description" itemprop="description" content="описание страницы">
-	<meta name="keywords" itemprop="keywords" content="ключевые слова">
-	<title>localDev</title>
-	<!-- favicon -->
-	<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
-	<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-	<link rel="shortcut icon" href="/favicon.ico" />
-	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-	<meta name="apple-mobile-web-app-title" content="ALT" />
-	<link rel="manifest" href="/site.webmanifest" />
-	<!-- favicon -->
-	<link rel="stylesheet" href="/css/reset.min.css?_v=20250612220644">
-	<link rel="stylesheet" href="/css/style.min.css?_v=20250612220644">
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="format-detection" content="telephone=no">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" itemprop="description" content="описание страницы">
+        <meta name="keywords" itemprop="keywords" content="ключевые слова">
 
-<body>
-	<div class="wrapper">
-		<header class="header">
-			<div class="header__top">
-				<div class="container">
-					<div class="header__top-body">
-						<nav aria-label="Меню для госзаказчиков" class="header__top-menu">
-							<ul>
-								<li><a href="/state">Для госзаказчиков</a></li>
-								<li><a href="/certificates">Сертификаты</a></li>
-								<li><a href="/reviews">Отзывы</a></li>
-							</ul>
-						</nav>
-						<div class="header__top-worktime">График работы: Пн-Пт 9:00 — 18:00</div>
-					</div>
-				</div>
-			</div>
-			<div class="header__body">
-				<div class="container">
-					<div class="header__body-content">
-						<a href="/" class="header__logo">
-							<img src="img/logo.svg" alt="Логотип">
-						</a>
-						<address class="header__location icon-location"> Челябинск ул. Тернопольская 6, Сколково, Челябинский Кластер </address>
-						<div class="header__contacts">
-							<a href="mailto:info@alt-ltd.ru" class="header__contact icon-envelope"> info@alt-ltd.ru </a>
-							<a href="tel:+73517774578" class="header__contact icon-phone"> +7 (351) 777-45-78 </a>
-						</div>
-						<a href="#callback" data-fancybox class="header__callback btn btn-primary">Обратный звонок</a>
-					</div>
-				</div>
-			</div>
-			<div class="header__bottom">
-				<div class="container">
-					<div class="header__bottom-content">
-						<nav aria-label="Основное меню" class="menu">
-							<ul class="menu__list">
-								<li class="menu__item"><a href="/catalog" class="menu__link">Каталог</a></li>
-								<li class="menu__item menu-parent">
-									<a href="/industries" class="menu__link">Отрасли</a>
-									<button type="button" class="menu__arrow icon-chevron-down"></button>
-								</li>
-								<li class="menu__item"><a href="/about" class="menu__link">О компании</a></li>
-								<li class="menu__item"><a href="/business" class="menu__link">Для бизнеса</a></li>
-								<li class="menu__item"><a href="/projects" class="menu__link">Проекты</a></li>
-								<li class="menu__item"><a href="/blog" class="menu__link">Блог</a></li>
-								<li class="menu__item"><a href="/contacts" class="menu__link">Контакты</a></li>
-							</ul>
-						</nav>
-						<form action="#" class="header__search">
-							<input type="text" name="search" class="header__search-input" autocomplete="off" placeholder="Поиск по сайту">
-							<button type="submit" class="header__search-btn icon-search"></button>
-						</form>
-					</div>
-				</div>
-			</div>
-		</header>
-		<main class="page">
-			<section class="promo" style="background-image: url(http://gogancai.beget.tech/wp-content/uploads/2025/06/technologist-white-coat-with-laptop-his-hands-controls-production-process-dairy-shop-quality-control-dairy-plant.jpg);">
-				<div class="container">
-					<h1 class="promo__title title-lg">Подбор, настройка и&nbsp;запуск оборудования для&nbsp;предприятий</h1>
-					<a href="#offer" class="promo__btn btn btn-primary">Получить КП</a>
-				</div>
-			</section>
-			<div class="benefits">
-				<div class="container">
-					<div class="benefits__blocks">
-						<div class="benefits__block">
-							<div class="benefits__block-title">11 лет</div>
-							<div class="benefits__block-text">подтвержденный опыт</div>
-						</div>
-						<div class="benefits__block">
-							<div class="benefits__block-title">Бесплатно</div>
-							<div class="benefits__block-text">доставка по всей России</div>
-						</div>
-						<div class="benefits__block">
-							<div class="benefits__block-title">2000+</div>
-							<div class="benefits__block-text">реализованных проектов</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<section class="offer">
-				<div class="offer__image">
-					<img src="http://gogancai.beget.tech/wp-content/themes/ALT-Theme/assets/img/offer.jpg" class="cover-image" alt="Фото ноутбука">
-				</div>
-				<div class="offer__content">
-					<div class="container">
-						<div class="offer__body">
-							<h2 class="offer__title title">Получить коммерческое предложение</h2>
-							<p class="offer__subtitle">Оставьте заявку и получите расчет стоимости в течение 48х часов бесплатно</p>
-							<div class="offer__form">
-								<div class="wpcf7 js" id="wpcf7-f6-o1" lang="ru-RU" dir="ltr" data-wpcf7-id="6">
-									<div class="screen-reader-response">
-										<p role="status" aria-live="polite" aria-atomic="true"></p>
-										<ul></ul>
-									</div>
-									<form action="/#wpcf7-f6-o1" method="post" class="wpcf7-form init" aria-label="Контактная форма" enctype="multipart/form-data" novalidate="novalidate" data-status="init">
-										<div style="display: none;">
-											<input type="hidden" name="_wpcf7" value="6">
-											<input type="hidden" name="_wpcf7_version" value="6.0.6">
-											<input type="hidden" name="_wpcf7_locale" value="ru_RU">
-											<input type="hidden" name="_wpcf7_unit_tag" value="wpcf7-f6-o1">
-											<input type="hidden" name="_wpcf7_container_post" value="0">
-											<input type="hidden" name="_wpcf7_posted_data_hash" value="">
-										</div>
-										<span class="wpcf7-form-control-wrap" data-name="company-name"><input size="40" maxlength="400" class="wpcf7-form-control wpcf7-text form__control" aria-invalid="false" placeholder="Название компании" value="" type="text" name="company-name"></span>
-										<span class="wpcf7-form-control-wrap" data-name="email"><input size="40" maxlength="400" class="wpcf7-form-control wpcf7-email wpcf7-text wpcf7-validates-as-email form__control" aria-invalid="false" placeholder="E-mail" value="" type="email" name="email"></span>
-										<label class="form__file">
-											<span class="wpcf7-form-control-wrap" data-name="file"><input size="40" class="wpcf7-form-control wpcf7-file form__file-input hidden" accept="audio/*,video/*,image/*" aria-invalid="false" type="file" name="file"></span>
-											<span class="form__file-btn icon-file">Прикрепите файл</span>
-										</label>
-										<div class="form__bottom">
-											<label class="form__btn btn btn-white btn-lg">
-												<input class="wpcf7-form-control wpcf7-submit has-spinner" type="submit" value="Отправить"><span class="wpcf7-spinner"></span>
-											</label>
-											<label class="form__checkbox">
-												<span class="wpcf7-form-control-wrap" data-name="nda"><span class="wpcf7-form-control wpcf7-acceptance optional"><span class="wpcf7-list-item"><label><input type="checkbox" name="nda" value="1" class="form__checkbox-input hidden" aria-invalid="false"><span class="wpcf7-list-item-label"><span class="form__checkbox-text">Даю согласие на <a href="">обработку персональных данных</a></span></span></label></span></span></span>
-											</label>
-										</div>
-										<div class="wpcf7-response-output" aria-hidden="true"></div>
-									</form>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</section>
-		</main>
-	</div>
-</body>
+        <title>localDev</title>
 
+
+        <!-- favicon -->
+        <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <link rel="shortcut icon" href="/favicon.ico" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+        <meta name="apple-mobile-web-app-title" content="ALT" />
+        <link rel="manifest" href="/site.webmanifest" />
+        <!-- favicon -->
+
+
+
+        <link rel="stylesheet" href="/css/libs/fancybox.css">
+        <link rel="stylesheet" href="/css/libs/input-tel.css">
+        <link rel="stylesheet" href="/css/libs/nouislider.min.css">
+        <link rel="stylesheet" href="/css/libs/swiper-bundle.min.css">
+
+        <link rel="stylesheet" href="/css/reset.min.css">
+        <link rel="stylesheet" href="/css/style.min.css">
+
+    </head>
+    <body>
+        <div class="wrapper">
+            <header class="header">
+                <div class="header__top">
+                    <div class="container">
+                        <div class="header__top-body">
+                            <nav aria-label="Меню для госзаказчиков" class="header__top-menu">
+                                <ul>
+                                    <li><a href="/state">Для госзаказчиков</a></li>
+                                    <li><a href="/certificates">Сертификаты</a></li>
+                                    <li><a href="/reviews">Отзывы</a></li>
+                                </ul>
+                            </nav>
+                            <div class="header__top-worktime">График работы: Пн-Пт 9:00 — 18:00</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="header__body">
+                    <div class="container">
+                        <div class="header__body-content">
+                            <a href="/" class="header__logo">
+                                <img src="img/logo.svg" alt="Логотип">
+                            </a>
+                            <address class="header__location icon-location">
+                                Челябинск ул. Тернопольская 6, Сколково, Челябинский Кластер
+                            </address>
+
+                            <div class="header__contacts">
+
+                                <a href="mailto:info@alt-ltd.ru" class="header__contact icon-envelope">
+                                    info@alt-ltd.ru
+                                </a>
+
+                                <a href="tel:+73517774578" class="header__contact icon-phone">
+                                    +7 (351) 777-45-78
+                                </a>
+
+                            </div>
+
+                            <a href="#callback" data-fancybox class="header__callback btn btn-primary">Обратный звонок</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="header__bottom">
+                    <div class="container">
+                        <div class="header__bottom-content">
+                            <nav aria-label="Основное меню" class="menu">
+                                <ul class="menu__list">
+                                    <li class="menu__item"><a href="/catalog" class="menu__link">Каталог</a></li>
+                                    <li class="menu__item menu-parent">
+                                        <a href="/industries" class="menu__link">Отрасли</a>
+                                        <button type="button" class="menu__arrow icon-chevron-down"></button>
+                                    </li>
+                                    <li class="menu__item"><a href="/about" class="menu__link">О компании</a></li>
+                                    <li class="menu__item"><a href="/business" class="menu__link">Для бизнеса</a></li>
+                                    <li class="menu__item"><a href="/projects" class="menu__link">Проекты</a></li>
+                                    <li class="menu__item"><a href="/blog" class="menu__link">Блог</a></li>
+                                    <li class="menu__item"><a href="/contacts" class="menu__link">Контакты</a></li>
+                                </ul>
+                            </nav>
+                            <form action="#" class="header__search">
+                                <input type="text" name="search" class="header__search-input" autocomplete="off" placeholder="Поиск по сайту">
+                                <button type="submit" class="header__search-btn icon-search"></button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            <main class="page">
+                <section class="promo" style="background-image: url(http://gogancai.beget.tech/wp-content/uploads/2025/06/technologist-white-coat-with-laptop-his-hands-controls-production-process-dairy-shop-quality-control-dairy-plant.jpg);">
+                    <div class="container">
+                        <h1 class="promo__title title-lg">Подбор, настройка и&nbsp;запуск оборудования для&nbsp;предприятий</h1>
+                        <a href="#offer" class="promo__btn btn btn-primary btn-lg">Получить КП</a>
+                    </div>
+                </section>
+                <div class="industries">
+                    <div class="container">
+                        <div class="industries__body">
+                            <div class="industries__slider swiper">
+                                <div class="swiper-wrapper">
+                                    <a href="" class="industries__slide swiper-slide">
+                                        <img src="img/industries/01.jpg" class="cover-image" alt="">
+                                        <span class="industries__slide-caption">Агробиологическая промышленность</span>
+                                    </a>
+                                    <a href="" class="industries__slide swiper-slide">
+                                        <img src="img/industries/02.jpg" class="cover-image" alt="">
+                                        <span class="industries__slide-caption">Гидроэнергетика</span>
+                                    </a>
+                                    <a href="" class="industries__slide swiper-slide">
+                                        <img src="img/industries/03.jpg" class="cover-image" alt="">
+                                        <span class="industries__slide-caption">Логистика / электромеханика </span>
+                                    </a>
+                                    <a href="" class="industries__slide swiper-slide">
+                                        <img src="img/industries/01.jpg" class="cover-image" alt="">
+                                        <span class="industries__slide-caption">Агробиологическая промышленность</span>
+                                    </a>
+                                    <a href="" class="industries__slide swiper-slide">
+                                        <img src="img/industries/02.jpg" class="cover-image" alt="">
+                                        <span class="industries__slide-caption">Гидроэнергетика</span>
+                                    </a>
+                                    <a href="" class="industries__slide swiper-slide">
+                                        <img src="img/industries/03.jpg" class="cover-image" alt="">
+                                        <span class="industries__slide-caption">Логистика / электромеханика </span>
+                                    </a>
+                                </div>
+                            </div>
+                            <button type="button" class="industries__slider-prev swiper-button-prev"></button>
+                            <button type="button" class="industries__slider-next swiper-button-next"></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="benefits">
+                    <div class="container">
+                        <div class="benefits__blocks">
+                            <div class="benefits__block">
+                                <div class="benefits__block-title">11 лет</div>
+                                <div class="benefits__block-text">подтвержденный опыт</div>
+                            </div>
+                            <div class="benefits__block">
+                                <div class="benefits__block-title">Бесплатно</div>
+                                <div class="benefits__block-text">доставка по всей России</div>
+                            </div>
+                            <div class="benefits__block">
+                                <div class="benefits__block-title">2000+</div>
+                                <div class="benefits__block-text">реализованных проектов</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <section class="catalog">
+                    <div class="container">
+                        <h2 class="catalog__title title">Каталог</h2>
+                        <ul class="catalog__list">
+                            <li class="catalog__item">
+                                <a href="" class="catalog__card">
+                                    <span class="catalog__card-image">
+                                        <img src="img/catalog/microchips.png" alt="">
+                                    </span>
+                                    <span class="catalog__card-name">Микрочипы</span>
+                                </a>
+                            </li><li class="catalog__item">
+                                <a href="" class="catalog__card">
+                                    <span class="catalog__card-image">
+                                        <img src="img/catalog/valves.png" alt="">
+                                    </span>
+                                    <span class="catalog__card-name">Клапаны</span>
+                                </a>
+                            </li><li class="catalog__item">
+                                <a href="" class="catalog__card">
+                                    <span class="catalog__card-image">
+                                        <img src="img/catalog/brands.png" alt="">
+                                    </span>
+                                    <span class="catalog__card-name">Мировые бренды автоматики</span>
+                                </a>
+                            </li><li class="catalog__item">
+                                <a href="" class="catalog__card">
+                                    <span class="catalog__card-image">
+                                        <img src="img/catalog/spare-parts-for-refrigeration-equipment.png" alt="">
+                                    </span>
+                                    <span class="catalog__card-name">Запчасти для холодильного оборудования</span>
+                                </a>
+                            </li><li class="catalog__item">
+                                <a href="" class="catalog__card">
+                                    <span class="catalog__card-image">
+                                        <img src="img/catalog/robot-parts.png" alt="">
+                                    </span>
+                                    <span class="catalog__card-name">Запчасти для роботов</span>
+                                </a>
+                            </li><li class="catalog__item">
+                                <a href="" class="catalog__card">
+                                    <span class="catalog__card-image">
+                                        <img src="img/catalog/laboratory-equipment.png" alt="">
+                                    </span>
+                                    <span class="catalog__card-name">Лабораторное оборудование</span>
+                                </a>
+                            </li><li class="catalog__item">
+                                <a href="" class="catalog__card">
+                                    <span class="catalog__card-image">
+                                        <img src="img/catalog/spare-parts-for-medical-equipment.png" alt="">
+                                    </span>
+                                    <span class="catalog__card-name">Запчасти для медицинского оборудования</span>
+                                </a>
+                            </li><li class="catalog__item">
+                                <a href="" class="catalog__card">
+                                    <span class="catalog__card-image">
+                                        <img src="img/catalog/measuring-instruments-GRSI.png" alt="">
+                                    </span>
+                                    <span class="catalog__card-name">Средства измерения находящиеся в ГРСИ</span>
+                                </a>
+                            </li><li class="catalog__item">
+                                <a href="" class="catalog__card">
+                                    <span class="catalog__card-image">
+                                        <img src="img/catalog/measuring-equipment.png" alt="">
+                                    </span>
+                                    <span class="catalog__card-name">Измерительное оборудование</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+                <section class="about">
+                    <div class="about__wrapper">
+                        <div class="container">
+                            <div class="about__body">
+                                <h2 class="about__title title">О компании</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="about__image">
+                        <img src="img/our-team.jpg" alt="">
+                    </div>
+                </section>
+                <section class="offer">
+                    <div class="offer__image">
+                        <img src="http://gogancai.beget.tech/wp-content/themes/ALT-Theme/assets/img/offer.jpg" class="cover-image" alt="Фото ноутбука">
+                    </div>
+                    <div class="offer__content">
+                        <div class="container">
+                            <div class="offer__body">
+                                <h2 class="offer__title title">Получить коммерческое предложение</h2>
+                                <p class="offer__subtitle">Оставьте заявку и получите расчет стоимости в течение 48х часов бесплатно</p>
+                                <div class="offer__form">
+                                    <div class="wpcf7 js" id="wpcf7-f6-o1" lang="ru-RU" dir="ltr" data-wpcf7-id="6">
+                                        <div class="screen-reader-response">
+                                            <p role="status" aria-live="polite" aria-atomic="true"></p>
+                                            <ul></ul>
+                                        </div>
+                                        <form action="/#wpcf7-f6-o1" method="post" class="wpcf7-form init" aria-label="Контактная форма" enctype="multipart/form-data" novalidate="novalidate" data-status="init">
+                                            <div style="display: none;">
+                                                <input type="hidden" name="_wpcf7" value="6">
+                                                <input type="hidden" name="_wpcf7_version" value="6.0.6">
+                                                <input type="hidden" name="_wpcf7_locale" value="ru_RU">
+                                                <input type="hidden" name="_wpcf7_unit_tag" value="wpcf7-f6-o1">
+                                                <input type="hidden" name="_wpcf7_container_post" value="0">
+                                                <input type="hidden" name="_wpcf7_posted_data_hash" value="">
+                                            </div>
+                                            <span class="wpcf7-form-control-wrap" data-name="company-name"><input size="40" maxlength="400" class="wpcf7-form-control wpcf7-text form__control" aria-invalid="false" placeholder="Название компании" value="" type="text" name="company-name"></span>
+                                            <span class="wpcf7-form-control-wrap" data-name="email"><input size="40" maxlength="400" class="wpcf7-form-control wpcf7-email wpcf7-text wpcf7-validates-as-email form__control" aria-invalid="false" placeholder="E-mail" value="" type="email" name="email"></span>
+                                            <label class="form__file">
+                                                <span class="wpcf7-form-control-wrap" data-name="file"><input size="40" class="wpcf7-form-control wpcf7-file form__file-input hidden" accept="audio/*,video/*,image/*" aria-invalid="false" type="file" name="file"></span>
+                                                <span class="form__file-btn icon-file">Прикрепите файл</span>
+                                            </label>
+                                            <div class="form__bottom">
+                                                <label class="form__btn btn btn-white btn-lg">
+                                                    <input class="wpcf7-form-control wpcf7-submit has-spinner" type="submit" value="Отправить"><span class="wpcf7-spinner"></span>
+                                                </label>
+                                                <label class="form__checkbox">
+                                                    <span class="wpcf7-form-control-wrap" data-name="nda"><span class="wpcf7-form-control wpcf7-acceptance optional"><span class="wpcf7-list-item"><label><input type="checkbox" name="nda" value="1" class="form__checkbox-input hidden" aria-invalid="false"><span class="wpcf7-list-item-label"><span class="form__checkbox-text">Даю согласие на <a href="">обработку персональных данных</a></span></span></label></span></span></span>
+                                                </label>
+                                            </div>
+                                            <div class="wpcf7-response-output" aria-hidden="true"></div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+            </main>
+            
+        </div>
+
+        <script src="/js/libs/fancybox.umd.js"></script>
+        <script src="/js/libs/jquery-3.7.1.min.js"></script>
+        <script src="/js/libs/swiper-bundle.min.js"></script>
+        <script src="/js/libs/intlTelInput.min.js"></script>
+
+        <script src="/js/app.min.js"></script>
+    </body>
 </html>

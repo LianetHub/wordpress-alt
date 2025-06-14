@@ -229,200 +229,24 @@ $(function () {
 
 
     //  sliders
-    if ($('.atmosphere__slider').length) {
-        new Swiper('.atmosphere__slider', {
-            spaceBetween: 10,
-            slidesPerView: 1.15,
+    if ($('.industries__slider').length) {
+        new Swiper('.industries__slider', {
+            spaceBetween: 30,
+            slidesPerView: 3,
             navigation: {
-                prevEl: '.atmosphere__prev',
-                nextEl: '.atmosphere__next',
+                prevEl: '.industries__slider-prev',
+                nextEl: '.industries__slider-next',
             },
-            pagination: {
-                el: '.atmosphere__pagination',
-                clickable: true
-            },
+
             breakpoints: {
-                797.98: {
-                    slidesPerView: 1,
-                    spaceBetween: 0
-                }
+                // 797.98: {
+                //     slidesPerView: 1,
+                //     spaceBetween: 0
+                // }
             }
         })
     }
 
-    if ($('.languages__slider').length) {
-        new Swiper('.languages__slider', {
-            slidesPerView: "auto",
-            spaceBetween: 20,
-            watchOverflow: true,
-            pagination: {
-                clickable: true,
-                el: '.languages__pagination'
-            },
-            breakpoints: {
-                991.98: {
-                    spaceBetween: 19,
-                    slidesPerView: 5,
-                },
-                1199.98: {
-                    spaceBetween: 36,
-                    slidesPerView: 5,
-                }
-            }
-        })
-    }
-
-    if ($('.programms__slider').length) {
-        new Swiper('.programms__slider', {
-            slidesPerView: "auto",
-            spaceBetween: 20,
-            watchOverflow: true,
-            pagination: {
-                clickable: true,
-                el: '.programms__pagination'
-            },
-            breakpoints: {
-                991.98: {
-                    spaceBetween: 40,
-                    slidesPerView: 3,
-                },
-                1199.98: {
-                    spaceBetween: 72,
-                    slidesPerView: 3,
-                }
-            }
-        })
-    }
-
-    if ($('.prices__slider').length) {
-        $('.prices__slider').each(function (index, element) {
-            const $slider = $(element);
-            const $pagination = $slider.find('.prices__slider-pagination');
-
-            new Swiper($slider[0], {
-                slidesPerView: "auto",
-                watchOverflow: true,
-                pagination: {
-                    clickable: true,
-                    el: $pagination[0],
-                },
-            });
-        });
-    }
-
-    if ($('.why__body').length) {
-        getMobileSlider('.why__body', {
-            spaceBetween: 20,
-            slidesPerView: 'auto',
-            pagination: {
-                clickable: true,
-                el: '.why__pagination'
-            }
-        })
-    }
-
-    if ($('.best-teachers__slider').length) {
-        getMobileSlider('.best-teachers__slider', {
-            spaceBetween: 20,
-            slidesPerView: 'auto',
-            pagination: {
-                clickable: true,
-                el: '.best-teachers__pagination'
-            }
-        })
-    }
-
-    if ($('.info__slider').length) {
-        getMobileSlider('.info__slider', {
-            spaceBetween: 20,
-            slidesPerView: 'auto',
-            pagination: {
-                clickable: true,
-                el: '.info__slider-pagination'
-            }
-        })
-    }
-
-    if ($('.cards__slider').length) {
-        getMobileSlider('.cards__slider', {
-            spaceBetween: 10,
-            slidesPerView: 'auto',
-            pagination: {
-                clickable: true,
-                el: '.cards__slider-pagination'
-            }
-        })
-    }
-
-    if ($('.gallery__slider').length) {
-        new Swiper('.gallery__slider-content', {
-            spaceBetween: 10,
-            slidesPerView: 1,
-            navigation: {
-                prevEl: '.gallery__slider-prev',
-                nextEl: '.gallery__slider-next',
-            },
-            pagination: {
-                el: '.gallery__slider-pagination',
-                clickable: true
-            },
-            breakpoints: {
-                576.98: {
-                    spaceBetween: 0
-                }
-            }
-        })
-    }
-
-    if ($('.goals__slider').length) {
-        new Swiper('.goals__slider', {
-            spaceBetween: 20,
-            slidesPerView: "auto",
-            watchOverflow: true,
-            pagination: {
-                el: '.goals__pagination',
-                clickable: true
-            },
-            breakpoints: {
-                991.98: {
-                    spaceBetween: 20,
-                    slidesPerView: 4,
-                },
-                1199.98: {
-                    spaceBetween: 28,
-                    slidesPerView: 4,
-
-                }
-            }
-        })
-    }
-
-    if ($('.daily-routine__items').length) {
-        getMobileSlider('.daily-routine__items', {
-            slidesPerView: 'auto',
-            watchOverflow: true,
-            pagination: {
-                clickable: true,
-                el: '.daily-routine__pagination'
-            }
-        })
-    }
-
-    if ($('.popular__slider').length) {
-        new Swiper('.popular__slider', {
-            slidesPerView: 'auto',
-            spaceBetween: 60,
-            pagination: {
-                el: '.popular__slider-pagination',
-                clickable: true
-            },
-            breakpoints: {
-                767.98: {
-                    slidesPerView: 3,
-                }
-            }
-        })
-    }
 
 
 
@@ -740,7 +564,7 @@ $(function () {
                 .addClass('selected')
                 .attr('aria-checked', 'true');
             this.$dropdown.find('.dropdown__button-text').text(state.selectedText);
-                 this.$dropdown.find('.dropdown__button').removeClass('selected');
+            this.$dropdown.find('.dropdown__button').removeClass('selected');
         }
 
         syncSelectedOption() {
