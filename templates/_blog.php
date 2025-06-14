@@ -1,0 +1,51 @@
+<section class="blog">
+    <div class="container">
+        <div class="blog__content">
+            <div class="blog__header">
+                <h2 class="blog__title title text-uppercase">Блог</h2>
+                <a href="" class="blog__link more-link icon-arrow">Все публикации</a>
+            </div>
+            <div class="blog__body">
+                <div class="blog__slider swiper">
+                    <div class="swiper-wrapper">
+                        <div class="blog__item swiper-slide">
+                            <a href="" class="blog__item-poster">
+                                <img src="<?php echo get_template_directory_uri(); ?>/assets/img/articles/technologist-white-coat-with-tablet-his-hands-controls-production-process-dairy-shop-quality-control-dairy-plant.jpg" class="cover-image" alt="">
+                            </a>
+                            <time datetime="" class="blog__item-time">25 марта 2025</time>
+                            <a href="" class="blog__item-title title-sm">Решения для автоматизации от бренда EKF на конференции ПТА – Казань 2025</a>
+                            <a href="" class="blog__item-btn btn btn-primary btn-lg">Подробнее</a>
+                        </div>
+                        <div class="blog__item swiper-slide">
+                            <a href="" class="blog__item-poster">
+                                <img src="<?php echo get_template_directory_uri(); ?>/assets/img/articles/technologist-white-coat-with-tablet-his-hands-controls-production-process-dairy-shop-quality-control-dairy-plant.jpg" class="cover-image" alt="">
+                            </a>
+                            <time datetime="" class="blog__item-time">25 марта 2025</time>
+                            <a href="" class="blog__item-title title-sm">Решения для автоматизации от бренда EKF на конференции ПТА – Казань 2025</a>
+                            <a href="" class="blog__item-btn btn btn-primary btn-lg">Подробнее</a>
+                        </div>
+                        <div class="blog__item swiper-slide">
+                            <a href="" class="blog__item-poster">
+                                <img src="<?php echo get_template_directory_uri(); ?>/assets/img/articles/technologist-white-coat-with-tablet-his-hands-controls-production-process-dairy-shop-quality-control-dairy-plant.jpg" class="cover-image" alt="">
+                            </a>
+                            <time datetime="" class="blog__item-time">25 марта 2025</time>
+                            <a href="" class="blog__item-title title-sm">Решения для автоматизации от бренда EKF на конференции ПТА – Казань 2025</a>
+                            <a href="" class="blog__item-btn btn btn-primary btn-lg">Подробнее</a>
+                        </div>
+                        <div class="blog__item swiper-slide">
+                            <a href="" class="blog__item-poster">
+                                <img src="<?php echo get_template_directory_uri(); ?>/assets/img/articles/technologist-white-coat-with-tablet-his-hands-controls-production-process-dairy-shop-quality-control-dairy-plant.jpg" class="cover-image" alt="">
+                            </a>
+                            <time datetime="" class="blog__item-time">25 марта 2025</time>
+                            <a href="" class="blog__item-title title-sm">Решения для автоматизации от бренда EKF на конференции ПТА – Казань 2025</a>
+                            <a href="" class="blog__item-btn btn btn-primary btn-lg">Подробнее</a>
+                        </div>
+
+                    </div>
+                </div>
+                <button type="button" class="blog__slider-prev swiper-button-prev"></button>
+                <button type="button" class="blog__slider-next swiper-button-next"></button>
+            </div>
+        </div>
+    </div>
+</section>

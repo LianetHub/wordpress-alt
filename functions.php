@@ -51,8 +51,12 @@ function set_global_acf_fields()
 		'phone_number' => get_field('phone_number', 'option'),
 		'email_address' => get_field('email_address', 'option'),
 		'telegram_url' => get_field('telegram_url', 'option'),
+		'whatsapp_url' => get_field('whatsapp_url', 'option'),
 		'organization_address' => get_field('organization_address', 'option'),
 		'benefits_blocks' => get_field('benefits_blocks', 'option'),
+		'client_logos' => get_field('client_logos', 'option'),
+		'review_images' => get_field('review_images', 'option'),
+		'team_members' => get_field('team_members', 'option'),
 	];
 }
 add_action('wp', 'set_global_acf_fields');

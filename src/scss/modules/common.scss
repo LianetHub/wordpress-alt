@@ -664,8 +664,11 @@
 			flex-direction: column;
 			gap: rem(16);
 		}
-		.form__checkbox {
-			max-width: rem(225);
+		.form__bottom {
+			.form__checkbox {
+				max-width: 15rem;
+				margin: 0 auto;
+			}
 		}
 	}
 }

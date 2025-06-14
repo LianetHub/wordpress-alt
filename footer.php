@@ -1,33 +1,100 @@
 </main>
 <footer class="footer">
-
-</footer>
-<div id="order" class="popup">
-    <div class="popup__body form__wrapper">
-        <button type="button" class="popup__close icon-plus-circle form__success-close" data-fancybox-close></button>
-        <!-- <div class="popup__content">
-            <div class="popup__form">
-                <?= do_shortcode('[contact-form-7 id="d7901da" title="Контактная форма в модальном окне"]'); ?>
-            </div>
-            <div class="popup__desc">
-                <h4 class="popup__title">
-                    Запишитесь на
-                    бесплатный&nbsp;урок
-                </h4>
-                <div class="popup__text text-block-md">
-                    <p>* Оставьте нам свои контактные данные и&nbsp;мы обязательно свяжемся с Вами в&nbsp;ближайшее время</p>
-                    <p>* * Мы не передадим Ваши данные третьим лицам</p>
+    <?php
+    $phone_number = get_field('phone_number', 'option');
+    $formatted_phone_number = preg_replace('/[^0-9+]/', '', $phone_number);
+    $email_address = get_field('email_address', 'option');
+    $organization_address = get_field('organization_address', 'option');
+    ?>
+    <div class="container">
+        <div class="footer__header">
+            <?php if (!empty($organization_address)): ?>
+                <address class="footer__location icon-location">
+                    <?= esc_html($organization_address) ?>
+                </address>
+            <?php endif; ?>
+            <?php if (!empty($email_address) || !empty($phone_number)): ?>
+                <div class="footer__contacts">
+                    <?php if (!empty($email_address)): ?>
+                        <a href="mailto:<?= esc_attr($email_address) ?>" class="footer__contact icon-envelope">
+                            <?= esc_html($email_address) ?>
+                        </a>
+                    <?php endif; ?>
+                    <?php if (!empty($phone_number)): ?>
+                        <a href="tel:<?= esc_attr($formatted_phone_number) ?>" class="footer__contact icon-phone">
+                            <?= esc_html($phone_number) ?>
+                        </a>
+                    <?php endif; ?>
                 </div>
+            <?php endif; ?>
+            <a href="#callback" data-fancybox class="footer__callback btn btn-primary">Обратный звонок</a>
+        </div>
+        <nav aria-label="Меню в подвале" class="footer__menu">
+            <div class="footer__menu-block">
+                <div class="footer__menu-caption">АЛТ</div>
+                <ul class="footer__menu-list">
+                    <li><a href="">Главная</a></li>
+                    <li><a href="">О компании</a></li>
+                    <li><a href="">Для госзаказчиков</a></li>
+                    <li><a href="">Для бизнеса</a></li>
+                    <li><a href="">Отзывы</a></li>
+                    <li><a href="">Блог</a></li>
+                    <li><a href="">Проекты</a></li>
+                    <li><a href="">Контакты</a></li>
+                    <li><a href="">Карта сайта</a></li>
+                    <li><a href="">Политика конфиденциальности</a></li>
+                </ul>
+            </div>
+            <div class="footer__menu-block">
+                <div class="footer__menu-caption">Наша продукция</div>
+                <ul class="footer__menu-list">
+                    <li><a href="">Микрочипы</a></li>
+                    <li><a href="">Клапаны </a></li>
+                    <li><a href="">Мировые бренды автоматики</a></li>
+                    <li><a href="">Запчасти для холодильного оборудования</a></li>
+                    <li><a href="">Запчасти для роботов</a></li>
+                    <li><a href="">Лабораторное оборудование</a></li>
+                    <li><a href="">Запчасти для медицинского оборудования</a></li>
+                    <li><a href="">Средства измерения, находящиеся в ГРСИ</a></li>
+                    <li><a href="">Измерительное оборудование</a></li>
+                </ul>
+            </div>
+            <div class="footer__menu-block">
+                <div class="footer__menu-caption">Отрасли</div>
+                <ul class="footer__menu-list">
+                    <li><a href="">Химическое производство</a></li>
+                    <li><a href="">Пищевая промышленность</a></li>
+                    <li><a href="">Атомная энергетика</a></li>
+                    <li><a href="">Нефтегазовая промышленность</a></li>
+                    <li><a href="">Для лабораторий</a></li>
+                    <li><a href="">Пищевая промышленность</a></li>
+                    <li><a href="">Атомная энергетика</a></li>
+                </ul>
+            </div>
+        </nav>
+        <div class="footer__bottom">
+            <a href="<?= get_home_url() ?>" class="footer__logo">
+                <img src="<?php echo get_template_directory_uri(); ?>/assets/img/logo-white.svg" alt="Логотип">
+            </a>
+            <div class="footer__reqs">
+                ООО «Агрион Лайт Техноложис» <br>
+                ОГРН: 1147451002720 <br>
+                ИНН: 7451366924 <br>
+                ООО АЛТ ©2025
+            </div>
+            <div class="footer__production">
+                Разработка сайта и продвижение
+                Маркетинговое агентство <a href="https://inmarketing.team/" target="_blank" class="footer__production-link">InMarketing</a>
             </div>
         </div>
-        <div class="popup__success form__success-block text-center hidden">
-            <div class="popup__title h4">
-                Ваша заявка принята
-            </div>
-            <div class="popup__success-desc text-block-md">
-                Наш менеджер свяжется с вами
-            </div>
-        </div> -->
+    </div>
+</footer>
+<div id="callback" class="popup">
+    <button type="button" data-fancybox-close class="popup__close icon-cross"></button>
+    <h2 class="popup__title title text-uppercase">обратный звонок</h2>
+    <p class="popup__subtitle">Оставьте свои контактные данные и мы свяжемся с вами в ближайшее время!</p>
+    <div class="popup__form">
+        <?= do_shortcode('[contact-form-7 id="1a8c4c8" title="Контактая форма Обратный звонок"]'); ?>
     </div>
 </div>
 </div>
