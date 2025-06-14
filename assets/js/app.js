@@ -12,6 +12,13 @@ if (typeof Fancybox !== "undefined" && Fancybox !== null) {
 
 $(function () {
 
+
+    // Fancybox.show([{
+    //     src: "#callback",
+    //     dragToClose: false,
+    //     closeButton: false
+    // }])
+
     // detect user OS
     const isMobile = {
         Android: () => /Android/i.test(navigator.userAgent),
@@ -46,14 +53,10 @@ $(function () {
         const $target = $(e.target);
 
         //  menu
-        if ($target.closest('.header__menu-btn').length) {
+        if ($target.closest('.header__menu-toggler').length) {
             $('.header').toggleClass('open-menu');
-            $('.header__location-btn').removeClass('active');
-            $('.header__location-list').removeClass('active');
-        }
+            $('body').toggleClass('lock-menu');
 
-        if ($target.is('.wrapper') && $('.header').hasClass('open-menu')) {
-            $('.header').removeClass('open-menu');
         }
 
         // faq accordion
@@ -61,60 +64,6 @@ $(function () {
             const $faqItem = $target.closest('.faq__item');
             $faqItem.toggleClass('active');
             $faqItem.find('.faq__item-answer').slideToggle()
-        }
-
-        // Открытие/закрытие списка локаций
-        if ($target.closest('.sign-lesson__location-selected').length) {
-            const $selectedBtn = $target.closest('.sign-lesson__location-selected');
-            const $locationList = $selectedBtn.siblings('.sign-lesson__location-list');
-
-            $selectedBtn.toggleClass('active');
-            $locationList.toggleClass('open');
-        }
-
-        // Закрытие списка при клике вне блока
-        if (!$target.closest('.sign-lesson__location').length) {
-            $('.sign-lesson__location-selected').removeClass('active');
-            $('.sign-lesson__location-list').removeClass('open');
-        }
-
-        // Выбор элемента из списка локаций
-        if ($target.closest('.sign-lesson__location-item').length) {
-            const $locationItem = $target.closest('.sign-lesson__location-item');
-            const $locationWrapper = $locationItem.closest('.sign-lesson__location');
-            const $locationSelected = $locationWrapper.find('.sign-lesson__location-selected');
-            const $locationList = $locationWrapper.find('.sign-lesson__location-list');
-            const $contentBlocks = $('.sign-lesson__content');
-
-            // Обновление активного элемента списка
-            $locationList.find('.sign-lesson__location-item').removeClass('active');
-            $locationItem.addClass('active');
-
-            // Обновление кнопки
-            $locationSelected.text($locationItem.text());
-            $locationSelected.removeClass('active');
-            $locationList.removeClass('open');
-
-            // Обновление контента
-            $contentBlocks.removeClass('active').eq($locationItem.index()).addClass('active');
-        }
-
-        // Открытие promo__info при клике на form__tooltip
-        if ($target.closest('.form__tooltip').length) {
-            const $promoWrapper = $target.closest('.promo__side');
-            const $promoInfo = $promoWrapper.find('.promo__info');
-
-            $promoWrapper.addClass('show-info');
-            $promoInfo.removeClass('hidden');
-        }
-
-        // Закрытие promo__info при клике на promo__info-close
-        if ($target.closest('.promo__info-close').length) {
-            const $promoWrapper = $target.closest('.promo__side');
-            const $promoInfo = $promoWrapper.find('.promo__info');
-
-            $promoWrapper.removeClass('show-info');
-            $promoInfo.addClass('hidden');
         }
 
         // Закрытие success состояния отправки формы 
@@ -127,29 +76,21 @@ $(function () {
             $promoSuccess.addClass('hidden');
         }
 
-        // header location
-        if ($target.is('.header__location-btn')) {
+        // Читать полностью 
+        if ($target.is('.desc__more')) {
             $target.toggleClass('active');
-            $('.header__location-list').toggleClass('active');
-        }
-        if (!$target.closest('.header__location').length) {
-            $('.header__location-btn').removeClass('active');
-            $('.header__location-list').removeClass('active');
-        }
+            $target.prev().toggleClass('full');
 
-        // whatsapp выпадающий список в header
-        if ($target.is('.header__whatsapp-btn')) {
-            $target.toggleClass('active');
-            $('.header__whatsapp-items').toggleClass('active');
-        }
-        if (!$target.closest('.header__whatsapp').length) {
-            $('.header__whatsapp-btn').removeClass('active');
-            $('.header__whatsapp-items').removeClass('active');
-        }
+            if ($target.hasClass('active')) {
+                $target.text('Свернуть');
+            } else {
+                $target.text('Читать полностью');
+            }
 
+        }
 
         if ($('body').hasClass('_touch')) {
-            if ($target.closest('.menu__link').length && $target.closest('.menu__item.has-children').length) {
+            if ($target.closest('.menu__link').length && $target.closest('.menu__item.menu-parent').length) {
                 e.preventDefault();
                 const $menuLink = $target.closest('.menu__link');
                 const $submenu = $menuLink.next('.submenu');
@@ -182,36 +123,30 @@ $(function () {
             }
         }
 
-        if ($(window).width() < 576 && $target.is('.footer__caption')) {
-            e.preventDefault();
-            $target.toggleClass('active');
-            $target.next().slideToggle()
-
-        }
-
-        if ($target.closest('.submenu__close').length) {
-            $('.menu__link').removeClass('active');
-            $('.submenu').removeClass('open');
-        }
-
 
     });
 
-    $(document).on('mouseenter', '.form__tooltip', function () {
-        const $promoWrapper = $(this).closest('.promo__side');
-        const $promoInfo = $promoWrapper.find('.promo__info');
+    // submenu animation
 
-        $promoWrapper.addClass('show-info');
-        $promoInfo.removeClass('hidden');
-    });
+    const $submenuItems = $('.submenu__item');
+    if ($submenuItems.length > 0) {
 
-    $(document).on('mouseleave', '.promo__side', function () {
-        const $promoWrapper = $(this);
-        const $promoInfo = $promoWrapper.find('.promo__info');
+        const $descriptionBlocks = $('.submenu__description-block');
 
-        $promoWrapper.removeClass('show-info');
-        $promoInfo.addClass('hidden');
-    });
+        $submenuItems.on('mouseenter', function () {
+            const index = $(this).index();
+            $(this).addClass('active').siblings().removeClass('active');
+            $descriptionBlocks.removeClass('active');
+            $descriptionBlocks.eq(index).addClass('active');
+        });
+
+        // $submenuItems.on('mouseleave', function () {
+        //     $descriptionBlocks.removeClass('active');
+        //     $(this).removeClass('active');
+        // });
+    }
+
+
 
     // form submit handlers
     $(document).on('wpcf7submit', function (e) {
@@ -233,18 +168,22 @@ $(function () {
     //  sliders
     if ($('.industries__slider').length) {
         new Swiper('.industries__slider', {
-            spaceBetween: 30,
-            slidesPerView: 3,
+            spaceBetween: 8,
+            slidesPerView: 1,
             navigation: {
                 prevEl: '.industries__slider-prev',
                 nextEl: '.industries__slider-next',
             },
 
             breakpoints: {
-                // 797.98: {
-                //     slidesPerView: 1,
-                //     spaceBetween: 0
-                // }
+                575.98: {
+                    spaceBetween: 20,
+                    slidesPerView: 2,
+                },
+                991.98: {
+                    spaceBetween: 30,
+                    slidesPerView: 3,
+                }
             }
         })
     }
@@ -271,7 +210,8 @@ $(function () {
 
     if ($('.cases__tabs-slider').length) {
         new Swiper('.cases__tabs-slider', {
-            spaceBetween: 24,
+
+            spaceBetween: 16,
             slidesPerView: "auto",
             initialSlide: $('.cases__tab-btn.active').index(),
             observeParents: true,
@@ -284,6 +224,11 @@ $(function () {
                 el: '.cases__tabs-scrollbar',
                 draggable: true,
             },
+            breakpoints: {
+                575.98: {
+                    spaceBetween: 24,
+                },
+            }
 
         })
     }
@@ -300,20 +245,27 @@ $(function () {
                     rotate: 0,
                     stretch: 255,
                     depth: 120,
-                    modifier: 3,
+                    modifier: 2.75,
                     slideShadows: false,
                 },
                 navigation: {
                     nextEl: $(this).closest('.cases__slider').find('.swiper-button-next')[0],
                     prevEl: $(this).closest('.cases__slider').find('.swiper-button-prev')[0],
                 },
+                breakpoints: {
+                    1439.98: {
+                        coverflowEffect: {
+                            modifier: 3,
+                        },
+                    }
+                }
             });
         });
     }
 
     if ($('.clients__slider').length) {
         new Swiper('.clients__slider', {
-            spaceBetween: 30,
+            spaceBetween: 8,
             slidesPerView: 2,
             navigation: {
                 prevEl: '.clients__slider-prev',
@@ -324,14 +276,21 @@ $(function () {
                 fill: 'row'
             },
             breakpoints: {
-                767.98: {
-                    slidesPerView: 2,
-                },
                 991.98: {
                     slidesPerView: 3,
+                    spaceBetween: 20,
+                    grid: {
+                        rows: 2,
+                        fill: 'row'
+                    },
                 },
                 1199.98: {
                     slidesPerView: 4,
+                    spaceBetween: 30,
+                    grid: {
+                        rows: 2,
+                        fill: 'row'
+                    },
                 }
             }
         })
@@ -361,21 +320,20 @@ $(function () {
 
     if ($('.team__slider').length) {
         new Swiper('.team__slider', {
-            spaceBetween: 30,
-            slidesPerView: 1,
+            spaceBetween: 8,
+            slidesPerView: 2,
             navigation: {
                 prevEl: '.team__slider-prev',
                 nextEl: '.team__slider-next',
             },
             breakpoints: {
-                767.98: {
-                    slidesPerView: 2,
-                },
                 991.98: {
                     slidesPerView: 3,
+                    spaceBetween: 20,
                 },
                 1199.98: {
                     slidesPerView: 4,
+                    spaceBetween: 30,
                 }
             }
         })
@@ -402,8 +360,6 @@ $(function () {
     }
 
 
-
-
     function getMobileSlider(sliderName, options) {
 
         let init = false;
@@ -426,36 +382,33 @@ $(function () {
     }
 
 
-
-
-
     // observer header scroll
-    const callback = (entries) => {
-        if (entries[0].isIntersecting) {
-            $('.header').removeClass('scroll');
-        } else {
+    function checkScroll() {
+        if ($(window).scrollTop() > 0) {
             $('.header').addClass('scroll');
+        } else {
+            $('.header').removeClass('scroll');
         }
-    };
-
-    const headerObserver = new IntersectionObserver(callback);
-    headerObserver.observe($('.header')[0]);
-
-
-    // observer header height
-    function updateHeaderHeight() {
-        var headerHeight = $('.header__body').outerHeight();
-
-        $('body').css('--header-height', headerHeight + 'px');
     }
 
-    updateHeaderHeight();
 
-    $(window).on('resize', function () {
-        updateHeaderHeight();
-    });
+    checkScroll();
 
+    $(window).on('scroll', checkScroll);
 
+    // search focus animation
+    if ($('.header__search-input').length) {
+        const $searchForm = $('.header__search');
+        const $searchInput = $('.header__search-input');
+
+        $searchInput.on('focus', () => {
+            $searchForm.addClass('focus');
+        });
+
+        $searchInput.on('blur', () => {
+            $searchForm.removeClass('focus');
+        });
+    }
 
 
     // tabs

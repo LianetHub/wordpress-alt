@@ -14,20 +14,45 @@
 //============ МОДУЛИ ====================
 
 .title-lg {
-	font-size: 3.75rem;
 	font-weight: 500;
+	font-size: rem(32);
+	line-height: 112.5%;
+	@media (min-width: $md5) {
+		line-height: normal;
+		font-size: 2.5rem;
+	}
+	@media (min-width: $md3) {
+		font-size: 3.75rem;
+	}
 }
 
 .title {
-	font-size: 2.875rem;
 	font-weight: 700;
-	line-height: 121.739%;
-	text-transform: uppercase;
+	font-size: 2rem;
+	line-height: 112.5%;
+	@media (min-width: $md3) {
+		line-height: 121.739%;
+		font-size: 2.875rem;
+	}
+}
+
+.title-md {
+	font-size: 1.875rem;
+	font-weight: 700;
+	line-height: 109.091%;
 }
 
 .title-sm {
-	font-size: 1.375rem;
-	line-height: 109.091%;
+	font-size: 1.25rem;
+	line-height: 100%;
+	@media (min-width: $md4) {
+		line-height: 109.091%;
+		font-size: 1.375rem;
+	}
+}
+
+.text-uppercase {
+	text-transform: uppercase;
 }
 
 .fw-bold {
@@ -220,19 +245,28 @@
 
 .more-link {
 	color: #ea9d0f;
-	font-size: 1.125rem;
 	font-weight: 500;
 	display: inline-flex;
-	gap: 0.62rem;
 	align-items: center;
+	gap: 0.5rem;
+	transition: color 0.3s ease;
+	font-size: 1rem;
 	&::before {
 		order: 1;
-		width: 1.625rem;
-		height: 1.625rem;
-		font-size: 1.625rem;
 		transition: transform 0.3s ease;
+		width: 1.5rem;
+		height: 1.5rem;
+		font-size: 1.5rem;
+		@media (min-width: $md4) {
+			width: 1.625rem;
+			height: 1.625rem;
+			font-size: 1.625rem;
+		}
 	}
-	transition: color 0.3s ease;
+	@media (min-width: $md4) {
+		gap: 0.62rem;
+		font-size: 1.125rem;
+	}
 	@media (any-hover: hover) {
 		&:hover {
 			color: color.adjust($color: #ea9d0f, $lightness: -10%);

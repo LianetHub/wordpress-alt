@@ -9,7 +9,11 @@
 }
 
 .fancybox__slide {
-	padding: 1.25rem;
+	padding: 0;
+
+	@media (min-width: $md5) {
+		padding: 1.25rem;
+	}
 }
 
 .fancybox__backdrop {
@@ -33,145 +37,93 @@
 	width: 100%;
 	padding: 0;
 	background: none;
-	max-width: 43.9375rem;
-	@media (min-width: $md2) {
-		max-width: 49.25rem;
-	}
-	// .popup__body
-	&__body {
-		position: relative;
-		width: 100%;
-		background: #cdcbcb;
-		color: #fff;
-		min-height: 26.75rem;
-		padding: 1.87rem 1.25rem;
-		display: flex;
-		flex-direction: column;
-		&.show-success {
-			.popup__content {
-				opacity: 0;
-				visibility: hidden;
-			}
-		}
-		@media (min-width: $md4) {
-			border-radius: 0.625rem;
-			padding: 3.87rem 3.94rem 2.25rem;
-		}
-		@media (min-width: $md2) {
-			min-height: rem(435);
-		}
+	max-width: 40.625rem;
+	background: #fff;
+	color: #141414;
+	padding: 0.75rem 0.75rem 3.75rem 0.75rem;
+	text-align: left;
+	@media (min-width: $md5) {
+		text-align: center;
+		padding: 4.37rem 5.19rem;
 	}
 	// .popup__close
 	&__close {
-		position: absolute;
-		top: 0.63rem;
-		right: 0.63rem;
+		font-size: 1.5rem;
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		font-size: 1.625rem;
-		color: #fff;
-		transform: rotate(45deg);
-		border-radius: 50%;
 		transition: color 0.3s ease 0s;
 		z-index: 2;
+		margin-right: auto;
+		margin-bottom: 1.5rem;
+		@media (min-width: $md5) {
+			margin-bottom: 0;
+			margin-right: 0;
+			position: absolute;
+			top: 0.63rem;
+			right: 0.63rem;
+		}
 		@media (any-hover: hover) {
 			&:hover {
 				color: $red;
 			}
 		}
 	}
-
-	// .popup__content
-	&__content {
-		display: flex;
-		flex-direction: column-reverse;
-		gap: 2.87rem;
-		@media (min-width: $md4) {
-			gap: 3.12rem;
-			flex-direction: row;
+	// .popup__title
+	&__title {
+		@media (min-width: $md3) {
+			text-align: center;
 		}
-		@media (min-width: $md2) {
-			gap: 2.5rem;
+		&.title {
+			font-size: 1.375rem;
+			@media (min-width: $md5) {
+				font-size: 2rem;
+			}
+			@media (min-width: $md3) {
+				font-size: 2.5rem;
+			}
+		}
+	}
+	// .popup__subtitle
+	&__subtitle {
+		font-weight: 500;
+		margin-top: 1rem;
+		@media (min-width: $md3) {
+			margin-top: 0.63rem;
+			font-size: 1.5rem;
+			line-height: 108.333%;
+			font-weight: 400;
+			text-align: center;
 		}
 	}
 	// .popup__form
 	&__form {
-		display: flex;
-		align-items: center;
-		flex-direction: column;
-		gap: 1.88rem;
-		max-width: 17.375rem;
-		align-self: center;
-		width: 100%;
-		@media (min-width: $md4) {
-			align-self: flex-start;
-			flex: 0 0 17.375rem;
-		}
-	}
-
-	// .popup__form-body
-	&__form-body {
-		border-radius: 0.625rem;
-		background: rgba($color: #efeeee, $alpha: 0.8);
-		padding: 2.88rem 1.75rem 2.5rem;
-		position: relative;
-		display: flex;
-		flex-direction: column;
-		gap: 0.75rem;
-		width: 100%;
-		&::before {
-			content: "";
-			position: absolute;
-			top: -1.5rem;
-			left: 50%;
-			transform: translateX(-50%);
-			width: rem(71);
-			height: rem(52);
-			background: url("@img/icons/CME-languages.svg") center / contain no-repeat;
-		}
-	}
-
-	// .popup__form-btn
-	&__form-btn {
-		margin-top: rem(30);
-		margin-left: auto;
-		margin-right: auto;
-		width: fit-content;
-		&.btn {
+		margin-top: 1.75rem;
+		.wpcf7-form {
 			display: flex;
+			flex-direction: column;
+			gap: rem(24);
+			@media (min-width: $md5) {
+				gap: rem(16);
+			}
+			@media (min-width: $md3) {
+				align-items: center;
+			}
 		}
-	}
-	// .popup__desc
-	&__desc {
-		flex: 1 1 auto;
-		text-align: center;
-		padding: 0 1rem;
-		@media (min-width: $md4) {
-			padding: 1.5rem 0 0 0;
-			text-align: left;
+		.wpcf7-form-control-wrap {
+			width: 100%;
 		}
-	}
-	// .popup__title
-	&__title {
-		line-height: 100%;
-		@media (max-width: $md4) {
-			font-size: 2rem;
+		.form__btn {
+			width: auto;
+			order: 1;
+			@media (min-width: $md5) {
+				margin-top: 1.5rem;
+				order: 0;
+			}
 		}
-		@media (min-width: $md4) {
-			padding: 0;
-		}
-	}
-	// .popup__text
-	&__text {
-		margin-top: 1.25rem;
-		line-height: 120%;
-		@media (max-width: $md4) {
-			font-size: 1rem;
-		}
-		& p {
-			&:not(:last-child) {
-				margin-bottom: 0.5em;
+		.form__checkbox-text {
+			&::before {
+				border: rem(1) solid #000;
 			}
 		}
 	}
