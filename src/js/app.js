@@ -13,11 +13,7 @@ if (typeof Fancybox !== "undefined" && Fancybox !== null) {
 $(function () {
 
 
-    // Fancybox.show([{
-    //     src: "#callback",
-    //     dragToClose: false,
-    //     closeButton: false
-    // }])
+
 
     // detect user OS
     const isMobile = {
@@ -47,6 +43,7 @@ $(function () {
 
 
 
+    let resizeHandler = null;
 
     // event handlers
     $(document).on('click', (e) => {
@@ -89,37 +86,56 @@ $(function () {
 
         }
 
-        if ($('body').hasClass('_touch')) {
-            if ($target.closest('.menu__link').length && $target.closest('.menu__item.menu-parent').length) {
-                e.preventDefault();
-                const $menuLink = $target.closest('.menu__link');
-                const $submenu = $menuLink.next('.submenu');
 
-                const isActive = $menuLink.hasClass('active');
+        if ($target.closest('.menu__arrow').length && $target.closest('.menu__item.menu-parent').length) {
+            e.preventDefault();
+            const $menuItem = $target.closest('.menu__item');
+            const $menuArrow = $target.closest('.menu__arrow');
+            const $submenu = $menuArrow.next('.submenu');
 
-                $('.menu__link').removeClass('active');
-                $('.submenu').removeClass('open');
+            const isActive = $menuItem.hasClass('active');
 
-                if (!isActive) {
-                    $menuLink.addClass('active');
-                    $submenu.addClass('open');
+            $('.menu__item').removeClass('active');
+            $('.submenu').removeClass('open');
 
-                    if ($(window).width() < 576) {
-                        const $menuContainer = $('.menu');
-                        const menuTop = $menuContainer.offset().top;
-                        const menuScrollTop = $menuContainer.scrollTop();
-                        const itemTop = $menuLink.offset().top;
-                        const itemHeight = $menuLink.outerHeight();
-                        const containerHeight = $menuContainer.height();
+            if (!isActive) {
+                $menuItem.addClass('active');
+                $submenu.addClass('open');
 
-                        if (itemTop + itemHeight > menuTop + containerHeight || itemTop < menuTop) {
-                            const scrollOffset = itemTop - menuTop + menuScrollTop;
-                            $menuContainer.animate({
-                                scrollTop: scrollOffset
-                            }, 300);
-                        }
-                    }
+                const submenuHeight = $submenu.outerHeight();
+
+                $('.menu__body')
+                    .addClass('active')
+                    .css('min-height', submenuHeight);
+
+                resizeHandler = () => {
+                    const updatedHeight = $submenu.outerHeight();
+                    $menuBody.css('min-height', updatedHeight);
+                };
+                $(window).on('resize', resizeHandler);
+            } else {
+                $('.menu__body').removeClass('active').css('min-height', '');
+
+                if (resizeHandler) {
+                    $(window).off('resize', resizeHandler);
+                    resizeHandler = null;
                 }
+            }
+        }
+
+        if ($target.closest('.submenu__close').length) {
+            const $menuBody = $('.menu__body');
+
+            $('.menu__item').removeClass('active');
+            $('.submenu').removeClass('open');
+
+            $menuBody
+                .removeClass('active')
+                .css('min-height', '');
+
+            if (resizeHandler) {
+                $(window).off('resize', resizeHandler);
+                resizeHandler = null;
             }
         }
 
@@ -170,11 +186,11 @@ $(function () {
         new Swiper('.industries__slider', {
             spaceBetween: 8,
             slidesPerView: 1,
+            loop: true,
             navigation: {
                 prevEl: '.industries__slider-prev',
                 nextEl: '.industries__slider-next',
             },
-
             breakpoints: {
                 575.98: {
                     spaceBetween: 20,
