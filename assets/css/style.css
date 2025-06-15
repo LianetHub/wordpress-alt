@@ -3343,6 +3343,22 @@ header.scroll .header__search.focus .header__search-input {
   font-size: 0.5em;
 }
 
+.check-list {
+  background: #313f69;
+  color: #fff;
+  padding: 3.375rem 0;
+}
+
+.check-list__body {
+  display: -ms-grid;
+  display: grid;
+  gap: 2rem;
+}
+
+.check-list__subtitle {
+  margin-top: 0.75rem;
+}
+
 .contacts {
   padding: 2.5rem 0 4rem;
 }
@@ -4183,6 +4199,20 @@ html {
 
   .principles__desc {
     font-size: 1.25rem;
+  }
+
+  .check-list {
+    padding: 0 0 5rem;
+    background: transparent;
+    color: inherit;
+  }
+
+  .check-list__body {
+    border-radius: 1.25rem;
+    background: #313f69;
+    color: #fff;
+    padding: 4.69rem 3.13rem;
+    gap: 2.19rem;
   }
 
   .сertificates__download {
@@ -5567,6 +5597,19 @@ html {
     padding-left: 2.69rem;
     gap: 2rem;
     font-size: 1.5rem;
+  }
+
+  .check-list {
+    padding: 0 0 11.87rem;
+  }
+
+  .check-list__body {
+    -ms-grid-columns: (1fr)[2];
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .check-list__form {
+    max-width: 32.1875rem;
   }
 
   .contacts {
