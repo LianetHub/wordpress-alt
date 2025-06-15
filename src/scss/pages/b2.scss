@@ -88,3 +88,140 @@
 		}
 	}
 }
+
+.principles {
+	padding: 4rem 0;
+	@media (min-width: $md3) {
+		padding: 6.25rem 0;
+	}
+	// .principles__header
+	&__header {
+		display: flex;
+		flex-direction: column;
+		gap: 1.5rem;
+		@media (min-width: $md3) {
+			align-items: center;
+			gap: 3.44rem;
+			flex-direction: row;
+		}
+	}
+	// .principles__title
+	&__title {
+		@media (min-width: $md3) {
+			flex: 0 0 28.75rem;
+		}
+	}
+	// .principles__desc
+	&__desc {
+		border-left: rem(1) solid #313f69;
+
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		font-size: 1rem;
+		padding-left: 0.75rem;
+		gap: 0.75rem;
+		line-height: 137.5%;
+		@media (min-width: $md5) {
+			font-size: 1.25rem;
+		}
+		@media (min-width: $md3) {
+			line-height: 158.333%;
+			padding-left: 2.69rem;
+			gap: 2rem;
+			font-size: 1.5rem;
+		}
+	}
+	// .principles__list
+	&__list {
+		display: grid;
+		gap: rem(8);
+		margin-top: 1.5rem;
+		@media (min-width: $md4) {
+			margin-top: 3.5rem;
+			grid-template-columns: repeat(2, 1fr);
+			gap: rem(20);
+		}
+		@media (min-width: $md2) {
+			margin-top: 5.5rem;
+			gap: rem(30);
+			grid-template-columns: repeat(3, 1fr);
+		}
+	}
+	// .principles__item
+	&__item {
+		counter-increment: num;
+		border-radius: 1.25rem;
+		background: #f3f3f5;
+		overflow: hidden;
+		padding: 1.25rem 1.25rem 2rem;
+		@for $i from 1 through 9 {
+			&:nth-child(#{$i}) {
+				.principles__item-caption {
+					&::before {
+						content: "0" counter(num);
+					}
+				}
+			}
+		}
+		@media (min-width: $md4) {
+			padding: 2.25rem 0.94rem 1.5rem;
+		}
+	}
+	// .principles__item-caption
+	&__item-caption {
+		font-size: 1.25rem;
+		font-weight: 500;
+
+		line-height: 115%;
+		display: flex;
+		align-items: center;
+		gap: 1.5rem;
+		&::before {
+			content: counter(num);
+			-webkit-text-stroke-width: rem(2);
+			-webkit-text-stroke-color: #2a2f3d;
+
+			font-weight: 700;
+			line-height: 72.5%;
+			text-transform: uppercase;
+			color: transparent;
+			gap: 2.19rem;
+			font-size: 3.5rem;
+			margin-left: -2rem;
+			transform: translateY(-0.25rem);
+			@media (min-width: $md4) {
+				transform: none;
+				margin-left: -2.5rem;
+				font-size: 5rem;
+			}
+		}
+		@media (min-width: $md4) {
+			line-height: 108.333%;
+			font-size: 1.5rem;
+			font-weight: 700;
+		}
+	}
+	// .principles__item-list
+	&__item-list {
+		line-height: 140%;
+		list-style: disc;
+		padding-left: 1.5em;
+		margin-top: 0.75rem;
+		display: flex;
+		flex-direction: column;
+		gap: 0.7rem;
+		& li {
+			&::marker {
+				font-size: 0.5em;
+			}
+		}
+		@media (min-width: $md4) {
+			gap: 1rem;
+			line-height: 122.222%;
+			padding-left: 1.75em;
+			margin-top: 1.69rem;
+			font-size: 1.125rem;
+		}
+	}
+}

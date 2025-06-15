@@ -6,6 +6,9 @@
 .сertificates {
 	background: #f3f3f5;
 	padding: 3.375rem 0;
+	@media (min-width: $md4) {
+		padding: 6.25rem 0;
+	}
 	&.сertificates--white {
 		background: #fff;
 		padding: 2.5rem 0;

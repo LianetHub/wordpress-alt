@@ -471,7 +471,7 @@
 	display: flex;
 	background: #f3f3f5;
 	flex-direction: column;
-	padding: rem(54) 0;
+	padding: rem(54) 0 0;
 	gap: 1rem;
 	@media (min-width: $md3) {
 		gap: 0;
@@ -503,6 +503,11 @@
 			img {
 				min-height: rem(295);
 			}
+		}
+	}
+	&:has(.about__bottom) {
+		@media (max-width: $md3) {
+			padding-bottom: rem(54);
 		}
 	}
 	// .about__wrapper

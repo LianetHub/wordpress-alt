@@ -60,6 +60,7 @@ function set_global_acf_fields()
 		'team_members' => get_field('team_members', 'option'),
 		'сertificates' => get_field('сertificates', 'option'),
 		'support_block' => get_field('support_block', 'option'),
+		'company_principles' => get_field('company_principles', 'option'),
 	];
 }
 add_action('wp', 'set_global_acf_fields');
