@@ -1,0 +1,39 @@
+<?php
+
+$features_title = get_field('features_title') ?? 'Приемущества';
+$features_description = get_field('features_description');
+?>
+
+
+<section class="features">
+    <div class="container">
+        <h2 class="features__title title text-uppercase">
+            <?php echo fix_widows_after_prepositions(esc_html($features_title)); ?>
+        </h2>
+        <?php if ($features_description): ?>
+            <div class="features__desc"><?php echo wp_kses_post($features_description); ?></div>
+        <?php endif; ?>
+        <? if (have_rows('features_list_items')): ?>
+            <ul class="features__list">
+                <?php while (have_rows('features_list_items')): the_row();
+
+                    $item_caption = get_sub_field('item_caption');
+                    $item_description = get_sub_field('item_description');
+                ?>
+                    <li class="features__item icon-check-circle">
+                        <?php if ($item_caption): ?>
+                            <div class="features__item-caption title-sm">
+                                <?php echo wp_kses_post($item_caption); ?>
+                            </div>
+                        <?php endif; ?>
+                        <?php if ($item_description): ?>
+                            <div class="features__item-desc">
+                                <?php echo wp_kses_post($item_description); ?>
+                            </div>
+                        <?php endif; ?>
+                    </li>
+                <?php endwhile; ?>
+            </ul>
+        <?php endif; ?>
+    </div>
+</section>

@@ -4,14 +4,24 @@
 @use "_variables" as *;
 
 .сertificates {
-	background: #fff;
-	padding: 2.5rem 0;
-	@media (min-width: $md4) {
-		padding: 6.25rem 0;
+	background: #f3f3f5;
+	padding: 3.375rem 0;
+	&.сertificates--white {
+		background: #fff;
+		padding: 2.5rem 0;
+		@media (min-width: $md4) {
+			padding: 6.25rem 0;
+		}
 	}
 	// .сertificates__body
 	&__body {
 		position: relative;
+		&:not(:first-child) {
+			margin-top: 1.5rem;
+			@media (min-width: $md4) {
+				margin-top: 2.5rem;
+			}
+		}
 	}
 	// .сertificates__slider
 	&__slider {

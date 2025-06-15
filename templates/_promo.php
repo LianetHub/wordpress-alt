@@ -24,7 +24,7 @@ if ($is_certificates_page) {
 
 
 
-<section class="promo<?= $extra_class ?>" <?= $style_attr ?>>
+<section class="promo" <?= $style_attr ?>>
     <div class="container">
         <div class="promo__body">
             <div class="promo__offer">

@@ -58,6 +58,8 @@ function set_global_acf_fields()
 		'client_logos' => get_field('client_logos', 'option'),
 		'reviews' => get_field('reviews', 'option'),
 		'team_members' => get_field('team_members', 'option'),
+		'сertificates' => get_field('сertificates', 'option'),
+		'support_block' => get_field('support_block', 'option'),
 	];
 }
 add_action('wp', 'set_global_acf_fields');
@@ -68,6 +70,15 @@ add_filter('wpcf7_autop_or_not', '__return_false');
 
 add_theme_support('post-thumbnails');
 
+
+function my_theme_setup()
+{
+
+	register_nav_menus(array(
+		'top_header_menu' => __('Меню для государственных заказчиков'),
+	));
+}
+add_action('after_setup_theme', 'my_theme_setup');
 
 
 function fix_widows_after_prepositions($text)

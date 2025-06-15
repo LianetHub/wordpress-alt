@@ -62,13 +62,18 @@
             <div class="header__top">
                 <div class="container">
                     <div class="header__top-body">
-                        <nav aria-label="Меню для госзаказчиков" class="header__top-menu">
-                            <ul>
-                                <li><a href="/state">Для госзаказчиков</a></li>
-                                <li><a href="/certificates">Сертификаты</a></li>
-                                <li><a href="/reviews">Отзывы</a></li>
-                            </ul>
-                        </nav>
+                        <?php
+                        wp_nav_menu(array(
+                            'theme_location'  => 'top_header_menu',
+                            'container'       => 'nav',
+                            'container_class' => 'header__top-menu',
+                            'container_aria_label' => 'Меню для государственных заказчиков',
+                            'menu_class'      => '',
+                            'items_wrap'      => '<ul>%3$s</ul>',
+                            'depth'           => 1,
+                            'fallback_cb'     => false,
+                        ));
+                        ?>
                         <?php if (!empty($work_time)): ?>
                             <div class="header__top-worktime">График работы: <?= esc_html($work_time) ?></div>
                         <?php endif; ?>
@@ -108,7 +113,7 @@
             <div class="header__bottom">
                 <div class="container">
                     <div class="header__bottom-content">
-                        <button type="button" class="header__menu-toggler icon-menu">
+                        <button type="button" aria-label="Меню" class="header__menu-toggler icon-menu">
                             <span></span>
                             <span></span>
                         </button>
@@ -202,7 +207,7 @@
                                         </div>
                                     </li>
                                     <li class="menu__item"><a href="/about" class="menu__link">О компании</a></li>
-                                    <li class="menu__item"><a href="/business" class="menu__link">Для бизнеса</a></li>
+                                    <li class="menu__item"><a href="/b2b" class="menu__link">Для бизнеса</a></li>
                                     <li class="menu__item"><a href="/projects" class="menu__link">Проекты</a></li>
                                     <li class="menu__item"><a href="/blog" class="menu__link">Блог</a></li>
                                     <li class="menu__item"><a href="/contacts" class="menu__link">Контакты</a></li>

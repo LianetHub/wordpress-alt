@@ -157,7 +157,7 @@
 			display: block;
 			margin-top: rem(6);
 			margin-bottom: auto;
-			max-width: rem(524);
+			max-width: rem(566);
 			font-size: 1.25rem;
 			line-height: 130%;
 		}
@@ -167,6 +167,7 @@
 		font-weight: 700;
 		margin-bottom: rem(12);
 		margin-top: 0.6rem;
+		max-width: rem(530);
 		@media (max-width: $md4) {
 			margin-top: 0;
 			font-size: 1rem;
@@ -468,6 +469,33 @@
 		padding: 0;
 		flex-direction: row;
 	}
+	&.about--reverse {
+		@media (min-width: $md3) {
+			.about__image {
+				order: -1;
+				transform: none;
+				padding-right: 7rem;
+			}
+			.about__wrapper {
+				transform: translateX(-50%);
+			}
+			.about__body {
+				padding: 4.25rem 0;
+				width: 53.8%;
+				margin-left: auto;
+			}
+		}
+		.about__body {
+			@media (min-width: $md1) {
+				padding: 6.25rem 0;
+			}
+		}
+		.about__image {
+			img {
+				min-height: rem(295);
+			}
+		}
+	}
 	// .about__wrapper
 	&__wrapper {
 		display: contents;
@@ -493,6 +521,7 @@
 			padding: 6.25rem 2rem 6.25rem 0;
 		}
 	}
+	// .about__header
 	&__header {
 		order: -1;
 		.container {
@@ -505,9 +534,66 @@
 	&__subtitle {
 		line-height: 137.5%;
 		margin-top: rem(24);
+		&.title-sm {
+			font-size: 1rem;
+		}
 		@media (min-width: $md4) {
 			margin-top: rem(30);
 			line-height: 133.333%;
+			font-size: 1.125rem;
+			&.title-sm {
+				font-size: 1.375rem;
+			}
+		}
+	}
+	// .about__list
+	&__list {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 0.5rem;
+		row-gap: 2rem;
+		margin-top: 1.5rem;
+		padding-bottom: 1.7rem;
+		@media (min-width: $md5) {
+			margin-top: rem(50);
+			gap: rem(45);
+			row-gap: rem(45);
+		}
+	}
+	// .about__list-item
+	&__list-item {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 0.5rem;
+		@media (min-width: $md5) {
+			gap: rem(15);
+		}
+	}
+	// .about__list-icon
+	&__list-icon {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+
+		background: #313f69;
+		padding: 0.66rem;
+		width: 3.5rem;
+		height: 3.5rem;
+		border-radius: 0.75rem;
+		@media (min-width: $md4) {
+			border-radius: 1.22769rem;
+			width: 6.875rem;
+			height: 6.875rem;
+		}
+	}
+	// .about__list-desc
+	&__list-desc {
+		font-size: 0.875rem;
+		font-weight: 700;
+		line-height: 140%;
+		@media (min-width: $md4) {
+			line-height: 122.222%;
 			font-size: 1.125rem;
 		}
 	}

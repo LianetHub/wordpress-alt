@@ -1,0 +1,90 @@
+@use "sass:math";
+@use "sass:color";
+@use "../_mixins" as *;
+@use "../_variables" as *;
+
+.features {
+	padding: 4rem 0;
+	@media (min-width: $md3) {
+		padding: 6.25rem 0;
+	}
+	// .features__title
+	&__title {
+	}
+	// .features__desc
+	&__desc {
+		max-width: 47.5rem;
+		font-size: 1rem;
+		line-height: 137.5%;
+		margin-top: rem(24);
+		@media (min-width: $md3) {
+			margin-top: rem(30);
+			line-height: 118.182%;
+			font-size: 1.375rem;
+		}
+	}
+	// .features__list
+	&__list {
+		display: grid;
+		margin-top: rem(24);
+		gap: rem(8);
+		@media (min-width: $md4) {
+			margin-top: rem(30);
+			grid-template-columns: repeat(2, 1fr);
+			gap: rem(20);
+		}
+		@media (min-width: $md2) {
+			gap: rem(30);
+			margin-top: rem(50);
+			grid-template-columns: repeat(3, 1fr);
+		}
+	}
+	// .features__item
+	&__item {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		border-radius: 1.25rem;
+		background: #f3f3f5;
+		color: #000;
+		padding: 1.25rem;
+		@media (min-width: $md4) {
+			min-height: 16.25rem;
+			padding: rem(30);
+		}
+		&::before {
+			color: #313f69;
+			font-size: 2rem;
+			@media (min-width: $md4) {
+				font-size: 2.75rem;
+			}
+		}
+	}
+	// .features__item-caption
+	&__item-caption {
+		margin-top: rem(15);
+		& p {
+			&:not(:last-child) {
+				margin-bottom: rem(15);
+			}
+		}
+		&.title-sm {
+			line-height: 140%;
+			font-size: 1rem;
+			@media (min-width: $md4) {
+				font-size: 1.375rem;
+				line-height: 118.182%;
+			}
+		}
+	}
+	// .features__item-desc
+	&__item-desc {
+		line-height: 111.111%;
+		margin-top: 0.75rem;
+		font-size: 0.875rem;
+		@media (min-width: $md4) {
+			font-size: 1.125rem;
+			margin-top: 0.94rem;
+		}
+	}
+}
