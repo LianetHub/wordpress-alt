@@ -1,0 +1,131 @@
+@use "sass:math";
+@use "sass:color";
+@use "_mixins" as *;
+@use "_variables" as *;
+
+.reviews {
+	background: #f3f3f5;
+	padding: 3.375rem 0;
+	&.reviews--white {
+		background: #fff;
+		padding: 2.5rem 0;
+		@media (min-width: $md4) {
+			padding: 6.25rem 0;
+		}
+	}
+	@media (min-width: $md4) {
+		padding: 6.25rem 0;
+	}
+	// .reviews__title
+	&__title {
+	}
+	// .reviews__body
+	&__body {
+		position: relative;
+		margin-top: 1.5rem;
+		@media (min-width: $md4) {
+			margin-top: 2.5rem;
+		}
+	}
+	// .reviews__slider
+	&__slider {
+	}
+	// .reviews__slide
+	&__slide {
+		& img {
+			border-radius: 1.25rem;
+		}
+	}
+	// .reviews__slider-prev
+	&__slider-prev {
+	}
+	// .reviews__slider-next
+	&__slider-next {
+	}
+	// .reviews__list
+	&__list {
+		display: flex;
+		flex-direction: column;
+		gap: 4rem;
+		@media (min-width: $md4) {
+			gap: 5rem;
+		}
+	}
+}
+
+.review {
+	display: flex;
+	flex-direction: column;
+	gap: 0.75rem;
+	@media (min-width: $md4) {
+		gap: 2.5rem;
+		flex-direction: row;
+		max-width: rem(1095);
+		align-items: flex-start;
+	}
+	// .review__body
+	&__body {
+		display: contents;
+		@media (min-width: $md4) {
+			flex: 1 1 auto;
+			display: flex;
+			flex-direction: column;
+			gap: 1.25rem;
+			align-self: stretch;
+		}
+	}
+	// .review__company
+	&__company {
+		font-weight: 500;
+		order: -1;
+	}
+	// .review__author
+	&__author {
+		font-weight: 500;
+		line-height: 137.5%;
+		order: -1;
+		margin-top: 0.3rem;
+		@media (min-width: $md3) {
+			margin-top: 0;
+			line-height: 133.333%;
+			font-size: 1.125rem;
+		}
+	}
+	// .review__desc
+	&__desc {
+		display: flex;
+		flex-direction: column;
+		margin-top: 1rem;
+		gap: 1rem;
+		line-height: 137.5%;
+		@media (min-width: $md3) {
+			line-height: 133.333%;
+			font-size: 1.125rem;
+			gap: 1.4rem;
+		}
+	}
+	// .review__link
+	&__link {
+		margin-top: 1rem;
+		@media (min-width: $md4) {
+			margin-top: auto;
+		}
+	}
+	// .review__image
+	&__image {
+		background: #f3f3f5;
+		max-width: 81%;
+		margin-top: 0.75rem;
+		padding: 0.75rem;
+		border-radius: 0.93131rem;
+		order: -1;
+		@media (min-width: $md4) {
+			order: 0;
+			border-radius: 1.25rem;
+			padding: 1.25rem;
+			margin-top: 0;
+			max-width: 100%;
+			flex: 0 0 20.625rem;
+		}
+	}
+}

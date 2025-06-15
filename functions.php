@@ -55,7 +55,7 @@ function set_global_acf_fields()
 		'organization_address' => get_field('organization_address', 'option'),
 		'benefits_blocks' => get_field('benefits_blocks', 'option'),
 		'client_logos' => get_field('client_logos', 'option'),
-		'review_images' => get_field('review_images', 'option'),
+		'reviews' => get_field('reviews', 'option'),
 		'team_members' => get_field('team_members', 'option'),
 	];
 }
@@ -106,6 +106,15 @@ function fix_widows_after_prepositions($text)
 
 	return $text;
 }
+
+
+
+add_filter('wpseo_breadcrumb_separator', 'my_custom_breadcrumb_separator');
+function my_custom_breadcrumb_separator($separator)
+{
+	return '/';
+}
+
 
 
 // function register_teachers_post_type()

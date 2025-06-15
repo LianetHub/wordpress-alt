@@ -400,7 +400,17 @@ $(function () {
 
     // observer header scroll
     function checkScroll() {
-        if ($(window).scrollTop() > 0) {
+
+        const headerTopHeight = $('.header__top').outerHeight() || 0;
+        const headerBodyHeight = $('.header__body').outerHeight() || 0;
+
+
+        const scrollThreshold = headerTopHeight + headerBodyHeight;
+
+        console.log("currentScroll", $(window).scrollTop());
+        console.log("scrollThreshold", scrollThreshold);
+
+        if ($(window).scrollTop() > scrollThreshold) {
             $('.header').addClass('scroll');
         } else {
             $('.header').removeClass('scroll');
@@ -411,6 +421,7 @@ $(function () {
     checkScroll();
 
     $(window).on('scroll', checkScroll);
+    $(window).on('resize', checkScroll);
 
     // search focus animation
     if ($('.header__search-input').length) {

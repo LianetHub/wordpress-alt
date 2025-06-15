@@ -1,11 +1,11 @@
-<?php if (have_rows('review_images', 'option')): ?>
+<?php if (have_rows('reviews', 'option')): ?>
     <section class="reviews">
         <div class="container">
             <h2 class="reviews__title title text-uppercase">Отзывы</h2>
             <div class="reviews__body">
                 <div class="reviews__slider swiper">
                     <div class="swiper-wrapper">
-                        <?php while (have_rows('review_images', 'option')): the_row();
+                        <?php while (have_rows('reviews', 'option')): the_row();
 
                             $review_image = get_sub_field('review_image');
 

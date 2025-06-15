@@ -1,7 +1,11 @@
 <?php if (have_rows('catalog_items')):  ?>
+
+    <?php $catalog_title = get_field("catalog_title") ?? ''; ?>
     <section class="catalog">
         <div class="container">
-            <h2 class="catalog__title title text-uppercase">Каталог</h2>
+            <?php if (!empty($catalog_title)): ?>
+                <h2 class="catalog__title title text-uppercase"><?= $catalog_title ?></h2>
+            <?php endif; ?>
             <div class="catalog__body">
                 <div class="catalog__slider swiper">
                     <ul class="swiper-wrapper">

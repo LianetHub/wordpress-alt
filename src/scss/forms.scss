@@ -88,6 +88,9 @@
 	//  .form__checkbox
 	&__checkbox {
 		display: block;
+		.wpcf7-list-item {
+			margin-left: 0 !important;
+		}
 	}
 	// .form__checkbox-input
 	&__checkbox-input {
