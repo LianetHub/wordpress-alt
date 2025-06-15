@@ -770,6 +770,15 @@
 	@media (min-width: $md4) {
 		padding: 6.25rem 0;
 	}
+	&:is(body) {
+		padding: 0;
+	}
+	&.blog--white {
+		padding: 2.5rem 0 4rem;
+		@media (min-width: $md3) {
+			padding: 5rem 0 6.87rem;
+		}
+	}
 	// .blog__content
 	&__content {
 		display: flex;
@@ -804,9 +813,11 @@
 	// .blog__body
 	&__body {
 		position: relative;
-		margin-top: 0.5rem;
-		@media (min-width: $md4) {
-			margin-top: rem(30);
+		&:not(:first-child) {
+			margin-top: 0.5rem;
+			@media (min-width: $md4) {
+				margin-top: rem(30);
+			}
 		}
 	}
 	// .blog__slider
@@ -818,8 +829,25 @@
 		display: flex;
 		flex-direction: column;
 		gap: 0.75rem;
+		transition: box-shadow 0.3s ease;
 		@media (min-width: $md5) {
 			gap: 1.25rem;
+		}
+		&:not(.swiper-slide) {
+			@media (min-width: $md3) {
+				gap: 0;
+				border-radius: 1.25rem;
+				.blog__item-poster {
+					& img {
+						border-radius: 1.25rem 1.25rem 0 0;
+					}
+				}
+			}
+			@media (any-hover: hover) {
+				&:hover {
+					box-shadow: rem(2) rem(4) rem(8) 0 rgba(0, 0, 0, 0.12);
+				}
+			}
 		}
 	}
 	// .blog__item-poster
@@ -833,6 +861,19 @@
 			top: 0;
 			left: 0;
 			border-radius: 1.25rem;
+		}
+	}
+	// .blog__item-body
+	&__item-body {
+		display: flex;
+		flex-direction: column;
+		gap: 0.75rem;
+		padding: 0.75rem 0;
+		@media (min-width: $md4) {
+			gap: 1.25rem;
+			flex: 1 1 auto;
+			padding: 1.25rem;
+			border-radius: 0 0 1.25rem 1.25rem;
 		}
 	}
 	// .blog__item-time
@@ -872,6 +913,35 @@
 	// .blog__slider-next
 	&__slider-next {
 		@extend.blog__slider-prev;
+	}
+	// .blog__list
+	&__list {
+		display: grid;
+		gap: rem(20);
+		row-gap: 4rem;
+		@media (min-width: $md4) {
+			row-gap: 5rem;
+			grid-template-columns: repeat(2, 1fr);
+		}
+		@media (min-width: $md2) {
+			gap: rem(30);
+			grid-template-columns: repeat(3, 1fr);
+		}
+	}
+	// .blog__more
+	&__more {
+		display: flex;
+		margin-left: auto;
+		margin-right: auto;
+		margin-top: 2.5rem;
+		width: 100%;
+		@media (min-width: $md5) {
+			width: fit-content;
+		}
+		@media (min-width: $md4) {
+			min-width: 23.75rem;
+			margin-top: 5rem;
+		}
 	}
 }
 
