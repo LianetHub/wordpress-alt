@@ -69,6 +69,49 @@
 	}
 }
 
+.widgets {
+	display: none;
+	@media (min-width: $md4) {
+		position: fixed;
+		top: 50%;
+		transform: translateY(-50%);
+		z-index: 6;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 0.81rem;
+		right: 2rem;
+	}
+	@media (min-width: $md3) {
+		right: 3.75rem;
+	}
+	// .widgets__btn
+	&__btn {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+
+		border-radius: 50%;
+		color: #fff;
+		background: #ea9d0f;
+		transition: background-color 0.3s ease;
+		width: 3.5rem;
+		height: 3.5rem;
+		font-size: 1.25rem;
+		@media (min-width: $md3) {
+			width: 4.0625rem;
+			height: 4.0625rem;
+			font-size: 1.5625rem;
+		}
+		&:hover {
+			background: #cc7f00;
+		}
+		&:active {
+			background: color.adjust($color: #cc7f00, $lightness: -10%);
+		}
+	}
+}
+
 .tabs {
 	display: flex;
 	flex-wrap: wrap;

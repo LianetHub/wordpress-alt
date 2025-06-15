@@ -1,13 +1,13 @@
 </main>
+<?php
+$phone_number = get_field('phone_number', 'option');
+$formatted_phone_number = preg_replace('/[^0-9+]/', '', $phone_number);
+$email_address = get_field('email_address', 'option');
+$organization_address = get_field('organization_address', 'option');
+$company_details_group = get_field('company_details', 'option');
+$current_year = date('Y');
+?>
 <footer class="footer">
-    <?php
-    $phone_number = get_field('phone_number', 'option');
-    $formatted_phone_number = preg_replace('/[^0-9+]/', '', $phone_number);
-    $email_address = get_field('email_address', 'option');
-    $organization_address = get_field('organization_address', 'option');
-    $company_details_group = get_field('company_details', 'option');
-    $current_year = date('Y');
-    ?>
     <div class="container">
         <div class="footer__header">
             <?php if (!empty($organization_address)): ?>
@@ -108,6 +108,16 @@
         </div>
     </div>
 </footer>
+<?php if (!empty($email_address) || !empty($phone_number)): ?>
+    <div class="widgets">
+        <?php if (!empty($phone_number)): ?>
+            <a href="tel:<?= esc_attr($formatted_phone_number) ?>" aria-label="Телефон" class="widgets__btn icon-phone"></a>
+        <?php endif; ?>
+        <?php if (!empty($email_address)): ?>
+            <a href="mailto:<?= esc_attr($email_address) ?>" aria-label="E-mail" class="widgets__btn icon-envelope"></a>
+        <?php endif; ?>
+    </div>
+<?php endif; ?>
 <div id="callback" class="popup">
     <button type="button" data-fancybox-close class="popup__close icon-cross"></button>
     <h2 class="popup__title title text-uppercase">обратный звонок</h2>

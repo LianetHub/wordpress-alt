@@ -3,7 +3,7 @@
         <div class="blog__content">
             <div class="blog__header">
                 <h2 class="blog__title title text-uppercase">Блог</h2>
-                <a href="" class="blog__link more-link icon-arrow">Все публикации</a>
+                <a href="<?php echo esc_url(get_post_type_archive_link('post')); ?>" class="blog__link more-link icon-arrow">Все публикации</a>
             </div>
             <div class="blog__body">
                 <div class="blog__slider swiper">
