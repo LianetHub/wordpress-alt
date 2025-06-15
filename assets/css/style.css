@@ -2314,6 +2314,12 @@ header.scroll .header__search.focus .header__search-input {
   width: 100%;
 }
 
+.promo__bottom {
+  margin-top: 2.5rem;
+  font-size: 1rem;
+  line-height: 137.5%;
+}
+
 .benefits {
   padding: 0.78125rem 0 2rem;
 }
@@ -4402,6 +4408,10 @@ html {
     max-width: 35.375rem;
     font-size: 1.25rem;
     line-height: 130%;
+  }
+
+  .promo__bottom {
+    display: none;
   }
 
   .benefits__block {

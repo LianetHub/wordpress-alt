@@ -86,3 +86,10 @@ if ($is_certificates_page) {
         </div>
     </div>
 </section>
+<? if ($promo_subtitle): ?>
+    <div class="promo__bottom">
+        <div class="container">
+            <?= esc_html($promo_subtitle) ?>
+        </div>
+    </div>
+<? endif; ?>
