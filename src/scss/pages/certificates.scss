@@ -1,0 +1,68 @@
+@use "sass:math";
+@use "sass:color";
+@use "_mixins" as *;
+@use "_variables" as *;
+
+.сertificates {
+	background: #fff;
+	padding: 2.5rem 0;
+	@media (min-width: $md4) {
+		padding: 6.25rem 0;
+	}
+	// .сertificates__body
+	&__body {
+		position: relative;
+	}
+	// .сertificates__slider
+	&__slider {
+	}
+	// .сertificates__slide
+	&__slide {
+		& img {
+			border-radius: 1.25rem;
+		}
+	}
+	// .сertificates__slider-prev
+	&__slider-prev {
+	}
+	// .сertificates__slider-next
+	&__slider-next {
+	}
+	// .сertificates__download
+	&__download {
+		margin-top: 2.5rem;
+		border: rem(1) solid #d5d7e4;
+		padding: 0.94rem 1.06rem;
+		display: flex;
+		align-items: center;
+		font-size: 1.125rem;
+		line-height: 133.333%;
+		gap: 1.12rem;
+		transition: background-color 0.3s ease, color 0.3s ease;
+		& span {
+			text-decoration: underline;
+			text-underline-position: from-font;
+		}
+		&::before {
+			width: 2rem;
+			height: 2rem;
+			flex-shrink: 0;
+			font-size: 2rem;
+			color: #ea9d0f;
+		}
+		width: 100%;
+
+		@media (any-hover: hover) {
+			&:hover {
+				background-color: #d5d7e4;
+				color: #141414;
+				& span {
+					text-decoration: none;
+				}
+			}
+		}
+		@media (min-width: $md5) {
+			display: none;
+		}
+	}
+}

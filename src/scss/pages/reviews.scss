@@ -22,9 +22,11 @@
 	// .reviews__body
 	&__body {
 		position: relative;
-		margin-top: 1.5rem;
-		@media (min-width: $md4) {
-			margin-top: 2.5rem;
+		&:not(:first-child) {
+			margin-top: 1.5rem;
+			@media (min-width: $md4) {
+				margin-top: 2.5rem;
+			}
 		}
 	}
 	// .reviews__slider

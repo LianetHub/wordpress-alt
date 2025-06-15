@@ -67,8 +67,66 @@
 			margin-bottom: auto;
 		}
 	}
+	// .promo__body
+	&__body {
+		display: flex;
+		flex: 1 1 auto;
+		gap: 2rem;
+		flex-direction: column;
+		align-items: flex-start;
+		@media (min-width: $md2) {
+			justify-content: space-between;
+			align-items: center;
+			flex-direction: row;
+		}
+	}
+	// .promo__download
+	&__download {
+		min-width: 18.75rem;
+		border: rem(1) solid #d5d7e4;
+		padding: 0.94rem 1.06rem;
+		display: flex;
+		align-items: center;
+		font-size: 1.125rem;
+		line-height: 133.333%;
+
+		gap: 1.12rem;
+		transition: background-color 0.3s ease, color 0.3s ease;
+		& span {
+			text-decoration: underline;
+			text-underline-position: from-font;
+		}
+		&::before {
+			width: 2rem;
+			height: 2rem;
+			flex-shrink: 0;
+			font-size: 2rem;
+			color: #ea9d0f;
+		}
+		width: 100%;
+		@media (max-width: $md5) {
+			display: none;
+		}
+		@media (min-width: $md5) {
+			min-width: 18.75rem;
+			width: auto;
+		}
+		@media (min-width: $md2) {
+			align-self: flex-end;
+		}
+		@media (any-hover: hover) {
+			&:hover {
+				background-color: #d5d7e4;
+				color: #141414;
+				& span {
+					text-decoration: none;
+				}
+			}
+		}
+	}
 	// .promo__offer
 	&__offer {
+		align-self: stretch;
 		flex: 1 1 auto;
 		display: flex;
 		flex-direction: column;

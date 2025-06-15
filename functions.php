@@ -50,6 +50,7 @@ function set_global_acf_fields()
 	$GLOBALS['global_acf_fields'] = [
 		'phone_number' => get_field('phone_number', 'option'),
 		'email_address' => get_field('email_address', 'option'),
+		'work_time' => get_field('work_time', 'option'),
 		'telegram_url' => get_field('telegram_url', 'option'),
 		'whatsapp_url' => get_field('whatsapp_url', 'option'),
 		'organization_address' => get_field('organization_address', 'option'),

@@ -54,6 +54,7 @@
     $organization_address = get_field('organization_address', 'option');
     $telegram_url = get_field('telegram_url', 'option');
     $whatsapp_url = get_field('whatsapp_url', 'option');
+    $work_time = get_field('work_time', 'option');
     ?>
 
     <div class="wrapper">
@@ -68,7 +69,9 @@
                                 <li><a href="/reviews">Отзывы</a></li>
                             </ul>
                         </nav>
-                        <div class="header__top-worktime">График работы: Пн-Пт 9:00 — 18:00</div>
+                        <?php if (!empty($work_time)): ?>
+                            <div class="header__top-worktime">График работы: <?= esc_html($work_time) ?></div>
+                        <?php endif; ?>
                     </div>
                 </div>
             </div>

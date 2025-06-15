@@ -1,3 +1,13 @@
+@charset "UTF-8";
+
+@font-face {
+  font-family: "Muller";
+  font-display: swap;
+  src: url("../fonts/Muller-Bold.woff") format("woff"), url("../fonts/Muller-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+}
+
 @font-face {
   font-family: "icons";
   font-display: swap;
@@ -9,9 +19,9 @@
 @font-face {
   font-family: "Muller";
   font-display: swap;
-  src: url("../fonts/Muller-Bold.woff") format("woff"), url("../fonts/Muller-Bold.woff2") format("woff2");
+  src: url("../fonts/Muller-BoldItalic.woff") format("woff"), url("../fonts/Muller-BoldItalic.woff2") format("woff2");
   font-weight: 700;
-  font-style: normal;
+  font-style: italic;
 }
 
 @font-face {
@@ -41,14 +51,6 @@
 @font-face {
   font-family: "Muller";
   font-display: swap;
-  src: url("../fonts/Muller-BoldItalic.woff") format("woff"), url("../fonts/Muller-BoldItalic.woff2") format("woff2");
-  font-weight: 700;
-  font-style: italic;
-}
-
-@font-face {
-  font-family: "Muller";
-  font-display: swap;
   src: url("../fonts/Muller-Medium.woff") format("woff"), url("../fonts/Muller-Medium.woff2") format("woff2");
   font-weight: 500;
   font-style: normal;
@@ -73,6 +75,10 @@
 [class^=icon-]:before,
 [class*=" icon-"]:before {
   display: block;
+}
+
+.icon-download:before {
+  content: "\e90d";
 }
 
 .icon-arrow:before {
@@ -2207,7 +2213,59 @@ header.scroll .header__search.focus .header__search-input {
   margin-top: -5rem;
 }
 
+.promo__body {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 auto;
+          flex: 1 1 auto;
+  gap: 2rem;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+}
+
+.promo__download {
+  min-width: 18.75rem;
+  border: 0.0625rem solid #d5d7e4;
+  padding: 0.94rem 1.06rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: 1.125rem;
+  line-height: 133.333%;
+  gap: 1.12rem;
+  -webkit-transition: background-color 0.3s ease, color 0.3s ease;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  width: 100%;
+}
+
+.promo__download span {
+  text-decoration: underline;
+  text-underline-position: from-font;
+}
+
+.promo__download::before {
+  width: 2rem;
+  height: 2rem;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+  font-size: 2rem;
+  color: #ea9d0f;
+}
+
 .promo__offer {
+  -ms-flex-item-align: stretch;
+      -ms-grid-row-align: stretch;
+      align-self: stretch;
   -webkit-box-flex: 1;
       -ms-flex: 1 1 auto;
           flex: 1 1 auto;
@@ -2963,6 +3021,9 @@ header.scroll .header__search.focus .header__search-input {
 
 .reviews__body {
   position: relative;
+}
+
+.reviews__body:not(:first-child) {
   margin-top: 1.5rem;
 }
 
@@ -3038,6 +3099,51 @@ header.scroll .header__search.focus .header__search-input {
   -webkit-box-ordinal-group: 0;
       -ms-flex-order: -1;
           order: -1;
+}
+
+.сertificates {
+  background: #fff;
+  padding: 2.5rem 0;
+}
+
+.сertificates__body {
+  position: relative;
+}
+
+.сertificates__slide img {
+  border-radius: 1.25rem;
+}
+
+.сertificates__download {
+  margin-top: 2.5rem;
+  border: 0.0625rem solid #d5d7e4;
+  padding: 0.94rem 1.06rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: 1.125rem;
+  line-height: 133.333%;
+  gap: 1.12rem;
+  -webkit-transition: background-color 0.3s ease, color 0.3s ease;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  width: 100%;
+}
+
+.сertificates__download span {
+  text-decoration: underline;
+  text-underline-position: from-font;
+}
+
+.сertificates__download::before {
+  width: 2rem;
+  height: 2rem;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+  font-size: 2rem;
+  color: #ea9d0f;
 }
 
 .nojq {
@@ -3483,6 +3589,11 @@ html {
     line-height: 121.429%;
   }
 
+  .promo__download {
+    min-width: 18.75rem;
+    width: auto;
+  }
+
   .promo__title {
     line-height: 1;
   }
@@ -3640,6 +3751,10 @@ html {
   }
 
   .desc__more {
+    display: none;
+  }
+
+  .сertificates__download {
     display: none;
   }
 }
@@ -4350,7 +4465,7 @@ html {
     padding: 6.25rem 0;
   }
 
-  .reviews__body {
+  .reviews__body:not(:first-child) {
     margin-top: 2.5rem;
   }
 
@@ -4402,6 +4517,10 @@ html {
     -webkit-box-flex: 0;
         -ms-flex: 0 0 20.625rem;
             flex: 0 0 20.625rem;
+  }
+
+  .сertificates {
+    padding: 6.25rem 0;
   }
 }
 
@@ -5394,6 +5513,24 @@ html {
     padding-left: 8.1875rem;
   }
 
+  .promo__body {
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+  }
+
+  .promo__download {
+    -ms-flex-item-align: end;
+        align-self: flex-end;
+  }
+
   .catalog__slider {
     -ms-grid-columns: (1fr)[3];
     grid-template-columns: repeat(3, 1fr);
@@ -5796,6 +5933,10 @@ html {
 }
 
 @media (max-width: 575.98px) {
+  .promo__download {
+    display: none;
+  }
+
   .blog__link {
     width: -webkit-fit-content;
     width: -moz-fit-content;
@@ -5949,6 +6090,15 @@ html {
     text-decoration: none;
   }
 
+  .promo__download:hover {
+    background-color: #d5d7e4;
+    color: #141414;
+  }
+
+  .promo__download:hover span {
+    text-decoration: none;
+  }
+
   .catalog__card:hover {
     -webkit-box-shadow: 0.875rem 8.375rem 2.375rem 0px rgba(0, 0, 0, 0), 0.125rem 1.3125rem 1.375rem 0 rgba(0, 0, 0, 0.09), 0.0625rem 0.3125rem 0.75rem 0 rgba(0, 0, 0, 0.1);
             box-shadow: 0.875rem 8.375rem 2.375rem 0px rgba(0, 0, 0, 0), 0.125rem 1.3125rem 1.375rem 0 rgba(0, 0, 0, 0.09), 0.0625rem 0.3125rem 0.75rem 0 rgba(0, 0, 0, 0.1);
@@ -5982,5 +6132,14 @@ html {
 
   .cases__tab-btn:hover {
     color: #ea9d0f;
+  }
+
+  .сertificates__download:hover {
+    background-color: #d5d7e4;
+    color: #141414;
+  }
+
+  .сertificates__download:hover span {
+    text-decoration: none;
   }
 }
