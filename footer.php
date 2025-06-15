@@ -5,6 +5,8 @@
     $formatted_phone_number = preg_replace('/[^0-9+]/', '', $phone_number);
     $email_address = get_field('email_address', 'option');
     $organization_address = get_field('organization_address', 'option');
+    $company_details_group = get_field('company_details', 'option');
+    $current_year = date('Y');
     ?>
     <div class="container">
         <div class="footer__header">
@@ -72,16 +74,33 @@
                 </ul>
             </div>
         </nav>
+
         <div class="footer__bottom">
             <a href="<?= get_home_url() ?>" class="footer__logo">
                 <img src="<?php echo get_template_directory_uri(); ?>/assets/img/logo-white.svg" alt="Логотип">
             </a>
-            <div class="footer__reqs">
-                ООО «Агрион Лайт Техноложис» <br>
-                ОГРН: 1147451002720 <br>
-                ИНН: 7451366924 <br>
-                ООО АЛТ ©2025
-            </div>
+            <?php if ($company_details_group):
+                $company_full_name = $company_details_group['full_company_name'] ?? '';
+                $company_ogrn = $company_details_group['ogrn_value'] ?? '';
+                $company_inn = $company_details_group['inn_value'] ?? '';
+                $company_copyright_name = $company_details_group['short_company_name'] ?? '';
+
+            ?>
+                <div class="footer__reqs">
+                    <?php if ($company_full_name): ?>
+                        <?php echo esc_html($company_full_name); ?> <br>
+                    <?php endif; ?>
+                    <?php if ($company_ogrn): ?>
+                        ОГРН: <?php echo esc_html($company_ogrn); ?> <br>
+                    <?php endif; ?>
+                    <?php if ($company_inn): ?>
+                        ИНН: <?php echo esc_html($company_inn); ?> <br>
+                    <?php endif; ?>
+                    <?php if ($company_copyright_name): ?>
+                        <?php echo esc_html($company_copyright_name); ?> &copy;<?php echo esc_html($current_year); ?>
+                    <?php endif; ?>
+                </div>
+            <?php endif; ?>
             <div class="footer__production">
                 Разработка сайта и продвижение
                 Маркетинговое агентство <a href="https://inmarketing.team/" target="_blank" class="footer__production-link">InMarketing</a>

@@ -1,0 +1,130 @@
+@use "sass:math";
+@use "sass:color";
+@use "../_mixins" as *;
+@use "../_variables" as *;
+
+.contacts {
+	padding: 2.5rem 0 4rem;
+	@media (min-width: $md3) {
+		padding: 5rem 0;
+	}
+	// .contacts__title
+	&__title {
+		font-weight: 700;
+		max-width: 33.125rem;
+		line-height: 115%;
+	}
+	// .contacts__body
+	&__body {
+		line-height: 137.5%;
+		display: flex;
+		flex-direction: column;
+		gap: 1.5rem;
+		margin-top: 1.5rem;
+		@media (min-width: $md3) {
+			line-height: 133.333%;
+			font-size: 1.125rem;
+			margin-top: 2.38rem;
+			gap: 4.38rem;
+			flex-direction: row;
+		}
+	}
+	// .contacts__reqs
+	&__reqs {
+	}
+	// .contacts__reqs-item
+	&__reqs-item {
+	}
+	// .contacts__location
+	&__location {
+		@media (min-width: $md3) {
+			flex: 0 1 34.375rem;
+		}
+	}
+	// .contacts__location-block
+	&__location-block {
+		&:not(:last-child) {
+			margin-bottom: 1.5rem;
+			@media (min-width: $md3) {
+				margin-bottom: 2rem;
+			}
+		}
+	}
+	// .contacts__map
+	&__map {
+		margin-top: 2.19rem;
+		@media (min-width: $md3) {
+			margin-top: 5rem;
+			aspect-ratio: 100/57;
+			position: relative;
+		}
+	}
+	// .contacts__map-info
+	&__map-info {
+		border-radius: 1rem;
+		background: #fff;
+		box-shadow: rem(2) rem(4) rem(8) rgba(0, 0, 0, 0.12);
+		padding: 0.75rem;
+		@media (min-width: $md3) {
+			border-radius: 1.25rem 0rem;
+			max-width: 27.5rem;
+			position: absolute;
+			z-index: 2;
+			top: 0;
+			left: -1.88rem;
+			padding: rem(30);
+		}
+	}
+	// .contacts__map-caption
+	&__map-caption {
+		font-weight: 700;
+	}
+	// .contacts__map-list
+	&__map-list {
+		margin-top: 0.75rem;
+		font-size: 1rem;
+		line-height: 137.5%;
+		@media (min-width: $md3) {
+			line-height: 133.333%;
+			font-size: 1.125rem;
+			margin-top: rem(30);
+		}
+	}
+	// .contacts__map-item
+	&__map-item {
+		&:not(:last-child) {
+			margin-bottom: 0.75rem;
+			@media (min-width: $md3) {
+				margin-bottom: 1.25rem;
+			}
+		}
+		& a {
+			transition: color 0.3s ease;
+			@media (any-hover: hover) {
+				&:hover {
+					color: $accent;
+				}
+			}
+		}
+	}
+	// .contacts__map-content
+	&__map-content {
+		margin-top: 1.5rem;
+		@media (max-width: $md3) {
+			aspect-ratio: 74/75;
+		}
+		@media (min-width: $md3) {
+			margin-top: 0;
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+		}
+		& iframe {
+			border-radius: 1.25rem;
+			width: 100%;
+			height: 100%;
+		}
+	}
+}
