@@ -18,10 +18,11 @@
 @use "pages/contacts";
 @use "pages/reviews";
 @use "pages/certificates";
+@use "pages/article";
 
-// .nojq {
-// 	display: none !important;
-// }
-// html {
-// 	margin-top: 0 !important;
-// }
+.nojq {
+	display: none !important;
+}
+html {
+	margin-top: 0 !important;
+}

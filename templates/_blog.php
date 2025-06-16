@@ -8,39 +8,45 @@
             <div class="blog__body">
                 <div class="blog__slider swiper">
                     <div class="swiper-wrapper">
-                        <div class="blog__item swiper-slide">
-                            <a href="" class="blog__item-poster">
-                                <img src="<?php echo get_template_directory_uri(); ?>/assets/img/articles/technologist-white-coat-with-tablet-his-hands-controls-production-process-dairy-shop-quality-control-dairy-plant.jpg" class="cover-image" alt="">
-                            </a>
-                            <time datetime="" class="blog__item-time">25 марта 2025</time>
-                            <a href="" class="blog__item-title title-sm">Решения для автоматизации от бренда EKF на конференции ПТА – Казань 2025</a>
-                            <a href="" class="blog__item-btn btn btn-primary btn-lg">Подробнее</a>
-                        </div>
-                        <div class="blog__item swiper-slide">
-                            <a href="" class="blog__item-poster">
-                                <img src="<?php echo get_template_directory_uri(); ?>/assets/img/articles/technologist-white-coat-with-tablet-his-hands-controls-production-process-dairy-shop-quality-control-dairy-plant.jpg" class="cover-image" alt="">
-                            </a>
-                            <time datetime="" class="blog__item-time">25 марта 2025</time>
-                            <a href="" class="blog__item-title title-sm">Решения для автоматизации от бренда EKF на конференции ПТА – Казань 2025</a>
-                            <a href="" class="blog__item-btn btn btn-primary btn-lg">Подробнее</a>
-                        </div>
-                        <div class="blog__item swiper-slide">
-                            <a href="" class="blog__item-poster">
-                                <img src="<?php echo get_template_directory_uri(); ?>/assets/img/articles/technologist-white-coat-with-tablet-his-hands-controls-production-process-dairy-shop-quality-control-dairy-plant.jpg" class="cover-image" alt="">
-                            </a>
-                            <time datetime="" class="blog__item-time">25 марта 2025</time>
-                            <a href="" class="blog__item-title title-sm">Решения для автоматизации от бренда EKF на конференции ПТА – Казань 2025</a>
-                            <a href="" class="blog__item-btn btn btn-primary btn-lg">Подробнее</a>
-                        </div>
-                        <div class="blog__item swiper-slide">
-                            <a href="" class="blog__item-poster">
-                                <img src="<?php echo get_template_directory_uri(); ?>/assets/img/articles/technologist-white-coat-with-tablet-his-hands-controls-production-process-dairy-shop-quality-control-dairy-plant.jpg" class="cover-image" alt="">
-                            </a>
-                            <time datetime="" class="blog__item-time">25 марта 2025</time>
-                            <a href="" class="blog__item-title title-sm">Решения для автоматизации от бренда EKF на конференции ПТА – Казань 2025</a>
-                            <a href="" class="blog__item-btn btn btn-primary btn-lg">Подробнее</a>
-                        </div>
+                        <?php
+                        $args = array(
+                            'post_type'      => 'post',            // Выбираем только посты
+                            'posts_per_page' => -1,                // Выводим все доступные посты
+                            'post_status'    => 'publish',         // Только опубликованные посты
+                            'orderby'        => 'date',            // Сортировка по дате
+                            'order'          => 'DESC',            // В убывающем порядке (новые сверху)
+                            'ignore_sticky_posts' => true           // Игнорируем "закрепленные" посты
+                        );
 
+                        $all_posts_query = new WP_Query($args);
+
+                        if ($all_posts_query->have_posts()) :
+                            while ($all_posts_query->have_posts()) : $all_posts_query->the_post();
+                        ?>
+                                <div class="blog__item swiper-slide">
+                                    <a href="<?php the_permalink(); ?>" class="blog__item-poster">
+                                        <?php
+
+                                        if (has_post_thumbnail()) {
+                                            the_post_thumbnail('full', array('class' => 'cover-image'));
+                                        } else {
+
+                                            echo '<img src="' . esc_url(get_template_directory_uri() . '/assets/img/default-article-placeholder.png') . '" class="cover-image" alt="Изображение по умолчанию">';
+                                        }
+                                        ?>
+                                    </a>
+
+                                    <time datetime="<?= get_russian_post_date(get_the_ID(), 'datetime'); ?>" class="blog__item-time"><?= esc_html(get_russian_post_date(get_the_ID())); ?></time>
+                                    <a href="<?php the_permalink(); ?>" class="blog__item-title title-sm"><?php the_title(); ?></a>
+                                    <a href="<?php the_permalink(); ?>" class="blog__item-btn btn btn-primary btn-lg">Подробнее</a>
+                                </div>
+                        <?php
+                            endwhile;
+                            wp_reset_postdata();
+                        else :
+                            echo '<p>Пока нет доступных статей.</p>';
+                        endif;
+                        ?>
                     </div>
                 </div>
                 <button type="button" class="blog__slider-prev swiper-button-prev"></button>

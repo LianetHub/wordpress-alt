@@ -121,6 +121,39 @@ function fix_widows_after_prepositions($text)
 
 	return $text;
 }
+function get_russian_post_date($post_id = null, $format = 'text')
+{
+	if (null === $post_id) {
+		$post_id = get_the_ID();
+	}
+
+
+	$post_timestamp = get_the_time('U', $post_id);
+	if ($format === 'datetime') {
+		return get_the_time('c', $post_id);
+	}
+
+	$months = [
+		1 => 'января',
+		2 => 'февраля',
+		3 => 'марта',
+		4 => 'апреля',
+		5 => 'мая',
+		6 => 'июня',
+		7 => 'июля',
+		8 => 'августа',
+		9 => 'сентября',
+		10 => 'октября',
+		11 => 'ноября',
+		12 => 'декабря'
+	];
+
+	$day = date('j', $post_timestamp);
+	$month = $months[date('n', $post_timestamp)];
+	$year = date('Y', $post_timestamp);
+
+	return "$day $month $year";
+}
 
 
 
@@ -130,6 +163,21 @@ function my_custom_breadcrumb_separator($separator)
 	return '/';
 }
 
+
+
+function yourtheme_widgets_init()
+{
+	register_sidebar(array(
+		'name'          => esc_html__('Сайдбар статьи (Оглавление)'),
+		'id'            => 'article-toc-sidebar',
+		'description'   => esc_html__('Добавьте виджеты сюда для оглавления статьи.'),
+		'before_widget' => '<div id="%1$s" class="widget %2$s">',
+		'after_widget'  => '</div>',
+		'before_title'  => '<div class="article__sidebar-caption title-sm">',
+		'after_title'   => '</div>',
+	));
+}
+add_action('widgets_init', 'yourtheme_widgets_init');
 
 
 // function register_teachers_post_type()

@@ -73,6 +73,7 @@
 	&__title {
 		@media (min-width: $md3) {
 			text-align: center;
+			margin: 0 -2.5rem;
 		}
 		&.title {
 			font-size: 1.375rem;
@@ -124,6 +125,12 @@
 		.form__checkbox-text {
 			&::before {
 				border: rem(1) solid #000;
+			}
+		}
+		.form__file {
+			width: 100%;
+			.form__file-btn {
+				border: rem(1) dashed rgba(0, 0, 0, 0.2);
 			}
 		}
 	}

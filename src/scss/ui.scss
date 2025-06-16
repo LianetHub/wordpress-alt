@@ -13,6 +13,10 @@
 
 //============ МОДУЛИ ====================
 
+* {
+	scroll-margin-top: rem(82);
+}
+
 .title-lg {
 	font-weight: 500;
 	font-size: rem(32);
@@ -150,6 +154,18 @@
 	display: none;
 	&.active {
 		display: block;
+	}
+}
+
+.pc-only {
+	@media (max-width: $md3) {
+		display: none !important;
+	}
+}
+
+.mobile-only {
+	@media (min-width: $md3) {
+		display: none !important;
 	}
 }
 

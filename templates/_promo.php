@@ -20,6 +20,9 @@ if ($is_certificates_page) {
     }
 }
 
+
+$title_class = is_single() ? 'title' : 'title-lg';
+
 ?>
 
 
@@ -31,7 +34,7 @@ if ($is_certificates_page) {
                 <?php
                 if (is_404()) {
                 ?>
-                    <h1 class="promo__title title-lg">Страница не найдена</h1>
+                    <h1 class="promo__title <?= $title_class ?>">Страница не найдена</h1>
                     <p class="promo__description">К сожалению, страница, которую вы ищете, не&nbsp;существует или была перемещена.</p>
                     <a href="<?= esc_url(home_url('/')); ?>" class="promo__btn btn btn-primary btn-lg">Вернуться на главную</a>
                     <?php
@@ -44,19 +47,24 @@ if ($is_certificates_page) {
                     if ($promo_title && $promo_main_title) {
                     ?>
                         <h1 class="promo__caption"><?= fix_widows_after_prepositions(esc_html($promo_title)) ?></h1>
-                        <div class="promo__title title-lg"><?= fix_widows_after_prepositions(esc_html($promo_main_title)) ?></div>
+                        <div class="promo__title <?= $title_class ?>"><?= fix_widows_after_prepositions(esc_html($promo_main_title)) ?></div>
                     <?php
                     } elseif ($promo_main_title) {
                     ?>
-                        <h1 class="promo__title title-lg"><?= fix_widows_after_prepositions(esc_html($promo_main_title)) ?></h1>
+                        <h1 class="promo__title <?= $title_class ?>"><?= fix_widows_after_prepositions(esc_html($promo_main_title)) ?></h1>
                     <?php
+
                     } elseif ($promo_title) {
                     ?>
-                        <h1 class="promo__title title-lg"><?= fix_widows_after_prepositions(esc_html($promo_title)) ?></h1>
+                        <h1 class="promo__title <?= $title_class ?>"><?= fix_widows_after_prepositions(esc_html($promo_title)) ?></h1>
+                    <?php
+                    } elseif (is_home() || is_front_page()) {
+                    ?>
+                        <h1 class="promo__title <?= $title_class ?>">Блог</h1>
                     <?php
                     } else {
                     ?>
-                        <h1 class="promo__title title-lg"><?= fix_widows_after_prepositions(esc_html(get_the_title())) ?></h1>
+                        <h1 class="promo__title <?= $title_class ?>"><?= fix_widows_after_prepositions(esc_html(get_the_title())) ?></h1>
                     <?php
                     }
 
@@ -74,9 +82,14 @@ if ($is_certificates_page) {
 
                     if ($promo_has_offer_btn) {
                     ?>
-                        <a href="#offer" class="promo__btn btn btn-primary btn-lg">Получить КП</a>
-                <?php
+                        <a href="#commercial-offer" data-fancybox class="promo__btn btn btn-primary btn-lg">Получить КП</a>
+                    <?php
                     }
+                }
+                if (is_single()) {
+                    ?>
+                    <time datetime="<?= get_russian_post_date(null, 'datetime'); ?>" class="promo__time"><?= esc_html(get_russian_post_date()); ?></time>
+                <?php
                 }
                 ?>
             </div>

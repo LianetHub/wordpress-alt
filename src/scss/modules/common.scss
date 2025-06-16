@@ -67,6 +67,12 @@
 			margin-bottom: auto;
 		}
 	}
+	.single & {
+		padding-bottom: 1.87rem;
+		@media (min-width: $md4) {
+			padding-bottom: 1.56rem;
+		}
+	}
 	// .promo__body
 	&__body {
 		display: flex;
@@ -145,7 +151,17 @@
 	}
 	// .promo__title
 	&__title {
-		max-width: 47.5rem;
+		&.title-lg {
+			max-width: 47.5rem;
+		}
+		&.title {
+			@media (max-width: $md5) {
+				font-size: 1.75rem;
+			}
+			@media (min-width: $md5) {
+				line-height: 1;
+			}
+		}
 		@media (min-width: $md5) {
 			line-height: 1;
 		}
@@ -188,6 +204,16 @@
 		line-height: 137.5%;
 		@media (min-width: $md4) {
 			display: none;
+		}
+	}
+	// .promo__time
+	&__time {
+		font-size: 1rem;
+		display: inline-block;
+		line-height: 100%;
+		margin-top: 0.7rem;
+		@media (min-width: $md4) {
+			margin-top: 0.5rem;
 		}
 	}
 }
@@ -775,6 +801,7 @@
 	}
 	&.blog--white {
 		padding: 2.5rem 0 4rem;
+		background: #fff;
 		@media (min-width: $md3) {
 			padding: 5rem 0 6.87rem;
 		}
