@@ -9,6 +9,8 @@ get_header();
 ?>
 
 <?php require_once(TEMPLATE_PATH . '_promo.php'); ?>
+<?php require_once(TEMPLATE_PATH . '_company.php'); ?>
+<?php require_once(TEMPLATE_PATH . '_mission.php'); ?>
 <?php require_once(TEMPLATE_PATH . '_cases.php'); ?>
 <?php require_once(TEMPLATE_PATH . '_offer.php'); ?>
 <?php require_once(TEMPLATE_PATH . '_team.php'); ?>

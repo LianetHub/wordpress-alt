@@ -14,13 +14,14 @@
 
 @use "pages/home";
 @use "pages/b2";
+@use "pages/about";
 @use "pages/contacts";
 @use "pages/reviews";
 @use "pages/certificates";
 
-.nojq {
-	display: none !important;
-}
-html {
-	margin-top: 0 !important;
-}
+// .nojq {
+// 	display: none !important;
+// }
+// html {
+// 	margin-top: 0 !important;
+// }

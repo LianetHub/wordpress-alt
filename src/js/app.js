@@ -397,6 +397,16 @@ $(function () {
         })
     }
 
+    if ($('.company__gallery-slider').length) {
+        new Swiper('.company__gallery-slider', {
+            slidesPerView: 1,
+            navigation: {
+                prevEl: '.company__gallery-prev',
+                nextEl: '.company__gallery-next',
+            },
+        })
+    }
+
 
     function getMobileSlider(sliderName, options) {
 
@@ -799,7 +809,7 @@ $(function () {
                 formattedInputValue += '-' + inputNumbersValue.substring(9, 11);
             }
         } else {
-            formattedInputValue = '+' + inputNumbersValue.substring(0, 16);
+            formattedInputValue = '+' + inputNumbersValue.substring(0, 12);
         }
 
         $input.val(formattedInputValue);
