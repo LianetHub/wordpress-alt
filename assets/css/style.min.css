@@ -2726,7 +2726,8 @@ header.scroll .header__search.focus .header__search-input {
     -webkit-transition: -webkit-box-shadow .3s ease;
     transition: -webkit-box-shadow .3s ease;
     transition: box-shadow .3s ease;
-    transition: box-shadow .3s ease, -webkit-box-shadow .3s ease
+    transition: box-shadow .3s ease, -webkit-box-shadow .3s ease;
+    height: auto
 }
 
 .blog__item-poster {

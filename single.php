@@ -36,7 +36,7 @@
 
 $args = array(
     'post_type'      => 'post',            // Выбираем только посты
-    'posts_per_page' => 5,                 // Количество постов для вывода в слайдере
+    'posts_per_page' => -1,                 // Количество постов для вывода в слайдере
     'post_status'    => 'publish',         // Только опубликованные посты
     'orderby'        => 'date',            // Сортировка по дате
     'order'          => 'DESC',            // В убывающем порядке (новые сверху)
@@ -65,7 +65,7 @@ if ($other_posts_query->have_posts()) :
                                         if (has_post_thumbnail()) {
                                             the_post_thumbnail('full', array('class' => 'cover-image'));
                                         } else {
-                                            echo '<img src="' . esc_url(get_template_directory_uri() . '/assets/img/default-article-placeholder.jpg') . '" class="cover-image" alt="Изображение по умолчанию">';
+                                            echo '<img src="' . esc_url(get_template_directory_uri() . '/assets/img/default-article-placeholder.png') . '" class="cover-image" alt="Изображение по умолчанию">';
                                         }
                                         ?>
                                     </a>
