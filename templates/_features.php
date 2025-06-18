@@ -4,19 +4,17 @@ $features_title = get_field('features_title') ?? 'Приемущества';
 $features_description = get_field('features_description');
 ?>
 
-
-<section class="features">
-    <div class="container">
-        <h2 class="features__title title text-uppercase">
-            <?php echo fix_widows_after_prepositions(esc_html($features_title)); ?>
-        </h2>
-        <?php if ($features_description): ?>
-            <div class="features__desc"><?php echo wp_kses_post($features_description); ?></div>
-        <?php endif; ?>
-        <? if (have_rows('features_list_items')): ?>
+<? if (have_rows('features_list_items')): ?>
+    <section class="features">
+        <div class="container">
+            <h2 class="features__title title text-uppercase">
+                <?php echo fix_widows_after_prepositions(esc_html($features_title)); ?>
+            </h2>
+            <?php if ($features_description): ?>
+                <div class="features__desc"><?php echo wp_kses_post($features_description); ?></div>
+            <?php endif; ?>
             <ul class="features__list">
                 <?php while (have_rows('features_list_items')): the_row();
-
                     $item_caption = get_sub_field('item_caption');
                     $item_description = get_sub_field('item_description');
                 ?>
@@ -34,6 +32,6 @@ $features_description = get_field('features_description');
                     </li>
                 <?php endwhile; ?>
             </ul>
-        <?php endif; ?>
-    </div>
-</section>
+        </div>
+    </section>
+<?php endif; ?>

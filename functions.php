@@ -80,6 +80,7 @@ function register_my_menus()
 	register_nav_menus(array(
 		'top_header_menu' => __('Меню для государственных заказчиков'),
 		'header-menu' => __('Основное меню в шапке'),
+		'footer-industry-menu' => __('Меню отраслей в подвале'),
 	));
 }
 add_action('after_setup_theme', 'register_my_menus');

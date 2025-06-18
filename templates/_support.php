@@ -11,9 +11,9 @@ if (have_rows('support_block', 'option')):
         $support_image_url = $support_image_obj['url'] ?? '';
         $support_image_alt = $support_image_obj['alt'] ?? ($support_title ?: 'Изображение');
 
-        $support_image_order = get_sub_field('support_image_order');
+
         $order_class = '';
-        if ($support_image_order === 'left') {
+        if (!is_tax('project_industry')) {
             $order_class = ' about--reverse';
         }
 

@@ -63,15 +63,15 @@ $current_year = date('Y');
             </div>
             <div class="footer__menu-block">
                 <div class="footer__menu-caption">Отрасли</div>
-                <ul class="footer__menu-list">
-                    <li><a href="">Химическое производство</a></li>
-                    <li><a href="">Пищевая промышленность</a></li>
-                    <li><a href="">Атомная энергетика</a></li>
-                    <li><a href="">Нефтегазовая промышленность</a></li>
-                    <li><a href="">Для лабораторий</a></li>
-                    <li><a href="">Пищевая промышленность</a></li>
-                    <li><a href="">Атомная энергетика</a></li>
-                </ul>
+                <?php
+                wp_nav_menu(array(
+                    'theme_location'  => 'footer-industry-menu',
+                    'container'       => false,
+                    'menu_class'      => 'footer__menu-list',
+                    'depth'           => 1,
+                    'fallback_cb'     => false,
+                ));
+                ?>
             </div>
         </nav>
 
