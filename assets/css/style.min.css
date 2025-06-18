@@ -11,14 +11,6 @@
 @font-face {
     font-family: Muller;
     font-display: swap;
-    src: url(../fonts/Muller-Bold.woff) format("woff"), url(../fonts/Muller-Bold.woff2) format("woff2");
-    font-weight: 700;
-    font-style: normal
-}
-
-@font-face {
-    font-family: Muller;
-    font-display: swap;
     src: url(../fonts/Muller-BoldItalic.woff) format("woff"), url(../fonts/Muller-BoldItalic.woff2) format("woff2");
     font-weight: 700;
     font-style: italic
@@ -27,9 +19,25 @@
 @font-face {
     font-family: Muller;
     font-display: swap;
+    src: url(../fonts/Muller-Bold.woff) format("woff"), url(../fonts/Muller-Bold.woff2) format("woff2");
+    font-weight: 700;
+    font-style: normal
+}
+
+@font-face {
+    font-family: Muller;
+    font-display: swap;
     src: url(../fonts/Muller-Light.woff) format("woff"), url(../fonts/Muller-Light.woff2) format("woff2");
     font-weight: 300;
     font-style: normal
+}
+
+@font-face {
+    font-family: Muller;
+    font-display: swap;
+    src: url(../fonts/Muller-LightItalic.woff) format("woff"), url(../fonts/Muller-LightItalic.woff2) format("woff2");
+    font-weight: 300;
+    font-style: italic
 }
 
 @font-face {
@@ -46,14 +54,6 @@
     src: url(../fonts/Muller-Regular.woff) format("woff"), url(../fonts/Muller-Regular.woff2) format("woff2");
     font-weight: 400;
     font-style: normal
-}
-
-@font-face {
-    font-family: Muller;
-    font-display: swap;
-    src: url(../fonts/Muller-LightItalic.woff) format("woff"), url(../fonts/Muller-LightItalic.woff2) format("woff2");
-    font-weight: 300;
-    font-style: italic
 }
 
 .article__body ul>li::before, .form__checkbox-input:checked+.wpcf7-list-item-label .form__checkbox-text::before, .swiper-button-next, .swiper-button-prev, [class*=" icon-"]:before, [class^=icon-]:before {
