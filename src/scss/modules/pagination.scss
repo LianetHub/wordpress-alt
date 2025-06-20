@@ -6,28 +6,31 @@
 .pagination {
 	display: flex;
 	align-items: center;
+	justify-content: space-between;
+	gap: 1.12rem;
 	@media (min-width: $md5) {
-		gap: 0.25rem;
+		justify-content: center;
+		gap: 1.25rem;
 	}
 	// .pagination__item
 	&__item {
-		width: rem(31);
-		height: rem(31);
-		font-size: rem(14);
-		font-weight: 500;
-		line-height: 150%;
-		border-radius: 50%;
+		font-size: 1rem;
+		font-weight: 700;
+		line-height: 133.333%;
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		transition: background-color 0.3s ease 0s;
+		transition: color 0.3s ease 0s;
 		&.active {
-			background: #c5d1e0;
+			color: rgba(20, 20, 20, 0.4);
+		}
+		@media (min-width: $md5) {
+			font-size: 1.125rem;
 		}
 		&[href] {
 			@media (any-hover: hover) {
 				&:hover {
-					background: #f0f5fb;
+					color: $accent;
 				}
 			}
 		}
@@ -35,7 +38,12 @@
 	// .pagination__next
 	&__next,
 	&__prev {
-		transition: color 0.3s ease 0s;
+		width: 2.25rem;
+		height: 2.25rem;
+		flex-shrink: 0;
+		background: #dfe1eb;
+		border-radius: 50%;
+		transition: background-color 0.3s ease;
 		& span {
 			display: none;
 			@media (min-width: $md4) {
@@ -49,18 +57,16 @@
 		}
 		@media (any-hover: hover) {
 			&:hover {
-				color: $accent;
+				background-color: darken($color: #dfe1eb, $amount: 10);
 			}
 		}
 	}
 	&__prev {
-		margin-right: rem(26);
 		@media (min-width: $md4) {
 			margin-right: rem(46);
 		}
 	}
 	&__next {
-		margin-left: rem(26);
 		@media (min-width: $md4) {
 			margin-left: rem(46);
 		}

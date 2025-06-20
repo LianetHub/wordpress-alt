@@ -333,6 +333,52 @@
 	}
 }
 
+.checkbox {
+	display: block;
+	// .checkbox__input
+	&__input {
+		&:checked {
+			& + .checkbox__btn {
+				&::before {
+					@extend %ic, .icon-check;
+					background: #313f69;
+				}
+			}
+		}
+	}
+	// .checkbox__btn
+	&__btn {
+		font-size: 1rem;
+		font-weight: 300;
+		line-height: 150%;
+		display: flex;
+		align-items: center;
+		gap: 0.56rem;
+		cursor: pointer;
+		&::before {
+			content: "";
+			width: 1rem;
+			height: 1rem;
+			flex-shrink: 0;
+			border: rem(1) solid #dfe1eb;
+			background: #fff;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			color: #fff;
+			font-size: 0.5rem;
+			flex-shrink: 0;
+		}
+		@media (any-hover: hover) {
+			&:hover {
+				&::before {
+					border: rem(1) solid #313f69;
+				}
+			}
+		}
+	}
+}
+
 // .switcher {
 // 	// .switcher__input
 // 	&__input {

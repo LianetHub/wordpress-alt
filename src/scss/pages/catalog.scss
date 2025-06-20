@@ -1,0 +1,319 @@
+@use "sass:math";
+@use "sass:color";
+@use "_mixins" as *;
+@use "_variables" as *;
+
+.products {
+	padding: 1.88rem 0;
+	@media (min-width: $md4) {
+		padding: 3.75rem 0;
+	}
+	// .products__content
+	&__content {
+		display: flex;
+		gap: 1.5rem;
+		flex-direction: column;
+		@media (min-width: $md3) {
+			flex-direction: row;
+			gap: 1.87rem;
+			align-items: flex-start;
+		}
+	}
+	// .products__sidebar
+	&__sidebar {
+		@media (min-width: $md3) {
+			flex: 0 0 15.625rem;
+			position: sticky;
+			top: rem(82);
+		}
+	}
+	// .products__search
+	&__search {
+		position: relative;
+		min-height: rem(36);
+		z-index: 11;
+	}
+	// .products__search-input
+	&__search-input {
+		transition: all 0.3s ease;
+		border: rem(1) solid #dfe1eb;
+		padding: 0.4rem 2rem 0.4rem 0.9375rem;
+		background: #fff;
+		min-height: rem(36);
+		width: 100%;
+		color: $text;
+		text-overflow: ellipsis;
+		font-size: 1rem;
+		transition: all 0.3s ease;
+		line-height: 1.4;
+		@media (min-width: $md4) {
+			line-height: 1;
+			font-size: 0.9375rem;
+		}
+		&::placeholder {
+			color: #9ea3b5;
+			opacity: 1;
+		}
+		&:focus {
+			border-color: #ea9d0f;
+		}
+	}
+	// .products__search-btn
+	&__search-btn {
+		position: absolute;
+		top: 50%;
+		transform: translateY(-50%);
+		right: 0.5rem;
+		width: 1.5rem;
+		height: 1.5rem;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+	// .products__filters
+	&__filters {
+		margin-top: 0.5rem;
+		@media (min-width: $md4) {
+			margin-top: 2.5rem;
+		}
+	}
+	// .products__filters-caption
+	&__filters-caption {
+		font-weight: 500;
+		padding: 1rem 0.75rem;
+		background: #f3f3f5;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		gap: 0.25rem;
+		&::before {
+			order: 1;
+			width: 1.5rem;
+			height: 1.5rem;
+			font-size: 0.8751rem;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			color: #313f69;
+			margin-left: auto;
+			@media (min-width: $md4) {
+				display: none;
+			}
+		}
+		@media (min-width: $md4) {
+			background: transparent;
+			padding: 0;
+		}
+	}
+	// .products__filters-quantity
+	&__filters-quantity {
+		color: rgba(20, 20, 20, 0.2);
+		@media (min-width: $md4) {
+			display: none;
+		}
+	}
+	// .products__filters-blocks
+	&__filters-blocks {
+		display: none;
+		@media (min-width: $md4) {
+			display: block;
+			margin-top: 1.25rem;
+			border-top: rem(1) solid #dfe1eb;
+		}
+	}
+	// .products__filter
+	&__filter {
+		&:not(:last-child) {
+			border-bottom: rem(1) solid #dfe1eb;
+		}
+	}
+	// .products__filter-title
+	&__filter-title {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding: 0.375rem 0rem;
+		font-size: 1.125rem;
+		font-weight: 500;
+		line-height: 133.333%;
+		cursor: pointer;
+		transition: color 0.3s ease;
+		&::before {
+			order: 1;
+			width: 1.625rem;
+			height: 1.625rem;
+			flex-shrink: 0;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			transition: transform 0.3s ease;
+		}
+		&.active {
+			&::before {
+				transform: rotate(-90deg);
+			}
+		}
+		@media (any-hover: hover) {
+			&:hover {
+				color: $accent;
+			}
+		}
+	}
+	// .products__filter-body
+	&__filter-body {
+		display: none;
+		padding-bottom: 1.12rem;
+	}
+	// .products__filter-items
+	&__filter-items {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+	}
+	// .products__filter-item
+	&__filter-item {
+	}
+	// .products__filter-more
+	&__filter-more {
+		margin-top: 0.75rem;
+		color: #ea9d0f;
+		font-size: 1rem;
+		font-weight: 500;
+		line-height: 150%;
+		text-decoration-line: underline;
+		text-underline-position: from-font;
+		@media (any-hover: hover) {
+			&:hover {
+				text-decoration: none;
+			}
+		}
+	}
+	// .products__body
+	&__body {
+		flex: 1 1 auto;
+	}
+	// .products__list
+	&__list {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+		column-gap: rem(10);
+		row-gap: rem(30);
+	}
+	// .products__bottom
+	&__bottom {
+		display: flex;
+		flex-direction: column;
+		gap: 1.5rem;
+		margin-top: 4rem;
+		@media (min-width: $md5) {
+			flex-wrap: wrap;
+			flex-direction: row;
+			justify-content: center;
+			margin-top: 5rem;
+			align-items: center;
+		}
+		@media (min-width: $md2) {
+			justify-content: space-between;
+		}
+	}
+	// .products__more
+	&__more {
+		min-width: 17.5rem;
+	}
+	// .products__pagination
+	&__pagination {
+	}
+}
+
+.product {
+	border-radius: 1.25rem;
+	background: #fff;
+	transition: box-shadow 0.3s ease;
+	display: flex;
+	flex-direction: column;
+	padding: 1.25rem;
+	gap: 1.25rem;
+	min-height: 27.625rem;
+	box-shadow: rem(2) rem(4) rem(8) 0 rgba(0, 0, 0, 0.12);
+	@media (min-width: $md4) {
+		box-shadow: none;
+	}
+	@media (min-width: $md1) {
+		min-height: 30rem;
+	}
+	&.swiper-slide {
+		height: auto;
+		border: rem(1) solid #dfe1eb;
+		min-height: 24.875rem;
+		@media (min-width: $md1) {
+			min-height: 25rem;
+		}
+	}
+	@media (any-hover: hover) {
+		&:hover {
+			box-shadow: rem(2) rem(4) rem(8) 0 rgba(0, 0, 0, 0.12);
+		}
+	}
+	// .product__image
+	&__image {
+		aspect-ratio: 1;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+	// .product__name
+	&__name {
+		font-size: 1rem;
+		font-weight: 500;
+		line-height: 133.333%;
+		display: -webkit-box;
+		-webkit-box-orient: vertical;
+		text-overflow: ellipsis;
+		-webkit-line-clamp: 4;
+		transition: color 0.3s ease;
+		@media (min-width: $md5) {
+			font-size: 1.125rem;
+		}
+		@media (any-hover: hover) {
+			&:hover {
+				color: $accent;
+			}
+		}
+	}
+	// .product__more
+	&__more {
+		margin-top: auto;
+	}
+}
+
+.recommendation {
+	padding: 2rem 0 5rem;
+	@media (min-width: $md4) {
+		padding: 9rem 0 5rem;
+	}
+	// .recommendation__title
+	&__title {
+	}
+	// .recommendation__body
+	&__body {
+		position: relative;
+		margin-top: 1.5rem;
+		@media (min-width: $md4) {
+			margin-left: rem(-8);
+			margin-right: rem(-8);
+			margin-top: 2rem;
+		}
+	}
+	// .recommendation__slider
+	&__slider {
+		@media (min-width: $md4) {
+			padding: rem(8);
+		}
+	}
+	// .recommendation__prev
+	&__prev {
+	}
+	// .recommendation__next
+	&__next {
+	}
+}
