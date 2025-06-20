@@ -21,6 +21,8 @@
 	}
 	// .products__sidebar
 	&__sidebar {
+		position: relative;
+		z-index: 1;
 		@media (min-width: $md3) {
 			flex: 0 0 15.625rem;
 			position: sticky;
@@ -96,8 +98,14 @@
 			align-items: center;
 			color: #313f69;
 			margin-left: auto;
+			transition: transform 0.3s ease 0s;
 			@media (min-width: $md4) {
 				display: none;
+			}
+		}
+		&.active {
+			&::before {
+				transform: rotate(90deg);
 			}
 		}
 		@media (min-width: $md4) {
@@ -116,7 +124,7 @@
 	&__filters-blocks {
 		display: none;
 		@media (min-width: $md4) {
-			display: block;
+			display: block !important;
 			margin-top: 1.25rem;
 			border-top: rem(1) solid #dfe1eb;
 		}
@@ -124,7 +132,11 @@
 	// .products__filter
 	&__filter {
 		&:not(:last-child) {
-			border-bottom: rem(1) solid #dfe1eb;
+			margin-bottom: 0.5rem;
+			@media (min-width: $md4) {
+				border-bottom: rem(1) solid #dfe1eb;
+				margin-bottom: 0;
+			}
 		}
 	}
 	// .products__filter-title
@@ -133,11 +145,15 @@
 		justify-content: space-between;
 		align-items: center;
 		padding: 0.375rem 0rem;
-		font-size: 1.125rem;
-		font-weight: 500;
-		line-height: 133.333%;
+
 		cursor: pointer;
 		transition: color 0.3s ease;
+		line-height: 140%;
+		@media (min-width: $md4) {
+			line-height: 133.333%;
+			font-size: 1.125rem;
+			font-weight: 500;
+		}
 		&::before {
 			order: 1;
 			width: 1.625rem;
@@ -147,6 +163,10 @@
 			justify-content: center;
 			align-items: center;
 			transition: transform 0.3s ease;
+			font-size: 0.65em;
+			@media (min-width: $md4) {
+				font-size: 1em;
+			}
 		}
 		&.active {
 			&::before {
@@ -297,11 +317,15 @@
 	// .recommendation__body
 	&__body {
 		position: relative;
-		margin-top: 1.5rem;
+		&:not(:first-child) {
+			margin-top: 1.5rem;
+		}
 		@media (min-width: $md4) {
 			margin-left: rem(-8);
 			margin-right: rem(-8);
-			margin-top: 2rem;
+			&:not(:first-child) {
+				margin-top: 2rem;
+			}
 		}
 	}
 	// .recommendation__slider

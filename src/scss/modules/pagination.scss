@@ -57,7 +57,7 @@
 		}
 		@media (any-hover: hover) {
 			&:hover {
-				background-color: darken($color: #dfe1eb, $amount: 10);
+				background-color: color.adjust($color: #dfe1eb, $lightness: -10%);
 			}
 		}
 	}
