@@ -457,8 +457,13 @@ $(function () {
 
         const thumbsSlider = new Swiper(thumbsSliderEl, {
             spaceBetween: 15,
-            slidesPerView: 4,
+            slidesPerView: 3,
             watchSlidesProgress: true,
+            breakpoints: {
+                1199.98: {
+                    slidesPerView: 4,
+                }
+            }
 
         });
 
