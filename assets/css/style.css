@@ -3109,11 +3109,26 @@ header.scroll .header__search.focus .header__search-input {
   overflow: visible;
 }
 
+.cases__list {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 4rem;
+}
+
+.cases__more {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: 2.66rem;
+}
+
 .case {
   border-radius: 1.25rem;
-  background: #f3f3f5;
-  -webkit-box-shadow: 0.0625rem 0.3125rem 0.75rem rgba(0, 0, 0, 0.1);
-          box-shadow: 0.0625rem 0.3125rem 0.75rem rgba(0, 0, 0, 0.1);
   display: -ms-grid;
   display: grid;
   -webkit-box-align: center;
@@ -3122,12 +3137,15 @@ header.scroll .header__search.focus .header__search-input {
   gap: 0.75rem;
   -webkit-transition: all 0.3s ease;
   transition: all 0.3s ease;
-  padding: 1rem;
 }
 
 .case.swiper-slide {
   opacity: 0;
   z-index: 2;
+  background: #f3f3f5;
+  -webkit-box-shadow: 0.0625rem 0.3125rem 0.75rem rgba(0, 0, 0, 0.1);
+          box-shadow: 0.0625rem 0.3125rem 0.75rem rgba(0, 0, 0, 0.1);
+  padding: 1rem;
 }
 
 .case.swiper-slide.swiper-slide-active {
@@ -4785,7 +4803,7 @@ header.scroll .header__search.focus .header__search-input {
     height: 10rem;
   }
 
-  .case {
+  .case.swiper-slide {
     padding: 1.25rem;
   }
 }
@@ -5360,6 +5378,16 @@ header.scroll .header__search.focus .header__search-input {
     background: -webkit-gradient(linear, left top, right top, from(transparent), color-stop(30%, #fff));
     background: linear-gradient(90deg, transparent 0%, #fff 30%);
     pointer-events: none;
+  }
+
+  .cases__more {
+    margin-left: auto;
+    margin-right: auto;
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
+    width: fit-content;
+    margin-top: 5rem;
+    min-width: 23.75rem;
   }
 
   .case__desc {
@@ -6181,7 +6209,11 @@ header.scroll .header__search.focus .header__search-input {
     font-size: 1.125rem;
   }
 
-  .case {
+  .cases__list {
+    gap: 5rem;
+  }
+
+  .case.swiper-slide {
     padding: 1.875rem 1.875rem 1.875rem 2.5rem;
   }
 
