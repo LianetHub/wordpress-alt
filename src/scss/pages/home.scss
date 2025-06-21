@@ -85,6 +85,11 @@
 
 .cases {
 	padding: 4rem 0;
+	&.cases--page {
+		@media (max-width: $md4) {
+			padding-top: 2.5rem;
+		}
+	}
 	@media (min-width: $md4) {
 		padding: 6.25rem 0;
 	}
@@ -242,7 +247,7 @@
 	border-radius: 1.25rem;
 
 	display: grid;
-	align-items: center;
+
 	gap: 0.75rem;
 	transition: all 0.3s ease;
 
@@ -256,6 +261,7 @@
 		background: #f3f3f5;
 		box-shadow: rem(1) rem(5) rem(12) rgba(0, 0, 0, 0.1);
 		padding: 1rem;
+		align-items: center;
 		@media (min-width: $md6) {
 			padding: 1.25rem;
 		}
@@ -276,12 +282,19 @@
 	&__main {
 		display: contents;
 		@media (min-width: $md3) {
-			display: block;
+			display: flex;
+			flex-direction: column;
 		}
 	}
 	// .case__name
 	&__name {
 		font-weight: 500;
+		transition: color 0.3s ease;
+		@media (any-hover: hover) {
+			&:hover {
+				color: $accent;
+			}
+		}
 		@media (max-width: $md4) {
 			line-height: 115%;
 		}
@@ -333,10 +346,17 @@
 	// .case__desc
 	&__desc {
 		display: none;
+		line-height: 137.5%;
+		.case--single & {
+			display: block;
+		}
+		order: 1;
 		@media (min-width: $md5) {
+			order: 0;
 			display: block;
 			font-size: 1.125rem;
 			line-height: 133.333%;
+			margin-bottom: auto;
 		}
 		@media (min-width: $md3) {
 			margin-top: rem(30);
@@ -388,8 +408,51 @@
 		@media (min-width: $md1) {
 			height: rem(410);
 		}
+		.case--single & {
+			height: auto;
+			width: 100%;
+			max-height: 37.5rem;
+			@media (max-width: $md5) {
+				aspect-ratio: math.div(296, 221);
+			}
+		}
 		& img {
 			border-radius: rem(20);
+		}
+	}
+	// .case__list
+	&__list {
+		border-top: rem(1) solid #d5d7e4;
+		@media (max-width: $md4) {
+			margin-top: 0.75rem;
+			order: 1;
+		}
+	}
+	// .case__property
+	&__property {
+		display: flex;
+		border-bottom: rem(1) solid #d5d7e4;
+		padding: 0.625rem 0rem;
+		line-height: 100%;
+		gap: 0.25rem;
+		flex-direction: column;
+		@media (min-width: $md5) {
+			flex-direction: row;
+			justify-content: space-between;
+			align-items: center;
+		}
+		@media (min-width: $md4) {
+			font-size: 1.125rem;
+		}
+	}
+	// .case__property-name
+	&__property-name {
+	}
+	// .case__property-value
+	&__property-value {
+		font-weight: 500;
+		@media (min-width: $md5) {
+			text-align: right;
 		}
 	}
 }

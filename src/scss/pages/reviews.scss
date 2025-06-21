@@ -79,13 +79,13 @@
 	// .review__company
 	&__company {
 		font-weight: 500;
-		order: -1;
+		order: -2;
 	}
 	// .review__author
 	&__author {
 		font-weight: 500;
 		line-height: 137.5%;
-		order: -1;
+		order: -2;
 		margin-top: 0.3rem;
 		@media (min-width: $md3) {
 			margin-top: 0;
@@ -121,6 +121,15 @@
 		padding: 0.75rem;
 		border-radius: 0.93131rem;
 		order: -1;
+		&:first-child {
+			padding: 0;
+			@media (min-width: $md4) {
+				margin-right: rem(32);
+			}
+			& img {
+				border-radius: 1.25rem;
+			}
+		}
 		@media (min-width: $md4) {
 			order: 0;
 			border-radius: 1.25rem;

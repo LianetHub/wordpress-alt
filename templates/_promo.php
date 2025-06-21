@@ -9,6 +9,7 @@ $promo_has_offer_btn = get_field('promo_has_offer_btn') ?? false;
 $style_attr = $promo_background ? ' style="background-image: url(' . esc_url($promo_background) . ');"' : '';
 
 
+$is_projects_archive = is_post_type_archive('project');
 
 $is_certificates_page = is_page(117); // ID страницы с сертификатами
 $certificate_pdf_url = '';
@@ -25,8 +26,6 @@ $title_class = is_single() ? 'title' : 'title-lg';
 
 ?>
 
-
-
 <section class="promo" <?= $style_attr ?>>
     <div class="container">
         <div class="promo__body">
@@ -41,10 +40,30 @@ $title_class = is_single() ? 'title' : 'title-lg';
                 } else {
 
                     if (!is_front_page() && function_exists('yoast_breadcrumb')) {
-                        yoast_breadcrumb('<nav class="breadcrumbs">', '</nav>');
+                        if (is_singular('project')) {
+                            echo '<nav class="breadcrumbs">';
+                            echo '<a href="' . esc_url(home_url('/')) . '">Главная</a> / ';
+                            echo '<a href="' . esc_url(get_post_type_archive_link('project')) . '">Проекты</a> / ';
+                            echo '<span>' . esc_html(get_the_title()) . '</span>';
+                            echo '</nav>';
+                        } else {
+                            yoast_breadcrumb('<nav class="breadcrumbs">', '</nav>');
+                        }
                     }
 
-                    if ($promo_title && $promo_main_title) {
+                    if (is_post_type_archive('project')) {
+                        $post_type_obj = get_post_type_object('project');
+                        $archive_title = $post_type_obj ? $post_type_obj->labels->name : 'Проекты';
+
+                        echo '<h1 class="promo__title ' . esc_attr($title_class) . '">' . esc_html($archive_title) . '</h1>';
+                    } elseif (is_tax('project_industry')) {
+                        $term = get_queried_object();
+                        if ($term) {
+                            echo '<h1 class="promo__title ' . esc_attr($title_class) . '">' . esc_html($term->name) . '</h1>';
+                        } else {
+                            echo '<h1 class="promo__title ' . esc_attr($title_class) . '">Отрасли Проектов</h1>';
+                        }
+                    } elseif ($promo_title && $promo_main_title) {
                     ?>
                         <h1 class="promo__caption"><?= fix_widows_after_prepositions(esc_html($promo_title)) ?></h1>
                         <div class="promo__title <?= $title_class ?>"><?= fix_widows_after_prepositions(esc_html($promo_main_title)) ?></div>
@@ -86,23 +105,83 @@ $title_class = is_single() ? 'title' : 'title-lg';
                     <?php
                     }
                 }
-                if (is_single()) {
+                if (is_single() && get_post_type() === 'post') {
                     ?>
                     <time datetime="<?= get_russian_post_date(null, 'datetime'); ?>" class="promo__time"><?= esc_html(get_russian_post_date()); ?></time>
                 <?php
                 }
                 ?>
             </div>
-            <? if ($is_certificates_page && $certificate_pdf_url) { ?>
+            <?php if ($is_certificates_page && $certificate_pdf_url) { ?>
                 <a href="<?= esc_url($certificate_pdf_url) ?>" class="promo__download icon-download" download><span>Открыть в PDF</span></a>
-            <? } ?>
+            <?php } ?>
+            <?php if ($is_projects_archive) { ?>
+                <?
+                $current_term_slug = isset($_GET['type']) ? sanitize_text_field($_GET['type']) : '';
+
+
+                $terms = get_terms(array(
+                    'taxonomy'   => 'project_industry',
+                    'hide_empty' => true,
+                ));
+
+
+                $archive_base_url = esc_url(get_post_type_archive_link('project'));
+                ?>
+                <div class="promo__select">
+                    <select name="industry-filter" id="industry-filter-desktop" class="select project-filter-select">
+                        <option value="" <?= empty($current_term_slug) ? 'selected' : ''; ?>>
+                            Все отрасли
+                        </option>
+                        <?php
+                        if (!empty($terms) && !is_wp_error($terms)) {
+                            foreach ($terms as $term) {
+                                $selected = ($current_term_slug === $term->slug) ? 'selected' : '';
+                                echo '<option value="' . esc_attr($term->slug) . '" ' . $selected . '>' . esc_html($term->name) . '</option>';
+                            }
+                        }
+                        ?>
+                    </select>
+                </div>
+            <?php } ?>
         </div>
     </div>
 </section>
-<? if ($promo_subtitle): ?>
+<?php if ($promo_subtitle): ?>
     <div class="promo__bottom">
         <div class="container">
             <?= esc_html($promo_subtitle) ?>
         </div>
     </div>
-<? endif; ?>
+<?php endif; ?>
+<?php if ($is_projects_archive): ?>
+    <?
+    $terms = get_terms(array(
+        'taxonomy'   => 'project_industry',
+        'hide_empty' => false,
+        'orderby'    => 'name',
+        'order'      => 'ASC',
+    ));
+
+    $current_term_slug = isset($_GET['industry']) ? sanitize_text_field($_GET['industry']) : '';
+    ?>
+    <div class="promo__bottom">
+        <div class="container">
+            <div class="promo__select">
+                <select name="industry-filter" class="select project-filter-select">
+                    <option value="<?= esc_url(get_post_type_archive_link('project')); ?>" <?= empty($current_term_slug) ? 'selected' : ''; ?>>
+                        Все отрасли
+                    </option>
+                    <?php
+                    if (!empty($terms) && !is_wp_error($terms)) {
+                        foreach ($terms as $term) {
+                            $selected = ($current_term_slug === $term->slug) ? 'selected' : '';
+                            echo '<option value="' . esc_url(get_term_link($term)) . '" ' . $selected . '>' . esc_html($term->name) . '</option>';
+                        }
+                    }
+                    ?>
+                </select>
+            </div>
+        </div>
+    </div>
+<?php endif; ?>

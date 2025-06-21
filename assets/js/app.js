@@ -1,7 +1,6 @@
 "use strict";
 
 
-
 //  init Fancybox
 if (typeof Fancybox !== "undefined" && Fancybox !== null) {
     Fancybox.bind("[data-fancybox]", {
@@ -247,6 +246,7 @@ $(function () {
             initialSlide: $('.cases__tab-btn.active').index(),
             observeParents: true,
             watchSlidesProgress: true,
+            slideToClickedSlide: true,
             navigation: {
                 prevEl: '.cases__tabs-prev',
                 nextEl: '.cases__tabs-next',
@@ -266,11 +266,17 @@ $(function () {
 
     if ($('.cases__slider-block').length) {
         $('.cases__slider-block').each(function () {
-            new Swiper($(this)[0], {
+            const $thisSlider = $(this);
+            const totalSlides = $thisSlider.find('.swiper-slide').length;
+
+
+            const enableLoop = totalSlides > 2;
+
+            new Swiper($thisSlider[0], {
                 effect: 'coverflow',
                 centeredSlides: true,
                 slidesPerView: 'auto',
-                loop: true,
+                loop: enableLoop,
                 speed: 300,
                 coverflowEffect: {
                     rotate: 0,
@@ -280,8 +286,8 @@ $(function () {
                     slideShadows: false,
                 },
                 navigation: {
-                    nextEl: $(this).closest('.cases__slider').find('.swiper-button-next')[0],
-                    prevEl: $(this).closest('.cases__slider').find('.swiper-button-prev')[0],
+                    nextEl: $thisSlider.closest('.cases__slider').find('.swiper-button-next')[0],
+                    prevEl: $thisSlider.closest('.cases__slider').find('.swiper-button-prev')[0],
                 },
                 breakpoints: {
                     1439.98: {
@@ -289,7 +295,7 @@ $(function () {
                             modifier: 3,
                         },
                     }
-                }
+                },
             });
         });
     }
@@ -542,46 +548,44 @@ $(function () {
 
 
     // tabs
-    // class Tabs {
-    //     constructor(wrapper) {
-    //         this.$wrapper = $(wrapper);
-    //         this.$tabButtons = this.$wrapper.find('.tabs__item');
-    //         this.$tabContents = this.$wrapper.find('.tab-content');
-    //         this.init();
-    //     }
+    class Tabs {
+        constructor(wrapper) {
+            this.$wrapper = $(wrapper);
+            this.$tabButtons = this.$wrapper.find('.tabs__item');
+            this.$tabContents = this.$wrapper.find('.tab-content');
+            this.init();
+        }
 
-    //     init() {
-    //         this.$tabButtons.each((index, button) => {
-    //             $(button).on('click', () => this.activateTab(index));
-    //         });
-    //     }
+        init() {
+            this.$tabButtons.each((index, button) => {
+                $(button).on('click', () => this.activateTab(index));
+            });
+        }
 
-    //     activateTab(index) {
-    //         this.$tabButtons.removeClass('active');
-    //         this.$tabContents.removeClass('active');
+        activateTab(index) {
+            this.$tabButtons.removeClass('active');
+            this.$tabContents.removeClass('active');
 
-    //         this.$tabButtons.eq(index).addClass('active');
-    //         this.$tabContents.eq(index).addClass('active');
-    //     }
-    // }
+            this.$tabButtons.eq(index).addClass('active');
+            this.$tabContents.eq(index).addClass('active');
+        }
+    }
 
-    // $('.tabs-wrapper').each((_, wrapper) => new Tabs(wrapper));
+    $('.tabs-wrapper').each((_, wrapper) => new Tabs(wrapper));
 
 
 
     // Custom Select
 
     class CustomSelect {
-
-        static openDropdown = null
+        static openDropdown = null;
 
         constructor(selectElement) {
             this.$select = $(selectElement);
             this.defaultText = this.$select.find('option:selected').text();
             this.selectName = this.$select.attr('name');
             this.$options = this.$select.find('option');
-            this.icon = this.$select.data('icon');
-            this.title = this.$select.data('title');
+            this.placeholder = this.$select.data('placeholder') || this.defaultText; // Использование data-placeholder
             this.$dropdown = null;
             this.initialState = {};
             this.init();
@@ -604,52 +608,27 @@ $(function () {
         }
 
         renderDropdown() {
-            const isDisabled = this.$select.is(':disabled')
+            const isDisabled = this.$select.is(':disabled');
 
-            let buttonTemplate = '';
+            const buttonText = this.$select.find('option:selected').val() === "" ? this.placeholder : this.defaultText;
 
-            if (this.icon) {
-                buttonTemplate = `
-                    <button type="button" class="dropdown__button icon-chevron" 
-                        aria-expanded="false" 
-                        aria-haspopup="true" 
-                        ${isDisabled ? 'disabled' : ''}>
-                        <span class="dropdown__button-icon ${this.icon}"></span>
-                        <span class="dropdown__button-text">${this.defaultText}</span>
-                    </button>
-                `;
-            } else if (this.title) {
-
-                buttonTemplate = `
-                    <button type="button" class="dropdown__button icon-chevron" 
-                        aria-expanded="false" 
-                        aria-haspopup="true" 
-                        ${isDisabled ? 'disabled' : ''}>
-                        <span class="dropdown__button-column">
-                            <span class="dropdown__button-caption">${this.title}</span>
-                            <span class="dropdown__button-text">${this.defaultText}</span>
-                        </span>
-                    </button>
-                `;
-            } else {
-                buttonTemplate = `
-                    <button type="button" class="dropdown__button icon-chevron" 
-                        aria-expanded="false" 
-                        aria-haspopup="true" 
-                        ${isDisabled ? 'disabled' : ''}>
-                        <span class="dropdown__button-text">${this.defaultText}</span>
-                    </button>
-                `;
-            }
+            const buttonTemplate = `
+            <button type="button" class="dropdown__button icon-chevron-down"
+                aria-expanded="false"
+                aria-haspopup="true"
+                ${isDisabled ? 'disabled' : ''}>
+                <span class="dropdown__button-text">${buttonText}</span>
+            </button>
+        `;
 
             this.$dropdown = $(`
-                <div class="dropdown">
-                    ${buttonTemplate}
-                    <div class="dropdown__body" aria-hidden="true">
-                        <ul class="dropdown__list" role="listbox"></ul>
-                    </div>
+            <div class="dropdown">
+                ${buttonTemplate}
+                <div class="dropdown__body" aria-hidden="true">
+                    <ul class="dropdown__list" role="listbox"></ul>
                 </div>
-            `);
+            </div>
+        `);
 
             const $list = this.$dropdown.find('.dropdown__list');
             this.$options.each((index, option) => {
@@ -660,19 +639,17 @@ $(function () {
                 const isDisabled = $option.is(':disabled');
 
                 $list.append(`
-                    <li role="option"
-                        data-value="${value}"
-                        aria-checked="${isSelected}"
-                        class="dropdown__list-item${isSelected ? ' selected' : ''}${isDisabled ? ' disabled' : ''}" 
-                        ${isDisabled ? 'aria-disabled="true"' : ''}>
-                        ${text}
-                    </li>
-                `);
+                <li role="option"
+                    data-value="${value}"
+                    aria-checked="${isSelected}"
+                    class="dropdown__list-item${isSelected ? ' selected' : ''}${isDisabled ? ' disabled' : ''}"
+                    ${isDisabled ? 'aria-disabled="true"' : ''}>
+                    ${text}
+                </li>
+            `);
             });
 
             this.$select.after(this.$dropdown);
-
-
         }
 
         setupEvents() {
@@ -691,7 +668,11 @@ $(function () {
                 }
             });
 
-            $(document).on('click', () => this.closeDropdown());
+            $(document).on('click', (event) => {
+                if (!this.$dropdown[0].contains(event.target)) {
+                    this.closeDropdown();
+                }
+            });
             $(document).on('keydown', (event) => {
                 if (event.key === 'Escape') this.closeDropdown();
             });
@@ -702,11 +683,7 @@ $(function () {
                 const isSelectDisabled = this.$select.is(':disabled');
                 const $button = this.$dropdown.find('.dropdown__button');
 
-                if (isSelectDisabled) {
-                    $button.prop('disabled', true);
-                } else {
-                    $button.prop('disabled', false);
-                }
+                $button.prop('disabled', isSelectDisabled);
             });
 
             observerDisabled.observe(this.$select[0], {
@@ -714,8 +691,9 @@ $(function () {
                 attributeFilter: ['disabled']
             });
 
-            const observerSelected = new MutationObserver((mutations) => {
+            const observerOptions = new MutationObserver((mutations) => {
                 mutations.forEach((mutation) => {
+
                     if (mutation.type === 'attributes' && mutation.attributeName === 'disabled') {
                         const $option = $(mutation.target);
                         const value = $option.attr('value');
@@ -729,14 +707,13 @@ $(function () {
                             $item.removeAttr('aria-disabled');
                         }
                     }
-
-                    if (mutation.type === 'attributes' && mutation.attributeName === 'selected') {
+                    if ((mutation.type === 'attributes' && mutation.attributeName === 'selected') || mutation.type === 'childList') {
                         this.syncSelectedOption();
                     }
                 });
             });
 
-            observerSelected.observe(this.$select[0], {
+            observerOptions.observe(this.$select[0], {
                 childList: true,
                 subtree: true,
                 attributes: true,
@@ -751,6 +728,7 @@ $(function () {
 
             const $body = this.$dropdown.find('.dropdown__body');
             const $list = this.$dropdown.find('.dropdown__list');
+
             const hasScroll = $list[0].scrollHeight > $list[0].clientHeight;
 
             this.$dropdown.toggleClass('visible', isOpen);
@@ -765,7 +743,6 @@ $(function () {
                 if (dropdownRect.bottom > viewportHeight) {
                     this.$dropdown.addClass('dropdown-top');
                 }
-
                 $list.toggleClass('has-scroll', hasScroll);
             } else {
                 if (CustomSelect.openDropdown === this) {
@@ -782,25 +759,23 @@ $(function () {
             const value = $item.data('value');
             const text = $item.text();
 
+
+            this.$select.val(value);
+
             this.$dropdown.find('.dropdown__list-item').removeClass('selected').attr('aria-checked', 'false');
             $item.addClass('selected').attr('aria-checked', 'true');
 
-            this.$dropdown.find('.dropdown__button').addClass('selected');
             this.$dropdown.find('.dropdown__button-text').text(text);
-            this.$select.val(value).trigger('change');
+            this.$dropdown.find('.dropdown__button').addClass('selected');
+
+            this.$select.trigger('change');
             this.closeDropdown();
         }
 
         restoreInitialState() {
             const state = this.initialState;
             this.$select.val(state.selectedValue).trigger('change');
-            this.$dropdown.find('.dropdown__list-item').removeClass('selected').attr('aria-checked', 'false');
-            this.$dropdown
-                .find(`.dropdown__list-item[data-value="${state.selectedValue}"]`)
-                .addClass('selected')
-                .attr('aria-checked', 'true');
-            this.$dropdown.find('.dropdown__button-text').text(state.selectedText);
-            this.$dropdown.find('.dropdown__button').removeClass('selected');
+
         }
 
         syncSelectedOption() {
@@ -809,12 +784,21 @@ $(function () {
             const selectedText = $selectedOption.text();
 
 
+            const $buttonTextElement = this.$dropdown.find('.dropdown__button-text');
+            if (selectedValue === "") {
+                $buttonTextElement.text(this.placeholder);
+                this.$dropdown.find('.dropdown__button').removeClass('selected');
+            } else {
+                $buttonTextElement.text(selectedText);
+                this.$dropdown.find('.dropdown__button').addClass('selected');
+            }
+
+
             this.$dropdown.find('.dropdown__list-item').removeClass('selected').attr('aria-checked', 'false');
-            this.$dropdown
-                .find(`.dropdown__list-item[data-value="${selectedValue}"]`)
-                .addClass('selected')
-                .attr('aria-checked', 'true');
-            this.$dropdown.find('.dropdown__button-text').text(selectedText);
+            const $selectedListItem = this.$dropdown.find(`.dropdown__list-item[data-value="${selectedValue}"]`);
+            if ($selectedListItem.length) {
+                $selectedListItem.addClass('selected').attr('aria-checked', 'true');
+            }
         }
     }
 

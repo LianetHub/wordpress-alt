@@ -15,6 +15,7 @@
 	background-position: 73.5% top;
 	padding: 5.12rem 0 1.88rem;
 	@media (min-width: $md4) {
+		min-height: 12.125rem;
 		padding: rem(30) 0 rem(60);
 	}
 	&[style] {
@@ -93,6 +94,11 @@
 		gap: 2rem;
 		flex-direction: column;
 		align-items: flex-start;
+		.promo__select {
+			@media (max-width: $md4) {
+				display: none;
+			}
+		}
 		@media (min-width: $md2) {
 			justify-content: space-between;
 			align-items: center;
@@ -177,6 +183,10 @@
 		}
 		@media (min-width: $md5) {
 			line-height: 1;
+			&:last-child {
+				margin-top: auto;
+				margin-bottom: auto;
+			}
 		}
 	}
 	// .promo__description
@@ -227,6 +237,23 @@
 		margin-top: 0.7rem;
 		@media (min-width: $md4) {
 			margin-top: 0.5rem;
+		}
+	}
+	// .promo__select
+	&__select {
+		width: 100%;
+		@media (min-width: $md4) {
+			min-width: rem(306);
+			flex-shrink: 0;
+		}
+		@media (min-width: $md4) {
+			width: auto;
+		}
+		@media (min-width: $md2) {
+			align-self: flex-end;
+		}
+		.select {
+			max-width: rem(306);
 		}
 	}
 }

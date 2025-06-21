@@ -19,10 +19,16 @@ get_header();
                     $review_company_name = get_sub_field('review_company_name');
                     $review_author = get_sub_field('review_author');
                     $review_company_desc = get_sub_field('review_company_desc');
-                    $review_project_link = get_sub_field('review_project_link');
+                    $related_project = get_sub_field('review_related_project');
 
                     $image_url = $review_image['url'] ?? '';
                     $image_alt_text = $review_image['alt'] ?? '';
+
+                    $project_link = '';
+
+                    if ($related_project) {
+                        $project_link = get_permalink($related_project[0]->ID);
+                    }
 
                     if (empty($image_alt_text)) {
                         $image_alt_text = $review_image['title'] ?? 'Изображение отзыва';
@@ -39,8 +45,8 @@ get_header();
                             <?php if (!empty($review_company_desc)): ?>
                                 <div class="review__desc"><?= $review_company_desc ?></div>
                             <?php endif; ?>
-                            <?php if (!empty($review_project_link)): ?>
-                                <a href="<?php echo esc_url($review_project_link); ?>" class="review__link more-link icon-arrow">Подробнее о проекте</a>
+                            <?php if (!empty($project_link)): ?>
+                                <a href="<?= esc_url($project_link); ?>" class="review__link more-link icon-arrow">Подробнее о проекте</a>
                             <?php endif; ?>
                         </div>
                         <a href="<?php echo esc_url($image_url); ?>" data-fancybox class="review__image">
