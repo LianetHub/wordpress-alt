@@ -178,23 +178,6 @@ $(function () {
 
 
 
-    // form submit handlers
-    $(document).on('wpcf7submit', function (e) {
-        var $form = $(e.target);
-        var $container = $form.closest('.form__wrapper');
-        var $succesBlock = $container.find('.form__success-block');
-        $form.find('.wpcf7-response-output').hide();
-
-        $succesBlock.removeClass('hidden');
-        $container.addClass("show-success");
-        setTimeout(function () {
-            $container.removeClass("show-success");
-            $succesBlock.addClass('hidden');
-        }, 10000);
-    });
-
-
-
     //  sliders
     if ($('.industries__slider').length) {
         new Swiper('.industries__slider', {

@@ -87,6 +87,21 @@
 			padding-bottom: 10.94rem !important;
 		}
 	}
+	.page-template-page-thanks & {
+		min-height: 18.625rem;
+		.promo__title {
+			margin-top: auto;
+		}
+	}
+	.page-template-page-policy & {
+		.promo__title {
+			max-width: 100%;
+			@media (min-width: $md3) {
+				font-size: 3.65rem !important;
+			}
+		}
+	}
+
 	// .promo__body
 	&__body {
 		display: flex;

@@ -622,3 +622,42 @@ add_action('template_redirect', function () {
 		exit;
 	}
 });
+
+
+// add_action('wpcf7_mail_sent', 'handle_form_submission_actions');
+
+// function handle_form_submission_actions($contact_form)
+// {
+
+// 	$forms_for_redirect = array(
+// 		'1a8c4c8',
+// 		'd58eb3b',
+// 		'77ee36a',
+// 		'7bbbebe',
+// 		'c086563'
+// 	);
+
+// 	$redirect_thank_you_url = home_url('/thanks/');
+
+
+// 	// $form_id_for_pdf_download = '38fef55'; 
+
+// 	// $pdf_file_url = 'https://ваш-сайт.ru/wp-content/uploads/2025/06/ваш-файл.pdf';
+
+
+
+// 	if (in_array($contact_form->id(), $forms_for_redirect)) {
+// 		echo '<script>location.href = "' . esc_url($redirect_thank_you_url) . '";</script>';
+// 	}
+// 	// else if ($contact_form->id() == $form_id_for_pdf_download) {
+
+// 	// 	echo '<script>';
+// 	// 	echo 'var link = document.createElement("a");';
+// 	// 	echo 'link.href = "' . esc_url($pdf_file_url) . '";';
+// 	// 	echo 'link.download = "' . basename($pdf_file_url) . '";';
+// 	// 	echo 'document.body.appendChild(link);';
+// 	// 	echo 'link.click();';
+// 	// 	echo 'document.body.removeChild(link);';
+// 	// 	echo '</script>';
+// 	// }
+// }

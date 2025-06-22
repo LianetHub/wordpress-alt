@@ -39,7 +39,7 @@ $title_class = is_single() ? 'title' : 'title-lg';
                     <?php
                 } else {
 
-                    if (!is_front_page() && function_exists('yoast_breadcrumb')) {
+                    if (!is_front_page() && !is_page(405) && function_exists('yoast_breadcrumb')) {
                         if (is_singular('project')) {
                             echo '<nav class="breadcrumbs">';
                             echo '<a href="' . esc_url(home_url('/')) . '">Главная страгница</a> / ';
