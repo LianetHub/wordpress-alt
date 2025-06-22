@@ -234,10 +234,16 @@
 		padding: 0 0 5rem;
 		background: transparent;
 		color: inherit;
+		& + .catalog {
+			padding-top: 1.25rem;
+		}
 	}
 	@media (min-width: $md3) {
-		padding: 0 0 11.87rem;
+		& + .about {
+			margin-top: 6.87rem;
+		}
 	}
+
 	// .check-list__body
 	&__body {
 		display: grid;

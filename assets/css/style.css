@@ -2549,6 +2549,13 @@ header.scroll .header__search.focus .header__search-input {
   display: none;
 }
 
+.offer__image img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
 .offer__subtitle {
   margin-top: 1rem;
   font-size: 1.25rem;
@@ -2816,6 +2823,8 @@ header.scroll .header__search.focus .header__search-input {
   position: absolute;
   top: 0;
   left: 0;
+  width: 100%;
+  height: 100%;
   border-radius: 1.25rem;
 }
 
@@ -5499,6 +5508,10 @@ header.scroll .header__search.focus .header__search-input {
     color: inherit;
   }
 
+  .check-list + .catalog {
+    padding-top: 1.25rem;
+  }
+
   .check-list__body {
     border-radius: 1.25rem;
     background: #313f69;
@@ -6109,6 +6122,7 @@ header.scroll .header__search.focus .header__search-input {
     gap: 1.875rem;
     -ms-grid-columns: (1fr)[2];
     grid-template-columns: repeat(2, 1fr);
+    overflow: visible;
   }
 
   .catalog__slider .swiper-wrapper {
@@ -7206,8 +7220,8 @@ header.scroll .header__search.focus .header__search-input {
     font-size: 1.5rem;
   }
 
-  .check-list {
-    padding: 0 0 11.87rem;
+  .check-list + .about {
+    margin-top: 6.87rem;
   }
 
   .check-list__body {

@@ -42,9 +42,22 @@ $title_class = is_single() ? 'title' : 'title-lg';
                     if (!is_front_page() && function_exists('yoast_breadcrumb')) {
                         if (is_singular('project')) {
                             echo '<nav class="breadcrumbs">';
-                            echo '<a href="' . esc_url(home_url('/')) . '">Главная</a> / ';
+                            echo '<a href="' . esc_url(home_url('/')) . '">Главная страгница</a> / ';
                             echo '<a href="' . esc_url(get_post_type_archive_link('project')) . '">Проекты</a> / ';
                             echo '<span>' . esc_html(get_the_title()) . '</span>';
+                            echo '</nav>';
+                        } elseif (is_product_category()) {
+                            echo '<nav class="breadcrumbs">';
+
+                            echo '<a href="' . esc_url(home_url('/')) . '">Главная страница</a> / ';
+
+
+                            $shop_page_id = wc_get_page_id('shop');
+                            if ($shop_page_id) {
+                                echo '<a href="' . esc_url(get_permalink($shop_page_id)) . '">Каталог</a> / ';
+                            }
+
+                            echo '<span>' . esc_html(single_term_title('', false)) . '</span>';
                             echo '</nav>';
                         } else {
                             yoast_breadcrumb('<nav class="breadcrumbs">', '</nav>');
@@ -63,6 +76,15 @@ $title_class = is_single() ? 'title' : 'title-lg';
                         } else {
                             echo '<h1 class="promo__title ' . esc_attr($title_class) . '">Отрасли Проектов</h1>';
                         }
+                    } elseif (is_shop()) {
+                    ?>
+                        <h1 class="promo__title <?= $title_class ?>"><?= fix_widows_after_prepositions(esc_html(woocommerce_page_title(false))) ?></h1>
+                    <?php
+                    } elseif (is_product_category() || is_product_tag() || is_product_taxonomy()) {
+                    ?>
+                        <h1 class="promo__title <?= $title_class ?>"><?= fix_widows_after_prepositions(esc_html(single_term_title('', false))) ?></h1>
+                    <?php
+
                     } elseif ($promo_title && $promo_main_title) {
                     ?>
                         <h1 class="promo__caption"><?= fix_widows_after_prepositions(esc_html($promo_title)) ?></h1>
@@ -116,8 +138,7 @@ $title_class = is_single() ? 'title' : 'title-lg';
                 <a href="<?= esc_url($certificate_pdf_url) ?>" class="promo__download icon-download" download><span>Открыть в PDF</span></a>
             <?php } ?>
             <?php if ($is_projects_archive) { ?>
-                <?
-                $current_term_slug = isset($_GET['type']) ? sanitize_text_field($_GET['type']) : '';
+                <? $current_term_slug = isset($_GET['type']) ? sanitize_text_field($_GET['type']) : '';
 
 
                 $terms = get_terms(array(
@@ -129,7 +150,7 @@ $title_class = is_single() ? 'title' : 'title-lg';
                 $archive_base_url = esc_url(get_post_type_archive_link('project'));
                 ?>
                 <div class="promo__select">
-                    <select name="industry-filter" id="industry-filter-desktop" class="select project-filter-select">
+                    <select name="industry-filter" class="select project-filter-select">
                         <option value="" <?= empty($current_term_slug) ? 'selected' : ''; ?>>
                             Все отрасли
                         </option>

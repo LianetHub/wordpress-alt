@@ -89,6 +89,7 @@ add_action('after_setup_theme', 'register_my_menus');
 
 class Custom_Nav_Menu_Walker extends Walker_Nav_Menu
 {
+	private $first_level_term_ids = [];
 
 	function start_lvl(&$output, $depth = 0, $args = null)
 	{
@@ -106,22 +107,39 @@ class Custom_Nav_Menu_Walker extends Walker_Nav_Menu
 		if (0 === $depth) {
 			$output .= '</ul>';
 
+			// Получаем только те термины, которые связаны с пунктами меню первого уровня
+			$terms_to_display = [];
+			foreach ($this->first_level_term_ids as $term_id) {
+				$term = get_term($term_id, 'project_industry');
+				if ($term && !is_wp_error($term)) {
+					$terms_to_display[$term_id] = $term; // Сохраняем с ID для сохранения порядка
+				}
+			}
 
-			$terms = get_terms(array(
+			// Дополнительно можно добрать остальные термины, если это нужно
+			// Но в этом случае их порядок будет по умолчанию (по имени)
+			// или вам нужна будет другая логика сортировки.
+			$all_terms = get_terms(array(
 				'taxonomy'   => 'project_industry',
 				'hide_empty' => false,
 				'orderby'    => 'name',
 				'order'      => 'ASC',
 			));
 
-			if (! empty($terms) && ! is_wp_error($terms)) {
+			if (!empty($all_terms) && !is_wp_error($all_terms)) {
+				foreach ($all_terms as $term) {
+					if (!isset($terms_to_display[$term->term_id])) {
+						$terms_to_display[$term->term_id] = $term;
+					}
+				}
+			}
+
+
+			if (! empty($terms_to_display)) {
 				$output .= '<div class="submenu__description">';
-				foreach ($terms as $term) {
+				foreach ($terms_to_display as $term) {
 					$industry_title = esc_html($term->name);
-
-
 					$industry_text = esc_html($term->description);
-
 					$term_link = get_term_link($term);
 
 					$output .= '<div class="submenu__description-block">';
@@ -138,7 +156,6 @@ class Custom_Nav_Menu_Walker extends Walker_Nav_Menu
 			$output .= "\n{$indent}</ul>\n";
 		}
 	}
-
 
 	function start_el(&$output, $item, $depth = 0, $args = null, $id = 0)
 	{
@@ -163,6 +180,10 @@ class Custom_Nav_Menu_Walker extends Walker_Nav_Menu
 			$classes[] = 'menu__item';
 		} else {
 			$classes[] = 'submenu__item';
+
+			if ($item->object === 'project_industry' && $item->type === 'taxonomy') {
+				$this->first_level_term_ids[] = (int) $item->object_id;
+			}
 		}
 
 		$class_names = join(' ', apply_filters('nav_menu_css_class', array_filter($classes), $item, $args, $depth));
@@ -173,7 +194,6 @@ class Custom_Nav_Menu_Walker extends Walker_Nav_Menu
 
 		$output .= $indent . '<li id="menu-item-' . $item->ID . '" class="' . esc_attr($class_names) . '">';
 
-
 		$attributes = '';
 		foreach (array('attr_title', 'attr_target', 'attr_rel', 'url') as $attr) {
 			if ('url' === $attr) {
@@ -183,7 +203,6 @@ class Custom_Nav_Menu_Walker extends Walker_Nav_Menu
 			}
 		}
 
-
 		$link_classes = [];
 
 		if (0 === $depth) {
@@ -192,14 +211,10 @@ class Custom_Nav_Menu_Walker extends Walker_Nav_Menu
 			$link_classes[] = 'submenu__link';
 		}
 
-
 		$item_output = $args->before;
 		$item_output .= '<a' . $attributes . ' class="' . esc_attr(implode(' ', $link_classes)) . '">';
-
-
 		$item_output .= $args->link_before . apply_filters('the_title', $item->title, $item->ID) . $args->link_after;
 		$item_output .= '</a>';
-
 
 		if (in_array('menu-item-has-children', $classes) && 0 === $depth) {
 			$item_output .= '<button type="button" class="menu__arrow icon-chevron-down"></button>';
@@ -378,6 +393,7 @@ function create_project_post_type()
 		'rewrite' => array(
 			'slug'       => 'proekty',
 			'with_front' => false,
+			'pages'      => true,
 			'hierarchical' => true
 		),
 	);
@@ -431,12 +447,9 @@ add_action('init', 'create_project_industry_taxonomy', 0);
 
 function load_more_projects_ajax_handler()
 {
-	$current_page = isset($_POST['page']) ? intval($_POST['page']) : 1;
+	$current_page_requested = isset($_POST['page']) ? intval($_POST['page']) : 1;
 	$posts_per_page = isset($_POST['posts_per_page']) ? intval($_POST['posts_per_page']) : 4;
 	$industry_filter = isset($_POST['industry_filter']) ? sanitize_text_field($_POST['industry_filter']) : '';
-
-
-	$query_page = ($current_page === 0) ? 1 : $current_page + 1;
 
 
 	$args = array(
@@ -445,7 +458,7 @@ function load_more_projects_ajax_handler()
 		'post_status'    => 'publish',
 		'orderby'        => 'date',
 		'order'          => 'DESC',
-		'paged'          => $query_page,
+		'paged'          => $current_page_requested,
 	);
 
 	if (!empty($industry_filter)) {
@@ -524,21 +537,18 @@ function load_more_projects_ajax_handler()
 <?php
 		endwhile;
 	else :
-
 		echo '<p>По выбранным критериям проекты не найдены.</p>';
 	endif;
 
 	wp_reset_postdata();
 
-	$response = ob_get_clean();
+	$response_html = ob_get_clean();
 
-
-	$has_more = ($projects_query->max_num_pages > $query_page);
 
 	wp_send_json(array(
-		'html'      => $response,
-		'has_more'  => $has_more,
-		'next_page' => $query_page,
+		'html'      => $response_html,
+		'has_more'  => ($projects_query->max_num_pages > $current_page_requested),
+		'next_page' => $current_page_requested,
 		'max_pages' => $projects_query->max_num_pages
 	));
 
@@ -568,3 +578,47 @@ function enqueue_project_scripts()
 	);
 }
 add_action('wp_enqueue_scripts', 'enqueue_project_scripts');
+
+function fix_project_archive_paged_404($query)
+{
+
+	if (! is_admin() && $query->is_main_query() && $query->is_post_type_archive('project')) {
+
+
+		if (isset($_GET['paged'])) {
+			$paged = intval($_GET['paged']);
+			if ($paged > 1) {
+				$query->set('paged', $paged);
+			} else {
+
+				$query->set('paged', 1);
+			}
+		}
+	}
+}
+add_action('pre_get_posts', 'fix_project_archive_paged_404');
+
+
+function custom_project_query_vars($vars)
+{
+	$vars[] = 'paged';
+	$vars[] = 'type';
+	return $vars;
+}
+add_filter('query_vars', 'custom_project_query_vars');
+
+
+add_theme_support('woocommerce');
+add_action('after_setup_theme', 'woocommerce_support');
+function woocommerce_support()
+{
+	add_theme_support('woocommerce');
+}
+
+
+add_action('template_redirect', function () {
+	if (is_404() && untrailingslashit($_SERVER['REQUEST_URI']) === '/katalog-category') {
+		wp_redirect(home_url('/katalog/'), 301);
+		exit;
+	}
+});

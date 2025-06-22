@@ -1,10 +1,8 @@
 <?php
 
-/**
- * Template Name: Catalog Page Template
- */
-?>
-<?php
+
+defined('ABSPATH') || exit;
+
 get_header();
 ?>
 

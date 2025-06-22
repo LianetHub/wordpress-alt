@@ -6,20 +6,56 @@ get_header();
 
 <div class="cases cases--page">
     <div class="container">
+        <?php
+
+        $current_term_slug = isset($_GET['type']) ? sanitize_text_field($_GET['type']) : '';
+
+
+        $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
+
+        if (isset($_GET['paged']) && intval($_GET['paged']) > 0) {
+            $paged = intval($_GET['paged']);
+        }
+
+
+
+
+        $terms = get_terms(array(
+            'taxonomy'   => 'project_industry',
+            'hide_empty' => true,
+        ));
+
+        $archive_base_url = esc_url(get_post_type_archive_link('project'));
+        ?>
+        <div class="promo__select">
+            <select name="industry-filter" class="select project-filter-select">
+                <option value="" <?= empty($current_term_slug) ? 'selected' : ''; ?>>
+                    Все отрасли
+                </option>
+                <?php
+                if (!empty($terms) && !is_wp_error($terms)) {
+                    foreach ($terms as $term) {
+                        $selected = ($current_term_slug === $term->slug) ? 'selected' : '';
+                        echo '<option value="' . esc_attr($term->slug) . '" ' . $selected . '>' . esc_html($term->name) . '</option>';
+                    }
+                }
+                ?>
+            </select>
+        </div>
+        <br>
+        <br>
         <div class="cases__list" id="projects-list">
             <?php
-
-            $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
-            $current_filter_slug = isset($_GET['type']) ? sanitize_text_field($_GET['type']) : '';
-
-            if (empty($current_filter_slug) && is_tax('project_industry')) {
+            // Проверка, если мы на странице таксономии, но без параметра 'type' в URL.
+            // Это может произойти, если WP сам обрабатывает /project_industry/slug/
+            if (empty($current_term_slug) && is_tax('project_industry')) {
                 $queried_object = get_queried_object();
                 if ($queried_object instanceof WP_Term) {
-                    $current_filter_slug = $queried_object->slug;
+                    $current_term_slug = $queried_object->slug;
                 }
             }
 
-            $posts_per_page = 4;
+            $posts_per_page = 4; // Количество постов на страницу
 
             $args = array(
                 'post_type'      => 'project',
@@ -27,15 +63,15 @@ get_header();
                 'post_status'    => 'publish',
                 'orderby'        => 'date',
                 'order'          => 'DESC',
-                'paged'          => $paged,
+                'paged'          => $paged, // Используем текущую страницу
             );
 
-            if (!empty($current_filter_slug)) {
+            if (!empty($current_term_slug)) { // Используем $current_term_slug для запроса
                 $args['tax_query'] = array(
                     array(
                         'taxonomy' => 'project_industry',
                         'field'    => 'slug',
-                        'terms'    => $current_filter_slug,
+                        'terms'    => $current_term_slug,
                     ),
                 );
             }
@@ -110,22 +146,24 @@ get_header();
         </div>
 
         <?php
+        // Важно: передаем текущую страницу, которая была запрошена, а не projects_query->get('paged')
+        // projects_query->get('paged') может быть 0, если это таксономия и paged не установлен.
+        $current_page_for_data = $paged;
 
-        if ($projects_query->max_num_pages > $paged) :
-
-            $next_page_url = get_pagenum_link($paged + 1);
-            if (!empty($current_filter_slug)) {
-                $next_page_url = add_query_arg('type', $current_filter_slug, $next_page_url);
-            }
+        if ($projects_query->max_num_pages > $current_page_for_data) :
+            // Ссылка для следующей страницы формируется для Ajax-а, так что она не нужна
+            // $next_page_url = get_pagenum_link($current_page_for_data + 1);
+            // if (!empty($current_term_slug)) {
+            //     $next_page_url = add_query_arg('type', $current_term_slug, $next_page_url);
+            // }
         ?>
             <button type="button"
                 class="cases__more btn btn-primary btn-lg"
                 id="load-more-projects"
-                data-current-page="<?php echo esc_attr($paged); ?>"
+                data-current-page="<?php echo esc_attr($current_page_for_data); ?>"
                 data-posts-per-page="<?php echo esc_attr($posts_per_page); ?>"
                 data-max-pages="<?php echo esc_attr($projects_query->max_num_pages); ?>"
-                data-next-page-url="<?php echo esc_url($next_page_url); ?>"
-                data-industry-filter="<?php echo esc_attr($current_filter_slug); ?>"
+                data-industry-filter="<?php echo esc_attr($current_term_slug); ?>"
                 data-loading-text="Загрузка...">Показать еще</button>
         <?php endif; ?>
 

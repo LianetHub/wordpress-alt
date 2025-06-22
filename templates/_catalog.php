@@ -1,38 +1,53 @@
-<?php if (have_rows('catalog_items')):  ?>
+ <?php
+    $args = array(
+        'taxonomy'     => 'product_cat',
+        'orderby'      => 'count',
+        'show_count'   => 0,
+        'pad_counts'   => 0,
+        'hierarchical' => 1,
+        'title_li'     => '',
+        'hide_empty'   => 0,
+        'exclude'      => array(16)
+    );
 
-    <?php $catalog_title = get_field("catalog_title") ?? ''; ?>
-    <section class="catalog">
-        <div class="container">
-            <?php if (!empty($catalog_title)): ?>
-                <h2 class="catalog__title title text-uppercase"><?= $catalog_title ?></h2>
-            <?php endif; ?>
-            <div class="catalog__body">
-                <div class="catalog__slider swiper">
-                    <ul class="swiper-wrapper">
-                        <?php while (have_rows('catalog_items')): the_row();
+    $all_categories = get_terms($args); ?>
+ <? if (! empty($all_categories) && ! is_wp_error($all_categories)) : ?>
+     <section class="catalog">
+         <div class="container">
+             <? if (!is_shop()) : ?>
+                 <h2 class="catalog__title title text-uppercase">Каталог</h2>
+             <? endif ?>
+             <div class="catalog__body">
+                 <div class="catalog__slider swiper">
+                     <ul class="swiper-wrapper">
+                         <? foreach ($all_categories as $cat) :
 
-                            $item_image_url = get_sub_field('item_image');
-                            $item_name = get_sub_field('item_name');
-                            $item_link_array = get_sub_field('item_link');
+                                $category_link = get_term_link($cat->slug, 'product_cat');
 
-                            $item_link_url = isset($item_link_array['url']) ? $item_link_array['url'] : '';
-                            $item_link_title = isset($item_link_array['title']) ? $item_link_array['title'] : '';
-                            $item_link_target = isset($item_link_array['target']) ? $item_link_array['target'] : '_self'; // '_self' по умолчанию
-                        ?>
-                            <li class="catalog__item swiper-slide">
-                                <a href="<?php echo esc_url($item_link_url); ?>" class="catalog__card" target="<?php echo esc_attr($item_link_target); ?>" title="<?php echo esc_attr($item_link_title); ?>">
-                                    <span class="catalog__card-image">
-                                        <img src="<?php echo esc_url($item_image_url); ?>" alt="<?php echo esc_attr($item_name); ?>">
-                                    </span>
-                                    <span class="catalog__card-name title-sm"><?php echo esc_html($item_name); ?></span>
-                                </a>
-                            </li>
-                        <?php endwhile; ?>
-                    </ul>
-                </div>
-                <button type="button" class="catalog__slider-prev swiper-button-prev"></button>
-                <button type="button" class="catalog__slider-next swiper-button-next"></button>
-            </div>
-        </div>
-    </section>
-<?php endif; ?>
+                                $thumbnail_id = get_term_meta($cat->term_id, 'thumbnail_id', true);
+                                $image_url = $thumbnail_id ? wp_get_attachment_url($thumbnail_id) : '';
+                                $image_alt = $thumbnail_id ? get_post_meta($thumbnail_id, '_wp_attachment_image_alt', true) : esc_attr($cat->name); // Alt-текст из медиафайла или название категории
+
+
+                                if (empty($image_url)) {
+                                    $image_url = get_template_directory_uri() . '/assets/img/placeholder-category.png';
+                                }
+                            ?>
+                             <li class="catalog__item swiper-slide">
+                                 <a href="<?php echo esc_url($category_link); ?>" class="catalog__card" target="_self" title="<?php echo esc_attr($cat->name); ?>">
+                                     <span class="catalog__card-image">
+                                         <img src="<?php echo esc_url($image_url); ?>" alt="<?php echo esc_attr($image_alt); ?>">
+                                     </span>
+                                     <span class="catalog__card-name title-sm"><?php echo esc_html($cat->name); ?></span>
+                                 </a>
+                             </li>
+                         <?php endforeach; ?>
+
+                     </ul>
+                 </div>
+                 <button type="button" class="catalog__slider-prev swiper-button-prev"></button>
+                 <button type="button" class="catalog__slider-next swiper-button-next"></button>
+             </div>
+         </div>
+     </section>
+ <? endif; ?>
