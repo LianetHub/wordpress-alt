@@ -545,22 +545,28 @@ $(function () {
 
 
     // observer header scroll
-    function checkScroll() {
+    let lastScrollTop = 0;
 
+    function checkScroll() {
         const headerTopHeight = $('.header__top').outerHeight() || 0;
         const headerBodyHeight = $('.header__body').outerHeight() || 0;
-
-
         const scrollThreshold = headerTopHeight + headerBodyHeight;
 
-        // console.log("currentScroll", $(window).scrollTop());
-        // console.log("scrollThreshold", scrollThreshold);
+        const currentScroll = $(window).scrollTop();
 
-        if ($(window).scrollTop() > scrollThreshold) {
-            $('.header').addClass('scroll');
+        if (currentScroll > lastScrollTop) {
+
+            if (currentScroll > scrollThreshold) {
+                $('.header').addClass('scroll');
+            }
         } else {
-            $('.header').removeClass('scroll');
+            if (currentScroll < scrollThreshold) {
+                $('.header').removeClass('scroll');
+            }
+
         }
+
+        lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
     }
 
 
@@ -568,6 +574,9 @@ $(function () {
 
     $(window).on('scroll', checkScroll);
     $(window).on('resize', checkScroll);
+
+
+
 
     // search focus animation
     if ($('.header__search-input').length) {

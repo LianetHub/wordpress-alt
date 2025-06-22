@@ -3042,6 +3042,17 @@ header.scroll .header__search.focus .header__search-input {
     padding: .78125rem 0
 }
 
+.industries:has(.industries__list) {
+    margin-top: 0 !important;
+    padding: 4rem 0 !important
+}
+
+.industries__list {
+    display: -ms-grid;
+    display: grid;
+    gap: 1.875rem
+}
+
 .industries__body {
     position: relative;
     max-width: 18.5rem;
@@ -3077,7 +3088,11 @@ header.scroll .header__search.focus .header__search-input {
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%
+    height: 100%;
+    -webkit-transition: -webkit-transform .15s ease;
+    transition: -webkit-transform .15s ease;
+    transition: transform .15s ease;
+    transition: transform .15s ease, -webkit-transform .15s ease
 }
 
 .industries__slide-caption {
@@ -6344,6 +6359,11 @@ header.scroll .header__search.focus .header__search-input {
         padding: 2.5rem 0
     }
 
+    .industries__list {
+        -ms-grid-columns: (1fr)[2];
+        grid-template-columns: repeat(2, 1fr)
+    }
+
     .cases {
         padding: 6.25rem 0
     }
@@ -8247,6 +8267,11 @@ header.scroll .header__search.focus .header__search-input {
         gap: 7rem
     }
 
+    .industries__list {
+        -ms-grid-columns: (1fr)[3];
+        grid-template-columns: repeat(3, 1fr)
+    }
+
     .features__list {
         gap: 1.875rem;
         margin-top: 3.125rem;
@@ -8971,6 +8996,12 @@ header.scroll .header__search.focus .header__search-input {
 
     .callback__social.icon-telegram:hover {
         background-color: rgb(2.3405172414, 120.9267241379, 178.6594827586)
+    }
+
+    .industries__slide:hover img {
+        -webkit-transform: scale(1.1);
+        -ms-transform: scale(1.1);
+        transform: scale(1.1)
     }
 
     .cases__tab-btn:hover {
