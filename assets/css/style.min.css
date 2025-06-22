@@ -1298,6 +1298,37 @@ body.lock-menu {
     margin-top: .75rem
 }
 
+.form__file-preview {
+    color: currentColor;
+    line-height: 152.941%;
+    cursor: pointer;
+    -webkit-transition: color .3s ease 0s;
+    transition: color .3s ease 0s;
+    border: .0625rem dashed rgba(255, 255, 255, .2);
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    gap: .44rem;
+    font-size: 1rem;
+    padding: .75rem 1rem
+}
+
+.form__file-remove {
+    width: 1.5rem;
+    height: 1.5rem;
+    font-size: 1.5rem;
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+    color: #dc3232;
+    -ms-flex-item-align: start;
+    align-self: flex-start;
+    -webkit-transition: color .3s ease;
+    transition: color .3s ease
+}
+
 .form__file-btn {
     color: currentColor;
     line-height: 152.941%;
@@ -8831,6 +8862,10 @@ header.scroll .header__search.focus .header__search-input {
 
     .form__checkbox-text a:hover {
         text-decoration: none
+    }
+
+    .form__file-remove:hover {
+        color: rgb(187.0625, 31.9375, 31.9375)
     }
 
     .form__file-btn:hover {

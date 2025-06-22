@@ -177,6 +177,60 @@ $(function () {
     }
 
 
+    // preview uploads in forms
+    function createFilePreview($fileInput) {
+        const file = $fileInput[0].files[0];
+        const $parentLabel = $fileInput.closest('.form__file');
+
+        if (file) {
+            const fileName = file.name;
+            $parentLabel.addClass('hidden');
+
+            let $previewContainer = $parentLabel.next('.form__file-preview');
+
+            if ($previewContainer.length === 0) {
+                $previewContainer = $('<div class="form__file-preview"></div>');
+                const $fileText = $('<span class="form__file-text"></span>');
+                const $removeButton = $('<button type="button" class="form__file-remove icon-cross" title="Удалить файл"></button>');
+
+                $previewContainer.append($fileText).append($removeButton);
+                $parentLabel.after($previewContainer);
+            }
+
+            $previewContainer.find('.form__file-text').text(fileName);
+            $previewContainer.removeClass('hidden');
+
+        } else {
+            $parentLabel.removeClass('hidden');
+            $parentLabel.next('.form__file-preview').remove();
+        }
+    }
+
+    $(document).on('change', '.form__file-input', function () {
+        createFilePreview($(this));
+    });
+
+    $(document).on('click', '.form__file-remove', function () {
+        const $previewContainer = $(this).closest('.form__file-preview');
+        const $fileInput = $previewContainer.prev('.form__file').find('.form__file-input');
+
+        $fileInput.val('');
+
+        $previewContainer.prev('.form__file').removeClass('hidden');
+        $previewContainer.remove();
+    });
+
+    $(document).on('wpcf7mailsent wpcf7reset', function (event) {
+        $('.form__file-preview').each(function () {
+            const $previewContainer = $(this);
+            const $fileInput = $previewContainer.prev('.form__file').find('.form__file-input');
+
+            $fileInput.val('');
+            $previewContainer.prev('.form__file').removeClass('hidden');
+            $previewContainer.remove();
+        });
+    });
+
 
     //  sliders
     if ($('.industries__slider').length) {

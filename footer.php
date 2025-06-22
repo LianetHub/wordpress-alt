@@ -34,32 +34,28 @@ $current_year = date('Y');
         <nav aria-label="Меню в подвале" class="footer__menu">
             <div class="footer__menu-block">
                 <div class="footer__menu-caption">АЛТ</div>
-                <ul class="footer__menu-list">
-                    <li><a href="">Главная</a></li>
-                    <li><a href="">О компании</a></li>
-                    <li><a href="">Для госзаказчиков</a></li>
-                    <li><a href="">Для бизнеса</a></li>
-                    <li><a href="">Отзывы</a></li>
-                    <li><a href="">Блог</a></li>
-                    <li><a href="">Проекты</a></li>
-                    <li><a href="">Контакты</a></li>
-                    <li><a href="">Карта сайта</a></li>
-                    <li><a href="">Политика конфиденциальности</a></li>
-                </ul>
+
+                <?php
+                wp_nav_menu(array(
+                    'theme_location'  => 'footer-primary-menu',
+                    'container'       => false,
+                    'menu_class'      => 'footer__menu-list',
+                    'depth'           => 1,
+                    'fallback_cb'     => false,
+                ));
+                ?>
             </div>
             <div class="footer__menu-block">
                 <div class="footer__menu-caption">Наша продукция</div>
-                <ul class="footer__menu-list">
-                    <li><a href="">Микрочипы</a></li>
-                    <li><a href="">Клапаны </a></li>
-                    <li><a href="">Мировые бренды автоматики</a></li>
-                    <li><a href="">Запчасти для холодильного оборудования</a></li>
-                    <li><a href="">Запчасти для роботов</a></li>
-                    <li><a href="">Лабораторное оборудование</a></li>
-                    <li><a href="">Запчасти для медицинского оборудования</a></li>
-                    <li><a href="">Средства измерения, находящиеся в ГРСИ</a></li>
-                    <li><a href="">Измерительное оборудование</a></li>
-                </ul>
+                <?php
+                wp_nav_menu(array(
+                    'theme_location'  => 'footer-products-menu',
+                    'container'       => false,
+                    'menu_class'      => 'footer__menu-list',
+                    'depth'           => 1,
+                    'fallback_cb'     => false,
+                ));
+                ?>
             </div>
             <div class="footer__menu-block">
                 <div class="footer__menu-caption">Отрасли</div>

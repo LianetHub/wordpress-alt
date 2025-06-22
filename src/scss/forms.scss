@@ -243,6 +243,37 @@
 			margin-top: rem(18);
 		}
 	}
+	// .form__file-preview
+	&__file-preview {
+		color: currentColor;
+		line-height: 152.941%;
+		cursor: pointer;
+		transition: color 0.3s ease 0s;
+		border: rem(1) dashed rgba(255, 255, 255, 0.2);
+		display: flex;
+		align-items: center;
+		gap: 0.44rem;
+		font-size: 1rem;
+		padding: 0.75rem 1rem;
+	}
+	// .form__file-text
+	&__file-text {
+	}
+	// .form__file-remove
+	&__file-remove {
+		width: 1.5rem;
+		height: 1.5rem;
+		font-size: 1.5rem;
+		flex-shrink: 0;
+		color: #dc3232;
+		align-self: flex-start;
+		transition: color 0.3s ease;
+		@media (any-hover: hover) {
+			&:hover {
+				color: color.adjust($color: #dc3232, $lightness: -10%);
+			}
+		}
+	}
 	// .form__file-input
 	&__file-input {
 	}
@@ -293,6 +324,11 @@
 			}
 		}
 	}
+}
+
+.form {
+}
+.icon-cross {
 }
 
 .btn {
