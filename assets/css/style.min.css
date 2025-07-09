@@ -56,7 +56,7 @@
     font-style: normal
 }
 
-.article__body ul>li::before, .checkbox__input:checked+.checkbox__btn::before, .form__checkbox-input:checked+.wpcf7-list-item-label .form__checkbox-text::before, .swiper-button-next, .swiper-button-prev, [class*=" icon-"]:before, [class^=icon-]:before {
+.article__body ul>li::before, .article__seo-block .seo-list.list-style-checkbox>li::before, .checkbox__input:checked+.checkbox__btn::before, .form__checkbox-input:checked+.wpcf7-list-item-label .form__checkbox-text::before, .swiper-button-next, .swiper-button-prev, [class*=" icon-"]:before, [class^=icon-]:before {
     font-family: icons;
     font-style: normal;
     font-weight: 400;
@@ -84,7 +84,7 @@
     content: "\e900"
 }
 
-.article__body ul>li:before, .checkbox__input:checked+.checkbox__btn:before, .form__checkbox-input:checked+.wpcf7-list-item-label .form__checkbox-text:before, .icon-check:before {
+.article__body ul>li:before, .article__seo-block .seo-list.list-style-checkbox>li:before, .checkbox__input:checked+.checkbox__btn:before, .form__checkbox-input:checked+.wpcf7-list-item-label .form__checkbox-text:before, .icon-check:before {
     content: "\e901"
 }
 
@@ -4733,9 +4733,9 @@ header.scroll .header__search.focus .header__search-input {
 }
 
 .article__seo-block h2 {
-    font-weight: 500;
-    font-size: 2rem;
-    line-height: 112.5%
+    font-weight: 600;
+    font-size: 2.5rem;
+    line-height: 110%
 }
 
 .article__seo-block h2:not(:first-child) {
@@ -4808,7 +4808,7 @@ header.scroll .header__search.focus .header__search-input {
 }
 
 .article__seo-block .seo-text-block:not(:last-child) {
-    margin-top: 1.25rem
+    margin-bottom: var(--mobile-offset)
 }
 
 .article__seo-block .seo-text-block p:not(:last-child) {
@@ -4841,6 +4841,90 @@ header.scroll .header__search.focus .header__search-input {
     -webkit-transform: rotate(-90deg);
     -ms-transform: rotate(-90deg);
     transform: rotate(-90deg)
+}
+
+.article__seo-block .seo-list {
+    --desktop-offset: 30px;
+    --mobile-offset: 22px
+}
+
+.article__seo-block .seo-list:not(:last-child) {
+    margin-bottom: var(--mobile-offset)
+}
+
+.article__seo-block .seo-list.list-style-checkbox>li {
+    position: relative;
+    padding-left: 1.75rem
+}
+
+.article__seo-block .seo-list.list-style-checkbox>li::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1.375rem;
+    height: 1.375rem;
+    font-size: 1rem;
+    color: #313f69;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center
+}
+
+.article__seo-block .seo-list.list-style-checkbox>li:not(:last-child) {
+    margin-bottom: 1rem
+}
+
+.article__seo-block .seo-list.list-style-digits>li {
+    counter-increment: num;
+    position: relative;
+    padding-left: 1.75rem
+}
+
+.article__seo-block .seo-list.list-style-digits>li::before {
+    content: counter(num) ".";
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: #313f69;
+    text-align: right;
+    font-weight: 700;
+    font-size: .875rem;
+    width: 1.375rem;
+    min-height: 1.375rem
+}
+
+.article__seo-block .seo-list.list-style-digits>li:not(:last-child) {
+    margin-bottom: .375rem
+}
+
+.article__seo-block .seo-list.list-style-circle {
+    padding-left: 1.5em
+}
+
+.article__seo-block .seo-list.list-style-circle>li {
+    list-style: disc
+}
+
+.article__seo-block .seo-list.list-style-circle>li:not(:last-child) {
+    margin-bottom: .375rem
+}
+
+.article__seo-block .seo-image-block {
+    width: 100%;
+    height: auto;
+    display: block;
+    --desktop-offset: 30px;
+    --mobile-offset: 22px
+}
+
+.article__seo-block .seo-image-block:not(:last-child) {
+    margin-bottom: var(--mobile-offset)
 }
 
 .article__body {
@@ -5042,6 +5126,39 @@ header.scroll .header__search.focus .header__search-input {
 
 .article__navbar nav ul li a::before {
     display: none
+}
+
+.article__navbar-list {
+    font-size: 1.125rem;
+    line-height: 133.333%;
+    padding-left: 1.875rem;
+    border-left: .0625rem solid #f3f3f5;
+    color: rgba(20, 20, 20, .5);
+    position: relative;
+    --progress-percent: 0%
+}
+
+.article__navbar-list::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: .0625rem;
+    background: #ea9d0f;
+    height: var(--progress-percent)
+}
+
+.article__navbar-item a {
+    -webkit-transition: color .3s ease;
+    transition: color .3s ease
+}
+
+.article__navbar-item a.active {
+    color: #ea9d0f
+}
+
+.article__navbar-item:not(:last-child) {
+    margin-bottom: 1.25rem
 }
 
 .article__sidebar-caption {
@@ -7708,8 +7825,8 @@ header.scroll .header__search.focus .header__search-input {
     }
 
     .article__seo-block h2 {
-        line-height: 111.111%;
-        font-size: 2.25rem
+        line-height: 105%;
+        font-size: 2.875rem
     }
 
     .article__seo-block h2:not(:first-child) {
@@ -7752,6 +7869,10 @@ header.scroll .header__search.focus .header__search-input {
         margin-top: 1.5625rem
     }
 
+    .article__seo-block .seo-text-block:not(:last-child) {
+        margin-bottom: var(--desktop-offset)
+    }
+
     .article__seo-block .seo-text-block p:not(:last-child) {
         margin-bottom: var(--desktop-offset)
     }
@@ -7767,6 +7888,36 @@ header.scroll .header__search.focus .header__search-input {
         -webkit-columns: 2;
         -moz-columns: 2;
         columns: 2
+    }
+
+    .article__seo-block .seo-list:not(:last-child) {
+        margin-bottom: var(--desktop-offset)
+    }
+
+    .article__seo-block .seo-list.list-style-checkbox>li {
+        padding-left: 2rem
+    }
+
+    .article__seo-block .seo-list.list-style-digits>li {
+        padding-left: 2rem
+    }
+
+    .article__seo-block .seo-list.list-style-digits>li::before {
+        width: 1.625rem;
+        min-height: 1.5rem;
+        font-size: 1rem
+    }
+
+    .article__seo-block .seo-list.list-style-digits>li:not(:last-child) {
+        margin-bottom: .625rem
+    }
+
+    .article__seo-block .seo-list.list-style-circle>li:not(:last-child) {
+        margin-bottom: .625rem
+    }
+
+    .article__seo-block .seo-image-block:not(:last-child) {
+        margin-bottom: var(--desktop-offset)
     }
 
     .article__body {
@@ -9286,6 +9437,10 @@ header.scroll .header__search.focus .header__search-input {
 
     .article__navbar nav ul li a:hover {
         text-decoration: underline;
+        color: #ea9d0f
+    }
+
+    .article__navbar-item a:hover {
         color: #ea9d0f
     }
 }

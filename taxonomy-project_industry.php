@@ -16,5 +16,7 @@ $object_id_for_acf = 'project_industry_' . $current_term->term_id; ?>
 <?php require_once(TEMPLATE_PATH . '_clients.php'); ?>
 <?php require_once(TEMPLATE_PATH . '_reviews.php'); ?>
 <?php require_once(TEMPLATE_PATH . '_team.php'); ?>
+<?php require_once(TEMPLATE_PATH . '_seo-block-second.php'); ?>
 <?php require_once(TEMPLATE_PATH . '_callback.php'); ?>
 <?php get_footer(); ?>
+

@@ -10,8 +10,8 @@ $headings = [];
 $heading_counter = 0;
 
 if (function_exists('have_rows')) {
-    if (have_rows('seo_content_blocks', $object_id_for_acf)) {
-        while (have_rows('seo_content_blocks', $object_id_for_acf)) : the_row();
+    if (have_rows('secondary_seo_content_blocks', $object_id_for_acf)) {
+        while (have_rows('secondary_seo_content_blocks', $object_id_for_acf)) : the_row();
             $current_layout = get_row_layout();
             $heading_text = '';
 
@@ -48,17 +48,17 @@ if (function_exists('have_rows')) {
 }
 ?>
 
-<?php if (function_exists('have_rows') && have_rows('seo_content_blocks', $object_id_for_acf)): ?>
+<?php if (function_exists('have_rows') && have_rows('secondary_seo_content_blocks', $object_id_for_acf)): ?>
 
     <section class="article">
         <div class="container">
-            <div class="article__content">
+            <div class="article__content ">
                 <article class="article__seo-block">
                     <?php
                     static $output_heading_counter = 0;
                     $output_heading_counter = 0;
                     ?>
-                    <?php while (have_rows('seo_content_blocks', $object_id_for_acf)) : the_row();
+                    <?php while (have_rows('secondary_seo_content_blocks', $object_id_for_acf)) : the_row();
 
                         $margin_bottom_desktop = get_sub_field('margin_bottom_desktop');
                         $margin_bottom_mobile = get_sub_field('margin_bottom_mobile');

@@ -986,6 +986,100 @@ $(function () {
     }
 
 
+    // article observer progress
+
+
+    const $articles = $('.article__seo-block');
+
+
+    $articles.each(function () {
+        const $article = $(this);
+
+        const $sidebar = $article.closest('.article__content').find('.article__sidebar');
+        const $navbar = $sidebar.find('.article__navbar-list');
+
+
+
+        if ($sidebar.length === 0) {
+            return true;
+        }
+
+        const $navbarLinks = $sidebar.find('.article__navbar-item a');
+        const headings = [];
+
+
+        $navbarLinks.each(function () {
+            const targetId = $(this).attr('href');
+            const $heading = $article.find(targetId);
+            if ($heading.length) {
+                headings.push({
+                    id: targetId.substring(1),
+                    $element: $heading,
+                    $navLink: $(this)
+                });
+            }
+        });
+
+
+        if (headings.length <= 1) {
+            return true;
+        }
+
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px 0px -70% 0px',
+            threshold: 0
+        };
+
+        const headingObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                const targetId = entry.target.id;
+                const $currentNavLink = $navbarLinks.filter(`[href="#${targetId}"]`);
+
+                if (entry.isIntersecting) {
+                    $navbarLinks.removeClass('active');
+                    $currentNavLink.addClass('active');
+                } else {
+                    if (entry.boundingClientRect.top < 0) {
+                        const currentIndex = headings.findIndex(h => h.id === targetId);
+                        if (currentIndex + 1 < headings.length) {
+                            const $nextHeading = headings[currentIndex + 1].$element;
+                            const nextHeadingRect = $nextHeading[0].getBoundingClientRect();
+                            if (nextHeadingRect.top < $(window).height() * 0.3) {
+                                $currentNavLink.removeClass('active');
+                            }
+                        }
+                    }
+                }
+            });
+        }, observerOptions);
+
+
+        headings.forEach(heading => {
+            headingObserver.observe(heading.$element[0]);
+        });
+
+
+        $(window).on('scroll', function () {
+
+            const articleTop = $article.offset().top;
+            const articleHeight = $article.outerHeight();
+            const windowScrollTop = $(window).scrollTop();
+            const windowHeight = $(window).height();
+
+            const scrollStart = articleTop - windowHeight;
+            const scrollEnd = articleTop + articleHeight - (windowHeight * 0.3);
+
+            let percentage = 0;
+            if (windowScrollTop > scrollStart) {
+                percentage = ((windowScrollTop - scrollStart) / (scrollEnd - scrollStart)) * 100;
+                percentage = Math.min(100, Math.max(0, percentage));
+            }
+
+            $navbar.css('--progress-percent', percentage.toFixed(2) + '%');
+        }).trigger('scroll');
+    });
+
 })
 
 
