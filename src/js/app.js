@@ -95,39 +95,40 @@ $(function () {
             $target.closest('.products__filters-caption').next().slideToggle()
         }
 
-        if ($target.closest('.menu__arrow').length && $target.closest('.menu__item.menu-parent').length) {
+        if (($target.closest('.menu__arrow').length || ($target.closest('.menu__link').length && $target.closest('.menu-item-has-children').length)) && $target.closest('.menu__item.menu-parent').length) {
             e.preventDefault();
             const $menuItem = $target.closest('.menu__item');
-            const $menuArrow = $target.closest('.menu__arrow');
-            const $submenu = $menuArrow.next('.submenu');
+            const $submenu = $menuItem.find('.submenu');
 
             const isActive = $menuItem.hasClass('active');
 
+
             $('.menu__item').removeClass('active');
             $('.submenu').removeClass('open');
+            $('.menu__body').removeClass('active').css('min-height', '');
+
+
+            if (window.currentResizeHandler) {
+                $(window).off('resize', window.currentResizeHandler);
+                window.currentResizeHandler = null;
+            }
 
             if (!isActive) {
                 $menuItem.addClass('active');
                 $submenu.addClass('open');
 
                 const submenuHeight = $submenu.outerHeight();
+                const $menuBody = $('.menu__body');
 
-                $('.menu__body')
+                $menuBody
                     .addClass('active')
                     .css('min-height', submenuHeight);
 
-                resizeHandler = () => {
+                window.currentResizeHandler = () => {
                     const updatedHeight = $submenu.outerHeight();
                     $menuBody.css('min-height', updatedHeight);
                 };
-                $(window).on('resize', resizeHandler);
-            } else {
-                $('.menu__body').removeClass('active').css('min-height', '');
-
-                if (resizeHandler) {
-                    $(window).off('resize', resizeHandler);
-                    resizeHandler = null;
-                }
+                $(window).on('resize', window.currentResizeHandler);
             }
         }
 

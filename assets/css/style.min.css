@@ -7073,6 +7073,13 @@ header.scroll .header__search.focus .header__search-input {
         transition: opacity .3s ease, visibility .15s ease, transform .15s ease, -webkit-transform .15s ease
     }
 
+    .submenu.open {
+        opacity: 1;
+        visibility: visible;
+        -webkit-transform: scaleY(1) translate3d(0, 0, 1px);
+        transform: scaleY(1) translate3d(0, 0, 1px)
+    }
+
     .submenu__header {
         display: none
     }
@@ -7749,15 +7756,6 @@ header.scroll .header__search.focus .header__search-input {
         visibility: visible;
         -webkit-transform: scaleY(1) translate3d(0, 0, 0);
         transform: scaleY(1) translate3d(0, 0, 0)
-    }
-}
-
-@media (min-width:991.98px) and (hover:none) {
-    .submenu.open {
-        opacity: 1;
-        visibility: visible;
-        -webkit-transform: scaleY(1) translate3d(0, 0, 1px);
-        transform: scaleY(1) translate3d(0, 0, 1px)
     }
 }
 

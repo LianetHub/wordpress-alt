@@ -659,11 +659,9 @@
 			display: block;
 		}
 		@media (min-width: $md3) {
-			@media (hover: none) {
-				opacity: 1;
-				visibility: visible;
-				transform: scaleY(1) translate3d(0, 0, 1px);
-			}
+			opacity: 1;
+			visibility: visible;
+			transform: scaleY(1) translate3d(0, 0, 1px);
 		}
 	}
 

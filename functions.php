@@ -436,9 +436,9 @@ function create_project_industry_taxonomy()
 		'query_var'                  => true,
 		'publicly_queryable'         => true,
 		'rewrite'                    => array(
-			'slug'       => 'otrasli',
+			'slug'       => '/',
 			'with_front' => false,
-			'hierarchical' => true,
+			'hierarchical' => false,
 			'feed'       => false
 		),
 	);
