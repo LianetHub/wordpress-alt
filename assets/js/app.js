@@ -73,7 +73,7 @@ $(function () {
         }
 
         // Читать полностью 
-        if ($target.is('.desc__more')) {
+        if ($target.is('.seo-text-block__more')) {
             $target.toggleClass('active');
             $target.prev().toggleClass('full');
 
