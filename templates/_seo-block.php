@@ -26,13 +26,29 @@ if (!isset($object_id_for_acf) || empty($object_id_for_acf)) {
                         }
                     ?>
 
-                        <?php if (get_row_layout() == 'heading_h2') :
+                        <?php if (get_row_layout() == 'heading_h1') :
+                            $h1_text = get_sub_field('h1_text'); ?>
+                            <h1 class="text-uppercase" style="<?php echo esc_attr($style_vars); ?>"><?php echo esc_html($h1_text); ?></h1>
+
+                        <?php elseif (get_row_layout() == 'heading_h2') :
                             $h2_text = get_sub_field('h2_text'); ?>
                             <h2 class="text-uppercase" style="<?php echo esc_attr($style_vars); ?>"><?php echo esc_html($h2_text); ?></h2>
 
                         <?php elseif (get_row_layout() == 'heading_h3') :
                             $h3_text = get_sub_field('h3_text'); ?>
                             <h3 class="text-uppercase" style="<?php echo esc_attr($style_vars); ?>"><?php echo esc_html($h3_text); ?></h3>
+
+                        <?php elseif (get_row_layout() == 'heading_h4') :
+                            $h4_text = get_sub_field('h4_text'); ?>
+                            <h4 class="text-uppercase" style="<?php echo esc_attr($style_vars); ?>"><?php echo esc_html($h4_text); ?></h4>
+
+                        <?php elseif (get_row_layout() == 'heading_h5') :
+                            $h5_text = get_sub_field('h5_text'); ?>
+                            <h5 class="text-uppercase" style="<?php echo esc_attr($style_vars); ?>"><?php echo esc_html($h5_text); ?></h5>
+
+                        <?php elseif (get_row_layout() == 'heading_h6') :
+                            $h6_text = get_sub_field('h6_text'); ?>
+                            <h6 class="text-uppercase" style="<?php echo esc_attr($style_vars); ?>"><?php echo esc_html($h6_text); ?></h6>
 
                         <?php elseif (get_row_layout() == 'text_block') :
                             $content_text = get_sub_field('content_text');
@@ -61,14 +77,14 @@ if (!isset($object_id_for_acf) || empty($object_id_for_acf)) {
                             }
                         ?>
                             <div class="<?php echo esc_attr($text_block_class); ?>" style="<?php echo esc_attr($style_vars); ?>">
-                                <?php if ($has_read_more) :
-                                ?>
+                                <?php if ($has_columns) : ?>
                                     <div class="seo-text-block__columns">
                                         <?php echo wp_kses_post($content_text); ?>
                                     </div>
-                                    <button type="button" class="seo-text-block__more more-link icon-arrow">Читать полностью</button>
-                                <?php else :
-                                ?>
+                                    <?php if ($has_read_more) : ?>
+                                        <button type="button" class="seo-text-block__more more-link icon-arrow">Читать полностью</button>
+                                    <?php endif; ?>
+                                <?php else : ?>
                                     <?php echo wp_kses_post($content_text); ?>
                                 <?php endif; ?>
                             </div>

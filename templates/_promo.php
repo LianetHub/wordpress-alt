@@ -50,6 +50,9 @@ if ($is_certificates_page) {
 
 $title_class = is_single() ? 'title' : 'title-lg';
 
+// Determine if the title should be an <h1> or a <div>
+$title_tag = (is_tax('project_industry')) ? 'div' : 'h1';
+
 ?>
 
 <section class="promo" <?= $style_attr ?>>
@@ -91,44 +94,44 @@ $title_class = is_single() ? 'title' : 'title-lg';
                         if ($promo_title && $promo_main_title) {
                     ?>
                             <h1 class="promo__caption"><?= fix_widows_after_prepositions(esc_html($promo_title)) ?></h1>
-                            <div class="promo__title <?= $title_class ?>"><?= fix_widows_after_prepositions(esc_html($promo_main_title)) ?></div>
+                            <<?= $title_tag ?> class="promo__title <?= $title_class ?>"><?= fix_widows_after_prepositions(esc_html($promo_main_title)) ?></<?= $title_tag ?>>
                         <?php
                         } elseif ($promo_main_title) {
                         ?>
-                            <h1 class="promo__title <?= $title_class ?>"><?= fix_widows_after_prepositions(esc_html($promo_main_title)) ?></h1>
+                            <<?= $title_tag ?> class="promo__title <?= $title_class ?>"><?= fix_widows_after_prepositions(esc_html($promo_main_title)) ?></<?= $title_tag ?>>
                         <?php
                         } elseif ($promo_title) {
                         ?>
-                            <h1 class="promo__title <?= $title_class ?>"><?= fix_widows_after_prepositions(esc_html($promo_title)) ?></h1>
+                            <<?= $title_tag ?> class="promo__title <?= $title_class ?>"><?= fix_widows_after_prepositions(esc_html($promo_title)) ?></<?= $title_tag ?>>
                         <?php
                         }
                     } else {
                         if (is_post_type_archive('project')) {
                             $post_type_obj = get_post_type_object('project');
                             $archive_title = $post_type_obj ? $post_type_obj->labels->name : 'Проекты';
-                            echo '<h1 class="promo__title ' . esc_attr($title_class) . '">' . esc_html($archive_title) . '</h1>';
+                            echo '<' . $title_tag . ' class="promo__title ' . esc_attr($title_class) . '">' . esc_html($archive_title) . '</' . $title_tag . '>';
                         } elseif (is_tax('project_industry')) {
                             $term = get_queried_object();
                             if ($term) {
-                                echo '<h1 class="promo__title ' . esc_attr($title_class) . '">' . esc_html($term->name) . '</h1>';
+                                echo '<' . $title_tag . ' class="promo__title ' . esc_attr($title_class) . '">' . esc_html($term->name) . '</' . $title_tag . '>';
                             } else {
-                                echo '<h1 class="promo__title ' . esc_attr($title_class) . '">Отрасли Проектов</h1>';
+                                echo '<' . $title_tag . ' class="promo__title ' . esc_attr($title_class) . '">Отрасли Проектов</' . $title_tag . '>';
                             }
                         } elseif (is_shop()) {
                         ?>
-                            <h1 class="promo__title <?= $title_class ?>"><?= fix_widows_after_prepositions(esc_html(woocommerce_page_title(false))) ?></h1>
+                            <<?= $title_tag ?> class="promo__title <?= $title_class ?>"><?= fix_widows_after_prepositions(esc_html(woocommerce_page_title(false))) ?></<?= $title_tag ?>>
                         <?php
                         } elseif (is_product_category() || is_product_tag() || is_product_taxonomy()) {
                         ?>
-                            <h1 class="promo__title <?= $title_class ?>"><?= fix_widows_after_prepositions(esc_html(single_term_title('', false))) ?></h1>
+                            <<?= $title_tag ?> class="promo__title <?= $title_class ?>"><?= fix_widows_after_prepositions(esc_html(single_term_title('', false))) ?></<?= $title_tag ?>>
                         <?php
                         } elseif (is_home() || is_front_page()) {
                         ?>
-                            <h1 class="promo__title <?= $title_class ?>">Блог</h1>
+                            <<?= $title_tag ?> class="promo__title <?= $title_class ?>">Блог</<?= $title_tag ?>>
                         <?php
                         } else {
                         ?>
-                            <h1 class="promo__title <?= $title_class ?>"><?= fix_widows_after_prepositions(esc_html(get_the_title())) ?></h1>
+                            <<?= $title_tag ?> class="promo__title <?= $title_class ?>"><?= fix_widows_after_prepositions(esc_html(get_the_title())) ?></<?= $title_tag ?>>
                         <?php
                         }
                     }
@@ -162,7 +165,8 @@ $title_class = is_single() ? 'title' : 'title-lg';
                 <a href="<?= esc_url($certificate_pdf_url) ?>" class="promo__download icon-download" download><span>Открыть в PDF</span></a>
             <?php } ?>
             <?php if ($is_projects_archive) { ?>
-                <?php $current_term_slug = isset($_GET['type']) ? sanitize_text_field($_GET['type']) : '';
+                <?php
+                $current_term_slug = isset($_GET['type']) ? sanitize_text_field($_GET['type']) : '';
 
 
                 $terms = get_terms(array(
@@ -192,14 +196,14 @@ $title_class = is_single() ? 'title' : 'title-lg';
         </div>
     </div>
 </section>
-<?php if ($promo_subtitle && !is_404()): ?>
+<?php if ($promo_subtitle && !is_404()) : ?>
     <div class="promo__bottom">
         <div class="container">
             <?= esc_html($promo_subtitle) ?>
         </div>
     </div>
 <?php endif; ?>
-<?php if ($is_projects_archive): ?>
+<?php if ($is_projects_archive) : ?>
     <?php
     $terms = get_terms(array(
         'taxonomy'   => 'project_industry',

@@ -4757,6 +4757,105 @@ header.scroll .header__search.focus .header__search-input {
   line-height: 137.5%;
 }
 
+.article__seo-block h1,
+.article__seo-block h2,
+.article__seo-block h3,
+.article__seo-block h4,
+.article__seo-block h5,
+.article__seo-block h6 {
+  --desktop-offset: 30px;
+  --mobile-offset: 30px;
+}
+
+.article__seo-block h1:not(:last-child),
+.article__seo-block h2:not(:last-child),
+.article__seo-block h3:not(:last-child),
+.article__seo-block h4:not(:last-child),
+.article__seo-block h5:not(:last-child),
+.article__seo-block h6:not(:last-child) {
+  margin-bottom: var(--mobile-offset);
+}
+
+.article__seo-block h1 {
+  font-weight: 600;
+  font-size: 2.5rem;
+  line-height: 110%;
+}
+
+.article__seo-block h1:not(:first-child) {
+  margin-top: 4.375rem;
+}
+
+.article__seo-block h2 {
+  font-weight: 500;
+  font-size: 2rem;
+  line-height: 112.5%;
+}
+
+.article__seo-block h2:not(:first-child) {
+  margin-top: 3.75rem;
+}
+
+.article__seo-block h2 + p:not(:first-child) {
+  margin-top: 1.875rem;
+}
+
+.article__seo-block h3 {
+  font-weight: 500;
+  font-size: 1.75rem;
+  line-height: 120%;
+}
+
+.article__seo-block h3:not(:first-child) {
+  margin-top: 2.5rem;
+}
+
+.article__seo-block h3 + p:not(:first-child) {
+  margin-top: 1.5625rem;
+}
+
+.article__seo-block h4 {
+  font-weight: 600;
+  font-size: 1.375rem;
+  line-height: 130%;
+}
+
+.article__seo-block h4:not(:first-child) {
+  margin-top: 1.875rem;
+}
+
+.article__seo-block h4 + p:not(:first-child) {
+  margin-top: 1.25rem;
+}
+
+.article__seo-block h5 {
+  font-weight: 700;
+  font-size: 1.125rem;
+  line-height: 140%;
+}
+
+.article__seo-block h5:not(:first-child) {
+  margin-top: 1.5625rem;
+}
+
+.article__seo-block h5 + p:not(:first-child) {
+  margin-top: 0.9375rem;
+}
+
+.article__seo-block h6 {
+  font-weight: 700;
+  font-size: 1rem;
+  line-height: 150%;
+}
+
+.article__seo-block h6:not(:first-child) {
+  margin-top: 1.25rem;
+}
+
+.article__seo-block h6 + p:not(:first-child) {
+  margin-top: 0.625rem;
+}
+
 .article__seo-block .seo-text-block {
   --desktop-offset: 30px;
   --mobile-offset: 22px;
@@ -7674,6 +7773,69 @@ header.scroll .header__search.focus .header__search-input {
   .article__seo-block {
     line-height: 133.333%;
     font-size: 1.125rem;
+  }
+
+  .article__seo-block h1:not(:last-child),
+  .article__seo-block h2:not(:last-child),
+  .article__seo-block h3:not(:last-child),
+  .article__seo-block h4:not(:last-child),
+  .article__seo-block h5:not(:last-child),
+  .article__seo-block h6:not(:last-child) {
+    margin-bottom: var(--desktop-offset);
+  }
+
+  .article__seo-block h1 {
+    line-height: 105%;
+    font-size: 2.875rem;
+  }
+
+  .article__seo-block h1:not(:first-child) {
+    margin-top: 5.625rem;
+  }
+
+  .article__seo-block h2 {
+    line-height: 111.111%;
+    font-size: 2.25rem;
+  }
+
+  .article__seo-block h2:not(:first-child) {
+    margin-top: 5rem;
+  }
+
+  .article__seo-block h3 {
+    line-height: 115%;
+    font-size: 2rem;
+  }
+
+  .article__seo-block h3:not(:first-child) {
+    margin-top: 3.125rem;
+  }
+
+  .article__seo-block h4 {
+    line-height: 125%;
+    font-size: 1.5rem;
+  }
+
+  .article__seo-block h4:not(:first-child) {
+    margin-top: 2.5rem;
+  }
+
+  .article__seo-block h5 {
+    line-height: 130%;
+    font-size: 1.25rem;
+  }
+
+  .article__seo-block h5:not(:first-child) {
+    margin-top: 1.875rem;
+  }
+
+  .article__seo-block h6 {
+    line-height: 140%;
+    font-size: 1.0625rem;
+  }
+
+  .article__seo-block h6:not(:first-child) {
+    margin-top: 1.5625rem;
   }
 
   .article__seo-block .seo-text-block p:not(:last-child) {
