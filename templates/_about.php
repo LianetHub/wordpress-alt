@@ -6,7 +6,6 @@ if (have_rows('about_block')):
         $about_title = get_sub_field('about_title');
         $about_subtitle = get_sub_field('about_subtitle');
         $about_text = get_sub_field('about_text');
-
         $about_image_url = get_sub_field('about_image');
 
 ?>
@@ -29,7 +28,7 @@ if (have_rows('about_block')):
                                 <?php if ($about_text): ?>
                                     <div class="about__text"><?php echo wp_kses_post($about_text); ?></div>
                                 <?php endif; ?>
-                                <a href="#" class="about__link more-link icon-arrow">
+                                <a href="<?= get_page_link(99) ?>" class="about__link more-link icon-arrow">
                                     Подробнее о нас
                                 </a>
                             </div>
@@ -43,6 +42,5 @@ if (have_rows('about_block')):
                 </div>
             <?php endif; ?>
         </section>
-
 <?php endwhile;
 endif; ?>

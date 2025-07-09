@@ -47,25 +47,27 @@ add_filter('upload_mimes', 'allow_svg_uploads');
 
 function set_global_acf_fields()
 {
-	$GLOBALS['global_acf_fields'] = [
-		'phone_number' => get_field('phone_number', 'option'),
-		'email_address' => get_field('email_address', 'option'),
-		'work_time' => get_field('work_time', 'option'),
-		'company_details' => get_field('company_details', 'option'),
-		'telegram_url' => get_field('telegram_url', 'option'),
-		'whatsapp_url' => get_field('whatsapp_url', 'option'),
-		'map_iframe_url' => get_field('map_iframe_url', 'option'),
-		'organization_address' => get_field('organization_address', 'option'),
-		'benefits_blocks' => get_field('benefits_blocks', 'option'),
-		'client_logos' => get_field('client_logos', 'option'),
-		'reviews' => get_field('reviews', 'option'),
-		'team_members' => get_field('team_members', 'option'),
-		'сertificates' => get_field('сertificates', 'option'),
-		'support_block' => get_field('support_block', 'option'),
-		'company_principles' => get_field('company_principles', 'option'),
-	];
+	if (function_exists('get_field')) {
+		$GLOBALS['global_acf_fields'] = [
+			'phone_number' => get_field('phone_number', 'option'),
+			'email_address' => get_field('email_address', 'option'),
+			'work_time' => get_field('work_time', 'option'),
+			'company_details' => get_field('company_details', 'option'),
+			'telegram_url' => get_field('telegram_url', 'option'),
+			'whatsapp_url' => get_field('whatsapp_url', 'option'),
+			'map_iframe_url' => get_field('map_iframe_url', 'option'),
+			'organization_address' => get_field('organization_address', 'option'),
+			'benefits_blocks' => get_field('benefits_blocks', 'option'),
+			'client_logos' => get_field('client_logos', 'option'),
+			'reviews' => get_field('reviews', 'option'),
+			'team_members' => get_field('team_members', 'option'),
+			'сertificates' => get_field('сertificates', 'option'),
+			'support_block' => get_field('support_block', 'option'),
+			'company_principles' => get_field('company_principles', 'option'),
+		];
+	}
 }
-add_action('wp', 'set_global_acf_fields');
+add_action('acf/init', 'set_global_acf_fields');
 
 
 
@@ -434,7 +436,7 @@ function create_project_industry_taxonomy()
 		'query_var'                  => true,
 		'publicly_queryable'         => true,
 		'rewrite'                    => array(
-			'slug'       => 'industries',
+			'slug'       => 'otrasli',
 			'with_front' => false,
 			'hierarchical' => true,
 			'feed'       => false

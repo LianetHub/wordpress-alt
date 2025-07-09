@@ -196,6 +196,11 @@
 				line-height: 1;
 			}
 		}
+		.tax-project_industry & {
+			@media (max-width: $md5) {
+				font-size: rem(28);
+			}
+		}
 		@media (min-width: $md5) {
 			line-height: 1;
 			&:last-child {

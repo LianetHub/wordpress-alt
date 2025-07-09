@@ -1,20 +1,26 @@
-<?php if (have_rows('seo_content_blocks')): ?>
+<?php
+
+if (!isset($object_id_for_acf) || empty($object_id_for_acf)) {
+    $object_id_for_acf = get_the_ID();
+}
+?>
+
+<?php if (have_rows('seo_content_blocks', $object_id_for_acf)): ?>
 
     <section class="article">
         <div class="container">
             <div class="article__content">
                 <article class="article__body">
-                    <?php while (have_rows('seo_content_blocks')) : the_row();
+                    <?php while (have_rows('seo_content_blocks', $object_id_for_acf)) : the_row(); // Передаем $object_id_for_acf здесь
 
                         $margin_bottom_desktop = get_sub_field('margin_bottom_desktop');
                         $margin_bottom_mobile = get_sub_field('margin_bottom_mobile');
 
+                        $style_desktop = !empty($margin_bottom_desktop) ? 'margin-bottom: ' . esc_attr($margin_bottom_desktop) . ';' : '';
+                        $style_mobile = !empty($margin_bottom_mobile) ? '--mb-mobile: ' . esc_attr($margin_bottom_mobile) . ';' : '';
+                    ?>
 
-                        $style_desktop = !empty($margin_bottom_desktop) ? 'margin-bottom: ' . $margin_bottom_desktop . ';' : '';
-                        $style_mobile = !empty($margin_bottom_mobile) ? '--mb-mobile: ' . $margin_bottom_mobile . ';' : '';
-
-
-                        if (get_row_layout() == 'heading_h2') :
+                        <?php if (get_row_layout() == 'heading_h2') :
                             $h2_text = get_sub_field('h2_text'); ?>
                             <h2 class="text-uppercase" style="<?php echo esc_attr($style_desktop); ?> <?php echo esc_attr($style_mobile); ?>"><?php echo esc_html($h2_text); ?></h2>
 
@@ -31,7 +37,7 @@
                             $list_class = 'list-style-' . esc_attr($list_format);
                         ?>
                             <ul class="seo-list <?php echo $list_class; ?>" style="<?php echo esc_attr($style_desktop); ?> <?php echo esc_attr($style_mobile); ?>">
-                                <?php if (have_rows('list_items')) :
+                                <?php if (have_rows('list_items')) : // get_sub_field работает в контексте текущей строки, поэтому ID не нужен
                                 ?>
                                     <?php while (have_rows('list_items')) : the_row();
                                         $list_item_text = get_sub_field('list_item_text'); ?>
@@ -55,5 +61,4 @@
         </div>
     </section>
 
-<?php endif;
-?>
+<?php endif; ?>

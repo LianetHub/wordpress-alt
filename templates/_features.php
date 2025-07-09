@@ -1,10 +1,14 @@
 <?php
 
-$features_title = get_field('features_title') ?? 'Приемущества';
-$features_description = get_field('features_description');
+if (!isset($object_id_for_acf) || empty($object_id_for_acf)) {
+    $object_id_for_acf = get_the_ID();
+}
+
+$features_title = get_field('features_title', $object_id_for_acf) ?? 'Преимущества';
+$features_description = get_field('features_description', $object_id_for_acf);
 ?>
 
-<? if (have_rows('features_list_items')): ?>
+<?php if (have_rows('features_list_items', $object_id_for_acf)): ?>
     <section class="features">
         <div class="container">
             <h2 class="features__title title text-uppercase">
@@ -14,7 +18,7 @@ $features_description = get_field('features_description');
                 <div class="features__desc"><?php echo wp_kses_post($features_description); ?></div>
             <?php endif; ?>
             <ul class="features__list">
-                <?php while (have_rows('features_list_items')): the_row();
+                <?php while (have_rows('features_list_items', $object_id_for_acf)): the_row();
                     $item_caption = get_sub_field('item_caption');
                     $item_description = get_sub_field('item_description');
                 ?>

@@ -133,7 +133,15 @@ get_header();
 						}
 						?>
 					</div>
-					<h1 class="product-card__title"><?= fix_widows_after_prepositions(esc_html($product->get_name())) ?></h1>
+					<h1 class="product-card__title">
+						<?php
+						$product_title = get_field('product_full_title');
+						if (empty($product_title)) {
+							$product_title = $product->get_name();
+						}
+						echo fix_widows_after_prepositions(esc_html($product_title));
+						?>
+					</h1>
 					<div class="product-card__info">
 						<?php
 						$manufacturer = get_field('product_manufacturer');
@@ -193,14 +201,21 @@ get_header();
 				<div class="product-stats__content">
 					<div class="product-stats__block active">
 						<?php
-						if (have_rows('technical_specs')) : ?>
-							<ul class="product-stats__list">
-								<?php while (have_rows('technical_specs')) : the_row(); ?>
-									<?php if ($spec_item = get_sub_field('spec_item')) : ?>
+
+						$technical_specs_string = get_field('technical_specs');
+
+						if (!empty($technical_specs_string)) :
+							$specs = explode("\n", $technical_specs_string);
+							$specs = array_filter(array_map('trim', $specs));
+							if (!empty($specs)) : ?>
+								<ul class="product-stats__list">
+									<?php foreach ($specs as $spec_item) : ?>
 										<li><?= esc_html($spec_item) ?></li>
-									<?php endif; ?>
-								<?php endwhile; ?>
-							</ul>
+									<?php endforeach; ?>
+								</ul>
+							<?php else : ?>
+								<p>Технические характеристики отсутствуют.</p>
+							<?php endif; ?>
 						<?php else : ?>
 							<p>Технические характеристики отсутствуют.</p>
 						<?php endif; ?>

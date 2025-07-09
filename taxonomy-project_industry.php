@@ -1,3 +1,7 @@
+<?php
+$current_term = get_queried_object();
+$object_id_for_acf = 'project_industry_' . $current_term->term_id; ?>
+
 <?php get_header(); ?>
 <?php require_once(TEMPLATE_PATH . '_promo.php'); ?>
 <?php require_once(TEMPLATE_PATH . '_nums.php'); ?>

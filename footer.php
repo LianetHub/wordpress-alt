@@ -140,6 +140,24 @@ $current_year = date('Y');
         </div>
     </div>
 <? endif; ?>
+<?php
+
+if (! isset($_COOKIE['user_has_consented_cookies']) || $_COOKIE['user_has_consented_cookies'] !== 'true') {
+
+?>
+    <div class="cookie" id="cookie-block" style="display: none;">
+        <div class="container">
+            <div class="cookie__content">
+                <div class="cookie__text">
+                    Мы используем сookies-файлы для оценки эффективности работы сайта, улучшения функциональности и производительности на основе обезличенных данных о посещаемости сайта (количество посетителей, источники перехода на сайт, посещаемые страницы, а также общее время, проведенное на сайте). Продолжая пользоваться этим сайтом, вы соглашаетесь с использованием файлов cookies. <a href="<?php echo get_permalink(3); ?>">Политика конфиденциальности</a>
+                </div>
+                <button type="button" class="cookie__btn btn btn-primary">Принять</button>
+            </div>
+        </div>
+    </div>
+<?php
+}
+?>
 </div>
 <?php wp_footer(); ?>
 </body>

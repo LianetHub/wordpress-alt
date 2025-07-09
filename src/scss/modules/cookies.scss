@@ -1,0 +1,58 @@
+@use "sass:math";
+@use "sass:color";
+@use "_mixins" as *;
+@use "_variables" as *;
+
+.cookie {
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background: #fff;
+	z-index: 6;
+	background: #fff;
+	box-shadow: 0 rem(4) rem(40) 0 rgba(0, 0, 0, 0.1);
+	padding: rem(15) 0;
+	@media (min-width: $md4) {
+		padding: 1.62rem 0;
+	}
+
+	// .cookie__content
+	&__content {
+		display: flex;
+		align-items: flex-start;
+		gap: rem(15);
+		flex-direction: column;
+		@media (min-width: $md4) {
+			align-items: center;
+			flex-direction: row;
+			gap: 2.5rem;
+		}
+	}
+	// .cookie__text
+	&__text {
+		flex: 1 1 auto;
+		color: #141414;
+		font-size: 0.75rem;
+		line-height: 166.667%;
+		@media (min-width: $md4) {
+			font-size: 0.875rem;
+			line-height: 128.571%;
+		}
+		& a {
+			color: #ea9d0f;
+			text-decoration-line: underline;
+			text-underline-position: from-font;
+			@media (any-hover: hover) {
+				&:hover {
+					text-decoration: none;
+				}
+			}
+		}
+	}
+	// .cookie__btn
+	&__btn {
+		min-width: rem(140);
+		min-height: rem(50);
+	}
+}

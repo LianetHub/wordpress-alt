@@ -1,26 +1,52 @@
 <?php
-$promo_background = get_field('promo_background') ?? '';
-$promo_title = get_field('promo_title') ?? '';
-$promo_main_title = get_field('promo_main_title') ?? '';
-$promo_subtitle = get_field('promo_description') ?? '';
-$promo_hint = get_field('promo_hint') ?? '';
-$promo_has_offer_btn = get_field('promo_has_offer_btn') ?? false;
+$object_id_for_acf = get_the_ID();
+
+if (is_tax('project_industry')) {
+    $current_term = get_queried_object();
+    if ($current_term) {
+        $object_id_for_acf = 'project_industry_' . $current_term->term_id;
+    }
+} elseif (is_post_type_archive('project')) {
+    $object_id_for_acf = 'option';
+} elseif (is_product_category() || is_product_tag() || is_product_taxonomy()) {
+    $current_term = get_queried_object();
+    if ($current_term) {
+        $object_id_for_acf = $current_term->taxonomy . '_' . $current_term->term_id;
+    }
+} elseif (is_shop()) {
+    $shop_page_id = wc_get_page_id('shop');
+    if ($shop_page_id) {
+        $object_id_for_acf = $shop_page_id;
+    } else {
+        $object_id_for_acf = 'option';
+    }
+} elseif (is_front_page() || is_page()) {
+    $object_id_for_acf = get_the_ID();
+} elseif (is_home() && !is_front_page()) {
+    $object_id_for_acf = get_option('page_for_posts');
+} elseif (is_404()) {
+    $object_id_for_acf = 'option';
+}
+
+$promo_background = get_field('promo_background', $object_id_for_acf) ?? '';
+$promo_title = get_field('promo_title', $object_id_for_acf) ?? '';
+$promo_main_title = get_field('promo_main_title', $object_id_for_acf) ?? '';
+$promo_subtitle = get_field('promo_description', $object_id_for_acf) ?? '';
+$promo_hint = get_field('promo_hint', $object_id_for_acf) ?? '';
+$promo_has_offer_btn = get_field('promo_has_offer_btn', $object_id_for_acf) ?? false;
 
 $style_attr = $promo_background ? ' style="background-image: url(' . esc_url($promo_background) . ');"' : '';
 
-
 $is_projects_archive = is_post_type_archive('project');
-
-$is_certificates_page = is_page(117); // ID страницы с сертификатами
+$is_certificates_page = is_page(117);
 $certificate_pdf_url = '';
 if ($is_certificates_page) {
-    $certificate_pdf_file_array = get_field('certificate_pdf_url');
+    $certificate_pdf_file_array = get_field('certificate_pdf_url', $object_id_for_acf);
 
     if ($certificate_pdf_file_array && is_array($certificate_pdf_file_array) && isset($certificate_pdf_file_array['url'])) {
         $certificate_pdf_url = $certificate_pdf_file_array['url'];
     }
 }
-
 
 $title_class = is_single() ? 'title' : 'title-lg';
 
@@ -30,6 +56,7 @@ $title_class = is_single() ? 'title' : 'title-lg';
     <div class="container">
         <div class="promo__body">
             <div class="promo__offer">
+
                 <?php
                 if (is_404()) {
                 ?>
@@ -42,21 +69,17 @@ $title_class = is_single() ? 'title' : 'title-lg';
                     if (!is_front_page() && !is_page(405) && function_exists('yoast_breadcrumb')) {
                         if (is_singular('project')) {
                             echo '<nav class="breadcrumbs">';
-                            echo '<a href="' . esc_url(home_url('/')) . '">Главная страгница</a> / ';
+                            echo '<a href="' . esc_url(home_url('/')) . '">Главная страница</a> / ';
                             echo '<a href="' . esc_url(get_post_type_archive_link('project')) . '">Проекты</a> / ';
                             echo '<span>' . esc_html(get_the_title()) . '</span>';
                             echo '</nav>';
                         } elseif (is_product_category()) {
                             echo '<nav class="breadcrumbs">';
-
                             echo '<a href="' . esc_url(home_url('/')) . '">Главная страница</a> / ';
-
-
                             $shop_page_id = wc_get_page_id('shop');
                             if ($shop_page_id) {
                                 echo '<a href="' . esc_url(get_permalink($shop_page_id)) . '">Каталог</a> / ';
                             }
-
                             echo '<span>' . esc_html(single_term_title('', false)) . '</span>';
                             echo '</nav>';
                         } else {
@@ -64,53 +87,54 @@ $title_class = is_single() ? 'title' : 'title-lg';
                         }
                     }
 
-                    if (is_post_type_archive('project')) {
-                        $post_type_obj = get_post_type_object('project');
-                        $archive_title = $post_type_obj ? $post_type_obj->labels->name : 'Проекты';
-
-                        echo '<h1 class="promo__title ' . esc_attr($title_class) . '">' . esc_html($archive_title) . '</h1>';
-                    } elseif (is_tax('project_industry')) {
-                        $term = get_queried_object();
-                        if ($term) {
-                            echo '<h1 class="promo__title ' . esc_attr($title_class) . '">' . esc_html($term->name) . '</h1>';
-                        } else {
-                            echo '<h1 class="promo__title ' . esc_attr($title_class) . '">Отрасли Проектов</h1>';
+                    if ($promo_title || $promo_main_title) {
+                        if ($promo_title && $promo_main_title) {
+                    ?>
+                            <h1 class="promo__caption"><?= fix_widows_after_prepositions(esc_html($promo_title)) ?></h1>
+                            <div class="promo__title <?= $title_class ?>"><?= fix_widows_after_prepositions(esc_html($promo_main_title)) ?></div>
+                        <?php
+                        } elseif ($promo_main_title) {
+                        ?>
+                            <h1 class="promo__title <?= $title_class ?>"><?= fix_widows_after_prepositions(esc_html($promo_main_title)) ?></h1>
+                        <?php
+                        } elseif ($promo_title) {
+                        ?>
+                            <h1 class="promo__title <?= $title_class ?>"><?= fix_widows_after_prepositions(esc_html($promo_title)) ?></h1>
+                        <?php
                         }
-                    } elseif (is_shop()) {
-                    ?>
-                        <h1 class="promo__title <?= $title_class ?>"><?= fix_widows_after_prepositions(esc_html(woocommerce_page_title(false))) ?></h1>
-                    <?php
-                    } elseif (is_product_category() || is_product_tag() || is_product_taxonomy()) {
-                    ?>
-                        <h1 class="promo__title <?= $title_class ?>"><?= fix_widows_after_prepositions(esc_html(single_term_title('', false))) ?></h1>
-                    <?php
-
-                    } elseif ($promo_title && $promo_main_title) {
-                    ?>
-                        <h1 class="promo__caption"><?= fix_widows_after_prepositions(esc_html($promo_title)) ?></h1>
-                        <div class="promo__title <?= $title_class ?>"><?= fix_widows_after_prepositions(esc_html($promo_main_title)) ?></div>
-                    <?php
-                    } elseif ($promo_main_title) {
-                    ?>
-                        <h1 class="promo__title <?= $title_class ?>"><?= fix_widows_after_prepositions(esc_html($promo_main_title)) ?></h1>
-                    <?php
-
-                    } elseif ($promo_title) {
-                    ?>
-                        <h1 class="promo__title <?= $title_class ?>"><?= fix_widows_after_prepositions(esc_html($promo_title)) ?></h1>
-                    <?php
-                    } elseif (is_home() || is_front_page()) {
-                    ?>
-                        <h1 class="promo__title <?= $title_class ?>">Блог</h1>
-                    <?php
                     } else {
-                    ?>
-                        <h1 class="promo__title <?= $title_class ?>"><?= fix_widows_after_prepositions(esc_html(get_the_title())) ?></h1>
-                    <?php
+                        if (is_post_type_archive('project')) {
+                            $post_type_obj = get_post_type_object('project');
+                            $archive_title = $post_type_obj ? $post_type_obj->labels->name : 'Проекты';
+                            echo '<h1 class="promo__title ' . esc_attr($title_class) . '">' . esc_html($archive_title) . '</h1>';
+                        } elseif (is_tax('project_industry')) {
+                            $term = get_queried_object();
+                            if ($term) {
+                                echo '<h1 class="promo__title ' . esc_attr($title_class) . '">' . esc_html($term->name) . '</h1>';
+                            } else {
+                                echo '<h1 class="promo__title ' . esc_attr($title_class) . '">Отрасли Проектов</h1>';
+                            }
+                        } elseif (is_shop()) {
+                        ?>
+                            <h1 class="promo__title <?= $title_class ?>"><?= fix_widows_after_prepositions(esc_html(woocommerce_page_title(false))) ?></h1>
+                        <?php
+                        } elseif (is_product_category() || is_product_tag() || is_product_taxonomy()) {
+                        ?>
+                            <h1 class="promo__title <?= $title_class ?>"><?= fix_widows_after_prepositions(esc_html(single_term_title('', false))) ?></h1>
+                        <?php
+                        } elseif (is_home() || is_front_page()) {
+                        ?>
+                            <h1 class="promo__title <?= $title_class ?>">Блог</h1>
+                        <?php
+                        } else {
+                        ?>
+                            <h1 class="promo__title <?= $title_class ?>"><?= fix_widows_after_prepositions(esc_html(get_the_title())) ?></h1>
+                        <?php
+                        }
                     }
 
                     if ($promo_subtitle) {
-                    ?>
+                        ?>
                         <p class="promo__description"><?= esc_html($promo_subtitle) ?></p>
                     <?php
                     }
@@ -138,7 +162,7 @@ $title_class = is_single() ? 'title' : 'title-lg';
                 <a href="<?= esc_url($certificate_pdf_url) ?>" class="promo__download icon-download" download><span>Открыть в PDF</span></a>
             <?php } ?>
             <?php if ($is_projects_archive) { ?>
-                <? $current_term_slug = isset($_GET['type']) ? sanitize_text_field($_GET['type']) : '';
+                <?php $current_term_slug = isset($_GET['type']) ? sanitize_text_field($_GET['type']) : '';
 
 
                 $terms = get_terms(array(
@@ -168,7 +192,7 @@ $title_class = is_single() ? 'title' : 'title-lg';
         </div>
     </div>
 </section>
-<?php if ($promo_subtitle): ?>
+<?php if ($promo_subtitle && !is_404()): ?>
     <div class="promo__bottom">
         <div class="container">
             <?= esc_html($promo_subtitle) ?>
@@ -176,7 +200,7 @@ $title_class = is_single() ? 'title' : 'title-lg';
     </div>
 <?php endif; ?>
 <?php if ($is_projects_archive): ?>
-    <?
+    <?php
     $terms = get_terms(array(
         'taxonomy'   => 'project_industry',
         'hide_empty' => false,
