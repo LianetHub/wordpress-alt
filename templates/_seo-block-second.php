@@ -52,7 +52,7 @@ if (function_exists('have_rows')) {
 
     <section class="article">
         <div class="container">
-            <div class="article__content ">
+            <div class="article__content">
                 <article class="article__seo-block">
                     <?php
                     static $output_heading_counter = 0;
@@ -179,7 +179,7 @@ if (function_exists('have_rows')) {
                 <?php
                 if (count($headings) > 1) :
                 ?>
-                    <aside class="article__sidebar">
+                    <aside class="article__sidebar article__sidebar--desktop">
                         <nav>
                             <ul class="article__navbar-list">
                                 <?php foreach ($headings as $heading) : ?>

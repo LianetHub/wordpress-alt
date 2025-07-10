@@ -5,9 +5,21 @@
 @use "icons" as *;
 
 .article {
-	padding: 3.25rem 0 4rem;
+	padding: rem(32) 0;
 	@media (min-width: $md3) {
-		padding: 3.75rem 0 6.88rem;
+		padding: rem(10) 0;
+	}
+	&:has(.article__sidebar--desktop) {
+		padding: rem(64) 0;
+		@media (min-width: $md3) {
+			padding: rem(100) 0 rem(110);
+		}
+	}
+	.single-post & {
+		padding: 3.25rem 0 4rem;
+		@media (min-width: $md3) {
+			padding: 3.75rem 0 6.88rem;
+		}
 	}
 	// .article__content
 	&__content {
@@ -200,6 +212,11 @@
 					@media (min-width: $md3) {
 						line-height: 111.111%;
 					}
+				}
+				& em {
+					color: #313f69;
+					font-weight: 700;
+					font-style: normal;
 				}
 			}
 			&__columns {
@@ -425,7 +442,7 @@
 		// H1
 		& h1 {
 			font-weight: 600;
-			font-size: 2.5rem;
+			font-size: rem(32);
 			line-height: 110%;
 			@media (min-width: $md3) {
 				line-height: 105%;
@@ -589,6 +606,11 @@
 	}
 	// .article__sidebar
 	&__sidebar {
+		&.article__sidebar--desktop {
+			@media (max-width: $md3) {
+				display: none;
+			}
+		}
 		@media (min-width: $md3) {
 			flex: 0 0 23.125rem;
 			position: sticky;

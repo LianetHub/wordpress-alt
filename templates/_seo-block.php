@@ -179,7 +179,7 @@ if (function_exists('have_rows')) {
                 <?php
                 if (count($headings) > 1) :
                 ?>
-                    <aside class="article__sidebar">
+                    <aside class="article__sidebar article__sidebar--desktop">
                         <nav>
                             <ul class="article__navbar-list">
                                 <?php foreach ($headings as $heading) : ?>

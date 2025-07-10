@@ -15,6 +15,11 @@ $project_industries = get_terms(array(
 
 $project_archive_link = get_post_type_archive_link('project');
 
+$section_title = 'Наши проекты';
+if (is_singular('project')) {
+    $section_title = 'Другие проекты';
+}
+
 ?>
 
 <section class="cases">
@@ -22,7 +27,7 @@ $project_archive_link = get_post_type_archive_link('project');
         <div class="cases__content tabs-wrapper">
             <div class="cases__header">
                 <h2 class="cases__title title text-uppercase">
-                    Наши проекты
+                    <?= $section_title ?>
                 </h2>
                 <?php if ($project_archive_link) : ?>
                     <a href="<?= esc_url($project_archive_link); ?>" class="cases__link more-link icon-arrow">Все проекты</a>

@@ -148,16 +148,106 @@ $(function () {
             }
         }
 
-        // Tabs
+        // Клик по десктопному табу
         if ($target.is('.product-stats__tab')) {
-            $target.addClass('active').siblings().removeClass("active");
-            $('.product-stats__block').eq($target.index()).addClass('active').siblings().removeClass("active");
+            const tabId = $target.data('tab');
+            synchronizeTabs(tabId);
+        }
+
+        // Клик по мобильному табу
+        if ($target.is('.product-stats__mobile-tab')) {
+            const tabId = $target.data('tab');
+            synchronizeTabs(tabId, true);
         }
 
 
     });
 
-    // submenu animation
+    function getActiveTabId() {
+        const $activeDesktopTab = $('.product-stats__tab.active');
+        if ($activeDesktopTab.length) {
+            return $activeDesktopTab.data('tab');
+        }
+        const $activeMobileTab = $('.product-stats__mobile-tab.active');
+        if ($activeMobileTab.length) {
+            return $activeMobileTab.data('tab');
+        }
+        return null;
+    }
+
+    function synchronizeTabs(clickedTabId, isMobileClick = false) {
+        $('.product-stats__tab, .product-stats__mobile-tab').removeClass('active');
+        $('.product-stats__block').removeClass('active');
+
+        const $targetDesktopTab = $(`.product-stats__tab[data-tab="${clickedTabId}"]`);
+        const $targetMobileTab = $(`.product-stats__mobile-tab[data-tab="${clickedTabId}"]`);
+        const $targetContentBlock = $(`.product-stats__block[data-tab-content="${clickedTabId}"]`);
+        const $targetInnerContent = $targetContentBlock.find('.product-stats__block-content');
+
+        $targetDesktopTab.addClass('active');
+        $targetContentBlock.addClass('active');
+        $targetMobileTab.addClass('active');
+
+        if (window.innerWidth <= 767.98) {
+            $('.product-stats__block-content').not($targetInnerContent).slideUp(400);
+
+            if (isMobileClick && $targetInnerContent.is(':visible')) {
+                $targetMobileTab.removeClass('active');
+                $targetInnerContent.slideUp(400);
+            } else {
+                $targetInnerContent.slideDown(400);
+            }
+
+        } else {
+            $('.product-stats__block-content').hide();
+            $targetInnerContent.show();
+        }
+    }
+
+    const initialActiveTabId = getActiveTabId();
+    if (initialActiveTabId) {
+        synchronizeTabs(initialActiveTabId);
+    } else {
+        if (window.innerWidth <= 767.98) {
+            $('.product-stats__block-content').slideUp(0);
+        } else {
+            $('.product-stats__block-content').hide();
+        }
+    }
+
+    $(window).on('resize', function () {
+        const activeTabId = getActiveTabId();
+
+        if (!activeTabId) {
+            if (window.innerWidth <= 767.98) {
+                $('.product-stats__block-content').slideUp(0);
+            } else {
+                $('.product-stats__block-content').hide();
+            }
+            return;
+        }
+
+        const $activeContentBlock = $(`.product-stats__block[data-tab-content="${activeTabId}"]`);
+        const $activeInnerContent = $activeContentBlock.find('.product-stats__block-content');
+
+        if (window.innerWidth <= 767.98) {
+            $('.product-stats__block-content').not($activeInnerContent).slideUp(0);
+
+            if ($(`.product-stats__mobile-tab[data-tab="${activeTabId}"]`).hasClass('active')) {
+                $activeInnerContent.slideDown(0);
+            } else {
+                $activeInnerContent.slideUp(0);
+            }
+
+        } else {
+            $('.product-stats__block-content').hide();
+            if ($activeContentBlock.hasClass('active')) {
+                $activeInnerContent.show();
+            }
+        }
+    }).trigger('resize');
+
+
 
     const $submenuItems = $('.submenu__item');
     if ($submenuItems.length > 0) {

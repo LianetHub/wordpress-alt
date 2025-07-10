@@ -293,6 +293,7 @@
 		display: -webkit-box;
 		-webkit-box-orient: vertical;
 		text-overflow: ellipsis;
+		overflow: hidden;
 		-webkit-line-clamp: 4;
 		transition: color 0.3s ease;
 		@media (min-width: $md5) {

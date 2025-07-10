@@ -33,7 +33,23 @@ get_header();
                                 <a href="<?php the_permalink(); ?>" class="product__image">
                                     <?php echo $product->get_image(); ?>
                                 </a>
-                                <a href="<?php the_permalink(); ?>" class="product__name"><?php the_title(); ?></a>
+                                <a href="<?php the_permalink(); ?>" class="product__name">
+                                    <?php
+
+                                    global $product;
+
+                                    $product_full_title = get_field('product_full_title', $product->get_id());
+
+                                    if (empty($product_full_title)) {
+                                        $product_full_title = $product->get_name();
+                                    }
+
+                                    if (function_exists('fix_widows_after_prepositions')) {
+                                        echo fix_widows_after_prepositions(esc_html($product_full_title));
+                                    } else {
+                                        echo esc_html($product_full_title);
+                                    } ?>
+                                </a>
                                 <a href="<?php the_permalink(); ?>" class="product__more more-link icon-arrow">Запросить стоимость</a>
                             </li>
                         <?php endwhile; ?>
@@ -53,6 +69,6 @@ get_header();
         </div>
     </div>
 </section>
-
+<?php require_once(TEMPLATE_PATH . '_seo-block.php'); ?>
 <?php require_once(TEMPLATE_PATH . '_offer.php'); ?>
 <?php get_footer(); ?>
