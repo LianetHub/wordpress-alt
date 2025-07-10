@@ -56,7 +56,7 @@ get_header(); ?>
                         <?php
 
                         $has_properties = false;
-                        if (!empty($organization_category_name) || !empty($total_amount) || !empty($contract_days) || !empty($actual_days)) {
+                        if (!empty($organization_category_name) || !empty($total_amount) || !empty($delivery_contract_days) || !empty($delivery_actual_days)) { // Corrected variables here
                             $has_properties = true;
                         }
 
@@ -79,14 +79,14 @@ get_header(); ?>
                                 <?php if (!empty($delivery_contract_days)) : ?>
                                     <li class="case__property">
                                         <div class="case__property-name">Срок выполнения по договору:</div>
-                                        <div class="case__property-value"><?= esc_html($delivery_contract_days) . ' ' . plural_days($contract_days); ?></div>
+                                        <div class="case__property-value"><?= esc_html($delivery_contract_days) . ' ' . plural_days($delivery_contract_days); ?></div>
                                     </li>
                                 <?php endif; ?>
 
                                 <?php if (!empty($delivery_actual_days)) : ?>
                                     <li class="case__property">
                                         <div class="case__property-name">Срок выполнения фактический:</div>
-                                        <div class="case__property-value"><?= esc_html($delivery_actual_days) . ' ' . plural_days($actual_days); ?></div>
+                                        <div class="case__property-value"><?= esc_html($delivery_actual_days) . ' ' . plural_days($delivery_actual_days); ?></div>
                                     </li>
                                 <?php endif; ?>
                             </ul>
@@ -112,8 +112,8 @@ get_header(); ?>
 <?php
 
 $found_review = false;
-if (have_rows('reviews', 'option')):
-    while (have_rows('reviews', 'option')): the_row();
+if (have_rows('reviews', 'option')) :
+    while (have_rows('reviews', 'option')) : the_row();
         $related_projects_from_acf = get_sub_field('review_related_project');
         $current_project_id = get_the_ID();
 
@@ -140,19 +140,19 @@ if (have_rows('reviews', 'option')):
             <div class="reviews">
                 <div class="container">
                     <div class="review">
-                        <?php if ($image_url): ?>
+                        <?php if ($image_url) : ?>
                             <a href="<?= esc_url($image_url); ?>" data-fancybox="" class="review__image">
                                 <img src="<?= esc_url($image_url); ?>" alt="<?= esc_attr($image_alt_text); ?>">
                             </a>
                         <?php endif; ?>
                         <div class="review__body">
-                            <?php if (!empty($review_company_name)): ?>
+                            <?php if (!empty($review_company_name)) : ?>
                                 <div class="review__company title-sm"><?= esc_html($review_company_name) ?></div>
                             <?php endif; ?>
-                            <?php if (!empty($review_author)): ?>
+                            <?php if (!empty($review_author)) : ?>
                                 <div class="review__author"><?= esc_html($review_author) ?></div>
                             <?php endif; ?>
-                            <?php if (!empty($review_company_desc)): ?>
+                            <?php if (!empty($review_company_desc)) : ?>
                                 <div class="review__desc"><?= wp_kses_post($review_company_desc) ?></div>
                             <?php endif; ?>
                         </div>
@@ -173,5 +173,3 @@ require_once(TEMPLATE_PATH . '_offer.php');
 ?>
 
 <?php get_footer(); ?>
-
-<?php

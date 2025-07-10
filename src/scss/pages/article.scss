@@ -21,6 +21,12 @@
 			padding: 3.75rem 0 6.88rem;
 		}
 	}
+	.page-template-page-policy & {
+		padding: 3.25rem 0 4rem;
+		@media (min-width: $md3) {
+			padding: 3.75rem 0 6.88rem;
+		}
+	}
 	// .article__content
 	&__content {
 		display: flex;

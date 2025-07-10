@@ -12,12 +12,23 @@ $project_industries = get_terms(array(
     'order'      => 'ASC',
 ));
 
-
 $project_archive_link = get_post_type_archive_link('project');
 
 $section_title = 'Наши проекты';
+$current_project_id = null;
+$current_project_industry_slug = '';
+
+
 if (is_singular('project')) {
     $section_title = 'Другие проекты';
+    $current_project_id = get_the_ID();
+
+
+    $terms = get_the_terms($current_project_id, 'project_industry');
+    if ($terms && !is_wp_error($terms)) {
+
+        $current_project_industry_slug = $terms[0]->slug;
+    }
 }
 
 ?>
@@ -38,8 +49,11 @@ if (is_singular('project')) {
                 <div class="cases__tabs">
                     <div class="cases__tabs-slider swiper">
                         <div class="swiper-wrapper">
-                            <?php foreach ($project_industries as $index => $term) : ?>
-                                <button type="button" class="cases__tab-btn tabs__item swiper-slide <?= $index === 0 ? 'active' : ''; ?>" data-tab="<?= esc_attr($term->slug); ?>">
+                            <?php
+                            $default_active_tab_slug = !empty($current_project_industry_slug) ? $current_project_industry_slug : ($project_industries[0]->slug ?? '');
+                            ?>
+                            <?php foreach ($project_industries as $term) : ?>
+                                <button type="button" class="cases__tab-btn tabs__item swiper-slide <?= ($term->slug === $default_active_tab_slug) ? 'active' : ''; ?>" data-tab="<?= esc_attr($term->slug); ?>">
                                     <?= esc_html($term->name); ?>
                                 </button>
                             <?php endforeach; ?>
@@ -53,13 +67,12 @@ if (is_singular('project')) {
                 </div>
 
                 <div class="cases__tabs-content">
-                    <?php foreach ($project_industries as $index => $term) : ?>
-                        <div class="cases__tabs-block tab-content <?= $index === 0 ? 'active' : ''; ?>" data-tab-content="<?= esc_attr($term->slug); ?>">
+                    <?php foreach ($project_industries as $term) : ?>
+                        <div class="cases__tabs-block tab-content <?= ($term->slug === $default_active_tab_slug) ? 'active' : ''; ?>" data-tab-content="<?= esc_attr($term->slug); ?>">
                             <div class="cases__slider">
                                 <div class="cases__slider-block swiper">
                                     <div class="swiper-wrapper">
                                         <?php
-
                                         $args = array(
                                             'post_type'      => 'project',
                                             'posts_per_page' => -1,
@@ -73,6 +86,10 @@ if (is_singular('project')) {
                                             'orderby'        => 'date',
                                             'order'          => 'DESC',
                                         );
+
+                                        if ($current_project_id) {
+                                            $args['post__not_in'] = array($current_project_id);
+                                        }
 
                                         $projects_query = new WP_Query($args);
 
@@ -133,6 +150,12 @@ if (is_singular('project')) {
                                         <?php
                                             endwhile;
                                             wp_reset_postdata();
+                                        else :
+                                            if ($current_project_id && $term->slug === $current_project_industry_slug) {
+                                                echo '<p>В этой отрасли нет других проектов.</p>';
+                                            } else {
+                                                echo '<p>В этой отрасли пока нет проектов.</p>';
+                                            }
                                         endif;
                                         ?>
                                     </div>
