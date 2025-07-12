@@ -50,7 +50,6 @@ if ($is_certificates_page) {
 
 $title_class = is_single() ? 'title' : 'title-lg';
 
-// Determine if the title should be an <h1> or a <div>
 $title_tag = (is_tax('project_industry')) ? 'div' : 'h1';
 
 ?>
@@ -65,7 +64,7 @@ $title_tag = (is_tax('project_industry')) ? 'div' : 'h1';
                 ?>
                     <h1 class="promo__title <?= $title_class ?>">Страница не найдена</h1>
                     <p class="promo__description">К сожалению, страница, которую вы ищете, не&nbsp;существует или была перемещена.</p>
-                    <a href="<?= esc_url(home_url('/')); ?>" class="promo__btn btn btn-primary btn-lg">Вернуться на главную</a>
+                    <a href="<?= esc_url(home_url('/')); ?>" class="promo__btn btn btn-primary btn-lg">Главная страница</a>
                     <?php
                 } else {
 
@@ -138,7 +137,7 @@ $title_tag = (is_tax('project_industry')) ? 'div' : 'h1';
 
                     if ($promo_subtitle) {
                         ?>
-                        <p class="promo__description"><?= esc_html($promo_subtitle) ?></p>
+                        <p class="promo__description<? if (is_page(405)) echo " promo__description--mobile" ?>"><?= esc_html($promo_subtitle) ?></p>
                     <?php
                     }
 
@@ -196,7 +195,7 @@ $title_tag = (is_tax('project_industry')) ? 'div' : 'h1';
         </div>
     </div>
 </section>
-<?php if ($promo_subtitle && !is_404()) : ?>
+<?php if ($promo_subtitle && !is_404() && !is_page(405)) : ?>
     <div class="promo__bottom">
         <div class="container">
             <?= esc_html($promo_subtitle) ?>

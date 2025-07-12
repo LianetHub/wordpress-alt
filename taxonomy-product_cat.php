@@ -50,7 +50,7 @@ get_header();
                                         echo esc_html($product_full_title);
                                     } ?>
                                 </a>
-                                <a href="<?php the_permalink(); ?>" class="product__more more-link icon-arrow">Запросить стоимость</a>
+                                <a href="#request-quote" data-fancybox class="product__more more-link icon-arrow">Запросить стоимость</a>
                             </li>
                         <?php endwhile; ?>
                     <?php else : ?>

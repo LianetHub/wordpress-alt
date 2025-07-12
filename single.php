@@ -59,7 +59,7 @@ if ($other_posts_query->have_posts()) :
                         <div class="swiper-wrapper">
                             <?php while ($other_posts_query->have_posts()) : $other_posts_query->the_post(); ?>
                                 <div class="blog__item swiper-slide">
-                                    <a href="<?php the_permalink(); ?>" class="blog__item-poster">
+                                    <div class="blog__item-poster">
                                         <?php
                                         if (has_post_thumbnail()) {
                                             the_post_thumbnail('full', array('class' => 'cover-image'));
@@ -67,9 +67,9 @@ if ($other_posts_query->have_posts()) :
                                             echo '<img src="' . esc_url(get_template_directory_uri() . '/assets/img/default-article-placeholder.png') . '" class="cover-image" alt="Изображение по умолчанию">';
                                         }
                                         ?>
-                                    </a>
+                                    </div>
                                     <time datetime="<?= get_russian_post_date(get_the_ID(), 'datetime'); ?>" class="blog__item-time"><?= esc_html(get_russian_post_date(get_the_ID())); ?></time>
-                                    <a href="<?php the_permalink(); ?>" class="blog__item-title title-sm"><?php the_title(); ?></a>
+                                    <div class="blog__item-title title-sm"><?php the_title(); ?></div>
                                     <a href="<?php the_permalink(); ?>" class="blog__item-btn btn btn-primary btn-lg">Подробнее</a>
                                 </div>
                             <?php endwhile; ?>
@@ -85,4 +85,5 @@ if ($other_posts_query->have_posts()) :
     wp_reset_postdata();
 endif;
 ?>
+<?php require_once(TEMPLATE_PATH . '_callback.php'); ?>
 <?php get_footer(); ?>

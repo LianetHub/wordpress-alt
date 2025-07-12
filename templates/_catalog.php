@@ -42,7 +42,6 @@
                                  </a>
                              </li>
                          <?php endforeach; ?>
-
                      </ul>
                  </div>
                  <button type="button" class="catalog__slider-prev swiper-button-prev"></button>

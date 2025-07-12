@@ -4,7 +4,7 @@
 @use "../_variables" as *;
 
 .features {
-	padding: 4rem 0;
+	padding: 2rem 0;
 	@media (min-width: $md3) {
 		padding: 6.25rem 0;
 	}
@@ -230,6 +230,9 @@
 	background: #313f69;
 	color: #fff;
 	padding: 3.375rem 0;
+	& + .catalog {
+		padding-top: rem(64);
+	}
 	@media (min-width: $md5) {
 		padding: 0 0 5rem;
 		background: transparent;

@@ -169,16 +169,10 @@ get_header();
 								<div class="product-card__desc-text"><?= wp_kses_post($application) ?></div>
 							</div>
 						<?php endif; ?>
+						<!-- otrasli -->
 
-						<?php
-
-						$product_categories = wc_get_product_category_list($product->get_id(), ', ', '<div class="product-card__desc-block"><div class="product-card__desc-caption title-sm">Категории:</div><div class="product-card__desc-text"><ul><li>', '</li></ul></div></div>');
-						if ($product_categories) : ?>
-							<?= str_replace(',', '</li><li>', $product_categories);
-							?>
-						<?php endif; ?>
 					</div>
-					<a href="#commercial-offer" data-fancybox class="product-card__btn btn btn-primary btn-lg">Запросить стоимость</a>
+					<a href="#request-quote" data-fancybox class="product-card__btn btn btn-primary btn-lg">Запросить стоимость</a>
 				</div>
 			</div>
 		</div>
@@ -335,7 +329,6 @@ get_header();
 															}
 															?>
 														</a>
-														<a href="<?= esc_url($related_product->get_permalink()) ?>" class="product__more more-link icon-arrow">Запросить стоимость</a>
 													</div>
 											<?php
 												}

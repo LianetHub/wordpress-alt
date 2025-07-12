@@ -107,7 +107,7 @@
 }
 
 .cases {
-	padding: 4rem 0;
+	padding: 2rem 0 4rem;
 	&.cases--page {
 		@media (max-width: $md4) {
 			padding-top: 2.5rem;
@@ -312,12 +312,12 @@
 	// .case__name
 	&__name {
 		font-weight: 500;
-		transition: color 0.3s ease;
-		@media (any-hover: hover) {
-			&:hover {
-				color: $accent;
-			}
-		}
+		// transition: color 0.3s ease;
+		// @media (any-hover: hover) {
+		// 	&:hover {
+		// 		color: $accent;
+		// 	}
+		// }
 		@media (max-width: $md4) {
 			line-height: 115%;
 		}

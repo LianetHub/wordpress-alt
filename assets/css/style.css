@@ -1,10 +1,10 @@
 @charset "UTF-8";
 
 @font-face {
-  font-family: "icons";
+  font-family: "Muller";
   font-display: swap;
-  src: url("../fonts/icons.woff") format("woff"), url("../fonts/icons.woff2") format("woff2");
-  font-weight: 400;
+  src: url("../fonts/Muller-Bold.woff") format("woff"), url("../fonts/Muller-Bold.woff2") format("woff2");
+  font-weight: 700;
   font-style: normal;
 }
 
@@ -19,16 +19,16 @@
 @font-face {
   font-family: "Muller";
   font-display: swap;
-  src: url("../fonts/Muller-LightItalic.woff") format("woff"), url("../fonts/Muller-LightItalic.woff2") format("woff2");
+  src: url("../fonts/Muller-Light.woff") format("woff"), url("../fonts/Muller-Light.woff2") format("woff2");
   font-weight: 300;
-  font-style: italic;
+  font-style: normal;
 }
 
 @font-face {
   font-family: "Muller";
   font-display: swap;
-  src: url("../fonts/Muller-Light.woff") format("woff"), url("../fonts/Muller-Light.woff2") format("woff2");
-  font-weight: 300;
+  src: url("../fonts/Muller-Medium.woff") format("woff"), url("../fonts/Muller-Medium.woff2") format("woff2");
+  font-weight: 500;
   font-style: normal;
 }
 
@@ -43,16 +43,16 @@
 @font-face {
   font-family: "Muller";
   font-display: swap;
-  src: url("../fonts/Muller-Bold.woff") format("woff"), url("../fonts/Muller-Bold.woff2") format("woff2");
-  font-weight: 700;
-  font-style: normal;
+  src: url("../fonts/Muller-LightItalic.woff") format("woff"), url("../fonts/Muller-LightItalic.woff2") format("woff2");
+  font-weight: 300;
+  font-style: italic;
 }
 
 @font-face {
-  font-family: "Muller";
+  font-family: "icons";
   font-display: swap;
-  src: url("../fonts/Muller-Medium.woff") format("woff"), url("../fonts/Muller-Medium.woff2") format("woff2");
-  font-weight: 500;
+  src: url("../fonts/icons.woff") format("woff"), url("../fonts/icons.woff2") format("woff2");
+  font-weight: 400;
   font-style: normal;
 }
 
@@ -2342,6 +2342,11 @@ header.scroll .header__search.focus .header__search-input {
   font-weight: 500;
 }
 
+.footer__menu-caption:is(a) {
+  -webkit-transition: color 0.3s ease;
+  transition: color 0.3s ease;
+}
+
 .footer__menu-list {
   margin-top: 1.5rem;
   font-size: 1rem;
@@ -2559,6 +2564,11 @@ header.scroll .header__search.focus .header__search-input {
 
 .promo__description {
   display: none;
+  margin-top: 1rem;
+  margin-bottom: auto;
+  max-width: 35.375rem;
+  font-size: 1.25rem;
+  line-height: 115%;
 }
 
 .promo__hint {
@@ -2594,7 +2604,7 @@ header.scroll .header__search.focus .header__search-input {
 }
 
 .benefits {
-  padding: 0.78125rem 0 2rem;
+  padding: 2.125rem 0 2rem;
 }
 
 .benefits__blocks {
@@ -2640,6 +2650,12 @@ header.scroll .header__search.focus .header__search-input {
 
 .catalog__body:not(:first-child) {
   margin-top: 1.875rem;
+}
+
+.catalog__grid {
+  display: -ms-grid;
+  display: grid;
+  gap: 0.75rem;
 }
 
 .catalog__card {
@@ -3205,7 +3221,7 @@ header.scroll .header__search.focus .header__search-input {
 }
 
 .cases {
-  padding: 4rem 0;
+  padding: 2rem 0 4rem;
 }
 
 .cases__content {
@@ -3349,8 +3365,6 @@ header.scroll .header__search.focus .header__search-input {
 
 .case__name {
   font-weight: 500;
-  -webkit-transition: color 0.3s ease;
-  transition: color 0.3s ease;
 }
 
 .case__location {
@@ -3448,7 +3462,7 @@ header.scroll .header__search.focus .header__search-input {
 }
 
 .features {
-  padding: 4rem 0;
+  padding: 2rem 0;
 }
 
 .features__desc {
@@ -3642,6 +3656,10 @@ header.scroll .header__search.focus .header__search-input {
   background: #313f69;
   color: #fff;
   padding: 3.375rem 0;
+}
+
+.check-list + .catalog {
+  padding-top: 4rem;
 }
 
 .check-list__body {
@@ -4769,6 +4787,10 @@ header.scroll .header__search.focus .header__search-input {
 
 .article {
   padding: 2rem 0;
+}
+
+.home .article {
+  padding: 4rem 0;
 }
 
 .article:has(.article__sidebar--desktop) {
@@ -6567,11 +6589,8 @@ header.scroll .header__search.focus .header__search-input {
   }
 
   .promo__description {
-    display: block;
     margin-top: 0.375rem;
-    margin-bottom: auto;
-    max-width: 35.375rem;
-    font-size: 1.25rem;
+    display: block;
     line-height: 130%;
   }
 
@@ -6603,6 +6622,12 @@ header.scroll .header__search.focus .header__search-input {
 
   .catalog {
     padding: 4.375rem 0 6.875rem;
+  }
+
+  .catalog__grid {
+    gap: 1.875rem;
+    -ms-grid-columns: (1fr)[2];
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .catalog__slider {
@@ -7393,6 +7418,10 @@ header.scroll .header__search.focus .header__search-input {
             justify-content: space-between;
   }
 
+  .menu__item.desktop--hidden {
+    display: none;
+  }
+
   .menu__link {
     -webkit-box-flex: 0;
         -ms-flex: 0 1 auto;
@@ -7944,6 +7973,10 @@ header.scroll .header__search.focus .header__search-input {
 
   .article {
     padding: 0.625rem 0;
+  }
+
+  .home .article {
+    padding: 6.25rem 0 6.875rem;
   }
 
   .article:has(.article__sidebar--desktop) {
@@ -8815,6 +8848,11 @@ header.scroll .header__search.focus .header__search-input {
         align-self: flex-end;
   }
 
+  .catalog__grid {
+    -ms-grid-columns: (1fr)[3];
+    grid-template-columns: repeat(3, 1fr);
+  }
+
   .catalog__slider {
     -ms-grid-columns: (1fr)[3];
     grid-template-columns: repeat(3, 1fr);
@@ -9244,6 +9282,10 @@ header.scroll .header__search.focus .header__search-input {
     display: block;
   }
 
+  .about + .cases {
+    padding-top: 4rem;
+  }
+
   .about:has(.about__bottom) {
     padding-bottom: 3.375rem;
   }
@@ -9254,6 +9296,10 @@ header.scroll .header__search.focus .header__search-input {
 
   .contacts__map-content {
     aspect-ratio: 74/75;
+  }
+
+  .article + .features {
+    padding-top: 2rem;
   }
 
   .article__sidebar.article__sidebar--desktop {
@@ -9272,6 +9318,10 @@ header.scroll .header__search.focus .header__search-input {
 
   .promo__body .promo__select {
     display: none;
+  }
+
+  .promo__description.promo__description--mobile {
+    display: block;
   }
 
   .promo__hint {
@@ -9326,6 +9376,10 @@ header.scroll .header__search.focus .header__search-input {
 
   .tax-project_industry .promo__title {
     font-size: 1.75rem;
+  }
+
+  .home .benefits {
+    padding-top: 0.78125rem;
   }
 
   .blog__link {
@@ -9484,6 +9538,10 @@ header.scroll .header__search.focus .header__search-input {
     color: #ea9d0f;
   }
 
+  .footer__menu-caption:is(a):hover {
+    color: #ea9d0f;
+  }
+
   .footer__menu-list a:hover {
     color: #ea9d0f;
   }
@@ -9544,10 +9602,6 @@ header.scroll .header__search.focus .header__search-input {
   }
 
   .cases__tab-btn:hover {
-    color: #ea9d0f;
-  }
-
-  .case__name:hover {
     color: #ea9d0f;
   }
 

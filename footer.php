@@ -46,7 +46,7 @@ $current_year = date('Y');
                 ?>
             </div>
             <div class="footer__menu-block">
-                <div class="footer__menu-caption">Наша продукция</div>
+                <a href="<?= get_page_link(375) ?>" class="footer__menu-caption">Наша продукция</a>
                 <?php
                 wp_nav_menu(array(
                     'theme_location'  => 'footer-products-menu',
@@ -116,7 +116,7 @@ $current_year = date('Y');
 <?php endif; ?>
 <div id="callback" class="popup">
     <button type="button" data-fancybox-close class="popup__close icon-cross"></button>
-    <h2 class="popup__title title text-uppercase">обратный звонок</h2>
+    <div class="popup__title title text-uppercase">обратный звонок</div>
     <p class="popup__subtitle">Оставьте свои контактные данные и мы свяжемся с вами в ближайшее время!</p>
     <div class="popup__form">
         <?= do_shortcode('[contact-form-7 id="1a8c4c8" title="Контактая форма Обратный звонок"]'); ?>
@@ -124,16 +124,24 @@ $current_year = date('Y');
 </div>
 <div id="commercial-offer" class="popup">
     <button type="button" data-fancybox-close class="popup__close icon-cross"></button>
-    <h2 class="popup__title title text-uppercase">Получить комерческое предложение</h2>
+    <div class="popup__title title text-uppercase">Получить комерческое предложение</div>
     <p class="popup__subtitle">Оставьте заявку и вы бесплатно получите расчет стоимости в течение 24х часов</p>
     <div class="popup__form">
         <?= do_shortcode('[contact-form-7 id="c086563" title="Контактная форма в модальном окне Получить комерческое предложение"]'); ?>
     </div>
 </div>
+<div id="request-quote" class="popup">
+    <button type="button" data-fancybox-close class="popup__close icon-cross"></button>
+    <div class="popup__title title text-uppercase">Запрос стоимости</div>
+    <p class="popup__subtitle">Оставьте свои контактные данные и мы свяжемся с вами в ближайшее время!</p>
+    <div class="popup__form">
+        <?= do_shortcode('[contact-form-7 id="8a52131" title="Контактная форма Запрос стоимости"]'); ?>
+    </div>
+</div>
 <? if (is_single()): ?>
     <div id="audit" class="popup">
         <button type="button" data-fancybox-close class="popup__close icon-cross"></button>
-        <h2 class="popup__title title text-uppercase">бесплатный аудит текущих поставок</h2>
+        <div class="popup__title title text-uppercase">бесплатный аудит текущих поставок</div>
         <p class="popup__subtitle">Оставьте ваши контактные данные и все необходимые для оценки документы и получите аудит в течение 48 часов</p>
         <div class="popup__form">
             <?= do_shortcode('[contact-form-7 id="7bbbebe" title="Контактная форма в модальном окне бесплатный аудит текущих поставок"]'); ?>

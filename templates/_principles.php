@@ -12,14 +12,14 @@ if ($company_principles_group):
 
     if (!empty($principles_list_items)):
 ?>
-        <section class="principles">
+        <div class="principles">
             <div class="container">
                 <div class="principles__header">
                     <?php if ($principles_title): ?>
-                        <h2 class="principles__title title text-uppercase">
+                        <div class="principles__title title text-uppercase">
                             <?php echo nl2br(esc_html($principles_title));
                             ?>
-                        </h2>
+                        </div>
                     <?php endif; ?>
                     <?php if ($principles_description): ?>
                         <div class="principles__desc">
@@ -60,7 +60,7 @@ if ($company_principles_group):
                     <?php endforeach; ?>
                 </ol>
             </div>
-        </section>
+        </div>
 <?php
     endif;
 endif;

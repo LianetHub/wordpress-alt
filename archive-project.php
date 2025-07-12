@@ -57,7 +57,7 @@ get_header();
             ?>
                     <div class="case">
                         <div class="case__main">
-                            <a href="<?php the_permalink(); ?>" class="case__name title-sm"><?php the_title(); ?></a>
+                            <h3 class="case__name title-sm"><?php the_title(); ?></h3>
                             <?php if (!empty($project_location)) : ?>
                                 <div class="case__location icon-location">
                                     <div class="case__location-caption">Регион поставки:</div>
@@ -92,13 +92,13 @@ get_header();
                                 <a href="<?php the_permalink(); ?>" class="case__btn more-link icon-arrow">Подробнее о проекте</a>
                             </div>
                         </div>
-                        <a href="<?php the_permalink(); ?>" class="case__image">
+                        <div class="case__image">
                             <?php if ($thumbnail_url) : ?>
                                 <img src="<?php echo esc_url($thumbnail_url); ?>" class="cover-image" alt="<?php echo esc_attr($thumbnail_alt); ?>">
                             <?php else : ?>
                                 <img src="<?php echo get_template_directory_uri(); ?>/assets/img/placeholder.jpg" class="cover-image" alt="Изображение не найдено">
                             <?php endif; ?>
-                        </a>
+                        </div>
                     </div>
             <?php
                 endwhile;

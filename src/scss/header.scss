@@ -442,6 +442,11 @@
 	&__item {
 		display: flex;
 		align-items: center;
+		&.desktop--hidden {
+			@media (min-width: $md3) {
+				display: none;
+			}
+		}
 		&.menu-parent {
 			display: flex;
 			align-items: center;

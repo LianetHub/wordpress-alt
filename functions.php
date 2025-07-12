@@ -144,7 +144,7 @@ class Custom_Nav_Menu_Walker extends Walker_Nav_Menu
 					$term_link = get_term_link($term);
 
 					$output .= '<div class="submenu__description-block">';
-					$output .= '<h3 class="submenu__description-title title-md">' . $industry_title . '</h3>';
+					$output .= '<div class="submenu__description-title title-md">' . $industry_title . '</div>';
 					$output .= '<p class="submenu__description-text">' . $industry_text . '</p>';
 					$output .= '<a href="' . esc_url($term_link) . '" class="submenu__description-btn btn btn-primary">Подробнее</a>';
 					$output .= '</div>';

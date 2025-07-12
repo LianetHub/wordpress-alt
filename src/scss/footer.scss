@@ -129,6 +129,14 @@
 		font-size: 1.125rem;
 		line-height: 94.444%;
 		font-weight: 500;
+		&:is(a) {
+			transition: color 0.3s ease;
+			@media (any-hover: hover) {
+				&:hover {
+					color: $accent;
+				}
+			}
+		}
 		@media (min-width: $md5) {
 			font-weight: 700;
 		}
