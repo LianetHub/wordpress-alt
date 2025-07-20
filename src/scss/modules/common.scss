@@ -201,6 +201,14 @@
 				font-size: rem(28);
 			}
 		}
+		.search-results &,
+		.search & {
+			max-width: 100%;
+			font-size: 1.75rem;
+			@media (min-width: $md3) {
+				font-size: rem(44);
+			}
+		}
 		@media (min-width: $md5) {
 			line-height: 1;
 			&:last-child {

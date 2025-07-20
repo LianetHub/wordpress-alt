@@ -48,6 +48,7 @@ $(function () {
     $(document).on('click', (e) => {
         const $target = $(e.target);
 
+
         //  menu
         if ($target.closest('.header__menu-toggler').length) {
             $('.header').toggleClass('open-menu');
@@ -85,7 +86,7 @@ $(function () {
 
         }
 
-        if ($target.is('.products__filter-title')) {
+        if ($target.is('.products__sidebar .wp-block-heading')) {
             $target.toggleClass('active');
             $target.next().slideToggle()
         }
@@ -266,6 +267,24 @@ $(function () {
         //     $(this).removeClass('active');
         // });
     }
+
+
+    // filters
+    function toggleCheckedFilterBlocks() {
+        $('.wp-block-woocommerce-product-filter-checkbox-list').each(function () {
+            const $thisFilterBlock = $(this);
+            const hasCheckedInputs = $thisFilterBlock.find('.wc-block-product-filter-checkbox-list__input:checked').length > 0;
+
+            if (hasCheckedInputs) {
+                $thisFilterBlock.slideDown(0);
+            }
+
+        });
+    }
+
+    toggleCheckedFilterBlocks();
+
+
 
 
     // preview uploads in forms
@@ -1171,7 +1190,6 @@ $(function () {
     });
 
 })
-
 
 
 

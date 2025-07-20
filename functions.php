@@ -616,6 +616,20 @@ function woocommerce_support()
 	add_theme_support('woocommerce');
 }
 
+function my_theme_widgets_init()
+{
+	register_sidebar(array(
+		'name'          => esc_html__('Product Filters Sidebar', 'your-theme-textdomain'),
+		'id'            => 'product-filters-sidebar',
+		'description'   => esc_html__('Add WooCommerce product filter widgets here.', 'your-theme-textdomain'),
+		'before_widget' => '<div id="%1$s" class="widget %2$s products__filter-block">',
+		'after_widget'  => '</div>',
+		'before_title'  => '<div class="products__filter-title icon-next">',
+		'after_title'   => '</div>',
+	));
+}
+add_action('widgets_init', 'my_theme_widgets_init');
+
 
 function cyrillicToLatin($text)
 {

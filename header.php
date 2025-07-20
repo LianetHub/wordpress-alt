@@ -170,8 +170,8 @@
                                 <?php endif; ?>
                             </div>
                         <?php endif; ?>
-                        <form action="#" class="header__search">
-                            <input type="text" name="search" class="header__search-input" autocomplete="off" placeholder="Поиск по сайту">
+                        <form action="<?php echo esc_url(home_url('/')); ?>" class="header__search">
+                            <input type="text" name="s" class="header__search-input" autocomplete="off" placeholder="Поиск по сайту">
                             <button type="submit" class="header__search-btn icon-search"></button>
                         </form>
 
