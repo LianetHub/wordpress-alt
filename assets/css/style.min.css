@@ -1,6 +1,14 @@
 @charset "UTF-8";
 
 @font-face {
+    font-family: icons;
+    font-display: swap;
+    src: url(../fonts/icons.woff) format("woff"), url(../fonts/icons.woff2) format("woff2");
+    font-weight: 400;
+    font-style: normal
+}
+
+@font-face {
     font-family: Muller;
     font-display: swap;
     src: url(../fonts/Muller-Bold.woff) format("woff"), url(../fonts/Muller-Bold.woff2) format("woff2");
@@ -19,16 +27,16 @@
 @font-face {
     font-family: Muller;
     font-display: swap;
-    src: url(../fonts/Muller-Light.woff) format("woff"), url(../fonts/Muller-Light.woff2) format("woff2");
-    font-weight: 300;
+    src: url(../fonts/Muller-Medium.woff) format("woff"), url(../fonts/Muller-Medium.woff2) format("woff2");
+    font-weight: 500;
     font-style: normal
 }
 
 @font-face {
     font-family: Muller;
     font-display: swap;
-    src: url(../fonts/Muller-Medium.woff) format("woff"), url(../fonts/Muller-Medium.woff2) format("woff2");
-    font-weight: 500;
+    src: url(../fonts/Muller-Light.woff) format("woff"), url(../fonts/Muller-Light.woff2) format("woff2");
+    font-weight: 300;
     font-style: normal
 }
 
@@ -46,14 +54,6 @@
     src: url(../fonts/Muller-LightItalic.woff) format("woff"), url(../fonts/Muller-LightItalic.woff2) format("woff2");
     font-weight: 300;
     font-style: italic
-}
-
-@font-face {
-    font-family: icons;
-    font-display: swap;
-    src: url(../fonts/icons.woff) format("woff"), url(../fonts/icons.woff2) format("woff2");
-    font-weight: 400;
-    font-style: normal
 }
 
 .article__body ul>li::before, .article__seo-block .seo-list.list-style-checkbox>li::before, .checkbox__input:checked+.checkbox__btn::before, .form__checkbox-input:checked+.wpcf7-list-item-label .form__checkbox-text::before, .swiper-button-next, .swiper-button-prev, [class*=" icon-"]:before, [class^=icon-]:before {
@@ -4751,7 +4751,7 @@ header.scroll .header__search.focus .header__search-input {
     padding: 4rem 0
 }
 
-.single-post .article {
+.archive .article, .single-post .article {
     padding: 3.25rem 0 4rem
 }
 
@@ -7900,7 +7900,7 @@ header.scroll .header__search.focus .header__search-input {
         padding: 6.25rem 0 6.875rem
     }
 
-    .single-post .article {
+    .archive .article, .single-post .article {
         padding: 3.75rem 0 6.88rem
     }
 

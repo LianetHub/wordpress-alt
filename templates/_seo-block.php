@@ -175,7 +175,6 @@ if (function_exists('have_rows')) {
                     endwhile;
                     ?>
                 </article>
-
                 <?php
                 if (count($headings) > 1) :
                 ?>
