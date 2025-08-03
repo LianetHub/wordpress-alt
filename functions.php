@@ -435,6 +435,7 @@ function create_project_industry_taxonomy()
 		'show_admin_column'          => true,
 		'query_var'                  => true,
 		'publicly_queryable'         => true,
+		'show_in_rest' => true,
 		'rewrite'                    => array(
 			'slug'       => '/',
 			'with_front' => false,

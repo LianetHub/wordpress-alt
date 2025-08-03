@@ -689,11 +689,13 @@ $(function () {
 
 
     // search focus animation
-    if ($('.header__search-input').length) {
+    if ($('.header__search .proinput .orig').length) {
         const $searchForm = $('.header__search');
-        const $searchInput = $('.header__search-input');
+        const $searchInput = $('.header__search .proinput .orig');
 
         $searchInput.on('focus', () => {
+            console.log($searchInput, 'focus');
+
             $searchForm.addClass('focus');
         });
 

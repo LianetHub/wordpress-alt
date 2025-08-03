@@ -169,11 +169,13 @@
                                 <?php endif; ?>
                             </div>
                         <?php endif; ?>
-                        <form action="<?php echo esc_url(home_url('/')); ?>" class="header__search">
+                        <!-- <form action="<?php echo esc_url(home_url('/')); ?>" class="header__search">
                             <input type="text" name="s" class="header__search-input" autocomplete="off" placeholder="Поиск по сайту">
                             <button type="submit" class="header__search-btn icon-search"></button>
-                        </form>
-
+                        </form> -->
+                        <div class="header__search">
+                            <?php echo do_shortcode('[wpdreams_ajaxsearchlite]'); ?>
+                        </div>
 
                         <a href="#callback" data-fancybox class="header__callback btn btn-primary">Обратный звонок</a>
                     </div>

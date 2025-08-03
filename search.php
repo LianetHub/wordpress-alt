@@ -18,13 +18,12 @@ get_header(); ?>
         <?php if (have_posts()) : ?>
             <ul class="search-page__results" id="main-search-result">
                 <?php while (have_posts()) : the_post(); ?>
+                    <?php
+                    $search_value = isset($_GET['s']) ? sanitize_text_field($_GET['s']) : '';
+                    $permalink = add_query_arg('asl_highlight', urlencode($search_value), get_permalink());
+                    ?>
                     <li class="search-page__result">
-                        <a href="<?php echo $permalink; ?>" class="search-page__result-block">
-                            <?php
-                            $search_value = isset($_GET['s']) ? $_GET['s'] : '';
-                            $permalink = add_query_arg('asl_highlight', $search_value, get_permalink());
-                            ?>
-
+                        <a href="<?php echo esc_url($permalink); ?>" class="search-page__result-block">
                             <?php if (has_post_thumbnail()) : ?>
                                 <span class="search-page__result-thumb">
                                     <?php the_post_thumbnail('medium'); ?>

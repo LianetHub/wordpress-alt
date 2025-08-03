@@ -272,7 +272,8 @@
 				flex-basis: 9.1875rem;
 			}
 			&.focus {
-				.header__search-input {
+				.header__search-input,
+				.asl_w_container {
 					width: rem(528);
 					@media (min-width: $md3) {
 						width: rem(748);
@@ -284,7 +285,8 @@
 			}
 		}
 		&.focus {
-			.header__search-input {
+			.header__search-input,
+			.asl_w_container {
 				width: rem(720);
 				@media (min-width: $md3) {
 					width: rem(940);
@@ -293,6 +295,28 @@
 					width: rem(1200);
 				}
 			}
+		}
+		&:not(.focus) {
+			div.asl_r.vertical {
+				display: none !important;
+			}
+		}
+		.asl_w_container {
+			transition: all 0.3s ease;
+			position: absolute;
+			top: 0;
+			right: 0;
+		}
+		div.asl_w .probox .promagnifier {
+			top: rem(2) !important;
+			right: 0.25rem !important;
+		}
+		div.asl_w .probox .proloading,
+		div.asl_w .probox .proclose,
+		div.asl_w .probox .prosettings {
+			position: absolute !important;
+			top: rem(2);
+			right: 2rem;
 		}
 	}
 	// .header__search-input

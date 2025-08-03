@@ -390,7 +390,8 @@
 	}
 }
 
-.woocommerce-pagination {
+.woocommerce-pagination,
+.nav-links {
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -404,30 +405,30 @@
 	& li {
 		border: 0 !important;
 		display: flex !important;
-		& a {
-			border: 0 !important;
-			background: transparent !important;
-			padding: 0.25rem 0.5rem !important;
-			font-size: 1.125rem !important;
-			font-weight: 700 !important;
-			line-height: 133.333% !important;
-			display: flex !important;
-			justify-content: center !important;
-			align-items: center !important;
-			@media (any-hover: hover) {
-				transition: color 0.3s ease;
-				&:hover {
-					color: rgba(20, 20, 20, 0.4) !important;
-				}
+	}
+	& a {
+		border: 0 !important;
+		background: transparent !important;
+		padding: 0.25rem 0.5rem !important;
+		font-size: 1.125rem !important;
+		font-weight: 700 !important;
+		line-height: 133.333% !important;
+		display: flex !important;
+		justify-content: center !important;
+		align-items: center !important;
+		@media (any-hover: hover) {
+			transition: color 0.3s ease;
+			&:hover {
+				color: rgba(20, 20, 20, 0.4) !important;
 			}
 		}
-		.current {
-			color: rgba(20, 20, 20, 0.4) !important;
-			background: transparent !important;
-			font-size: 1.125rem !important;
-			font-weight: 700 !important;
-			line-height: 133.333% !important;
-		}
+	}
+	.current {
+		color: rgba(20, 20, 20, 0.4) !important;
+		background: transparent !important;
+		font-size: 1.125rem !important;
+		font-weight: 700 !important;
+		line-height: 133.333% !important;
 	}
 	.prev {
 		margin-right: rem(50) !important;
