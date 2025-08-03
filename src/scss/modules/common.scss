@@ -102,6 +102,19 @@
 		}
 	}
 
+	// .promo__video
+	&__video {
+		position: absolute;
+		inset: 0;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		z-index: -2;
+		@media (max-width: $md4) {
+			display: none;
+		}
+	}
+
 	// .promo__body
 	&__body {
 		display: flex;

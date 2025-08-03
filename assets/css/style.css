@@ -1,6 +1,14 @@
 @charset "UTF-8";
 
 @font-face {
+  font-family: "Muller";
+  font-display: swap;
+  src: url("../fonts/Muller-Bold.woff") format("woff"), url("../fonts/Muller-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
   font-family: "icons";
   font-display: swap;
   src: url("../fonts/icons.woff") format("woff"), url("../fonts/icons.woff2") format("woff2");
@@ -11,16 +19,24 @@
 @font-face {
   font-family: "Muller";
   font-display: swap;
-  src: url("../fonts/Muller-Bold.woff") format("woff"), url("../fonts/Muller-Bold.woff2") format("woff2");
+  src: url("../fonts/Muller-BoldItalic.woff") format("woff"), url("../fonts/Muller-BoldItalic.woff2") format("woff2");
   font-weight: 700;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Muller";
+  font-display: swap;
+  src: url("../fonts/Muller-Regular.woff") format("woff"), url("../fonts/Muller-Regular.woff2") format("woff2");
+  font-weight: 400;
   font-style: normal;
 }
 
 @font-face {
   font-family: "Muller";
   font-display: swap;
-  src: url("../fonts/Muller-BoldItalic.woff") format("woff"), url("../fonts/Muller-BoldItalic.woff2") format("woff2");
-  font-weight: 700;
+  src: url("../fonts/Muller-LightItalic.woff") format("woff"), url("../fonts/Muller-LightItalic.woff2") format("woff2");
+  font-weight: 300;
   font-style: italic;
 }
 
@@ -38,22 +54,6 @@
   src: url("../fonts/Muller-Light.woff") format("woff"), url("../fonts/Muller-Light.woff2") format("woff2");
   font-weight: 300;
   font-style: normal;
-}
-
-@font-face {
-  font-family: "Muller";
-  font-display: swap;
-  src: url("../fonts/Muller-Regular.woff") format("woff"), url("../fonts/Muller-Regular.woff2") format("woff2");
-  font-weight: 400;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Muller";
-  font-display: swap;
-  src: url("../fonts/Muller-LightItalic.woff") format("woff"), url("../fonts/Muller-LightItalic.woff2") format("woff2");
-  font-weight: 300;
-  font-style: italic;
 }
 
 .article__seo-block .seo-list.list-style-checkbox > li::before,
@@ -2484,6 +2484,16 @@ header.scroll .header__search.focus .header__search-input {
 
 .page-template-page-policy .promo .promo__title {
   max-width: 100%;
+}
+
+.promo__video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  z-index: -2;
 }
 
 .promo__body {
@@ -9488,6 +9498,10 @@ header.scroll .header__search.focus .header__search-input {
 
   .promo .breadcrumbs {
     margin-bottom: auto;
+  }
+
+  .promo__video {
+    display: none;
   }
 
   .promo__body .promo__select {

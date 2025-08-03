@@ -22,6 +22,11 @@ if ($is_project_industry_archive) {
     }
 }
 
+
+if (is_singular('project')) {
+    $current_project_id = get_the_ID();
+}
+
 ?>
 
 <section class="cases">
@@ -29,7 +34,7 @@ if ($is_project_industry_archive) {
         <div class="cases__content">
             <div class="cases__header">
                 <h2 class="cases__title title text-uppercase">
-                    <?= $section_title ?>
+                    <?= esc_html($section_title) ?>
                 </h2>
                 <?php if ($project_archive_link) : ?>
                     <a href="<?= esc_url($project_archive_link); ?>" class="cases__link more-link icon-arrow">Все проекты</a>
@@ -45,21 +50,27 @@ if ($is_project_industry_archive) {
                             'posts_per_page' => -1,
                             'orderby'        => 'date',
                             'order'          => 'DESC',
+                            'post_status'    => 'publish',
                         );
 
                         if (is_singular('project')) {
                             $args['post__not_in'] = array($current_project_id);
-                            if (!empty($current_project_industry_slug)) {
-                                $args['tax_query'] = array(
-                                    array(
-                                        'taxonomy' => 'project_industry',
-                                        'field'    => 'slug',
-                                        'terms'    => $current_project_industry_slug,
-                                    ),
-                                );
+
+                            $terms = get_the_terms($current_project_id, 'project_industry');
+                            if ($terms && !is_wp_error($terms)) {
+                                $current_project_industry_slugs = wp_list_pluck($terms, 'slug');
+                                if (!empty($current_project_industry_slugs)) {
+                                    $args['tax_query'] = array(
+                                        array(
+                                            'taxonomy' => 'project_industry',
+                                            'field'    => 'slug',
+                                            'terms'    => $current_project_industry_slugs,
+                                            'operator' => 'IN',
+                                        ),
+                                    );
+                                }
                             }
                         } elseif ($is_project_industry_archive && $queried_term) {
-
                             $args['tax_query'] = array(
                                 array(
                                     'taxonomy' => 'project_industry',
@@ -77,8 +88,13 @@ if ($is_project_industry_archive) {
                                 $delivery_contract_days = get_field('delivery_contract_days');
                                 $delivery_actual_days = get_field('delivery_actual_days');
 
+                                $delivery_contract_days_num = (int) preg_replace('/[^0-9]/', '', $delivery_contract_days);
+                                $delivery_actual_days_num = (int) preg_replace('/[^0-9]/', '', $delivery_actual_days);
+
+
                                 $thumbnail_url = get_the_post_thumbnail_url(get_the_ID(), 'full');
-                                $thumbnail_alt = get_post_meta(get_post_thumbnail_id(), '_wp_attachment_image_alt', true);
+                                $thumbnail_id = get_post_thumbnail_id();
+                                $thumbnail_alt = $thumbnail_id ? get_post_meta($thumbnail_id, '_wp_attachment_image_alt', true) : '';
                                 if (empty($thumbnail_alt)) {
                                     $thumbnail_alt = get_the_title();
                                 }
@@ -96,19 +112,25 @@ if ($is_project_industry_archive) {
                                             <p class="case__desc"><?= wp_trim_words(get_the_content(), 30, '...'); ?></p>
                                         <?php endif; ?>
                                         <div class="case__footer">
-                                            <?php if (!empty($delivery_contract_days) || !empty($delivery_actual_days)) : ?>
+                                            <?php
+
+                                            $has_contract_time = !empty($delivery_contract_days_num) || (is_numeric($delivery_contract_days_num) && $delivery_contract_days_num === 0);
+                                            $has_actual_time = !empty($delivery_actual_days_num) || (is_numeric($delivery_actual_days_num) && $delivery_actual_days_num === 0);
+
+                                            if ($has_contract_time || $has_actual_time) :
+                                            ?>
                                                 <div class="case__time">
                                                     <div class="case__time-caption">Срок поставки договор/факт:</div>
                                                     <div class="case__time-value title-sm">
                                                         <?php
-                                                        if (!empty($delivery_contract_days)) {
-                                                            echo esc_html($delivery_contract_days) . ' ' . plural_days($delivery_contract_days);
+                                                        if ($has_contract_time) {
+                                                            echo esc_html($delivery_contract_days) . ' ' . plural_days($delivery_contract_days_num);
                                                         }
-                                                        if (!empty($delivery_contract_days) && !empty($delivery_actual_days)) {
+                                                        if ($has_contract_time && $has_actual_time) {
                                                             echo '/';
                                                         }
-                                                        if (!empty($delivery_actual_days)) {
-                                                            echo esc_html($delivery_actual_days) . ' ' . plural_days($delivery_actual_days);
+                                                        if ($has_actual_time) {
+                                                            echo esc_html($delivery_actual_days) . ' ' . plural_days($delivery_actual_days_num);
                                                         }
                                                         ?>
                                                     </div>
@@ -140,7 +162,8 @@ if ($is_project_industry_archive) {
                         ?>
                     </div>
                 </div>
-                <?php if ($projects_query->have_posts()) : ?>
+                <?php if ($projects_query->have_posts()) :
+                ?>
                     <button type="button" class="cases__slider-prev swiper-button-prev"></button>
                     <button type="button" class="cases__slider-next swiper-button-next"></button>
                 <?php endif; ?>

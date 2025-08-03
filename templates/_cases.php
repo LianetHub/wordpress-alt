@@ -99,6 +99,10 @@ if (is_singular('project')) {
                                                 $delivery_contract_days = get_field('delivery_contract_days');
                                                 $delivery_actual_days = get_field('delivery_actual_days');
 
+                                                $delivery_contract_days_num = (int) preg_replace('/[^0-9]/', '', $delivery_contract_days);
+                                                $delivery_actual_days_num = (int) preg_replace('/[^0-9]/', '', $delivery_actual_days);
+
+
                                                 $thumbnail_url = get_the_post_thumbnail_url(get_the_ID(), 'full');
                                                 $thumbnail_alt = get_post_meta(get_post_thumbnail_id(), '_wp_attachment_image_alt', true);
                                                 if (empty($thumbnail_alt)) {
@@ -124,13 +128,15 @@ if (is_singular('project')) {
                                                                     <div class="case__time-value title-sm">
                                                                         <?php
                                                                         if (!empty($delivery_contract_days)) {
-                                                                            echo esc_html($delivery_contract_days) . ' ' . plural_days($delivery_contract_days);
+
+                                                                            echo esc_html($delivery_contract_days) . ' ' . plural_days($delivery_contract_days_num);
                                                                         }
                                                                         if (!empty($delivery_contract_days) && !empty($delivery_actual_days)) {
                                                                             echo '/';
                                                                         }
                                                                         if (!empty($delivery_actual_days)) {
-                                                                            echo esc_html($delivery_actual_days) . ' ' . plural_days($delivery_actual_days);
+
+                                                                            echo esc_html($delivery_actual_days) . ' ' . plural_days($delivery_actual_days_num);
                                                                         }
                                                                         ?>
                                                                     </div>

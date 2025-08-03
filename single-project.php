@@ -18,8 +18,14 @@ get_header(); ?>
                 $project_location = get_field('project_location');
 
                 $total_amount = get_field('total_amount');
+                $total_amount_cleaned = str_replace([' ', ','], ['', '.'], $total_amount);
+                $total_amount = (float) $total_amount_cleaned;
+
                 $delivery_contract_days = get_field('delivery_contract_days');
                 $delivery_actual_days = get_field('delivery_actual_days');
+
+                $delivery_contract_days_num = (int) preg_replace('/[^0-9]/', '', $delivery_contract_days);
+                $delivery_actual_days_num = (int) preg_replace('/[^0-9]/', '', $delivery_actual_days);
 
 
                 $project_industries = get_the_terms(get_the_ID(), 'project_industry');
@@ -56,7 +62,7 @@ get_header(); ?>
                         <?php
 
                         $has_properties = false;
-                        if (!empty($organization_category_name) || !empty($total_amount) || !empty($delivery_contract_days) || !empty($delivery_actual_days)) { // Corrected variables here
+                        if (!empty($organization_category_name) || $total_amount !== 0.0 || !empty($delivery_contract_days_num) || !empty($delivery_actual_days_num)) {
                             $has_properties = true;
                         }
 
@@ -79,14 +85,14 @@ get_header(); ?>
                                 <?php if (!empty($delivery_contract_days)) : ?>
                                     <li class="case__property">
                                         <div class="case__property-name">Срок выполнения по договору:</div>
-                                        <div class="case__property-value"><?= esc_html($delivery_contract_days) . ' ' . plural_days($delivery_contract_days); ?></div>
+                                        <div class="case__property-value"><?= esc_html($delivery_contract_days_num) . ' ' . plural_days($delivery_contract_days_num); ?></div>
                                     </li>
                                 <?php endif; ?>
 
                                 <?php if (!empty($delivery_actual_days)) : ?>
                                     <li class="case__property">
                                         <div class="case__property-name">Срок выполнения фактический:</div>
-                                        <div class="case__property-value"><?= esc_html($delivery_actual_days) . ' ' . plural_days($delivery_actual_days); ?></div>
+                                        <div class="case__property-value"><?= esc_html($delivery_actual_days_num) . ' ' . plural_days($delivery_actual_days_num); ?></div>
                                     </li>
                                 <?php endif; ?>
                             </ul>

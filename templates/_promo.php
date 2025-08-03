@@ -72,6 +72,8 @@ $promo_main_title = get_field('promo_main_title', $object_id_for_acf) ?? '';
 $promo_subtitle = get_field('promo_description', $object_id_for_acf) ?? '';
 $promo_hint = get_field('promo_hint', $object_id_for_acf) ?? '';
 $promo_has_offer_btn = get_field('promo_has_offer_btn', $object_id_for_acf) ?? false;
+$promo_video = get_field('promo_video', $object_id_for_acf) ?? '';
+$promo_poster = get_field('promo_poster', $object_id_for_acf) ?? '';
 
 $style_attr = $promo_background ? ' style="background-image: url(' . esc_url($promo_background) . ');"' : '';
 
@@ -93,6 +95,11 @@ $title_tag = (is_tax('project_industry')) ? 'div' : 'h1';
 ?>
 
 <section class="promo" <?= $style_attr ?>>
+    <?php if (!empty($promo_video)) : ?>
+        <video class="promo__video" playsinline autoplay muted loop poster="<?= esc_url($promo_poster['url']) ?>">
+            <source src="<?= esc_url($promo_video['url']) ?>" type="video/mp4">
+        </video>
+    <?php endif; ?>
     <div class="container">
         <div class="promo__body">
             <div class="promo__offer">

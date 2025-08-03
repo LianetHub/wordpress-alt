@@ -1,4 +1,9 @@
 <?php
+
+/**
+ * Template Name: Projects Page Template
+ */
+
 get_header();
 ?>
 
@@ -10,6 +15,7 @@ get_header();
 
         <div class="cases__list" id="projects-list">
             <?php
+            $current_term_slug = '';
 
             if (empty($current_term_slug) && is_tax('project_industry')) {
                 $queried_object = get_queried_object();
@@ -19,6 +25,8 @@ get_header();
             }
 
             $posts_per_page = 4;
+
+            $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 
             $args = array(
                 'post_type'      => 'project',
@@ -47,6 +55,10 @@ get_header();
                     $delivery_contract_days = get_field('delivery_contract_days');
                     $delivery_actual_days = get_field('delivery_actual_days');
 
+                    $delivery_contract_days_num = (int) preg_replace('/[^0-9]/', '', $delivery_contract_days);
+                    $delivery_actual_days_num = (int) preg_replace('/[^0-9]/', '', $delivery_actual_days);
+
+
                     $thumbnail_id = get_post_thumbnail_id();
                     $thumbnail_url = $thumbnail_id ? wp_get_attachment_image_url($thumbnail_id, 'full') : '';
                     $thumbnail_alt = $thumbnail_id ? get_post_meta($thumbnail_id, '_wp_attachment_image_alt', true) : '';
@@ -67,8 +79,8 @@ get_header();
                             <div class="case__desc"><?php the_excerpt(); ?></div>
                             <div class="case__footer">
                                 <?php
-                                $has_contract_time = !empty($delivery_contract_days);
-                                $has_actual_time = !empty($delivery_actual_days);
+                                $has_contract_time = !empty($delivery_contract_days_num) || (is_numeric($delivery_contract_days_num) && $delivery_contract_days_num === 0);
+                                $has_actual_time = !empty($delivery_actual_days_num) || (is_numeric($delivery_actual_days_num) && $delivery_actual_days_num === 0);
 
                                 if ($has_contract_time || $has_actual_time) :
                                 ?>
@@ -77,13 +89,13 @@ get_header();
                                         <div class="case__time-value title-sm">
                                             <?php
                                             if ($has_contract_time) {
-                                                echo esc_html($delivery_contract_days) . ' ' . plural_days($delivery_contract_days);
+                                                echo esc_html($delivery_contract_days) . ' ' . plural_days($delivery_contract_days_num);
                                             }
                                             if ($has_contract_time && $has_actual_time) {
                                                 echo '/';
                                             }
                                             if ($has_actual_time) {
-                                                echo esc_html($delivery_actual_days) . ' ' . plural_days($delivery_actual_days);
+                                                echo esc_html($delivery_actual_days) . ' ' . plural_days($delivery_actual_days_num);
                                             }
                                             ?>
                                         </div>
@@ -111,20 +123,9 @@ get_header();
         <?php $current_page_for_data = $paged;
 
         if ($projects_query->max_num_pages > $current_page_for_data) :
-            // Ссылка для следующей страницы формируется для Ajax-а, так что она не нужна
-            // $next_page_url = get_pagenum_link($current_page_for_data + 1);
-            // if (!empty($current_term_slug)) {
-            //     $next_page_url = add_query_arg('type', $current_term_slug, $next_page_url);
-            // }
+
         ?>
-            <button type="button"
-                class="cases__more btn btn-primary btn-lg"
-                id="load-more-projects"
-                data-current-page="<?php echo esc_attr($current_page_for_data); ?>"
-                data-posts-per-page="<?php echo esc_attr($posts_per_page); ?>"
-                data-max-pages="<?php echo esc_attr($projects_query->max_num_pages); ?>"
-                data-industry-filter="<?php echo esc_attr($current_term_slug); ?>"
-                data-loading-text="Загрузка...">Показать еще</button>
+            <button type="button" class="cases__more btn btn-primary btn-lg" id="load-more-projects" data-current-page="<?php echo esc_attr($current_page_for_data); ?>" data-posts-per-page="<?php echo esc_attr($posts_per_page); ?>" data-max-pages="<?php echo esc_attr($projects_query->max_num_pages); ?>" data-industry-filter="<?php echo esc_attr($current_term_slug); ?>" data-loading-text="Загрузка...">Показать еще</button>
         <?php endif; ?>
 
         <?php wp_reset_postdata(); ?>

@@ -1,7 +1,7 @@
  <?php
     $args = array(
         'taxonomy'     => 'product_cat',
-        'orderby'      => 'count',
+        'orderby'      => 'ID',
         'show_count'   => 0,
         'pad_counts'   => 0,
         'hierarchical' => 1,

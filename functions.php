@@ -387,10 +387,10 @@ function create_project_post_type()
 		'show_in_admin_bar'     => true,
 		'show_in_nav_menus'     => true,
 		'can_export'            => true,
-		'has_archive'           => true,
 		'exclude_from_search'   => false,
 		'publicly_queryable'    => true,
 		'capability_type'       => 'post',
+		'has_archive'           => "proekty",
 		'rewrite' => array(
 			'slug'       => 'proekty',
 			'with_front' => false,
@@ -400,7 +400,7 @@ function create_project_post_type()
 	);
 	register_post_type('project', $args);
 }
-add_action('init', 'create_project_post_type');
+add_action('init', 'create_project_post_type', 0);
 
 
 function create_project_industry_taxonomy()
@@ -444,7 +444,7 @@ function create_project_industry_taxonomy()
 	);
 	register_taxonomy('project_industry', array('project'), $args);
 }
-add_action('init', 'create_project_industry_taxonomy', 0);
+add_action('init', 'create_project_industry_taxonomy', 1);
 
 function load_more_projects_ajax_handler()
 {

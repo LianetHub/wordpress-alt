@@ -8,7 +8,7 @@
 
             if (! empty($chosen_attributes)) {
                 foreach ($chosen_attributes as $taxonomy_slug => $attribute_data) {
-                    if (isset($attribute_data['terms']) && is_array($attribute_data['terms'])) {
+                    if (isset($attribute_data['terms']) && is_array($attribute_data['terms']) && !empty($attribute_data['terms'])) {
                         $active_filters_count += count($attribute_data['terms']);
                     }
                 }
