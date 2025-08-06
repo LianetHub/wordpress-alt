@@ -1,14 +1,6 @@
 @charset "UTF-8";
 
 @font-face {
-  font-family: "Muller";
-  font-display: swap;
-  src: url("../fonts/Muller-Bold.woff") format("woff"), url("../fonts/Muller-Bold.woff2") format("woff2");
-  font-weight: 700;
-  font-style: normal;
-}
-
-@font-face {
   font-family: "icons";
   font-display: swap;
   src: url("../fonts/icons.woff") format("woff"), url("../fonts/icons.woff2") format("woff2");
@@ -19,9 +11,25 @@
 @font-face {
   font-family: "Muller";
   font-display: swap;
+  src: url("../fonts/Muller-Bold.woff") format("woff"), url("../fonts/Muller-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Muller";
+  font-display: swap;
   src: url("../fonts/Muller-BoldItalic.woff") format("woff"), url("../fonts/Muller-BoldItalic.woff2") format("woff2");
   font-weight: 700;
   font-style: italic;
+}
+
+@font-face {
+  font-family: "Muller";
+  font-display: swap;
+  src: url("../fonts/Muller-Light.woff") format("woff"), url("../fonts/Muller-Light.woff2") format("woff2");
+  font-weight: 300;
+  font-style: normal;
 }
 
 @font-face {
@@ -43,14 +51,6 @@
 @font-face {
   font-family: "Muller";
   font-display: swap;
-  src: url("../fonts/Muller-Light.woff") format("woff"), url("../fonts/Muller-Light.woff2") format("woff2");
-  font-weight: 300;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Muller";
-  font-display: swap;
   src: url("../fonts/Muller-Medium.woff") format("woff"), url("../fonts/Muller-Medium.woff2") format("woff2");
   font-weight: 500;
   font-style: normal;
@@ -59,6 +59,8 @@
 .article__seo-block .seo-list.list-style-checkbox > li::before,
 .article__body ul > li::before,
 .products__sidebar .wp-block-heading::before,
+.products__sidebar .filter-title::before,
+.products__sidebar .filter-content .checkbox label input:checked + .term-label::before,
 .woocommerce-pagination .prev::before,
 .nav-links .prev::before,
 .woocommerce-pagination .next::before,
@@ -100,6 +102,7 @@
 .icon-check:before,
 .article__seo-block .seo-list.list-style-checkbox > li:before,
 .article__body ul > li:before,
+.products__sidebar .filter-content .checkbox label input:checked + .term-label:before,
 .form__checkbox-input:checked + .wpcf7-list-item-label .form__checkbox-text:before,
 .checkbox__input:checked + .checkbox__btn:before {
   content: "\e901";
@@ -127,6 +130,7 @@
 
 .icon-next:before,
 .products__sidebar .wp-block-heading:before,
+.products__sidebar .filter-title:before,
 .woocommerce-pagination .next:before,
 .nav-links .next:before,
 .swiper-button-next:before {
@@ -4105,7 +4109,8 @@ header.scroll .header__search.focus .asl_w_container {
   gap: 0;
 }
 
-.products__sidebar .wp-block-heading {
+.products__sidebar .wp-block-heading,
+.products__sidebar .filter-title {
   margin-bottom: 0 !important;
   width: 100% !important;
 }
@@ -4133,7 +4138,8 @@ header.scroll .header__search.focus .asl_w_container {
   color: #fff !important;
 }
 
-.products__sidebar .wc-block-product-filter-checkbox-list__text {
+.products__sidebar .wc-block-product-filter-checkbox-list__text,
+.products__sidebar .term-label {
   font-size: 1rem;
   font-weight: 300;
   line-height: 150%;
@@ -4141,6 +4147,72 @@ header.scroll .header__search.focus .asl_w_container {
 
 .products__sidebar .wc-block-product-filter-checkbox-list__list {
   margin-bottom: 0 !important;
+}
+
+.products__sidebar .filter-content .checkbox label {
+  display: inline-block;
+}
+
+.products__sidebar .filter-content .checkbox label input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  white-space: nowrap;
+  clip-path: inset(100%);
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}
+
+.products__sidebar .filter-content .checkbox label input:checked + .term-label::before {
+  background: #313f69;
+}
+
+.products__sidebar .filter-content .checkbox label .term-label {
+  font-size: 1rem;
+  font-weight: 300;
+  line-height: 150%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 0.56rem;
+  cursor: pointer;
+}
+
+.products__sidebar .filter-content .checkbox label .term-label::before {
+  content: "";
+  width: 1rem;
+  height: 1rem;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+  border: 0.0625rem solid #dfe1eb;
+  background: #fff;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: #fff;
+  font-size: 0.5rem;
+  flex-shrink: 0;
+}
+
+.products__sidebar .apply-filters,
+.products__sidebar .reset-filters {
+  width: 100%;
+}
+
+.products__sidebar .reset-filters {
+  margin-top: 0.5rem;
 }
 
 .products__search {
@@ -4272,12 +4344,14 @@ header.scroll .header__search.focus .asl_w_container {
 }
 
 .products__filter:not(:last-child),
-.products__sidebar .wp-block-woocommerce-product-filter-attribute:not(:last-child) {
+.products__sidebar .wp-block-woocommerce-product-filter-attribute:not(:last-child),
+.products__sidebar .filter-tax:not(:last-child) {
   margin-bottom: 0.5rem;
 }
 
 .products__filter-title,
-.products__sidebar .wp-block-heading {
+.products__sidebar .wp-block-heading,
+.products__sidebar .filter-title {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -4295,7 +4369,8 @@ header.scroll .header__search.focus .asl_w_container {
 }
 
 .products__filter-title::before,
-.products__sidebar .wp-block-heading::before {
+.products__sidebar .wp-block-heading::before,
+.products__sidebar .filter-title::before {
   -webkit-box-ordinal-group: 2;
       -ms-flex-order: 1;
           order: 1;
@@ -4320,14 +4395,16 @@ header.scroll .header__search.focus .asl_w_container {
 }
 
 .products__filter-title.active::before,
-.products__sidebar .active.wp-block-heading::before {
+.products__sidebar .active.wp-block-heading::before,
+.products__sidebar .active.filter-title::before {
   -webkit-transform: rotate(-90deg);
       -ms-transform: rotate(-90deg);
           transform: rotate(-90deg);
 }
 
 .products__filter-body,
-.products__sidebar .wp-block-woocommerce-product-filter-checkbox-list {
+.products__sidebar .wp-block-woocommerce-product-filter-checkbox-list,
+.products__sidebar .filter-content {
   display: none;
   padding-bottom: 1.12rem;
 }
@@ -4346,7 +4423,8 @@ header.scroll .header__search.focus .asl_w_container {
 }
 
 .products__filter-more,
-.products__sidebar .wc-block-product-filter-checkbox-list__show-more {
+.products__sidebar .wc-block-product-filter-checkbox-list__show-more,
+.products__sidebar .filter-content .show-more {
   margin-top: 0.75rem;
   color: #ea9d0f;
   font-size: 1rem;
@@ -4375,6 +4453,12 @@ header.scroll .header__search.focus .asl_w_container {
 .products__list::before,
 .products__list::after {
   display: none !important;
+}
+
+.products__list .no-results {
+  -ms-grid-column-span: 3;
+  grid-column: span 3;
+  font-size: 1.5em;
 }
 
 .products__bottom {
@@ -7643,25 +7727,28 @@ div.asl_r p.showmore {
 
   .products__filters-blocks {
     display: block !important;
-    margin-top: 1.25rem;
+    margin-top: 1.25rem !important;
     border-top: 0.0625rem solid #dfe1eb;
   }
 
   .products__filter:not(:last-child),
-  .products__sidebar .wp-block-woocommerce-product-filter-attribute:not(:last-child) {
+  .products__sidebar .wp-block-woocommerce-product-filter-attribute:not(:last-child),
+  .products__sidebar .filter-tax:not(:last-child) {
     border-bottom: 0.0625rem solid #dfe1eb;
     margin-bottom: 0;
   }
 
   .products__filter-title,
-  .products__sidebar .wp-block-heading {
+  .products__sidebar .wp-block-heading,
+  .products__sidebar .filter-title {
     line-height: 133.333%;
     font-size: 1.125rem;
     font-weight: 500;
   }
 
   .products__filter-title::before,
-  .products__sidebar .wp-block-heading::before {
+  .products__sidebar .wp-block-heading::before,
+  .products__sidebar .filter-title::before {
     font-size: 1em;
   }
 
@@ -10107,6 +10194,13 @@ div.asl_r p.showmore {
   }
 }
 
+@media (max-width: 767.98px) and (min-width: 359.98px) {
+  .catalog__card.catalog__card--mirovye-brendy-avtomatiki .catalog__card-image {
+    width: 12.9375rem;
+    height: 10.39444rem;
+  }
+}
+
 @media (max-width: 575.98px) and (min-width: 359.98px) {
   .industries__slider-next {
     right: -1.5rem;
@@ -10293,13 +10387,19 @@ div.asl_r p.showmore {
     color: #ea9d0f;
   }
 
+  .products__sidebar .filter-content .checkbox label .term-label:hover::before {
+    border: 0.0625rem solid #313f69;
+  }
+
   .products__filter-title:hover,
-  .products__sidebar .wp-block-heading:hover {
+  .products__sidebar .wp-block-heading:hover,
+  .products__sidebar .filter-title:hover {
     color: #ea9d0f;
   }
 
   .products__filter-more:hover,
-  .products__sidebar .wc-block-product-filter-checkbox-list__show-more:hover {
+  .products__sidebar .wc-block-product-filter-checkbox-list__show-more:hover,
+  .products__sidebar .filter-content .show-more:hover {
     text-decoration: none;
   }
 

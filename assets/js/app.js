@@ -86,7 +86,7 @@ $(function () {
 
         }
 
-        if ($target.is('.products__sidebar .wp-block-heading')) {
+        if ($target.is('.products__sidebar .wp-block-heading, .products__sidebar .filter-title')) {
             $target.toggleClass('active');
             $target.next().slideToggle()
         }
@@ -373,15 +373,6 @@ $(function () {
                 prevEl: '.catalog__slider-prev',
                 nextEl: '.catalog__slider-next',
             },
-            breakpoints: {
-                575.98: {
-                    slidesPerView: 2,
-                },
-                797.98: {
-                    slidesPerView: 3,
-
-                }
-            }
         })
     }
 

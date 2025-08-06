@@ -458,7 +458,16 @@
 				height: 25.4375rem;
 			}
 		}
-
+		&.catalog__card--mirovye-brendy-avtomatiki {
+			@media (max-width: $md4) {
+				@media (min-width: $md6) {
+					.catalog__card-image {
+						width: 12.9375rem;
+						height: 10.39444rem;
+					}
+				}
+			}
+		}
 		@media (min-width: $md6) {
 			padding: rem(24);
 		}

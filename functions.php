@@ -617,12 +617,14 @@ function woocommerce_support()
 	add_theme_support('woocommerce');
 }
 
+
+
 function my_theme_widgets_init()
 {
 	register_sidebar(array(
-		'name'          => esc_html__('Product Filters Sidebar', 'your-theme-textdomain'),
+		'name'          => esc_html__('Product Filters Sidebar', 'ALT-Theme'),
 		'id'            => 'product-filters-sidebar',
-		'description'   => esc_html__('Add WooCommerce product filter widgets here.', 'your-theme-textdomain'),
+		'description'   => esc_html__('Add WooCommerce product filter widgets here.', 'ALT-Theme'),
 		'before_widget' => '<div id="%1$s" class="widget %2$s products__filter-block">',
 		'after_widget'  => '</div>',
 		'before_title'  => '<div class="products__filter-title icon-next">',
@@ -781,3 +783,49 @@ function cyrillicToLatin($text)
 
 	return $text;
 }
+
+
+function alt_ltd_add_query_vars($vars)
+{
+	$vars[] = 'product_search';
+	return $vars;
+}
+add_filter('query_vars', 'alt_ltd_add_query_vars');
+
+function alt_ltd_search_products_in_category($query)
+{
+	if (! is_admin() && $query->is_main_query() && is_tax('product_cat')) {
+		$search_term = get_query_var('product_search');
+		if (! empty($search_term)) {
+
+			$query->set('s', sanitize_text_field($search_term));
+		}
+	}
+}
+add_action('pre_get_posts', 'alt_ltd_search_products_in_category');
+
+
+add_action('template_redirect', function () {
+	if (is_tax('product_cat') && isset($_GET['yith_wcan']) && !empty($_GET['product_search'])) {
+
+		$clean_url = remove_query_arg('product_search');
+		wp_redirect($clean_url);
+		exit;
+	}
+});
+
+
+add_action('template_redirect', function () {
+	if (is_tax('product_cat') && !empty($_GET['product_search'])) {
+
+		$filter_params = array_filter($_GET, function ($key) {
+			return preg_match('/^(filter_|query_type_|yith_wcan)/', $key);
+		}, ARRAY_FILTER_USE_KEY);
+
+		if (!empty($filter_params)) {
+			$clean_url = remove_query_arg(array_keys($filter_params));
+			wp_redirect($clean_url);
+			exit;
+		}
+	}
+});
