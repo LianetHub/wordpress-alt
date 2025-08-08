@@ -1,13 +1,21 @@
 "use strict";
 
-
 //  init Fancybox
 if (typeof Fancybox !== "undefined" && Fancybox !== null) {
     Fancybox.bind("[data-fancybox]", {
         dragToClose: false,
         closeButton: false
     });
+
+    Fancybox.bind('[data-gallery="product"]', {
+        type: "image",
+        groupAll: true,
+        dragToClose: false,
+        closeButton: false
+    });
 }
+
+
 
 $(function () {
 
@@ -1183,6 +1191,4 @@ $(function () {
     });
 
 })
-
-
 
