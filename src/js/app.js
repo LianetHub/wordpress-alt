@@ -1,21 +1,13 @@
 "use strict";
 
+
 //  init Fancybox
 if (typeof Fancybox !== "undefined" && Fancybox !== null) {
     Fancybox.bind("[data-fancybox]", {
         dragToClose: false,
         closeButton: false
     });
-
-    Fancybox.bind('[data-gallery="product"]', {
-        type: "image",
-        groupAll: true,
-        dragToClose: false,
-        closeButton: false
-    });
 }
-
-
 
 $(function () {
 
@@ -94,7 +86,7 @@ $(function () {
 
         }
 
-        if ($target.is('.products__sidebar .wp-block-heading, .products__sidebar .filter-title')) {
+        if ($target.is('.products__sidebar .wp-block-heading')) {
             $target.toggleClass('active');
             $target.next().slideToggle()
         }
@@ -381,6 +373,15 @@ $(function () {
                 prevEl: '.catalog__slider-prev',
                 nextEl: '.catalog__slider-next',
             },
+            breakpoints: {
+                575.98: {
+                    slidesPerView: 2,
+                },
+                797.98: {
+                    slidesPerView: 3,
+
+                }
+            }
         })
     }
 
@@ -688,13 +689,11 @@ $(function () {
 
 
     // search focus animation
-    if ($('.header__search .proinput .orig').length) {
+    if ($('.header__search-input').length) {
         const $searchForm = $('.header__search');
-        const $searchInput = $('.header__search .proinput .orig');
+        const $searchInput = $('.header__search-input');
 
         $searchInput.on('focus', () => {
-            console.log($searchInput, 'focus');
-
             $searchForm.addClass('focus');
         });
 
@@ -1191,4 +1190,6 @@ $(function () {
     });
 
 })
+
+
 

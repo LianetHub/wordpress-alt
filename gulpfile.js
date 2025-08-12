@@ -13,8 +13,7 @@ global.app = {
 
 import { copy } from "./gulp/tasks/copy.js";
 import { reset } from "./gulp/tasks/reset.js";
-import { html } from "./gulp/tasks/html.js";
-import { server } from "./gulp/tasks/server.js";
+
 import { scss, copyCssLibs } from "./gulp/tasks/scss.js";
 import { normalize } from "./gulp/tasks/scss.js";
 import { js, copyJsLibs, jsChunks } from "./gulp/tasks/js.js";
@@ -29,24 +28,24 @@ import { zip } from "./gulp/tasks/zip.js";
 import { json } from "./gulp/tasks/json.js";
 
 function watcher() {
-    gulp.watch(path.watch.html, html);
+    gulp.watch(path.watch.files, copy);
     gulp.watch(path.watch.scss, scss);
     gulp.watch(path.watch.normalize, normalize);
     gulp.watch(path.watch.js, js);
     gulp.watch(path.watch.json, json);
     gulp.watch(path.watch.images, images);
     gulp.watch(path.watch.fonts, fonts);
-    // gulp.watch(path.watch.php).on("change", app.plugins.browsersync.reload);
+    gulp.watch(path.watch.php).on("change", app.plugins.browsersync.reload);
 }
 
 const fonts = gulp.series(otf2ttf, ttfToWoff, copyWoff, fontsStyle);
 
 const mainTasks = gulp.series(
     fonts,
-    gulp.parallel(copy, normalize, html, scss, copyCssLibs, favicon, js, copyJsLibs, jsChunks, json, images)
+    gulp.parallel(copy, normalize, scss, copyCssLibs, favicon, js, copyJsLibs, jsChunks, json, images)
 );
 
-const dev = gulp.series(reset, mainTasks, gulp.parallel(watcher, server));
+const dev = gulp.series(reset, mainTasks, gulp.parallel(watcher));
 const build = gulp.series(reset, mainTasks);
 const deployZIP = gulp.series(reset, mainTasks, zip);
 

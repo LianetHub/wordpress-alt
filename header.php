@@ -173,9 +173,7 @@
                             <input type="text" name="s" class="header__search-input" autocomplete="off" placeholder="Поиск по сайту">
                             <button type="submit" class="header__search-btn icon-search"></button>
                         </form> -->
-                        <div class="header__search">
-                            <?php echo do_shortcode('[wpdreams_ajaxsearchlite]'); ?>
-                        </div>
+                        <?php echo do_shortcode('[wpdreams_ajaxsearchlite]'); ?>
 
                         <a href="#callback" data-fancybox class="header__callback btn btn-primary">Обратный звонок</a>
                     </div>

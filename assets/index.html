@@ -1,11 +1,1478 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
+
     <head>
         <meta charset="UTF-8">
+        <meta name="format-detection" content="telephone=no">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Document</title>
+        <meta name="description" itemprop="description" content="описание страницы">
+        <meta name="keywords" itemprop="keywords" content="ключевые слова">
+
+        <title>localDev</title>
+
+
+        <!-- favicon -->
+        <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <link rel="shortcut icon" href="/favicon.ico" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+        <meta name="apple-mobile-web-app-title" content="ALT" />
+        <link rel="manifest" href="/site.webmanifest" />
+        <!-- favicon -->
+
+
+
+        <link rel="stylesheet" href="/css/libs/fancybox.css">
+        <link rel="stylesheet" href="/css/libs/input-tel.css">
+        <link rel="stylesheet" href="/css/libs/nouislider.min.css">
+        <link rel="stylesheet" href="/css/libs/swiper-bundle.min.css">
+
+        <link rel="stylesheet" href="/css/reset.min.css">
+        <link rel="stylesheet" href="/css/style.min.css">
+
     </head>
     <body>
+        <div class="wrapper">
+            <header class="header">
+                <div class="header__top">
+                    <div class="container">
+                        <div class="header__top-body">
+                            <nav aria-label="Меню для госзаказчиков" class="header__top-menu">
+                                <ul>
+                                    <li><a href="/state">Для госзаказчиков</a></li>
+                                    <li><a href="/certificates">Сертификаты</a></li>
+                                    <li><a href="/reviews">Отзывы</a></li>
+                                </ul>
+                            </nav>
+                            <div class="header__top-worktime">График работы: Пн-Пт 9:00 — 18:00</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="header__body">
+                    <div class="container">
+                        <div class="header__body-content">
+                            <a href="/" class="header__logo">
+                                <img src="img/logo.svg" alt="Логотип">
+                            </a>
+                            <address class="header__location icon-location">
+                                Челябинск ул. Тернопольская 6, Сколково, Челябинский Кластер
+                            </address>
 
+                            <div class="header__contacts">
+                                <a href="mailto:info@alt-ltd.ru" class="header__contact icon-envelope">
+                                    info@alt-ltd.ru
+                                </a>
+                                <a href="tel:+73517774578" class="header__contact icon-phone">
+                                    +7 (351) 777-45-78
+                                </a>
+                            </div>
+                            <a href="#callback" data-fancybox class="header__callback btn btn-primary">Обратный звонок</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="header__bottom">
+                    <div class="container">
+                        <div class="header__bottom-content">
+                            <button type="button" class="header__menu-toggler icon-menu">
+                                <span></span>
+                                <span></span>
+                            </button>
+                            <div class="menu">
+                                <div class="menu__header">
+                                    <a rhef class="menu__logo">
+                                        <img src="img/logo.svg" alt="">
+                                    </a>
+                                </div>
+                                <nav aria-label="Основное меню" class="menu__body">
+                                    <ul class="menu__list">
+                                        <li class="menu__item"><a href="/catalog" class="menu__link">Каталог</a></li>
+                                        <li class="menu__item menu-parent">
+                                            <a href="/industries" class="menu__link">Отрасли</a>
+                                            <button type="button" class="menu__arrow icon-chevron-down"></button>
+                                            <div class="submenu">
+                                                <div class="container">
+                                                    <div class="submenu__header">
+                                                        <div class="submenu__header-name">ОТРАСЛИ</div>
+                                                        <button type="button" class="submenu__close icon-prev">Все меню</button>
+                                                    </div>
+                                                    <div class="submenu__body">
+                                                        <ul class="submenu__list">
+                                                            <li class="submenu__item"><a href="" class="submenu__link">Гидроэнергетика </a></li>
+                                                            <li class="submenu__item"><a href="" class="submenu__link">Металлургия </a></li>
+                                                            <li class="submenu__item"><a href="" class="submenu__link">Агробиологическая промышленность </a></li>
+                                                            <li class="submenu__item"><a href="" class="submenu__link">Нефтехимическая промышленность </a></li>
+                                                            <li class="submenu__item"><a href="" class="submenu__link">Научно-исследовательская деятельность </a></li>
+                                                            <li class="submenu__item"><a href="" class="submenu__link">Теплоснабжение </a></li>
+                                                            <li class="submenu__item"><a href="" class="submenu__link">Фармацевтическая промышленность </a></li>
+                                                            <li class="submenu__item"><a href="" class="submenu__link">Химическая промышленность </a></li>
+                                                            <li class="submenu__item"><a href="" class="submenu__link">Электроэнергетика </a></li>
+                                                        </ul>
+                                                        <div class="submenu__description">
+                                                            <div class="submenu__description-block">
+                                                                <h3 class="submenu__description-title title-md">Гидроэнергетика</h3>
+                                                                <p class="submenu__description-text">"АЛТ" предлагает полный комплекс решений для гидроэнергетических объектов, от проектирования и монтажа систем автоматизации до обслуживания и модернизации существующего оборудования. Наши эксперты обеспечивают стабильную и эффективную работу гидроэлектростанций.</p>
+                                                                <a href="" class="submenu__description-btn btn btn-primary">Подробнее</a>
+                                                            </div>
+
+                                                            <div class="submenu__description-block">
+                                                                <h3 class="submenu__description-title title-md">Металлургия</h3>
+                                                                <p class="submenu__description-text">В металлургической отрасли "АЛТ" специализируется на внедрении и поддержке высокотехнологичных систем управления производством. Мы помогаем оптимизировать процессы, повысить безопасность и эффективность работы на всех этапах металлургического цикла.</p>
+                                                                <a href="" class="submenu__description-btn btn btn-primary">Подробнее</a>
+                                                            </div>
+
+                                                            <div class="submenu__description-block">
+                                                                <h3 class="submenu__description-title title-md">Агробиологическая промышленность</h3>
+                                                                <p class="submenu__description-text">"АЛТ" предоставляет инновационные решения для агробиологической промышленности, включая автоматизацию процессов хранения, переработки и упаковки продукции. Наши технологии способствуют повышению урожайности и оптимизации затрат в сельском хозяйстве.</p>
+                                                                <a href="" class="submenu__description-btn btn btn-primary">Подробнее</a>
+                                                            </div>
+
+                                                            <div class="submenu__description-block">
+                                                                <h3 class="submenu__description-title title-md">Нефтехимическая промышленность</h3>
+                                                                <p class="submenu__description-text">Для предприятий нефтехимической отрасли "АЛТ" разрабатывает и внедряет комплексные системы контроля и автоматизации. Мы обеспечиваем надежность и безопасность производственных процессов, минимизируя риски и повышая операционную эффективность.</p>
+                                                                <a href="" class="submenu__description-btn btn btn-primary">Подробнее</a>
+                                                            </div>
+
+                                                            <div class="submenu__description-block">
+                                                                <h3 class="submenu__description-title title-md">Научно-исследовательская деятельность</h3>
+                                                                <p class="submenu__description-text">"АЛТ" активно участвует в научно-исследовательской деятельности, предлагая передовые решения для лабораторий и R&D центров. Мы помогаем создавать и внедрять инновационные технологии, способствуя развитию научных открытий и промышленных разработок.</p>
+                                                                <a href="" class="submenu__description-btn btn btn-primary">Подробнее</a>
+                                                            </div>
+
+                                                            <div class="submenu__description-block">
+                                                                <h3 class="submenu__description-title title-md">Теплоснабжение</h3>
+                                                                <p class="submenu__description-text">"АЛТ" предлагает эффективные решения для систем теплоснабжения, обеспечивая стабильную и экономичную подачу тепла. Мы специализируемся на проектировании, монтаже и обслуживании котельных, тепловых сетей и систем диспетчеризации.</p>
+                                                                <a href="" class="submenu__description-btn btn btn-primary">Подробнее</a>
+                                                            </div>
+
+                                                            <div class="submenu__description-block">
+                                                                <h3 class="submenu__description-title title-md">Фармацевтическая промышленность</h3>
+                                                                <p class="submenu__description-text">На пути развития "АЛТ" можно выделить несколько ключевых этапов. Первоначально компания сосредоточила свои усилия на электромонтажных работах, но вскоре начала расширять спектр услуг, включая холодильные установки и даже новогодние елки. При этой экспансии "АЛТ</p>
+                                                                <a href="" class="submenu__description-btn btn btn-primary">Подробнее</a>
+                                                            </div>
+
+                                                            <div class="submenu__description-block">
+                                                                <h3 class="submenu__description-title title-md">Химическая промышленность</h3>
+                                                                <p class="submenu__description-text">Для химической промышленности "АЛТ" разрабатывает и внедряет комплексные системы автоматизации и безопасности. Наши решения повышают эффективность производственных линий, обеспечивают соблюдение строгих стандартов и минимизируют риски.</p>
+                                                                <a href="" class="submenu__description-btn btn btn-primary">Подробнее</a>
+                                                            </div>
+
+                                                            <div class="submenu__description-block">
+                                                                <h3 class="submenu__description-title title-md">Электроэнергетика</h3>
+                                                                <p class="submenu__description-text">"АЛТ" является надежным партнером в сфере электроэнергетики, предлагая полный спектр услуг от проектирования и монтажа электроустановок до технического обслуживания и модернизации. Мы гарантируем бесперебойное и эффективное энергоснабжение.</p>
+                                                                <a href="" class="submenu__description-btn btn btn-primary">Подробнее</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="menu__item"><a href="/about" class="menu__link">О компании</a></li>
+                                        <li class="menu__item"><a href="/business" class="menu__link">Для бизнеса</a></li>
+                                        <li class="menu__item"><a href="/projects" class="menu__link">Проекты</a></li>
+                                        <li class="menu__item"><a href="/blog" class="menu__link">Блог</a></li>
+                                        <li class="menu__item"><a href="/contacts" class="menu__link">Контакты</a></li>
+                                    </ul>
+                                </nav>
+                                <div class="menu__bottom">
+                                    <div class="menu__contacts">
+                                        <a href="mailto:info@alt-ltd.ru" class="menu__contact icon-envelope">
+                                            info@alt-ltd.ru
+                                        </a>
+                                        <a href="tel:+73517774578" class="menu__contact icon-phone">
+                                            +7 (351) 777-45-78
+                                        </a>
+                                    </div>
+                                    <div class="menu__socials">
+                                        <a href="" class="menu__social icon-whatsapp"></a>
+                                        <a href="" class="menu__social icon-telegram"></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="header__contacts">
+                                <a href="mailto:info@alt-ltd.ru" aria-label="Email" class="header__contact icon-envelope"></a>
+                                <a href="tel:+73517774578" aria-label="Телефон" class="header__contact icon-phone"></a>
+                            </div>
+                            <form action="#" class="header__search">
+                                <input type="text" name="search" class="header__search-input" autocomplete="off" placeholder="Поиск по сайту">
+                                <button type="submit" class="header__search-btn icon-search"></button>
+                            </form>
+
+                            <a href="#callback" data-fancybox class="header__callback btn btn-primary">Обратный звонок</a>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            <main class="page">
+                <!-- <section class="promo" style="background-image: url(http://gogancai.beget.tech/wp-content/uploads/2025/06/technologist-white-coat-with-laptop-his-hands-controls-production-process-dairy-shop-quality-control-dairy-plant.jpg);">
+                    <div class="container">
+                        <div class="promo__offer">
+                             <h1 class="promo__title title-lg">Технологическое оснащение предприятий</h1>
+                            <a href="#offer" class="promo__btn btn btn-primary btn-lg">Получить КП</a>
+                        </div>
+                    </div>
+                </section> -->
+                <!-- <div class="industries">
+                    <div class="container">
+                        <div class="industries__body">
+                            <div class="industries__slider swiper">
+                                <div class="swiper-wrapper">
+                                    <a href="" class="industries__slide swiper-slide">
+                                        <img src="img/industries/01.jpg" class="cover-image" alt="">
+                                        <span class="industries__slide-caption title-sm">Агробиологическая промышленность</span>
+                                    </a>
+                                    <a href="" class="industries__slide swiper-slide">
+                                        <img src="img/industries/02.jpg" class="cover-image" alt="">
+                                        <span class="industries__slide-caption title-sm">Гидроэнергетика</span>
+                                    </a>
+                                    <a href="" class="industries__slide swiper-slide">
+                                        <img src="img/industries/03.jpg" class="cover-image" alt="">
+                                        <span class="industries__slide-caption title-sm">Логистика / электромеханика </span>
+                                    </a>
+                                    <a href="" class="industries__slide swiper-slide">
+                                        <img src="img/industries/01.jpg" class="cover-image" alt="">
+                                        <span class="industries__slide-caption title-sm">Агробиологическая промышленность</span>
+                                    </a>
+                                    <a href="" class="industries__slide swiper-slide">
+                                        <img src="img/industries/02.jpg" class="cover-image" alt="">
+                                        <span class="industries__slide-caption title-sm">Гидроэнергетика</span>
+                                    </a>
+                                    <a href="" class="industries__slide swiper-slide">
+                                        <img src="img/industries/03.jpg" class="cover-image" alt="">
+                                        <span class="industries__slide-caption title-sm">Логистика / электромеханика </span>
+                                    </a>
+                                </div>
+                            </div>
+                            <button type="button" class="industries__slider-prev swiper-button-prev"></button>
+                            <button type="button" class="industries__slider-next swiper-button-next"></button>
+                        </div>
+                    </div>
+                </div> -->
+                <!-- <div class="benefits">
+                    <div class="container">
+                        <div class="benefits__blocks">
+                            <div class="benefits__block">
+                                <div class="benefits__block-title title">11 лет</div>
+                                <div class="benefits__block-text">подтвержденный опыт</div>
+                            </div>
+                            <div class="benefits__block">
+                                <div class="benefits__block-title title">Бесплатно</div>
+                                <div class="benefits__block-text">доставка по всей России</div>
+                            </div>
+                            <div class="benefits__block">
+                                <div class="benefits__block-title title">2000+</div>
+                                <div class="benefits__block-text">реализованных проектов</div>
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+                <section class="catalog">
+                    <div class="container">
+                        <h2 class="catalog__title title text-uppercase">Каталог</h2>
+                        <div class="catalog__body">
+                            <div class="catalog__slider swiper">
+                                <ul class="swiper-wrapper">
+                                    <li class="catalog__item swiper-slide">
+                                        <a href="" class="catalog__card">
+                                            <span class="catalog__card-image">
+                                                <img src="img/catalog/microchips.png" alt="">
+                                            </span>
+                                            <span class="catalog__card-name title-sm">Микрочипы</span>
+                                        </a>
+                                    </li>
+                                    <li class="catalog__item swiper-slide">
+                                        <a href="" class="catalog__card">
+                                            <span class="catalog__card-image">
+                                                <img src="img/catalog/valves.png" alt="">
+                                            </span>
+                                            <span class="catalog__card-name title-sm">Клапаны</span>
+                                        </a>
+                                    </li>
+                                    <li class="catalog__item swiper-slide">
+                                        <a href="" class="catalog__card">
+                                            <span class="catalog__card-image">
+                                                <img src="img/catalog/brands.png" alt="">
+                                            </span>
+                                            <span class="catalog__card-name title-sm">Мировые бренды автоматики</span>
+                                        </a>
+                                    </li>
+                                    <li class="catalog__item swiper-slide">
+                                        <a href="" class="catalog__card">
+                                            <span class="catalog__card-image">
+                                                <img src="img/catalog/spare-parts-for-refrigeration-equipment.png" alt="">
+                                            </span>
+                                            <span class="catalog__card-name title-sm">Запчасти для холодильного оборудования</span>
+                                        </a>
+                                    </li>
+                                    <li class="catalog__item swiper-slide">
+                                        <a href="" class="catalog__card">
+                                            <span class="catalog__card-image">
+                                                <img src="img/catalog/robot-parts.png" alt="">
+                                            </span>
+                                            <span class="catalog__card-name title-sm">Запчасти для роботов</span>
+                                        </a>
+                                    </li>
+                                    <li class="catalog__item swiper-slide">
+                                        <a href="" class="catalog__card">
+                                            <span class="catalog__card-image">
+                                                <img src="img/catalog/laboratory-equipment.png" alt="">
+                                            </span>
+                                            <span class="catalog__card-name title-sm">Лабораторное оборудование</span>
+                                        </a>
+                                    </li>
+                                    <li class="catalog__item swiper-slide">
+                                        <a href="" class="catalog__card">
+                                            <span class="catalog__card-image">
+                                                <img src="img/catalog/spare-parts-for-medical-equipment.png" alt="">
+                                            </span>
+                                            <span class="catalog__card-name title-sm">Запчасти для медицинского оборудования</span>
+                                        </a>
+                                    </li>
+                                    <li class="catalog__item swiper-slide">
+                                        <a href="" class="catalog__card">
+                                            <span class="catalog__card-image">
+                                                <img src="img/catalog/measuring-instruments-GRSI.png" alt="">
+                                            </span>
+                                            <span class="catalog__card-name title-sm">Средства измерения находящиеся в ГРСИ</span>
+                                        </a>
+                                    </li>
+                                    <li class="catalog__item swiper-slide">
+                                        <a href="" class="catalog__card">
+                                            <span class="catalog__card-image">
+                                                <img src="img/catalog/measuring-equipment.png" alt="">
+                                            </span>
+                                            <span class="catalog__card-name title-sm">Измерительное оборудование</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <button type="button" class="catalog__slider-prev swiper-button-prev"></button>
+                            <button type="button" class="catalog__slider-next swiper-button-next"></button>
+                        </div>
+                    </div>
+                </section>
+                <section class="about">
+                    <div class="about__wrapper">
+                        <div class="container">
+                            <div class="about__body">
+                                <div class="about__header">
+                                    <div class="container">
+                                        <h2 class="about__title title text-uppercase">О компании</h2>
+                                        <p class="about__subtitle">Компания "АЛТ" была основана в 2014 году Плехановым Георгием Юрьевичем, человеком с большим опытом в электромонтажных работах. Изначально целью создания компании было не просто предоставление электротехнических услуг, а выход на рынок госзакупок.</p>
+                                    </div>
+                                </div>
+                                <div class="about__bottom">
+                                    <div class="container">
+                                        <p class="about__text">На пути развития "АЛТ" можно выделить несколько ключевых этапов. Первоначально компания сосредоточила свои усилия на электромонтажных работах, но вскоре начала расширять спектр услуг, включая холодильные установки и даже новогодние елки. При этой экспансии "АЛТ" постепенно освоила рынок госзакупок, что открыло новые горизонты и дало возможность брать на себя более крупные проекты.</p>
+                                        <a href="" class="about__link more-link icon-arrow">Подробнее о нас</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="about__image">
+                        <img src="img/our-team.jpg" class="cover-image" alt="">
+                    </div>
+                </section>
+                <section class="cases">
+                    <div class="container">
+                        <div class="cases__content">
+                            <div class="cases__header">
+                                <h2 class="cases__title title text-uppercase">
+                                    Наши проекты
+                                </h2>
+                                <a href="" class="cases__link more-link icon-arrow">Все проекты</a>
+                            </div>
+                            <div class="cases__tabs">
+                                <div class="cases__tabs-slider swiper">
+                                    <div class="swiper-wrapper">
+                                        <button type="button" class="cases__tab-btn swiper-slide active">Гидроэнергетика</button>
+                                        <button type="button" class="cases__tab-btn swiper-slide">Металлургия</button>
+                                        <button type="button" class="cases__tab-btn swiper-slide">Агробиологическая промышленность</button>
+                                        <button type="button" class="cases__tab-btn swiper-slide">Нефтехимическая промышленность</button>
+                                        <button type="button" class="cases__tab-btn swiper-slide">Научно-исследовательская деятельность</button>
+                                    </div>
+                                    <div class="cases__tabs-scrollbar swiper-scrollbar"></div>
+                                </div>
+                                <div class="cases__tabs-controls">
+                                    <button type="button" class="cases__tabs-prev swiper-button-prev"></button>
+                                    <button type="button" class="cases__tabs-next swiper-button-next"></button>
+                                </div>
+                            </div>
+                            <div class="cases__tabs-content">
+                                <div class="cases__tabs-block active">
+                                    <div class="cases__slider">
+                                        <div class="cases__slider-block swiper">
+                                            <div class="swiper-wrapper">
+                                                <div class="case swiper-slide">
+                                                    <div class="case__main">
+                                                        <a href="" class="case__name title-sm">Проект поставки оборудования для&nbsp;лабораторного стенда</a>
+                                                        <div class="case__location icon-location">
+                                                            <div class="case__location-caption">Регион поставки:</div>
+                                                            <address class="case__location-address">Ленинградская область</address>
+                                                        </div>
+                                                        <p class="case__desc">Поставка учебных однокомпонентных электронных модулей управления, модулей защиты схем управления электроприводами в цепях переменного тока от токовых перегрузок, а также электронного модуля передачи команд управления исполнительными элементами путем коммутации их электрических цепей своими переключающими контактами.</p>
+                                                        <div class="case__footer">
+                                                            <div class="case__time">
+                                                                <div class="case__time-caption">Срок поставки договор/факт:</div>
+                                                                <div class="case__time-value title-sm">90 дней/68 дней</div>
+                                                            </div>
+                                                            <a href="" class="case__btn btn btn-primary btn-lg">Подробнее</a>
+                                                        </div>
+                                                    </div>
+                                                    <a href="" class="case__image">
+                                                        <img src="img/case.jpg" class="cover-image" alt="Фото">
+                                                    </a>
+                                                </div>
+                                                <div class="case swiper-slide">
+                                                    <div class="case__main">
+                                                        <a href="" class="case__name title-sm">Проект поставки оборудования для&nbsp;лабораторного стенда</a>
+                                                        <div class="case__location icon-location">
+                                                            <div class="case__location-caption">Регион поставки:</div>
+                                                            <address class="case__location-address">Ленинградская область</address>
+                                                        </div>
+                                                        <p class="case__desc">Поставка учебных однокомпонентных электронных модулей управления, модулей защиты схем управления электроприводами в цепях переменного тока от токовых перегрузок, а также электронного модуля передачи команд управления исполнительными элементами путем коммутации их электрических цепей своими переключающими контактами.</p>
+                                                        <div class="case__footer">
+                                                            <div class="case__time">
+                                                                <div class="case__time-caption">Срок поставки договор/факт:</div>
+                                                                <div class="case__time-value title-sm">90 дней/68 дней</div>
+                                                            </div>
+                                                            <a href="" class="case__btn btn btn-primary btn-lg">Подробнее</a>
+                                                        </div>
+                                                    </div>
+                                                    <a href="" class="case__image">
+                                                        <img src="img/case.jpg" class="cover-image" alt="Фото">
+                                                    </a>
+                                                </div>
+                                                <div class="case swiper-slide">
+                                                    <div class="case__main">
+                                                        <a href="" class="case__name title-sm">Проект поставки оборудования для&nbsp;лабораторного стенда</a>
+                                                        <div class="case__location icon-location">
+                                                            <div class="case__location-caption">Регион поставки:</div>
+                                                            <address class="case__location-address">Ленинградская область</address>
+                                                        </div>
+                                                        <p class="case__desc">Поставка учебных однокомпонентных электронных модулей управления, модулей защиты схем управления электроприводами в цепях переменного тока от токовых перегрузок, а также электронного модуля передачи команд управления исполнительными элементами путем коммутации их электрических цепей своими переключающими контактами.</p>
+                                                        <div class="case__footer">
+                                                            <div class="case__time">
+                                                                <div class="case__time-caption">Срок поставки договор/факт:</div>
+                                                                <div class="case__time-value title-sm">90 дней/68 дней</div>
+                                                            </div>
+                                                            <a href="" class="case__btn btn btn-primary btn-lg">Подробнее</a>
+                                                        </div>
+                                                    </div>
+                                                    <a href="" class="case__image">
+                                                        <img src="img/case.jpg" class="cover-image" alt="Фото">
+                                                    </a>
+                                                </div>
+                                                <div class="case swiper-slide">
+                                                    <div class="case__main">
+                                                        <a href="" class="case__name title-sm">Проект поставки оборудования для&nbsp;лабораторного стенда</a>
+                                                        <div class="case__location icon-location">
+                                                            <div class="case__location-caption">Регион поставки:</div>
+                                                            <address class="case__location-address">Ленинградская область</address>
+                                                        </div>
+                                                        <p class="case__desc">Поставка учебных однокомпонентных электронных модулей управления, модулей защиты схем управления электроприводами в цепях переменного тока от токовых перегрузок, а также электронного модуля передачи команд управления исполнительными элементами путем коммутации их электрических цепей своими переключающими контактами.</p>
+                                                        <div class="case__footer">
+                                                            <div class="case__time">
+                                                                <div class="case__time-caption">Срок поставки договор/факт:</div>
+                                                                <div class="case__time-value title-sm">90 дней/68 дней</div>
+                                                            </div>
+                                                            <a href="" class="case__btn btn btn-primary btn-lg">Подробнее</a>
+                                                        </div>
+                                                    </div>
+                                                    <a href="" class="case__image">
+                                                        <img src="img/case.jpg" class="cover-image" alt="Фото">
+                                                    </a>
+                                                </div>
+                                                <div class="case swiper-slide">
+                                                    <div class="case__main">
+                                                        <a href="" class="case__name title-sm">Проект поставки оборудования для&nbsp;лабораторного стенда</a>
+                                                        <div class="case__location icon-location">
+                                                            <div class="case__location-caption">Регион поставки:</div>
+                                                            <address class="case__location-address">Ленинградская область</address>
+                                                        </div>
+                                                        <p class="case__desc">Поставка учебных однокомпонентных электронных модулей управления, модулей защиты схем управления электроприводами в цепях переменного тока от токовых перегрузок, а также электронного модуля передачи команд управления исполнительными элементами путем коммутации их электрических цепей своими переключающими контактами.</p>
+                                                        <div class="case__footer">
+                                                            <div class="case__time">
+                                                                <div class="case__time-caption">Срок поставки договор/факт:</div>
+                                                                <div class="case__time-value title-sm">90 дней/68 дней</div>
+                                                            </div>
+                                                            <a href="" class="case__btn btn btn-primary btn-lg">Подробнее</a>
+                                                        </div>
+                                                    </div>
+                                                    <a href="" class="case__image">
+                                                        <img src="img/case.jpg" class="cover-image" alt="Фото">
+                                                    </a>
+                                                </div>
+                                                <div class="case swiper-slide">
+                                                    <div class="case__main">
+                                                        <a href="" class="case__name title-sm">Проект поставки оборудования для&nbsp;лабораторного стенда</a>
+                                                        <div class="case__location icon-location">
+                                                            <div class="case__location-caption">Регион поставки:</div>
+                                                            <address class="case__location-address">Ленинградская область</address>
+                                                        </div>
+                                                        <p class="case__desc">Поставка учебных однокомпонентных электронных модулей управления, модулей защиты схем управления электроприводами в цепях переменного тока от токовых перегрузок, а также электронного модуля передачи команд управления исполнительными элементами путем коммутации их электрических цепей своими переключающими контактами.</p>
+                                                        <div class="case__footer">
+                                                            <div class="case__time">
+                                                                <div class="case__time-caption">Срок поставки договор/факт:</div>
+                                                                <div class="case__time-value title-sm">90 дней/68 дней</div>
+                                                            </div>
+                                                            <a href="" class="case__btn btn btn-primary btn-lg">Подробнее</a>
+                                                        </div>
+                                                    </div>
+                                                    <a href="" class="case__image">
+                                                        <img src="img/case.jpg" class="cover-image" alt="Фото">
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button type="button" class="cases__slider-prev swiper-button-prev"></button>
+                                        <button type="button" class="cases__slider-prev swiper-button-next"></button>
+                                    </div>
+                                </div>
+                                <div class="cases__tabs-block">
+                                    <div class="cases__slider">
+                                        <div class="cases__slider-block swiper">
+                                            <div class="swiper-wrapper">
+                                                <div class="case swiper-slide">
+                                                    <div class="case__main">
+                                                        <a href="" class="case__name title-sm">Проект поставки оборудования для&nbsp;лабораторного стенда</a>
+                                                        <div class="case__location icon-location">
+                                                            <div class="case__location-caption">Регион поставки:</div>
+                                                            <address class="case__location-address">Ленинградская область</address>
+                                                        </div>
+                                                        <p class="case__desc">Поставка учебных однокомпонентных электронных модулей управления, модулей защиты схем управления электроприводами в цепях переменного тока от токовых перегрузок, а также электронного модуля передачи команд управления исполнительными элементами путем коммутации их электрических цепей своими переключающими контактами.</p>
+                                                        <div class="case__footer">
+                                                            <div class="case__time">
+                                                                <div class="case__time-caption">Срок поставки договор/факт:</div>
+                                                                <div class="case__time-value title-sm">90 дней/68 дней</div>
+                                                            </div>
+                                                            <a href="" class="case__btn btn btn-primary btn-lg">Подробнее</a>
+                                                        </div>
+                                                    </div>
+                                                    <a href="" class="case__image">
+                                                        <img src="img/case.jpg" class="cover-image" alt="Фото">
+                                                    </a>
+                                                </div>
+                                                <div class="case swiper-slide">
+                                                    <div class="case__main">
+                                                        <a href="" class="case__name title-sm">Проект поставки оборудования для&nbsp;лабораторного стенда</a>
+                                                        <div class="case__location icon-location">
+                                                            <div class="case__location-caption">Регион поставки:</div>
+                                                            <address class="case__location-address">Ленинградская область</address>
+                                                        </div>
+                                                        <p class="case__desc">Поставка учебных однокомпонентных электронных модулей управления, модулей защиты схем управления электроприводами в цепях переменного тока от токовых перегрузок, а также электронного модуля передачи команд управления исполнительными элементами путем коммутации их электрических цепей своими переключающими контактами.</p>
+                                                        <div class="case__footer">
+                                                            <div class="case__time">
+                                                                <div class="case__time-caption">Срок поставки договор/факт:</div>
+                                                                <div class="case__time-value title-sm">90 дней/68 дней</div>
+                                                            </div>
+                                                            <a href="" class="case__btn btn btn-primary btn-lg">Подробнее</a>
+                                                        </div>
+                                                    </div>
+                                                    <a href="" class="case__image">
+                                                        <img src="img/case.jpg" class="cover-image" alt="Фото">
+                                                    </a>
+                                                </div>
+                                                <div class="case swiper-slide">
+                                                    <div class="case__main">
+                                                        <a href="" class="case__name title-sm">Проект поставки оборудования для&nbsp;лабораторного стенда</a>
+                                                        <div class="case__location icon-location">
+                                                            <div class="case__location-caption">Регион поставки:</div>
+                                                            <address class="case__location-address">Ленинградская область</address>
+                                                        </div>
+                                                        <p class="case__desc">Поставка учебных однокомпонентных электронных модулей управления, модулей защиты схем управления электроприводами в цепях переменного тока от токовых перегрузок, а также электронного модуля передачи команд управления исполнительными элементами путем коммутации их электрических цепей своими переключающими контактами.</p>
+                                                        <div class="case__footer">
+                                                            <div class="case__time">
+                                                                <div class="case__time-caption">Срок поставки договор/факт:</div>
+                                                                <div class="case__time-value title-sm">90 дней/68 дней</div>
+                                                            </div>
+                                                            <a href="" class="case__btn btn btn-primary btn-lg">Подробнее</a>
+                                                        </div>
+                                                    </div>
+                                                    <a href="" class="case__image">
+                                                        <img src="img/case.jpg" class="cover-image" alt="Фото">
+                                                    </a>
+                                                </div>
+                                                <div class="case swiper-slide">
+                                                    <div class="case__main">
+                                                        <a href="" class="case__name title-sm">Проект поставки оборудования для&nbsp;лабораторного стенда</a>
+                                                        <div class="case__location icon-location">
+                                                            <div class="case__location-caption">Регион поставки:</div>
+                                                            <address class="case__location-address">Ленинградская область</address>
+                                                        </div>
+                                                        <p class="case__desc">Поставка учебных однокомпонентных электронных модулей управления, модулей защиты схем управления электроприводами в цепях переменного тока от токовых перегрузок, а также электронного модуля передачи команд управления исполнительными элементами путем коммутации их электрических цепей своими переключающими контактами.</p>
+                                                        <div class="case__footer">
+                                                            <div class="case__time">
+                                                                <div class="case__time-caption">Срок поставки договор/факт:</div>
+                                                                <div class="case__time-value title-sm">90 дней/68 дней</div>
+                                                            </div>
+                                                            <a href="" class="case__btn btn btn-primary btn-lg">Подробнее</a>
+                                                        </div>
+                                                    </div>
+                                                    <a href="" class="case__image">
+                                                        <img src="img/case.jpg" class="cover-image" alt="Фото">
+                                                    </a>
+                                                </div>
+                                                <div class="case swiper-slide">
+                                                    <div class="case__main">
+                                                        <a href="" class="case__name title-sm">Проект поставки оборудования для&nbsp;лабораторного стенда</a>
+                                                        <div class="case__location icon-location">
+                                                            <div class="case__location-caption">Регион поставки:</div>
+                                                            <address class="case__location-address">Ленинградская область</address>
+                                                        </div>
+                                                        <p class="case__desc">Поставка учебных однокомпонентных электронных модулей управления, модулей защиты схем управления электроприводами в цепях переменного тока от токовых перегрузок, а также электронного модуля передачи команд управления исполнительными элементами путем коммутации их электрических цепей своими переключающими контактами.</p>
+                                                        <div class="case__footer">
+                                                            <div class="case__time">
+                                                                <div class="case__time-caption">Срок поставки договор/факт:</div>
+                                                                <div class="case__time-value title-sm">90 дней/68 дней</div>
+                                                            </div>
+                                                            <a href="" class="case__btn btn btn-primary btn-lg">Подробнее</a>
+                                                        </div>
+                                                    </div>
+                                                    <a href="" class="case__image">
+                                                        <img src="img/case.jpg" class="cover-image" alt="Фото">
+                                                    </a>
+                                                </div>
+                                                <div class="case swiper-slide">
+                                                    <div class="case__main">
+                                                        <a href="" class="case__name title-sm">Проект поставки оборудования для&nbsp;лабораторного стенда</a>
+                                                        <div class="case__location icon-location">
+                                                            <div class="case__location-caption">Регион поставки:</div>
+                                                            <address class="case__location-address">Ленинградская область</address>
+                                                        </div>
+                                                        <p class="case__desc">Поставка учебных однокомпонентных электронных модулей управления, модулей защиты схем управления электроприводами в цепях переменного тока от токовых перегрузок, а также электронного модуля передачи команд управления исполнительными элементами путем коммутации их электрических цепей своими переключающими контактами.</p>
+                                                        <div class="case__footer">
+                                                            <div class="case__time">
+                                                                <div class="case__time-caption">Срок поставки договор/факт:</div>
+                                                                <div class="case__time-value title-sm">90 дней/68 дней</div>
+                                                            </div>
+                                                            <a href="" class="case__btn btn btn-primary btn-lg">Подробнее</a>
+                                                        </div>
+                                                    </div>
+                                                    <a href="" class="case__image">
+                                                        <img src="img/case.jpg" class="cover-image" alt="Фото">
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button type="button" class="cases__slider-prev swiper-button-prev"></button>
+                                        <button type="button" class="cases__slider-prev swiper-button-next"></button>
+                                    </div>
+                                </div>
+                                <div class="cases__tabs-block">
+                                    <div class="cases__slider">
+                                        <div class="cases__slider-block swiper">
+                                            <div class="swiper-wrapper">
+                                                <div class="case swiper-slide">
+                                                    <div class="case__main">
+                                                        <a href="" class="case__name title-sm">Проект поставки оборудования для&nbsp;лабораторного стенда</a>
+                                                        <div class="case__location icon-location">
+                                                            <div class="case__location-caption">Регион поставки:</div>
+                                                            <address class="case__location-address">Ленинградская область</address>
+                                                        </div>
+                                                        <p class="case__desc">Поставка учебных однокомпонентных электронных модулей управления, модулей защиты схем управления электроприводами в цепях переменного тока от токовых перегрузок, а также электронного модуля передачи команд управления исполнительными элементами путем коммутации их электрических цепей своими переключающими контактами.</p>
+                                                        <div class="case__footer">
+                                                            <div class="case__time">
+                                                                <div class="case__time-caption">Срок поставки договор/факт:</div>
+                                                                <div class="case__time-value title-sm">90 дней/68 дней</div>
+                                                            </div>
+                                                            <a href="" class="case__btn btn btn-primary btn-lg">Подробнее</a>
+                                                        </div>
+                                                    </div>
+                                                    <a href="" class="case__image">
+                                                        <img src="img/case.jpg" class="cover-image" alt="Фото">
+                                                    </a>
+                                                </div>
+                                                <div class="case swiper-slide">
+                                                    <div class="case__main">
+                                                        <a href="" class="case__name title-sm">Проект поставки оборудования для&nbsp;лабораторного стенда</a>
+                                                        <div class="case__location icon-location">
+                                                            <div class="case__location-caption">Регион поставки:</div>
+                                                            <address class="case__location-address">Ленинградская область</address>
+                                                        </div>
+                                                        <p class="case__desc">Поставка учебных однокомпонентных электронных модулей управления, модулей защиты схем управления электроприводами в цепях переменного тока от токовых перегрузок, а также электронного модуля передачи команд управления исполнительными элементами путем коммутации их электрических цепей своими переключающими контактами.</p>
+                                                        <div class="case__footer">
+                                                            <div class="case__time">
+                                                                <div class="case__time-caption">Срок поставки договор/факт:</div>
+                                                                <div class="case__time-value title-sm">90 дней/68 дней</div>
+                                                            </div>
+                                                            <a href="" class="case__btn btn btn-primary btn-lg">Подробнее</a>
+                                                        </div>
+                                                    </div>
+                                                    <a href="" class="case__image">
+                                                        <img src="img/case.jpg" class="cover-image" alt="Фото">
+                                                    </a>
+                                                </div>
+                                                <div class="case swiper-slide">
+                                                    <div class="case__main">
+                                                        <a href="" class="case__name title-sm">Проект поставки оборудования для&nbsp;лабораторного стенда</a>
+                                                        <div class="case__location icon-location">
+                                                            <div class="case__location-caption">Регион поставки:</div>
+                                                            <address class="case__location-address">Ленинградская область</address>
+                                                        </div>
+                                                        <p class="case__desc">Поставка учебных однокомпонентных электронных модулей управления, модулей защиты схем управления электроприводами в цепях переменного тока от токовых перегрузок, а также электронного модуля передачи команд управления исполнительными элементами путем коммутации их электрических цепей своими переключающими контактами.</p>
+                                                        <div class="case__footer">
+                                                            <div class="case__time">
+                                                                <div class="case__time-caption">Срок поставки договор/факт:</div>
+                                                                <div class="case__time-value title-sm">90 дней/68 дней</div>
+                                                            </div>
+                                                            <a href="" class="case__btn btn btn-primary btn-lg">Подробнее</a>
+                                                        </div>
+                                                    </div>
+                                                    <a href="" class="case__image">
+                                                        <img src="img/case.jpg" class="cover-image" alt="Фото">
+                                                    </a>
+                                                </div>
+                                                <div class="case swiper-slide">
+                                                    <div class="case__main">
+                                                        <a href="" class="case__name title-sm">Проект поставки оборудования для&nbsp;лабораторного стенда</a>
+                                                        <div class="case__location icon-location">
+                                                            <div class="case__location-caption">Регион поставки:</div>
+                                                            <address class="case__location-address">Ленинградская область</address>
+                                                        </div>
+                                                        <p class="case__desc">Поставка учебных однокомпонентных электронных модулей управления, модулей защиты схем управления электроприводами в цепях переменного тока от токовых перегрузок, а также электронного модуля передачи команд управления исполнительными элементами путем коммутации их электрических цепей своими переключающими контактами.</p>
+                                                        <div class="case__footer">
+                                                            <div class="case__time">
+                                                                <div class="case__time-caption">Срок поставки договор/факт:</div>
+                                                                <div class="case__time-value title-sm">90 дней/68 дней</div>
+                                                            </div>
+                                                            <a href="" class="case__btn btn btn-primary btn-lg">Подробнее</a>
+                                                        </div>
+                                                    </div>
+                                                    <a href="" class="case__image">
+                                                        <img src="img/case.jpg" class="cover-image" alt="Фото">
+                                                    </a>
+                                                </div>
+                                                <div class="case swiper-slide">
+                                                    <div class="case__main">
+                                                        <a href="" class="case__name title-sm">Проект поставки оборудования для&nbsp;лабораторного стенда</a>
+                                                        <div class="case__location icon-location">
+                                                            <div class="case__location-caption">Регион поставки:</div>
+                                                            <address class="case__location-address">Ленинградская область</address>
+                                                        </div>
+                                                        <p class="case__desc">Поставка учебных однокомпонентных электронных модулей управления, модулей защиты схем управления электроприводами в цепях переменного тока от токовых перегрузок, а также электронного модуля передачи команд управления исполнительными элементами путем коммутации их электрических цепей своими переключающими контактами.</p>
+                                                        <div class="case__footer">
+                                                            <div class="case__time">
+                                                                <div class="case__time-caption">Срок поставки договор/факт:</div>
+                                                                <div class="case__time-value title-sm">90 дней/68 дней</div>
+                                                            </div>
+                                                            <a href="" class="case__btn btn btn-primary btn-lg">Подробнее</a>
+                                                        </div>
+                                                    </div>
+                                                    <a href="" class="case__image">
+                                                        <img src="img/case.jpg" class="cover-image" alt="Фото">
+                                                    </a>
+                                                </div>
+                                                <div class="case swiper-slide">
+                                                    <div class="case__main">
+                                                        <a href="" class="case__name title-sm">Проект поставки оборудования для&nbsp;лабораторного стенда</a>
+                                                        <div class="case__location icon-location">
+                                                            <div class="case__location-caption">Регион поставки:</div>
+                                                            <address class="case__location-address">Ленинградская область</address>
+                                                        </div>
+                                                        <p class="case__desc">Поставка учебных однокомпонентных электронных модулей управления, модулей защиты схем управления электроприводами в цепях переменного тока от токовых перегрузок, а также электронного модуля передачи команд управления исполнительными элементами путем коммутации их электрических цепей своими переключающими контактами.</p>
+                                                        <div class="case__footer">
+                                                            <div class="case__time">
+                                                                <div class="case__time-caption">Срок поставки договор/факт:</div>
+                                                                <div class="case__time-value title-sm">90 дней/68 дней</div>
+                                                            </div>
+                                                            <a href="" class="case__btn btn btn-primary btn-lg">Подробнее</a>
+                                                        </div>
+                                                    </div>
+                                                    <a href="" class="case__image">
+                                                        <img src="img/case.jpg" class="cover-image" alt="Фото">
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button type="button" class="cases__slider-prev swiper-button-prev"></button>
+                                        <button type="button" class="cases__slider-prev swiper-button-next"></button>
+                                    </div>
+                                </div>
+                                <div class="cases__tabs-block">
+                                    <div class="cases__slider">
+                                        <div class="cases__slider-block swiper">
+                                            <div class="swiper-wrapper">
+                                                <div class="case swiper-slide">
+                                                    <div class="case__main">
+                                                        <a href="" class="case__name title-sm">Проект поставки оборудования для&nbsp;лабораторного стенда</a>
+                                                        <div class="case__location icon-location">
+                                                            <div class="case__location-caption">Регион поставки:</div>
+                                                            <address class="case__location-address">Ленинградская область</address>
+                                                        </div>
+                                                        <p class="case__desc">Поставка учебных однокомпонентных электронных модулей управления, модулей защиты схем управления электроприводами в цепях переменного тока от токовых перегрузок, а также электронного модуля передачи команд управления исполнительными элементами путем коммутации их электрических цепей своими переключающими контактами.</p>
+                                                        <div class="case__footer">
+                                                            <div class="case__time">
+                                                                <div class="case__time-caption">Срок поставки договор/факт:</div>
+                                                                <div class="case__time-value title-sm">90 дней/68 дней</div>
+                                                            </div>
+                                                            <a href="" class="case__btn btn btn-primary btn-lg">Подробнее</a>
+                                                        </div>
+                                                    </div>
+                                                    <a href="" class="case__image">
+                                                        <img src="img/case.jpg" class="cover-image" alt="Фото">
+                                                    </a>
+                                                </div>
+                                                <div class="case swiper-slide">
+                                                    <div class="case__main">
+                                                        <a href="" class="case__name title-sm">Проект поставки оборудования для&nbsp;лабораторного стенда</a>
+                                                        <div class="case__location icon-location">
+                                                            <div class="case__location-caption">Регион поставки:</div>
+                                                            <address class="case__location-address">Ленинградская область</address>
+                                                        </div>
+                                                        <p class="case__desc">Поставка учебных однокомпонентных электронных модулей управления, модулей защиты схем управления электроприводами в цепях переменного тока от токовых перегрузок, а также электронного модуля передачи команд управления исполнительными элементами путем коммутации их электрических цепей своими переключающими контактами.</p>
+                                                        <div class="case__footer">
+                                                            <div class="case__time">
+                                                                <div class="case__time-caption">Срок поставки договор/факт:</div>
+                                                                <div class="case__time-value title-sm">90 дней/68 дней</div>
+                                                            </div>
+                                                            <a href="" class="case__btn btn btn-primary btn-lg">Подробнее</a>
+                                                        </div>
+                                                    </div>
+                                                    <a href="" class="case__image">
+                                                        <img src="img/case.jpg" class="cover-image" alt="Фото">
+                                                    </a>
+                                                </div>
+                                                <div class="case swiper-slide">
+                                                    <div class="case__main">
+                                                        <a href="" class="case__name title-sm">Проект поставки оборудования для&nbsp;лабораторного стенда</a>
+                                                        <div class="case__location icon-location">
+                                                            <div class="case__location-caption">Регион поставки:</div>
+                                                            <address class="case__location-address">Ленинградская область</address>
+                                                        </div>
+                                                        <p class="case__desc">Поставка учебных однокомпонентных электронных модулей управления, модулей защиты схем управления электроприводами в цепях переменного тока от токовых перегрузок, а также электронного модуля передачи команд управления исполнительными элементами путем коммутации их электрических цепей своими переключающими контактами.</p>
+                                                        <div class="case__footer">
+                                                            <div class="case__time">
+                                                                <div class="case__time-caption">Срок поставки договор/факт:</div>
+                                                                <div class="case__time-value title-sm">90 дней/68 дней</div>
+                                                            </div>
+                                                            <a href="" class="case__btn btn btn-primary btn-lg">Подробнее</a>
+                                                        </div>
+                                                    </div>
+                                                    <a href="" class="case__image">
+                                                        <img src="img/case.jpg" class="cover-image" alt="Фото">
+                                                    </a>
+                                                </div>
+                                                <div class="case swiper-slide">
+                                                    <div class="case__main">
+                                                        <a href="" class="case__name title-sm">Проект поставки оборудования для&nbsp;лабораторного стенда</a>
+                                                        <div class="case__location icon-location">
+                                                            <div class="case__location-caption">Регион поставки:</div>
+                                                            <address class="case__location-address">Ленинградская область</address>
+                                                        </div>
+                                                        <p class="case__desc">Поставка учебных однокомпонентных электронных модулей управления, модулей защиты схем управления электроприводами в цепях переменного тока от токовых перегрузок, а также электронного модуля передачи команд управления исполнительными элементами путем коммутации их электрических цепей своими переключающими контактами.</p>
+                                                        <div class="case__footer">
+                                                            <div class="case__time">
+                                                                <div class="case__time-caption">Срок поставки договор/факт:</div>
+                                                                <div class="case__time-value title-sm">90 дней/68 дней</div>
+                                                            </div>
+                                                            <a href="" class="case__btn btn btn-primary btn-lg">Подробнее</a>
+                                                        </div>
+                                                    </div>
+                                                    <a href="" class="case__image">
+                                                        <img src="img/case.jpg" class="cover-image" alt="Фото">
+                                                    </a>
+                                                </div>
+                                                <div class="case swiper-slide">
+                                                    <div class="case__main">
+                                                        <a href="" class="case__name title-sm">Проект поставки оборудования для&nbsp;лабораторного стенда</a>
+                                                        <div class="case__location icon-location">
+                                                            <div class="case__location-caption">Регион поставки:</div>
+                                                            <address class="case__location-address">Ленинградская область</address>
+                                                        </div>
+                                                        <p class="case__desc">Поставка учебных однокомпонентных электронных модулей управления, модулей защиты схем управления электроприводами в цепях переменного тока от токовых перегрузок, а также электронного модуля передачи команд управления исполнительными элементами путем коммутации их электрических цепей своими переключающими контактами.</p>
+                                                        <div class="case__footer">
+                                                            <div class="case__time">
+                                                                <div class="case__time-caption">Срок поставки договор/факт:</div>
+                                                                <div class="case__time-value title-sm">90 дней/68 дней</div>
+                                                            </div>
+                                                            <a href="" class="case__btn btn btn-primary btn-lg">Подробнее</a>
+                                                        </div>
+                                                    </div>
+                                                    <a href="" class="case__image">
+                                                        <img src="img/case.jpg" class="cover-image" alt="Фото">
+                                                    </a>
+                                                </div>
+                                                <div class="case swiper-slide">
+                                                    <div class="case__main">
+                                                        <a href="" class="case__name title-sm">Проект поставки оборудования для&nbsp;лабораторного стенда</a>
+                                                        <div class="case__location icon-location">
+                                                            <div class="case__location-caption">Регион поставки:</div>
+                                                            <address class="case__location-address">Ленинградская область</address>
+                                                        </div>
+                                                        <p class="case__desc">Поставка учебных однокомпонентных электронных модулей управления, модулей защиты схем управления электроприводами в цепях переменного тока от токовых перегрузок, а также электронного модуля передачи команд управления исполнительными элементами путем коммутации их электрических цепей своими переключающими контактами.</p>
+                                                        <div class="case__footer">
+                                                            <div class="case__time">
+                                                                <div class="case__time-caption">Срок поставки договор/факт:</div>
+                                                                <div class="case__time-value title-sm">90 дней/68 дней</div>
+                                                            </div>
+                                                            <a href="" class="case__btn btn btn-primary btn-lg">Подробнее</a>
+                                                        </div>
+                                                    </div>
+                                                    <a href="" class="case__image">
+                                                        <img src="img/case.jpg" class="cover-image" alt="Фото">
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button type="button" class="cases__slider-prev swiper-button-prev"></button>
+                                        <button type="button" class="cases__slider-prev swiper-button-next"></button>
+                                    </div>
+                                </div>
+                                <div class="cases__tabs-block">
+                                    <div class="cases__slider">
+                                        <div class="cases__slider-block swiper">
+                                            <div class="swiper-wrapper">
+                                                <div class="case swiper-slide">
+                                                    <div class="case__main">
+                                                        <a href="" class="case__name title-sm">Проект поставки оборудования для&nbsp;лабораторного стенда</a>
+                                                        <div class="case__location icon-location">
+                                                            <div class="case__location-caption">Регион поставки:</div>
+                                                            <address class="case__location-address">Ленинградская область</address>
+                                                        </div>
+                                                        <p class="case__desc">Поставка учебных однокомпонентных электронных модулей управления, модулей защиты схем управления электроприводами в цепях переменного тока от токовых перегрузок, а также электронного модуля передачи команд управления исполнительными элементами путем коммутации их электрических цепей своими переключающими контактами.</p>
+                                                        <div class="case__footer">
+                                                            <div class="case__time">
+                                                                <div class="case__time-caption">Срок поставки договор/факт:</div>
+                                                                <div class="case__time-value title-sm">90 дней/68 дней</div>
+                                                            </div>
+                                                            <a href="" class="case__btn btn btn-primary btn-lg">Подробнее</a>
+                                                        </div>
+                                                    </div>
+                                                    <a href="" class="case__image">
+                                                        <img src="img/case.jpg" class="cover-image" alt="Фото">
+                                                    </a>
+                                                </div>
+                                                <div class="case swiper-slide">
+                                                    <div class="case__main">
+                                                        <a href="" class="case__name title-sm">Проект поставки оборудования для&nbsp;лабораторного стенда</a>
+                                                        <div class="case__location icon-location">
+                                                            <div class="case__location-caption">Регион поставки:</div>
+                                                            <address class="case__location-address">Ленинградская область</address>
+                                                        </div>
+                                                        <p class="case__desc">Поставка учебных однокомпонентных электронных модулей управления, модулей защиты схем управления электроприводами в цепях переменного тока от токовых перегрузок, а также электронного модуля передачи команд управления исполнительными элементами путем коммутации их электрических цепей своими переключающими контактами.</p>
+                                                        <div class="case__footer">
+                                                            <div class="case__time">
+                                                                <div class="case__time-caption">Срок поставки договор/факт:</div>
+                                                                <div class="case__time-value title-sm">90 дней/68 дней</div>
+                                                            </div>
+                                                            <a href="" class="case__btn btn btn-primary btn-lg">Подробнее</a>
+                                                        </div>
+                                                    </div>
+                                                    <a href="" class="case__image">
+                                                        <img src="img/case.jpg" class="cover-image" alt="Фото">
+                                                    </a>
+                                                </div>
+                                                <div class="case swiper-slide">
+                                                    <div class="case__main">
+                                                        <a href="" class="case__name title-sm">Проект поставки оборудования для&nbsp;лабораторного стенда</a>
+                                                        <div class="case__location icon-location">
+                                                            <div class="case__location-caption">Регион поставки:</div>
+                                                            <address class="case__location-address">Ленинградская область</address>
+                                                        </div>
+                                                        <p class="case__desc">Поставка учебных однокомпонентных электронных модулей управления, модулей защиты схем управления электроприводами в цепях переменного тока от токовых перегрузок, а также электронного модуля передачи команд управления исполнительными элементами путем коммутации их электрических цепей своими переключающими контактами.</p>
+                                                        <div class="case__footer">
+                                                            <div class="case__time">
+                                                                <div class="case__time-caption">Срок поставки договор/факт:</div>
+                                                                <div class="case__time-value title-sm">90 дней/68 дней</div>
+                                                            </div>
+                                                            <a href="" class="case__btn btn btn-primary btn-lg">Подробнее</a>
+                                                        </div>
+                                                    </div>
+                                                    <a href="" class="case__image">
+                                                        <img src="img/case.jpg" class="cover-image" alt="Фото">
+                                                    </a>
+                                                </div>
+                                                <div class="case swiper-slide">
+                                                    <div class="case__main">
+                                                        <a href="" class="case__name title-sm">Проект поставки оборудования для&nbsp;лабораторного стенда</a>
+                                                        <div class="case__location icon-location">
+                                                            <div class="case__location-caption">Регион поставки:</div>
+                                                            <address class="case__location-address">Ленинградская область</address>
+                                                        </div>
+                                                        <p class="case__desc">Поставка учебных однокомпонентных электронных модулей управления, модулей защиты схем управления электроприводами в цепях переменного тока от токовых перегрузок, а также электронного модуля передачи команд управления исполнительными элементами путем коммутации их электрических цепей своими переключающими контактами.</p>
+                                                        <div class="case__footer">
+                                                            <div class="case__time">
+                                                                <div class="case__time-caption">Срок поставки договор/факт:</div>
+                                                                <div class="case__time-value title-sm">90 дней/68 дней</div>
+                                                            </div>
+                                                            <a href="" class="case__btn btn btn-primary btn-lg">Подробнее</a>
+                                                        </div>
+                                                    </div>
+                                                    <a href="" class="case__image">
+                                                        <img src="img/case.jpg" class="cover-image" alt="Фото">
+                                                    </a>
+                                                </div>
+                                                <div class="case swiper-slide">
+                                                    <div class="case__main">
+                                                        <a href="" class="case__name title-sm">Проект поставки оборудования для&nbsp;лабораторного стенда</a>
+                                                        <div class="case__location icon-location">
+                                                            <div class="case__location-caption">Регион поставки:</div>
+                                                            <address class="case__location-address">Ленинградская область</address>
+                                                        </div>
+                                                        <p class="case__desc">Поставка учебных однокомпонентных электронных модулей управления, модулей защиты схем управления электроприводами в цепях переменного тока от токовых перегрузок, а также электронного модуля передачи команд управления исполнительными элементами путем коммутации их электрических цепей своими переключающими контактами.</p>
+                                                        <div class="case__footer">
+                                                            <div class="case__time">
+                                                                <div class="case__time-caption">Срок поставки договор/факт:</div>
+                                                                <div class="case__time-value title-sm">90 дней/68 дней</div>
+                                                            </div>
+                                                            <a href="" class="case__btn btn btn-primary btn-lg">Подробнее</a>
+                                                        </div>
+                                                    </div>
+                                                    <a href="" class="case__image">
+                                                        <img src="img/case.jpg" class="cover-image" alt="Фото">
+                                                    </a>
+                                                </div>
+                                                <div class="case swiper-slide">
+                                                    <div class="case__main">
+                                                        <a href="" class="case__name title-sm">Проект поставки оборудования для&nbsp;лабораторного стенда</a>
+                                                        <div class="case__location icon-location">
+                                                            <div class="case__location-caption">Регион поставки:</div>
+                                                            <address class="case__location-address">Ленинградская область</address>
+                                                        </div>
+                                                        <p class="case__desc">Поставка учебных однокомпонентных электронных модулей управления, модулей защиты схем управления электроприводами в цепях переменного тока от токовых перегрузок, а также электронного модуля передачи команд управления исполнительными элементами путем коммутации их электрических цепей своими переключающими контактами.</p>
+                                                        <div class="case__footer">
+                                                            <div class="case__time">
+                                                                <div class="case__time-caption">Срок поставки договор/факт:</div>
+                                                                <div class="case__time-value title-sm">90 дней/68 дней</div>
+                                                            </div>
+                                                            <a href="" class="case__btn btn btn-primary btn-lg">Подробнее</a>
+                                                        </div>
+                                                    </div>
+                                                    <a href="" class="case__image">
+                                                        <img src="img/case.jpg" class="cover-image" alt="Фото">
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button type="button" class="cases__slider-prev swiper-button-prev"></button>
+                                        <button type="button" class="cases__slider-prev swiper-button-next"></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="offer">
+                    <div class="offer__image">
+                        <img src="http://gogancai.beget.tech/wp-content/themes/ALT-Theme/assets/img/offer.jpg" class="cover-image" alt="Фото ноутбука">
+                    </div>
+                    <div class="offer__content">
+                        <div class="container">
+                            <div class="offer__body">
+                                <h2 class="offer__title title text-uppercase">Получить коммерческое предложение</h2>
+                                <p class="offer__subtitle">Оставьте заявку и получите расчет стоимости в течение 48х часов бесплатно</p>
+                                <div class="offer__form">
+                                    <div class="wpcf7 js" id="wpcf7-f6-o1" lang="ru-RU" dir="ltr" data-wpcf7-id="6">
+                                        <div class="screen-reader-response">
+                                            <p role="status" aria-live="polite" aria-atomic="true"></p>
+                                            <ul></ul>
+                                        </div>
+                                        <form action="/#wpcf7-f6-o1" method="post" class="wpcf7-form init" aria-label="Контактная форма" enctype="multipart/form-data" novalidate="novalidate" data-status="init">
+                                            <div style="display: none;">
+                                                <input type="hidden" name="_wpcf7" value="6">
+                                                <input type="hidden" name="_wpcf7_version" value="6.0.6">
+                                                <input type="hidden" name="_wpcf7_locale" value="ru_RU">
+                                                <input type="hidden" name="_wpcf7_unit_tag" value="wpcf7-f6-o1">
+                                                <input type="hidden" name="_wpcf7_container_post" value="0">
+                                                <input type="hidden" name="_wpcf7_posted_data_hash" value="">
+                                            </div>
+                                            <span class="wpcf7-form-control-wrap" data-name="company-name"><input size="40" maxlength="400" class="wpcf7-form-control wpcf7-text form__control" aria-invalid="false" placeholder="Название компании" value="" type="text" name="company-name"></span>
+                                            <span class="wpcf7-form-control-wrap" data-name="email"><input size="40" maxlength="400" class="wpcf7-form-control wpcf7-email wpcf7-text wpcf7-validates-as-email form__control" aria-invalid="false" placeholder="E-mail" value="" type="email" name="email"></span>
+                                            <label class="form__file">
+                                                <span class="wpcf7-form-control-wrap" data-name="file"><input size="40" class="wpcf7-form-control wpcf7-file form__file-input hidden" accept="audio/*,video/*,image/*" aria-invalid="false" type="file" name="file"></span>
+                                                <span class="form__file-btn icon-file">Прикрепите файл</span>
+                                            </label>
+                                            <div class="form__bottom">
+                                                <label class="form__btn btn btn-white btn-lg">
+                                                    <input class="wpcf7-form-control wpcf7-submit has-spinner" type="submit" value="Отправить"><span class="wpcf7-spinner"></span>
+                                                </label>
+                                                <label class="form__checkbox">
+                                                    <span class="wpcf7-form-control-wrap" data-name="nda"><span class="wpcf7-form-control wpcf7-acceptance optional"><span class="wpcf7-list-item"><label><input type="checkbox" name="nda" value="1" class="form__checkbox-input hidden" aria-invalid="false"><span class="wpcf7-list-item-label"><span class="form__checkbox-text">Даю согласие на <a href="">обработку персональных данных</a></span></span></label></span></span></span>
+                                                </label>
+                                            </div>
+                                            <div class="wpcf7-response-output" aria-hidden="true"></div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="clients">
+                    <div class="container">
+                        <h2 class="clients__title title text-uppercase">Наши клиенты</h2>
+                        <div class="clients__body">
+                            <div class="clients__slider swiper">
+                                <div class="swiper-wrapper">
+                                    <div class="clients__slide swiper-slide">
+                                        <img src="img/clients/nii-neolozhnoy-detskoy-hirurgii.svg" alt="">
+                                    </div>
+                                    <div class="clients__slide swiper-slide">
+                                        <img src="img/clients/souz-atom.jpg" alt="">
+                                    </div>
+                                    <div class="clients__slide swiper-slide">
+                                        <img src="img/clients/bsk.jpg" alt="">
+                                    </div>
+                                    <div class="clients__slide swiper-slide">
+                                        <img src="img/clients/vniig-vedeneeva.jpg" alt="">
+                                    </div>
+                                    <div class="clients__slide swiper-slide">
+                                        <img src="img/clients/nii-neolozhnoy-detskoy-hirurgii.svg" alt="">
+                                    </div>
+                                    <div class="clients__slide swiper-slide">
+                                        <img src="img/clients/souz-atom.jpg" alt="">
+                                    </div>
+                                    <div class="clients__slide swiper-slide">
+                                        <img src="img/clients/bsk.jpg" alt="">
+                                    </div>
+                                    <div class="clients__slide swiper-slide">
+                                        <img src="img/clients/vniig-vedeneeva.jpg" alt="">
+                                    </div>
+                                    <div class="clients__slide swiper-slide">
+                                        <img src="img/clients/goelectroset.jpg" alt="">
+                                    </div>
+                                    <div class="clients__slide swiper-slide">
+                                        <img src="img/clients/vostrochniy-port.svg" alt="">
+                                    </div>
+                                    <div class="clients__slide swiper-slide">
+                                        <img src="img/clients/knp.svg" alt="">
+                                    </div>
+                                    <div class="clients__slide swiper-slide">
+                                        <img src="img/clients/morport-spb.jpg" alt="">
+                                    </div>
+                                    <div class="clients__slide swiper-slide">
+                                        <img src="img/clients/goelectroset.jpg" alt="">
+                                    </div>
+                                    <div class="clients__slide swiper-slide">
+                                        <img src="img/clients/vostrochniy-port.svg" alt="">
+                                    </div>
+                                    <div class="clients__slide swiper-slide">
+                                        <img src="img/clients/knp.svg" alt="">
+                                    </div>
+                                    <div class="clients__slide swiper-slide">
+                                        <img src="img/clients/morport-spb.jpg" alt="">
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="button" class="clients__slider-prev swiper-button-prev swiper-button-dark"></button>
+                            <button type="button" class="clients__slider-next swiper-button-next swiper-button-dark"></button>
+                        </div>
+                    </div>
+                </section>
+                <section class="reviews">
+                    <div class="container">
+                        <h2 class="reviews__title title text-uppercase">Отзывы</h2>
+                        <div class="reviews__body">
+                            <div class="reviews__slider swiper">
+                                <div class="swiper-wrapper">
+                                    <a href="img/reviews/vniizzh.jpg" data-fancybox="reviews" class="reviews__slide swiper-slide">
+                                        <img src="img/reviews/vniizzh.jpg" alt="">
+                                    </a>
+                                    <a href="img/reviews/weighing-technologies.jpg" data-fancybox="reviews" class="reviews__slide swiper-slide">
+                                        <img src="img/reviews/weighing-technologies.jpg" alt="">
+                                    </a>
+                                    <a href="img/reviews/dv-ezxpert.jpg" data-fancybox="reviews" class="reviews__slide swiper-slide">
+                                        <img src="img/reviews/dv-ezxpert.jpg" alt="">
+                                    </a>
+                                    <a href="img/reviews/vniizzh.jpg" data-fancybox="reviews" class="reviews__slide swiper-slide">
+                                        <img src="img/reviews/vniizzh.jpg" alt="">
+                                    </a>
+                                    <a href="img/reviews/weighing-technologies.jpg" data-fancybox="reviews" class="reviews__slide swiper-slide">
+                                        <img src="img/reviews/weighing-technologies.jpg" alt="">
+                                    </a>
+                                    <a href="img/reviews/dv-ezxpert.jpg" data-fancybox="reviews" class="reviews__slide swiper-slide">
+                                        <img src="img/reviews/dv-ezxpert.jpg" alt="">
+                                    </a>
+                                </div>
+                            </div>
+                            <button type="button" class="reviews__slider-prev swiper-button-prev swiper-button-dark"></button>
+                            <button type="button" class="reviews__slider-next swiper-button-next swiper-button-dark"></button>
+                        </div>
+                    </div>
+                </section>
+                <section class="team">
+                    <div class="container">
+                        <h2 class="team__title title text-uppercase">
+                            наша команда
+                        </h2>
+                        <div class="team__body">
+                            <div class="team__slider swiper">
+                                <div class="swiper-wrapper">
+                                    <div class="team__slide swiper-slide">
+                                        <div class="team__slide-thumb">
+                                            <img src="img/team/vitaly-ivanov.jpg" class="cover-image" alt="">
+                                        </div>
+                                        <div class="team__slide-name title-sm">Виталий Иванов</div>
+                                        <div class="team__slide-position">Исполнительный директор</div>
+                                    </div>
+                                    <div class="team__slide swiper-slide">
+                                        <div class="team__slide-thumb">
+                                            <img src="img/team/vitaly-ivanov.jpg" class="cover-image" alt="">
+                                        </div>
+                                        <div class="team__slide-name title-sm">Виталий Иванов</div>
+                                        <div class="team__slide-position">Исполнительный директор</div>
+                                    </div>
+                                    <div class="team__slide swiper-slide">
+                                        <div class="team__slide-thumb">
+                                            <img src="img/team/vitaly-ivanov.jpg" class="cover-image" alt="">
+                                        </div>
+                                        <div class="team__slide-name title-sm">Виталий Иванов</div>
+                                        <div class="team__slide-position">Исполнительный директор</div>
+                                    </div>
+                                    <div class="team__slide swiper-slide">
+                                        <div class="team__slide-thumb">
+                                            <img src="img/team/vitaly-ivanov.jpg" class="cover-image" alt="">
+                                        </div>
+                                        <div class="team__slide-name title-sm">Виталий Иванов</div>
+                                        <div class="team__slide-position">Исполнительный директор</div>
+                                    </div>
+                                    <div class="team__slide swiper-slide">
+                                        <div class="team__slide-thumb">
+                                            <img src="img/team/vitaly-ivanov.jpg" class="cover-image" alt="">
+                                        </div>
+                                        <div class="team__slide-name title-sm">Виталий Иванов</div>
+                                        <div class="team__slide-position">Исполнительный директор</div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <button type="button" class="team__slider-prev swiper-button-prev swiper-button-dark"></button>
+                            <button type="button" class="team__slider-next swiper-button-next swiper-button-dark"></button>
+                        </div>
+                    </div>
+                </section>
+                <section class="blog">
+                    <div class="container">
+                        <div class="blog__content">
+                            <div class="blog__header">
+                                <h2 class="blog__title title text-uppercase">Блог</h2>
+                                <a href="" class="blog__link more-link icon-arrow">Все публикации</a>
+                            </div>
+                            <div class="blog__body">
+                                <div class="blog__slider swiper">
+                                    <div class="swiper-wrapper">
+                                        <div class="blog__item swiper-slide">
+                                            <a href="" class="blog__item-poster">
+                                                <img src="img/articles/technologist-white-coat-with-tablet-his-hands-controls-production-process-dairy-shop-quality-control-dairy-plant.jpg" class="cover-image" alt="">
+                                            </a>
+                                            <time datetime="" class="blog__item-time">25 марта 2025</time>
+                                            <a href="" class="blog__item-title title-sm">Решения для автоматизации от бренда EKF на конференции ПТА – Казань 2025</a>
+                                            <a href="" class="blog__item-btn btn btn-primary btn-lg">Подробнее</a>
+                                        </div>
+                                        <div class="blog__item swiper-slide">
+                                            <a href="" class="blog__item-poster">
+                                                <img src="img/articles/technologist-white-coat-with-tablet-his-hands-controls-production-process-dairy-shop-quality-control-dairy-plant.jpg" class="cover-image" alt="">
+                                            </a>
+                                            <time datetime="" class="blog__item-time">25 марта 2025</time>
+                                            <a href="" class="blog__item-title title-sm">Решения для автоматизации от бренда EKF на конференции ПТА – Казань 2025</a>
+                                            <a href="" class="blog__item-btn btn btn-primary btn-lg">Подробнее</a>
+                                        </div>
+                                        <div class="blog__item swiper-slide">
+                                            <a href="" class="blog__item-poster">
+                                                <img src="img/articles/technologist-white-coat-with-tablet-his-hands-controls-production-process-dairy-shop-quality-control-dairy-plant.jpg" class="cover-image" alt="">
+                                            </a>
+                                            <time datetime="" class="blog__item-time">25 марта 2025</time>
+                                            <a href="" class="blog__item-title title-sm">Решения для автоматизации от бренда EKF на конференции ПТА – Казань 2025</a>
+                                            <a href="" class="blog__item-btn btn btn-primary btn-lg">Подробнее</a>
+                                        </div>
+                                        <div class="blog__item swiper-slide">
+                                            <a href="" class="blog__item-poster">
+                                                <img src="img/articles/technologist-white-coat-with-tablet-his-hands-controls-production-process-dairy-shop-quality-control-dairy-plant.jpg" class="cover-image" alt="">
+                                            </a>
+                                            <time datetime="" class="blog__item-time">25 марта 2025</time>
+                                            <a href="" class="blog__item-title title-sm">Решения для автоматизации от бренда EKF на конференции ПТА – Казань 2025</a>
+                                            <a href="" class="blog__item-btn btn btn-primary btn-lg">Подробнее</a>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <button type="button" class="blog__slider-prev swiper-button-prev"></button>
+                                <button type="button" class="blog__slider-next swiper-button-next"></button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <div class="desc">
+                    <div class="container">
+                        <div class="desc__body">
+                            <p>Компания "АЛТ" была основана в 2014 году Плехановым Георгием Юрьевичем, человеком с большим опытом в электромонтажных работах. Изначально целью создания компании было не просто предоставление электротехнических услуг, а выход на рынок госзакупок.</p>
+                            <p>На пути развития "АЛТ" можно выделить несколько ключевых этапов. Первоначально компания сосредоточила свои усилия на электромонтажных работах, но вскоре начала расширять спектр услуг, включая холодильные установки и даже новогодние елки. При этой экспансии "АЛТ" постепенно освоила рынок госзакупок, что открыло новые горизонты и дало возможность брать на себя более крупные проекты.</p>
+                            <p>На пути развития "АЛТ" можно выделить несколько ключевых этапов. Первоначально компания сосредоточила свои усилия на электромонтажных работах, но вскоре начала расширять спектр услуг, включая холодильные установки и даже новогодние елки. При этой экспансии "АЛТ</p>
+                            <p>
+                                Компания "АЛТ" была основана в 2014 году Плехановым Георгием Юрьевичем, человеком с большим опытом в электромонтажных работах. Изначально целью создания компании было не просто предоставление электротехнических услуг, а выход на рынок госзакупок.
+                            </p>
+                        </div>
+                        <button type="button" class="desc__more more-link icon-arrow">Читать полностью</button>
+                    </div>
+                </div>
+                <section class="callback">
+                    <div class="container">
+                        <div class="callback__body">
+                            <div class="callback__main">
+                                <h2 class="callback__title title text-uppercase">остались вопросы?</h2>
+                                <p class="callback__subtitle title-sm">Поможем выбрать, ответим на&nbsp;все вопросы</p>
+                                <div class="callback__contacts">
+                                    <a href="" class="callback__phone title-sm">+7 (351) 777-45-78</a>
+                                    <div class="callback__socials">
+                                        <a href="" class="callback__social icon-whatsapp"></a>
+                                        <a href="" class="callback__social icon-telegram"></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="callback__form">
+                                <div class="wpcf7 js" id="wpcf7-f6-o1" lang="ru-RU" dir="ltr" data-wpcf7-id="6">
+                                    <div class="screen-reader-response">
+                                        <p role="status" aria-live="polite" aria-atomic="true"></p>
+                                        <ul></ul>
+                                    </div>
+                                    <form action="/#wpcf7-f6-o1" method="post" class="wpcf7-form init" aria-label="Контактная форма" enctype="multipart/form-data" novalidate="novalidate" data-status="init">
+                                        <div style="display: none;">
+                                            <input type="hidden" name="_wpcf7" value="6">
+                                            <input type="hidden" name="_wpcf7_version" value="6.0.6">
+                                            <input type="hidden" name="_wpcf7_locale" value="ru_RU">
+                                            <input type="hidden" name="_wpcf7_unit_tag" value="wpcf7-f6-o1">
+                                            <input type="hidden" name="_wpcf7_container_post" value="0">
+                                            <input type="hidden" name="_wpcf7_posted_data_hash" value="">
+                                        </div>
+                                        <span class="wpcf7-form-control-wrap" data-name="company-name"><input size="40" maxlength="400" class="wpcf7-form-control wpcf7-text form__control" aria-invalid="false" placeholder="Имя" value="" type="text" name="company-name"></span>
+                                        <span class="wpcf7-form-control-wrap" data-name="company-name"><input size="40" maxlength="400" class="wpcf7-form-control wpcf7-text form__control" aria-invalid="false" placeholder="Ваш телефон" value="" type="text" name="company-name"></span>
+                                        <span class="wpcf7-form-control-wrap" data-name="email"><input size="40" maxlength="400" class="wpcf7-form-control wpcf7-email wpcf7-text wpcf7-validates-as-email form__control" aria-invalid="false" placeholder="Ваш вопрос" value="" type="email" name="email"></span>
+                                        <div class="form__bottom">
+                                            <label class="form__btn btn btn-white">
+                                                <input class="wpcf7-form-control wpcf7-submit has-spinner" type="submit" value="Получить консультацию"><span class="wpcf7-spinner"></span>
+                                            </label>
+                                            <label class="form__checkbox">
+                                                <span class="wpcf7-form-control-wrap" data-name="nda"><span class="wpcf7-form-control wpcf7-acceptance optional"><span class="wpcf7-list-item"><label><input type="checkbox" name="nda" value="1" class="form__checkbox-input hidden" aria-invalid="false"><span class="wpcf7-list-item-label"><span class="form__checkbox-text">Даю согласие на <a href="">обработку персональных данных</a></span></span></label></span></span></span>
+                                            </label>
+                                        </div>
+                                        <div class="wpcf7-response-output" aria-hidden="true"></div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </main>
+            <footer class="footer">
+                <div class="container">
+                    <div class="footer__header">
+                        <address class="footer__location icon-location">Челябинск ул. Тернопольская 6, Сколково, Челябинский Кластер</address>
+                        <div class="footer__contacts">
+                            <a href="mailto:info@alt-ltd.ru" class="footer__contact icon-envelope">
+                                info@alt-ltd.ru
+                            </a>
+                            <a href="tel:+73517774578" class="footer__contact icon-phone">
+                                +7 (351) 777-45-78
+                            </a>
+                        </div>
+                        <a href="#callback" data-fancybox class="footer__callback btn btn-primary">Обратный звонок</a>
+                    </div>
+                    <nav aria-label="Меню в подвале" class="footer__menu">
+                        <div class="footer__menu-block">
+                            <div class="footer__menu-caption">АЛТ</div>
+                            <ul class="footer__menu-list">
+                                <li><a href="">Главная</a></li>
+                                <li><a href="">О компании</a></li>
+                                <li><a href="">Для госзаказчиков</a></li>
+                                <li><a href="">Для бизнеса</a></li>
+                                <li><a href="">Отзывы</a></li>
+                                <li><a href="">Блог</a></li>
+                                <li><a href="">Проекты</a></li>
+                                <li><a href="">Контакты</a></li>
+                                <li><a href="">Карта сайта</a></li>
+                                <li><a href="">Политика конфиденциальности</a></li>
+                            </ul>
+                        </div>
+                        <div class="footer__menu-block">
+                            <div class="footer__menu-caption">Наша продукция</div>
+                            <ul class="footer__menu-list">
+                                <li><a href="">Микрочипы</a></li>
+                                <li><a href="">Клапаны </a></li>
+                                <li><a href="">Мировые бренды автоматики</a></li>
+                                <li><a href="">Запчасти для холодильного оборудования</a></li>
+                                <li><a href="">Запчасти для роботов</a></li>
+                                <li><a href="">Лабораторное оборудование</a></li>
+                                <li><a href="">Запчасти для медицинского оборудования</a></li>
+                                <li><a href="">Средства измерения, находящиеся в ГРСИ</a></li>
+                                <li><a href="">Измерительное оборудование</a></li>
+                            </ul>
+                        </div>
+                        <div class="footer__menu-block">
+                            <div class="footer__menu-caption">Отрасли</div>
+                            <ul class="footer__menu-list">
+                                <li><a href="">Химическое производство</a></li>
+                                <li><a href="">Пищевая промышленность</a></li>
+                                <li><a href="">Атомная энергетика</a></li>
+                                <li><a href="">Нефтегазовая промышленность</a></li>
+                                <li><a href="">Для лабораторий</a></li>
+                                <li><a href="">Пищевая промышленность</a></li>
+                                <li><a href="">Атомная энергетика</a></li>
+                            </ul>
+                        </div>
+                    </nav>
+                    <div class="footer__bottom">
+                        <a href="/" class="footer__logo">
+                            <img src="img/logo.svg" alt="Логотип">
+                        </a>
+                        <div class="footer__reqs">
+                            ООО «Агрион Лайт Техноложис» <br>
+                            ОГРН: 1147451002720 <br>
+                            ИНН: 7451366924 <br>
+                            ООО АЛТ ©2025
+                        </div>
+                        <div class="footer__production">
+                            Разработка сайта и продвижение
+                            Маркетинговое агентство <a href="https://inmarketing.team/" target="_blank" class="footer__production-link">InMarketing</a>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+            <div id="callback" class="popup">
+                <button type="button" class="popup__close icon-cross"></button>
+                <h2 class="popup__title title text-uppercase">обратный звонок</h2>
+                <p class="popup__subtitle">Оставьте свои контактные данные и мы свяжемся с вами в ближайшее время!</p>
+                <div class="popup__form">
+                    <div class="wpcf7 js" id="wpcf7-f6-o1" lang="ru-RU" dir="ltr" data-wpcf7-id="6">
+                        <div class="screen-reader-response">
+                            <p role="status" aria-live="polite" aria-atomic="true"></p>
+                            <ul></ul>
+                        </div>
+                        <form action="/#wpcf7-f6-o1" method="post" class="wpcf7-form init" aria-label="Контактная форма" enctype="multipart/form-data" novalidate="novalidate" data-status="init">
+                            <div style="display: none;">
+                                <input type="hidden" name="_wpcf7" value="6">
+                                <input type="hidden" name="_wpcf7_version" value="6.0.6">
+                                <input type="hidden" name="_wpcf7_locale" value="ru_RU">
+                                <input type="hidden" name="_wpcf7_unit_tag" value="wpcf7-f6-o1">
+                                <input type="hidden" name="_wpcf7_container_post" value="0">
+                                <input type="hidden" name="_wpcf7_posted_data_hash" value="">
+                            </div>
+                            <span class="wpcf7-form-control-wrap" data-name="company-name"><input size="40" maxlength="400" class="wpcf7-form-control wpcf7-text form__control" aria-invalid="false" placeholder="Ваше имя" value="" type="text" name="company-name"></span>
+                            <span class="wpcf7-form-control-wrap" data-name="company-name"><input size="40" maxlength="400" class="wpcf7-form-control wpcf7-text form__control" aria-invalid="false" placeholder="Ваш телефон" value="" type="text" name="company-name"></span>
+                            <label class="form__btn btn btn-primary btn-lg">
+                                <input class="wpcf7-form-control wpcf7-submit has-spinner" type="submit" value="Отправить"><span class="wpcf7-spinner"></span>
+                            </label>
+                            <label class="form__checkbox">
+                                <span class="wpcf7-form-control-wrap" data-name="nda"><span class="wpcf7-form-control wpcf7-acceptance optional"><span class="wpcf7-list-item"><label><input type="checkbox" name="nda" value="1" class="form__checkbox-input hidden" aria-invalid="false"><span class="wpcf7-list-item-label"><span class="form__checkbox-text">Даю согласие на <a href="">обработку персональных данных</a></span></span></label></span></span></span>
+                            </label>
+                            <div class="wpcf7-response-output" aria-hidden="true"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="/js/libs/fancybox.umd.js"></script>
+        <script src="/js/libs/jquery-3.7.1.min.js"></script>
+        <script src="/js/libs/swiper-bundle.min.js"></script>
+        <script src="/js/libs/intlTelInput.min.js"></script>
+
+        <script src="/js/app.min.js"></script>
     </body>
 </html>
+<label class="form__checkbox">
+    [acceptance nda class:form__checkbox-input class:hidden optional]
+    <span class="form__checkbox-text">Даю согласие на <a href="">обработку персональных данных</a></span>
+    [/acceptance]
+</label>
