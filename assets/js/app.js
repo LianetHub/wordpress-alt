@@ -1,13 +1,21 @@
 "use strict";
 
-
 //  init Fancybox
 if (typeof Fancybox !== "undefined" && Fancybox !== null) {
     Fancybox.bind("[data-fancybox]", {
         dragToClose: false,
         closeButton: false
     });
+
+    Fancybox.bind('[data-gallery="product"]', {
+        type: "image",
+        groupAll: true,
+        dragToClose: false,
+        closeButton: false
+    });
 }
+
+
 
 $(function () {
 
@@ -48,6 +56,7 @@ $(function () {
     $(document).on('click', (e) => {
         const $target = $(e.target);
 
+
         //  menu
         if ($target.closest('.header__menu-toggler').length) {
             $('.header').toggleClass('open-menu');
@@ -85,7 +94,7 @@ $(function () {
 
         }
 
-        if ($target.is('.products__sidebar .wp-block-heading')) {
+        if ($target.is('.products__sidebar .wp-block-heading, .products__sidebar .filter-title')) {
             $target.toggleClass('active');
             $target.next().slideToggle()
         }
@@ -268,6 +277,24 @@ $(function () {
     }
 
 
+    // filters
+    function toggleCheckedFilterBlocks() {
+        $('.wp-block-woocommerce-product-filter-checkbox-list').each(function () {
+            const $thisFilterBlock = $(this);
+            const hasCheckedInputs = $thisFilterBlock.find('.wc-block-product-filter-checkbox-list__input:checked').length > 0;
+
+            if (hasCheckedInputs) {
+                $thisFilterBlock.slideDown(0);
+            }
+
+        });
+    }
+
+    toggleCheckedFilterBlocks();
+
+
+
+
     // preview uploads in forms
     function createFilePreview($fileInput) {
         const file = $fileInput[0].files[0];
@@ -354,15 +381,6 @@ $(function () {
                 prevEl: '.catalog__slider-prev',
                 nextEl: '.catalog__slider-next',
             },
-            breakpoints: {
-                575.98: {
-                    slidesPerView: 2,
-                },
-                797.98: {
-                    slidesPerView: 3,
-
-                }
-            }
         })
     }
 
@@ -396,28 +414,29 @@ $(function () {
         $('.cases__slider-block').each(function () {
             const $thisSlider = $(this);
             const totalSlides = $thisSlider.find('.swiper-slide').length;
-
-
             const enableLoop = totalSlides > 2;
 
             new Swiper($thisSlider[0], {
-                effect: 'coverflow',
-                centeredSlides: true,
+
                 slidesPerView: 'auto',
+                centeredSlides: true,
                 loop: enableLoop,
                 speed: 300,
-                coverflowEffect: {
-                    rotate: 0,
-                    stretch: 255,
-                    depth: 120,
-                    modifier: 2.75,
-                    slideShadows: false,
-                },
                 navigation: {
                     nextEl: $thisSlider.closest('.cases__slider').find('.swiper-button-next')[0],
                     prevEl: $thisSlider.closest('.cases__slider').find('.swiper-button-prev')[0],
                 },
                 breakpoints: {
+                    767.98: {
+                        effect: 'coverflow',
+                        coverflowEffect: {
+                            rotate: 0,
+                            stretch: 255,
+                            depth: 120,
+                            modifier: 2.75,
+                            slideShadows: false,
+                        },
+                    },
                     1439.98: {
                         coverflowEffect: {
                             modifier: 3,
@@ -670,11 +689,13 @@ $(function () {
 
 
     // search focus animation
-    if ($('.header__search-input').length) {
+    if ($('.header__search .proinput .orig').length) {
         const $searchForm = $('.header__search');
-        const $searchInput = $('.header__search-input');
+        const $searchInput = $('.header__search .proinput .orig');
 
         $searchInput.on('focus', () => {
+            console.log($searchInput, 'focus');
+
             $searchForm.addClass('focus');
         });
 
@@ -1171,6 +1192,7 @@ $(function () {
     });
 
 })
+
 
 
 

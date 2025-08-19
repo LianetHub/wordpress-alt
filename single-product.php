@@ -20,6 +20,7 @@ defined('ABSPATH') || exit;
 get_header();
 ?>
 
+
 <?php while (have_posts()) : the_post(); ?>
 
 	<?php
@@ -127,7 +128,7 @@ get_header();
 
 						<?php
 						if ($product->is_in_stock()) {
-							echo '<div class="product-card__availability icon-check-circle in-stock">в наличии на складе</div>';
+							echo '<div class="product-card__availability icon-check-circle in-stock">Наличие на складе уточняйте по запросу</div>';
 						} else {
 							echo '<div class="product-card__availability icon-check-circle not-available">Нет в наличии</div>';
 						}

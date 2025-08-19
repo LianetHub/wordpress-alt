@@ -8,7 +8,7 @@
 	padding: rem(32) 0;
 	@media (max-width: $md3) {
 		& + .features {
-			padding-top: rem(32);
+			padding-top: rem(0) !important;
 		}
 	}
 	@media (min-width: $md3) {
@@ -652,6 +652,10 @@
 					}
 					&.active {
 						// color: $accent !important;
+						& a {
+							color: $accent !important;
+							text-decoration: underline;
+						}
 					}
 					& a {
 						color: inherit !important;

@@ -25,7 +25,7 @@ if ($company_details_group):
     <section class="contacts">
         <div class="container">
             <?php if ($full_company_name): ?>
-                <h2 class="contacts__title title-sm">Общество с ограниченной ответственностью «Агрион Лайт Техноложис» (ООО «АЛТ»)</h2>
+                <h2 class="contacts__title title-sm">ОБЩЕСТВО С ОГРАНИЧЕННОЙ ОТВЕТСТВЕННОСТЬЮ "АЛТ-ИНЖИНИРИНГ"</h2>
             <?php endif; ?>
             <div class="contacts__body">
                 <ul class="contacts__reqs">

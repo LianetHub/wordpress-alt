@@ -535,7 +535,7 @@ function load_more_projects_ajax_handler()
 					<?php endif; ?>
 				</a>
 			</div>
-<?php
+		<?php
 		endwhile;
 	else :
 		echo '<p>По выбранным критериям проекты не найдены.</p>';
@@ -779,4 +779,99 @@ function cyrillicToLatin($text)
 	$text = strtolower($text);
 
 	return $text;
+}
+
+
+add_filter('posts_clauses', 'sort_products_by_image', 10, 2);
+
+function sort_products_by_image($clauses, $query)
+{
+	if ($query->is_main_query() && (is_shop() || is_product_category() || is_product_tag())) {
+
+		global $wpdb;
+
+
+		$clauses['join'] .= " LEFT JOIN {$wpdb->postmeta} AS mt1 ON ({$wpdb->posts}.ID = mt1.post_id AND mt1.meta_key = '_thumbnail_id')";
+
+
+		$clauses['orderby'] = "IF(mt1.meta_value IS NULL, 1, 0) ASC, " . $clauses['orderby'];
+	}
+
+	return $clauses;
+}
+
+
+add_filter('loop_shop_per_page', 'set_products_per_page', 20);
+
+function set_products_per_page()
+{
+
+	return 15;
+}
+
+add_action('wp_ajax_load_more_posts', 'load_more_posts_handler');
+add_action('wp_ajax_nopriv_load_more_posts', 'load_more_posts_handler');
+
+function load_more_posts_handler()
+{
+
+	if (!isset($_POST['nonce']) || !wp_verify_nonce($_POST['nonce'], 'load_more_posts_nonce')) {
+		wp_die('Ошибка безопасности');
+	}
+
+	$paged = $_POST['paged'] ?? 1;
+	$posts_per_page = 9;
+
+	$args = array(
+		'post_type'           => 'post',
+		'posts_per_page'      => $posts_per_page,
+		'post_status'         => 'publish',
+		'orderby'             => 'date',
+		'order'               => 'DESC',
+		'paged'               => $paged + 1,
+		'ignore_sticky_posts' => true
+	);
+
+	$query = new WP_Query($args);
+
+	if ($query->have_posts()) {
+		ob_start();
+		while ($query->have_posts()) : $query->the_post();
+
+		?>
+			<li class="blog__item">
+				<a href="<?php the_permalink(); ?>" class="blog__item-poster">
+					<?php
+					if (has_post_thumbnail()) {
+						the_post_thumbnail('full', array('class' => 'cover-image'));
+					} else {
+						echo '<img src="' . esc_url(get_template_directory_uri() . '/assets/img/default-article-placeholder.png') . '" class="cover-image" alt="Изображение по умолчанию">';
+					}
+					?>
+				</a>
+				<div class="blog__item-body">
+					<time datetime="<?= get_russian_post_date(get_the_ID(), 'datetime'); ?>" class="blog__item-time"><?= esc_html(get_russian_post_date(get_the_ID())); ?></time>
+					<a href="<?php the_permalink(); ?>" class="blog__item-title title-sm"><?php the_title(); ?></a>
+				</div>
+			</li>
+<?php
+		endwhile;
+		$html = ob_get_clean();
+
+
+		wp_send_json_success(array(
+			'html'      => $html,
+			'paged'     => $paged + 1,
+			'max_pages' => $query->max_num_pages
+		));
+	} else {
+
+		wp_send_json_success(array(
+			'html'      => '',
+			'paged'     => $paged + 1,
+			'max_pages' => $query->max_num_pages
+		));
+	}
+
+	wp_die();
 }

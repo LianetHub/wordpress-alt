@@ -19,25 +19,17 @@
 @font-face {
     font-family: Muller;
     font-display: swap;
-    src: url(../fonts/Muller-BoldItalic.woff) format("woff"), url(../fonts/Muller-BoldItalic.woff2) format("woff2");
-    font-weight: 700;
-    font-style: italic
-}
-
-@font-face {
-    font-family: Muller;
-    font-display: swap;
-    src: url(../fonts/Muller-Medium.woff) format("woff"), url(../fonts/Muller-Medium.woff2) format("woff2");
-    font-weight: 500;
-    font-style: normal
-}
-
-@font-face {
-    font-family: Muller;
-    font-display: swap;
     src: url(../fonts/Muller-Light.woff) format("woff"), url(../fonts/Muller-Light.woff2) format("woff2");
     font-weight: 300;
     font-style: normal
+}
+
+@font-face {
+    font-family: Muller;
+    font-display: swap;
+    src: url(../fonts/Muller-LightItalic.woff) format("woff"), url(../fonts/Muller-LightItalic.woff2) format("woff2");
+    font-weight: 300;
+    font-style: italic
 }
 
 @font-face {
@@ -51,12 +43,20 @@
 @font-face {
     font-family: Muller;
     font-display: swap;
-    src: url(../fonts/Muller-LightItalic.woff) format("woff"), url(../fonts/Muller-LightItalic.woff2) format("woff2");
-    font-weight: 300;
+    src: url(../fonts/Muller-BoldItalic.woff) format("woff"), url(../fonts/Muller-BoldItalic.woff2) format("woff2");
+    font-weight: 700;
     font-style: italic
 }
 
-.article__body ul>li::before, .article__seo-block .seo-list.list-style-checkbox>li::before, .checkbox__input:checked+.checkbox__btn::before, .form__checkbox-input:checked+.wpcf7-list-item-label .form__checkbox-text::before, .products__sidebar .wp-block-heading::before, .swiper-button-next, .swiper-button-prev, .woocommerce-pagination .next::before, .woocommerce-pagination .prev::before, [class*=" icon-"]:before, [class^=icon-]:before {
+@font-face {
+    font-family: Muller;
+    font-display: swap;
+    src: url(../fonts/Muller-Medium.woff) format("woff"), url(../fonts/Muller-Medium.woff2) format("woff2");
+    font-weight: 500;
+    font-style: normal
+}
+
+.article__body ul>li::before, .article__seo-block .seo-list.list-style-checkbox>li::before, .checkbox__input:checked+.checkbox__btn::before, .form__checkbox-input:checked+.wpcf7-list-item-label .form__checkbox-text::before, .nav-links .next::before, .nav-links .prev::before, .products__sidebar .filter-content .checkbox label input:checked+.term-label::before, .products__sidebar .filter-title::before, .products__sidebar .wp-block-heading::before, .swiper-button-next, .swiper-button-prev, .woocommerce-pagination .next::before, .woocommerce-pagination .prev::before, [class*=" icon-"]:before, [class^=icon-]:before {
     font-family: icons;
     font-style: normal;
     font-weight: 400;
@@ -84,7 +84,7 @@
     content: "\e900"
 }
 
-.article__body ul>li:before, .article__seo-block .seo-list.list-style-checkbox>li:before, .checkbox__input:checked+.checkbox__btn:before, .form__checkbox-input:checked+.wpcf7-list-item-label .form__checkbox-text:before, .icon-check:before {
+.article__body ul>li:before, .article__seo-block .seo-list.list-style-checkbox>li:before, .checkbox__input:checked+.checkbox__btn:before, .form__checkbox-input:checked+.wpcf7-list-item-label .form__checkbox-text:before, .icon-check:before, .products__sidebar .filter-content .checkbox label input:checked+.term-label:before {
     content: "\e901"
 }
 
@@ -108,7 +108,7 @@
     content: "\e906"
 }
 
-.icon-next:before, .products__sidebar .wp-block-heading:before, .swiper-button-next:before, .woocommerce-pagination .next:before {
+.icon-next:before, .nav-links .next:before, .products__sidebar .filter-title:before, .products__sidebar .wp-block-heading:before, .swiper-button-next:before, .woocommerce-pagination .next:before {
     content: "\e907"
 }
 
@@ -116,7 +116,7 @@
     content: "\e908"
 }
 
-.icon-prev:before, .swiper-button-prev:before, .woocommerce-pagination .prev:before {
+.icon-prev:before, .nav-links .prev:before, .swiper-button-prev:before, .woocommerce-pagination .prev:before {
     content: "\e909"
 }
 
@@ -1663,12 +1663,35 @@ body.lock-menu {
     display: none
 }
 
-header.scroll .header__search.focus .header__search-input {
+header.scroll .header__search.focus .asl_w_container, header.scroll .header__search.focus .header__search-input {
     width: 33rem
 }
 
-.header__search.focus .header__search-input {
+.header__search.focus .asl_w_container, .header__search.focus .header__search-input {
     width: 45rem
+}
+
+.header__search:not(.focus) div.asl_r.vertical {
+    display: none !important
+}
+
+.header__search .asl_w_container {
+    -webkit-transition: all .3s ease;
+    transition: all .3s ease;
+    position: absolute;
+    top: 0;
+    right: 0
+}
+
+.header__search div.asl_w .probox .promagnifier {
+    top: .125rem !important;
+    right: .25rem !important
+}
+
+.header__search div.asl_w .probox .proclose, .header__search div.asl_w .probox .proloading, .header__search div.asl_w .probox .prosettings {
+    position: absolute !important;
+    top: .125rem;
+    right: 2rem
 }
 
 .header__search-input {
@@ -2437,6 +2460,16 @@ header.scroll .header__search.focus .header__search-input {
     max-width: 100%
 }
 
+.promo__video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    -o-object-fit: cover;
+    object-fit: cover;
+    z-index: -2
+}
+
 .promo__body {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -2533,6 +2566,10 @@ header.scroll .header__search.focus .header__search-input {
     line-height: 115%
 }
 
+.error404 .promo__description {
+    display: block
+}
+
 .promo__hint {
     font-weight: 700;
     margin-bottom: .75rem;
@@ -2542,6 +2579,12 @@ header.scroll .header__search.focus .header__search-input {
 
 .promo__btn {
     width: 100%
+}
+
+.error404 .promo__btn {
+    max-width: 16.5rem;
+    -ms-flex-item-align: start;
+    align-self: flex-start
 }
 
 .promo__bottom {
@@ -4012,7 +4055,7 @@ header.scroll .header__search.focus .header__search-input {
     gap: 0
 }
 
-.products__sidebar .wp-block-heading {
+.products__sidebar .filter-title, .products__sidebar .wp-block-heading {
     margin-bottom: 0 !important;
     width: 100% !important
 }
@@ -4040,7 +4083,7 @@ header.scroll .header__search.focus .header__search-input {
     color: #fff !important
 }
 
-.products__sidebar .wc-block-product-filter-checkbox-list__text {
+.products__sidebar .term-label, .products__sidebar .wc-block-product-filter-checkbox-list__text {
     font-size: 1rem;
     font-weight: 300;
     line-height: 150%
@@ -4048,6 +4091,71 @@ header.scroll .header__search.focus .header__search-input {
 
 .products__sidebar .wc-block-product-filter-checkbox-list__list {
     margin-bottom: 0 !important
+}
+
+.products__sidebar .filter-content .checkbox label {
+    display: inline-block
+}
+
+.products__sidebar .filter-content .checkbox label input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    border: 0;
+    padding: 0;
+    white-space: nowrap;
+    clip-path: inset(100%);
+    clip: rect(0 0 0 0);
+    overflow: hidden
+}
+
+.products__sidebar .filter-content .checkbox label input:checked+.term-label::before {
+    background: #313f69
+}
+
+.products__sidebar .filter-content .checkbox label .term-label {
+    font-size: 1rem;
+    font-weight: 300;
+    line-height: 150%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    gap: .56rem;
+    cursor: pointer
+}
+
+.products__sidebar .filter-content .checkbox label .term-label::before {
+    content: "";
+    width: 1rem;
+    height: 1rem;
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+    border: .0625rem solid #dfe1eb;
+    background: #fff;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    color: #fff;
+    font-size: .5rem;
+    flex-shrink: 0
+}
+
+.products__sidebar .apply-filters, .products__sidebar .reset-filters {
+    width: 100%
+}
+
+.products__sidebar .reset-filters {
+    margin-top: .5rem
 }
 
 .products__search {
@@ -4178,11 +4286,11 @@ header.scroll .header__search.focus .header__search-input {
     display: none
 }
 
-.products__filter:not(:last-child), .products__sidebar .wp-block-woocommerce-product-filter-attribute:not(:last-child) {
+.products__filter:not(:last-child), .products__sidebar .filter-tax:not(:last-child), .products__sidebar .wp-block-woocommerce-product-filter-attribute:not(:last-child) {
     margin-bottom: .5rem
 }
 
-.products__filter-title, .products__sidebar .wp-block-heading {
+.products__filter-title, .products__sidebar .filter-title, .products__sidebar .wp-block-heading {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -4199,7 +4307,7 @@ header.scroll .header__search.focus .header__search-input {
     line-height: 140%
 }
 
-.products__filter-title::before, .products__sidebar .wp-block-heading::before {
+.products__filter-title::before, .products__sidebar .filter-title::before, .products__sidebar .wp-block-heading::before {
     -webkit-box-ordinal-group: 2;
     -ms-flex-order: 1;
     order: 1;
@@ -4223,13 +4331,13 @@ header.scroll .header__search.focus .header__search-input {
     font-size: .65em
 }
 
-.products__filter-title.active::before, .products__sidebar .active.wp-block-heading::before {
+.products__filter-title.active::before, .products__sidebar .active.filter-title::before, .products__sidebar .active.wp-block-heading::before {
     -webkit-transform: rotate(-90deg);
     -ms-transform: rotate(-90deg);
     transform: rotate(-90deg)
 }
 
-.products__filter-body, .products__sidebar .wp-block-woocommerce-product-filter-checkbox-list {
+.products__filter-body, .products__sidebar .filter-content, .products__sidebar .wp-block-woocommerce-product-filter-checkbox-list {
     display: none;
     padding-bottom: 1.12rem
 }
@@ -4247,7 +4355,7 @@ header.scroll .header__search.focus .header__search-input {
     align-items: flex-start
 }
 
-.products__filter-more, .products__sidebar .wc-block-product-filter-checkbox-list__show-more {
+.products__filter-more, .products__sidebar .filter-content .show-more, .products__sidebar .wc-block-product-filter-checkbox-list__show-more {
     margin-top: .75rem;
     color: #ea9d0f;
     font-size: 1rem;
@@ -4275,6 +4383,12 @@ header.scroll .header__search.focus .header__search-input {
 
 .products__list::after, .products__list::before {
     display: none !important
+}
+
+.products__list .no-results {
+    -ms-grid-column-span: 3;
+    grid-column: span 3;
+    font-size: 1.5em
 }
 
 .products__bottom {
@@ -4362,7 +4476,7 @@ header.scroll .header__search.focus .header__search-input {
     margin-top: 1.5rem
 }
 
-.woocommerce-pagination {
+.nav-links, .woocommerce-pagination {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -4374,7 +4488,7 @@ header.scroll .header__search.focus .header__search-input {
     align-items: center
 }
 
-.woocommerce-pagination .page-numbers {
+.nav-links .page-numbers, .woocommerce-pagination .page-numbers {
     width: 100% !important;
     border: 0 !important;
     display: -webkit-box !important;
@@ -4388,14 +4502,14 @@ header.scroll .header__search.focus .header__search-input {
     align-items: center !important
 }
 
-.woocommerce-pagination li {
+.nav-links li, .woocommerce-pagination li {
     border: 0 !important;
     display: -webkit-box !important;
     display: -ms-flexbox !important;
     display: flex !important
 }
 
-.woocommerce-pagination li a {
+.nav-links a, .woocommerce-pagination a {
     border: 0 !important;
     background: 0 0 !important;
     padding: .25rem .5rem !important;
@@ -4413,7 +4527,7 @@ header.scroll .header__search.focus .header__search-input {
     align-items: center !important
 }
 
-.woocommerce-pagination li .current {
+.nav-links .current, .woocommerce-pagination .current {
     color: rgba(20, 20, 20, .4) !important;
     background: 0 0 !important;
     font-size: 1.125rem !important;
@@ -4421,7 +4535,7 @@ header.scroll .header__search.focus .header__search-input {
     line-height: 133.333% !important
 }
 
-.woocommerce-pagination .prev {
+.nav-links .prev, .woocommerce-pagination .prev {
     margin-right: 3.125rem !important;
     width: 2.25rem !important;
     height: 2.25rem !important;
@@ -4441,11 +4555,11 @@ header.scroll .header__search.focus .header__search-input {
     align-items: center !important
 }
 
-.woocommerce-pagination .prev::before {
+.nav-links .prev::before, .woocommerce-pagination .prev::before {
     font-size: 1rem
 }
 
-.woocommerce-pagination .next {
+.nav-links .next, .woocommerce-pagination .next {
     margin-left: 3.125rem !important;
     width: 2.25rem !important;
     height: 2.25rem !important;
@@ -4465,11 +4579,11 @@ header.scroll .header__search.focus .header__search-input {
     align-items: center !important
 }
 
-.woocommerce-pagination .next::before {
+.nav-links .next::before, .woocommerce-pagination .next::before {
     font-size: 1rem
 }
 
-.woocommerce-pagination .dots {
+.nav-links .dots, .woocommerce-pagination .dots {
     font-size: 1.125rem !important;
     font-weight: 700 !important;
     line-height: 133.333% !important;
@@ -5346,6 +5460,11 @@ header.scroll .header__search.focus .header__search-input {
     margin-bottom: .9375rem
 }
 
+.article__navbar nav ul li.active a {
+    color: #ea9d0f !important;
+    text-decoration: underline
+}
+
 .article__navbar nav ul li a {
     color: inherit !important;
     font-size: 1rem !important;
@@ -5424,6 +5543,405 @@ header.scroll .header__search.focus .header__search-input {
 .article__audit-btn {
     -ms-flex-negative: 0;
     flex-shrink: 0
+}
+
+.search-page {
+    padding: 3.375rem 0;
+    position: relative;
+    z-index: 1
+}
+
+.search-page>* {
+    -webkit-box-sizing: border-box !important;
+    box-sizing: border-box !important
+}
+
+.search-page div.asl_m .proinput input.orig {
+    font-size: 1rem !important;
+    padding: .83rem 1.88rem .83rem 3.7rem !important;
+    border-radius: 0 !important;
+    height: auto !important;
+    text-overflow: ellipsis !important;
+    -webkit-transition: border-color .3s ease 0s, color .3s ease 0s !important;
+    transition: border-color .3s ease 0s, color .3s ease 0s !important;
+    width: 100% !important;
+    border: 1px solid #dfdfdf !important;
+    color: #141414 !important;
+    background: #fff !important;
+    line-height: 100% !important;
+    caret-color: #ea9d0f !important;
+    font-family: inherit !important
+}
+
+.search-page div.asl_m .proinput input.orig:focus, .search-page div.asl_m .proinput input.orig:hover {
+    border-color: #ea9d0f !important
+}
+
+.search-page div.asl_m .proinput input.orig::-webkit-input-placeholder {
+    color: #606060 !important;
+    font-family: inherit !important;
+    opacity: 1 !important
+}
+
+.search-page div.asl_m .proinput input.orig::-moz-placeholder {
+    color: #606060 !important;
+    font-family: inherit !important;
+    opacity: 1 !important
+}
+
+.search-page div.asl_m .proinput input.orig:-ms-input-placeholder {
+    color: #606060 !important;
+    font-family: inherit !important;
+    opacity: 1 !important
+}
+
+.search-page div.asl_m .proinput input.orig::-ms-input-placeholder {
+    color: #606060 !important;
+    font-family: inherit !important;
+    opacity: 1 !important
+}
+
+.search-page div.asl_m .proinput input.orig::placeholder {
+    color: #606060 !important;
+    font-family: inherit !important;
+    opacity: 1 !important
+}
+
+.search-page div.asl_m .proinput input.orig:disabled {
+    background: #dfe0e1 !important;
+    border-color: #dfe0e1 !important
+}
+
+.search-page .asl_w_container {
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    gap: .66rem;
+    min-height: 3rem
+}
+
+.search-page div.asl_m .probox {
+    gap: 1rem;
+    -ms-flex-item-align: center;
+    -ms-grid-row-align: center;
+    align-self: center;
+    -webkit-box-align: stretch !important;
+    -ms-flex-align: stretch !important;
+    align-items: stretch !important
+}
+
+.search-page div.asl_m .probox .proinput {
+    -ms-flex-item-align: stretch;
+    -ms-grid-row-align: stretch;
+    align-self: stretch
+}
+
+.search-page__title {
+    margin-top: 2.75rem;
+    font-size: 2.8125rem
+}
+
+.search-page__form {
+    position: relative;
+    margin-top: 2.5rem;
+    max-width: 59.4rem;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    gap: .66rem
+}
+
+.search-page__form .form__input {
+    width: 100%;
+    -webkit-box-flex: 1;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    padding: .83rem 1.88rem .83rem 3.7rem
+}
+
+.search-page__form .search__form-btn {
+    left: 2rem
+}
+
+.search-page__results {
+    margin-top: 3rem
+}
+
+.search-page__result {
+    display: block
+}
+
+.search-page__result:not(:last-child) {
+    margin-bottom: 1.75rem
+}
+
+.search-page__result-block {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    gap: 1.5rem;
+    -webkit-transition: color .3s ease 0s;
+    transition: color .3s ease 0s
+}
+
+.search-page__result-thumb {
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 7.5rem;
+    flex: 0 0 7.5rem;
+    height: 7.5rem;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    border: 1px solid #dfdfdf
+}
+
+.search-page__result-thumb img {
+    width: auto;
+    height: auto;
+    max-height: 100%
+}
+
+.search-page__result-content {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    gap: .25rem
+}
+
+.search-page__result-name {
+    font-size: 1.5625rem;
+    line-height: 140%;
+    font-weight: 500
+}
+
+.search-page__result-desc {
+    font-size: 1rem;
+    line-height: 140%
+}
+
+.search-page__pagination {
+    margin-top: 2rem
+}
+
+.search-results__not-found {
+    margin-top: 2rem;
+    font-size: 1.5em
+}
+
+div.asl_w {
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+    overflow: visible !important
+}
+
+.probox, div.asl_w .probox {
+    height: auto !important
+}
+
+div.asl_m .probox {
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    overflow: visible !important
+}
+
+.probox .proinput, div.asl_w .probox .proinput {
+    padding: 0 !important;
+    margin-left: 0 !important
+}
+
+div.asl_w .probox .promagnifier {
+    position: absolute;
+    top: .55rem;
+    right: 1rem;
+    width: 2em !important;
+    height: 2em !important
+}
+
+.asl_w_container .probox .proinput input, .asl_w_container div.asl_w .probox .proinput input {
+    text-overflow: ellipsis !important;
+    -webkit-transition: border-color .3s ease 0s, color .3s ease 0s !important;
+    transition: border-color .3s ease 0s, color .3s ease 0s !important;
+    width: 100% !important;
+    font-weight: 400 !important;
+    font-family: Muller !important;
+    border: .0625rem solid #dfe1eb !important;
+    border-radius: 0 !important;
+    color: #141414 !important;
+    background: #fff !important;
+    line-height: 1rem !important;
+    caret-color: #ea9d0f !important;
+    -webkit-box-sizing: border-box !important;
+    box-sizing: border-box !important;
+    font-size: .9375rem !important;
+    padding: .4rem 2rem .4rem .9375rem !important;
+    min-height: 2.25rem !important
+}
+
+.asl_w_container .probox .proinput input::-webkit-input-placeholder, .asl_w_container div.asl_w .probox .proinput input::-webkit-input-placeholder {
+    color: #9ea3b5 !important;
+    opacity: 1 !important
+}
+
+.asl_w_container .probox .proinput input::-moz-placeholder, .asl_w_container div.asl_w .probox .proinput input::-moz-placeholder {
+    color: #9ea3b5 !important;
+    opacity: 1 !important
+}
+
+.asl_w_container .probox .proinput input:-ms-input-placeholder, .asl_w_container div.asl_w .probox .proinput input:-ms-input-placeholder {
+    color: #9ea3b5 !important;
+    opacity: 1 !important
+}
+
+.asl_w_container .probox .proinput input::-ms-input-placeholder, .asl_w_container div.asl_w .probox .proinput input::-ms-input-placeholder {
+    color: #9ea3b5 !important;
+    opacity: 1 !important
+}
+
+.asl_w_container .probox .proinput input::placeholder, .asl_w_container div.asl_w .probox .proinput input::placeholder {
+    color: #9ea3b5 !important;
+    opacity: 1 !important
+}
+
+.asl_w_container .probox .proinput input:focus, .asl_w_container div.asl_w .probox .proinput input:focus {
+    border-color: #ea9d0f !important
+}
+
+.asl_w_container .probox .proinput input.autocomplete, .asl_w_container .probox .proinput input[type=submit], .asl_w_container div.asl_w .probox .proinput input.autocomplete, .asl_w_container div.asl_w .probox .proinput input[type=submit] {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    border: 0;
+    padding: 0;
+    white-space: nowrap;
+    clip-path: inset(100%);
+    clip: rect(0 0 0 0);
+    overflow: hidden
+}
+
+div.asl_w .probox .proclose, div.asl_w .probox .proloading, div.asl_w .probox .prosettings {
+    position: absolute !important;
+    top: .5rem;
+    right: .75rem
+}
+
+div.asl_w .probox .proclose {
+    display: inline-block;
+    width: 2em !important;
+    height: 2em !important;
+    background-repeat: no-repeat !important;
+    background-size: 1rem 1rem !important;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 10 10' fill='none'%3E%3Cpath d='M1 1L9 9M1 9L9 1' stroke='%23606060' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") !important
+}
+
+div.asl_w .probox .proclose svg {
+    display: none !important
+}
+
+div.asl_w .probox .promagnifier .innericon svg {
+    fill: #000 !important
+}
+
+div.asl_w .probox div.asl_simple-circle {
+    border: 2px solid #606060 !important
+}
+
+div.asl_r.vertical {
+    margin: 1px 0 0 0;
+    border-radius: 0 !important;
+    padding: 20px 4px !important;
+    border: 1px solid #dfe1eb !important;
+    border-top: 0 !important;
+    background: #fff;
+    -webkit-box-shadow: 0 4px 4px 0 rgba(0, 0, 0, .1);
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, .1)
+}
+
+div.asl_r.vertical::before {
+    content: "";
+    position: absolute;
+    top: -5px;
+    left: -1px;
+    right: -1px;
+    height: 5px;
+    border-left: 1px solid #dfe1eb;
+    border-right: 1px solid #dfe1eb;
+    pointer-events: none
+}
+
+div.asl_r .results .item .asl_content h3, div.asl_r .results .item .asl_content h3 a {
+    font-family: Muller !important;
+    font-size: 1.125rem !important;
+    font-weight: 500 !important;
+    line-height: 100% !important;
+    padding: 1rem 0 !important;
+    text-shadow: none !important;
+    color: inherit !important
+}
+
+div.asl_r .results .item .asl_content {
+    display: -ms-grid;
+    display: grid;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-grid-columns: 70px 1fr;
+    grid-template-columns: 70px 1fr;
+    -webkit-column-gap: 1rem;
+    -moz-column-gap: 1rem;
+    column-gap: 1rem;
+    -webkit-transition: color .3s ease;
+    transition: color .3s ease
+}
+
+div.asl_r .results .item .asl_content .etc {
+    display: none !important
+}
+
+.asl_image {
+    -ms-grid-row-span: 2;
+    grid-row: span 2;
+    -ms-grid-row-align: start;
+    align-self: start
+}
+
+div.asl_r {
+    z-index: 6 !important
+}
+
+div.asl_r .results .item {
+    border-right: 0 !important;
+    border-bottom: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    border-left: 0 !important
+}
+
+div.asl_r.asl_w.vertical .results .item::after {
+    display: none !important
+}
+
+div.asl_r.vertical .results {
+    margin-left: -4px
+}
+
+div.asl_r p.showmore {
+    display: none !important
 }
 
 @media (min-width:359.98px) {
@@ -7084,22 +7602,22 @@ header.scroll .header__search.focus .header__search-input {
 
     .products__filters-blocks {
         display: block !important;
-        margin-top: 1.25rem;
+        margin-top: 1.25rem !important;
         border-top: .0625rem solid #dfe1eb
     }
 
-    .products__filter:not(:last-child), .products__sidebar .wp-block-woocommerce-product-filter-attribute:not(:last-child) {
+    .products__filter:not(:last-child), .products__sidebar .filter-tax:not(:last-child), .products__sidebar .wp-block-woocommerce-product-filter-attribute:not(:last-child) {
         border-bottom: .0625rem solid #dfe1eb;
         margin-bottom: 0
     }
 
-    .products__filter-title, .products__sidebar .wp-block-heading {
+    .products__filter-title, .products__sidebar .filter-title, .products__sidebar .wp-block-heading {
         line-height: 133.333%;
         font-size: 1.125rem;
         font-weight: 500
     }
 
-    .products__filter-title::before, .products__sidebar .wp-block-heading::before {
+    .products__filter-title::before, .products__sidebar .filter-title::before, .products__sidebar .wp-block-heading::before {
         font-size: 1em
     }
 
@@ -7327,6 +7845,38 @@ header.scroll .header__search.focus .header__search-input {
         line-height: 144.717%;
         font-size: 1.125rem
     }
+
+    .search-page div.asl_m .proinput input.orig {
+        padding: .83rem 6rem .83rem .83rem !important
+    }
+
+    .search-page div.asl_w .probox .proclose, .search-page div.asl_w .probox .proloading, .search-page div.asl_w .probox .prosettings {
+        top: .55rem;
+        right: 3.5rem
+    }
+
+    .search-page {
+        padding: 6.25rem 0
+    }
+
+    .search-page__form .form__input {
+        padding: .83rem 1.88rem;
+        border-radius: .625rem
+    }
+
+    .search-page__form .search__form-btn {
+        left: auto
+    }
+
+    .search-page__form .search__form-btn.btn-primary {
+        font-size: 1rem;
+        margin-left: 0
+    }
+
+    div.asl_w .probox .proclose, div.asl_w .probox .proloading, div.asl_w .probox .prosettings {
+        top: 1rem;
+        right: 1.5rem
+    }
 }
 
 @media (min-width:767.98px) and (any-hover:hover) {
@@ -7431,11 +7981,11 @@ header.scroll .header__search.focus .header__search-input {
         flex-basis: 9.1875rem
     }
 
-    header.scroll .header__search.focus .header__search-input {
+    header.scroll .header__search.focus .asl_w_container, header.scroll .header__search.focus .header__search-input {
         width: 46.75rem
     }
 
-    .header__search.focus .header__search-input {
+    .header__search.focus .asl_w_container, .header__search.focus .header__search-input {
         width: 58.75rem
     }
 
@@ -8845,11 +9395,11 @@ header.scroll .header__search.focus .header__search-input {
         gap: 1.25rem
     }
 
-    header.scroll .header__search.focus .header__search-input {
+    header.scroll .header__search.focus .asl_w_container, header.scroll .header__search.focus .header__search-input {
         width: 62.375rem
     }
 
-    .header__search.focus .header__search-input {
+    .header__search.focus .asl_w_container, .header__search.focus .header__search-input {
         width: 75rem
     }
 
@@ -8888,6 +9438,11 @@ header.scroll .header__search.focus .header__search-input {
     }
 
     .promo__download {
+        -ms-flex-item-align: end;
+        align-self: flex-end
+    }
+
+    .error404 .promo__btn {
         -ms-flex-item-align: end;
         align-self: flex-end
     }
@@ -9330,7 +9885,7 @@ header.scroll .header__search.focus .header__search-input {
     }
 
     .article+.features {
-        padding-top: 2rem
+        padding-top: 0 !important
     }
 
     .article__sidebar.article__sidebar--desktop {
@@ -9345,6 +9900,10 @@ header.scroll .header__search.focus .header__search-input {
 
     .promo .breadcrumbs {
         margin-bottom: auto
+    }
+
+    .promo__video {
+        display: none
     }
 
     .promo__body .promo__select {
@@ -9394,9 +9953,17 @@ header.scroll .header__search.focus .header__search-input {
         padding: .59rem .94rem;
         font-size: .875rem
     }
+
+    .search-page__form .search__form-btn {
+        padding: 0
+    }
 }
 
 @media (max-width:575.98px) {
+    .error404 .promo {
+        padding-bottom: 4rem
+    }
+
     .promo__download {
         display: none
     }
@@ -9411,6 +9978,10 @@ header.scroll .header__search.focus .header__search-input {
 
     .home .benefits {
         padding-top: .78125rem
+    }
+
+    .benefits+.article {
+        padding-top: 2rem !important
     }
 
     .blog__link {
@@ -9450,6 +10021,13 @@ header.scroll .header__search.focus .header__search-input {
 
     .article__seo-block .seo-text-block__columns p:nth-child(1), .article__seo-block .seo-text-block__columns p:nth-child(2) {
         display: block
+    }
+}
+
+@media (max-width:767.98px) and (min-width:359.98px) {
+    .catalog__card.catalog__card--mirovye-brendy-avtomatiki .catalog__card-image {
+        width: 12.9375rem;
+        height: 10.39444rem
     }
 }
 
@@ -9637,11 +10215,15 @@ header.scroll .header__search.focus .header__search-input {
         color: #ea9d0f
     }
 
-    .products__filter-title:hover, .products__sidebar .wp-block-heading:hover {
+    .products__sidebar .filter-content .checkbox label .term-label:hover::before {
+        border: .0625rem solid #313f69
+    }
+
+    .products__filter-title:hover, .products__sidebar .filter-title:hover, .products__sidebar .wp-block-heading:hover {
         color: #ea9d0f
     }
 
-    .products__filter-more:hover, .products__sidebar .wc-block-product-filter-checkbox-list__show-more:hover {
+    .products__filter-more:hover, .products__sidebar .filter-content .show-more:hover, .products__sidebar .wc-block-product-filter-checkbox-list__show-more:hover {
         text-decoration: none
     }
 
@@ -9654,12 +10236,12 @@ header.scroll .header__search.focus .header__search-input {
         color: #ea9d0f
     }
 
-    .woocommerce-pagination li a {
+    .nav-links a, .woocommerce-pagination a {
         -webkit-transition: color .3s ease;
         transition: color .3s ease
     }
 
-    .woocommerce-pagination li a:hover {
+    .nav-links a:hover, .woocommerce-pagination a:hover {
         color: rgba(20, 20, 20, .4) !important
     }
 
@@ -9682,6 +10264,14 @@ header.scroll .header__search.focus .header__search-input {
     }
 
     .article__navbar-item a:hover {
+        color: #ea9d0f
+    }
+
+    .search-page__result-block:hover {
+        color: #ea9d0f
+    }
+
+    div.asl_r .results .item .asl_content:hover {
         color: #ea9d0f
     }
 }

@@ -6,15 +6,17 @@
     <div class="container">
         <div class="blog__content">
             <div class="blog__body">
-                <ul class="blog__list">
+                <ul class="blog__list" id="blog-posts-container">
                     <?php
+                    $paged = get_query_var('paged') ? get_query_var('paged') : 1;
                     $args = array(
-                        'post_type'      => 'post',            // Выбираем только посты
-                        'posts_per_page' => 9,                 // Количество постов для вывода на главной (можно настроить)
-                        'post_status'    => 'publish',         // Только опубликованные посты
-                        'orderby'        => 'date',            // Сортировка по дате
-                        'order'          => 'DESC',            // В убывающем порядке (новые сверху)
-                        'ignore_sticky_posts' => true           // Игнорируем "закрепленные" посты
+                        'post_type'           => 'post',
+                        'posts_per_page'      => 9,
+                        'post_status'         => 'publish',
+                        'orderby'             => 'date',
+                        'order'               => 'DESC',
+                        'paged'               => $paged,
+                        'ignore_sticky_posts' => true
                     );
 
                     $home_posts_query = new WP_Query($args);
@@ -28,7 +30,6 @@
                                     if (has_post_thumbnail()) {
                                         the_post_thumbnail('full', array('class' => 'cover-image'));
                                     } else {
-
                                         echo '<img src="' . esc_url(get_template_directory_uri() . '/assets/img/default-article-placeholder.png') . '" class="cover-image" alt="Изображение по умолчанию">';
                                     }
                                     ?>
@@ -48,12 +49,68 @@
                 </ul>
                 <?php
                 $total_posts = wp_count_posts('post')->publish;
-                if ($total_posts > $args['posts_per_page']) :
+                $paged_initial_posts = $home_posts_query->post_count;
+                if ($total_posts > $paged_initial_posts) :
                 ?>
-                    <a href="" class="blog__more btn btn-primary btn-lg">Показать еще</a>
+                    <button class="blog__more btn btn-primary btn-lg" id="load-more-btn" data-page="1" data-max-pages="<?= $home_posts_query->max_num_pages; ?>">Показать еще</button>
                 <?php endif; ?>
             </div>
         </div>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const loadMoreBtn = document.getElementById('load-more-btn');
+                const postsContainer = document.getElementById('blog-posts-container');
+
+                if (loadMoreBtn && postsContainer) {
+                    let currentPage = parseInt(loadMoreBtn.dataset.page);
+                    const maxPages = parseInt(loadMoreBtn.dataset.maxPages);
+                    const ajaxurl = '<?php echo admin_url('admin-ajax.php'); ?>';
+
+                    loadMoreBtn.addEventListener('click', function(e) {
+                        e.preventDefault();
+
+                        loadMoreBtn.textContent = 'Загрузка...';
+                        loadMoreBtn.disabled = true;
+
+                        const data = new FormData();
+                        data.append('action', 'load_more_posts');
+                        data.append('paged', currentPage);
+                        data.append('nonce', '<?php echo wp_create_nonce('load_more_posts_nonce'); ?>');
+
+                        fetch(ajaxurl, {
+                                method: 'POST',
+                                body: data
+                            })
+                            .then(response => response.json())
+                            .then(result => {
+                                if (result.success && result.data.html) {
+
+                                    postsContainer.insertAdjacentHTML('beforeend', result.data.html);
+
+
+                                    currentPage = result.data.paged;
+                                    loadMoreBtn.dataset.page = currentPage;
+
+                                    loadMoreBtn.textContent = 'Показать еще';
+                                    loadMoreBtn.disabled = false;
+
+                                    if (currentPage >= maxPages) {
+                                        loadMoreBtn.style.display = 'none';
+                                    }
+                                } else {
+                                    loadMoreBtn.style.display = 'none';
+                                    console.log('No more posts to load.');
+                                }
+                            })
+                            .catch(error => {
+                                console.error('Error:', error);
+                                loadMoreBtn.textContent = 'Ошибка загрузки';
+                                loadMoreBtn.disabled = false;
+                            });
+                    });
+                }
+            });
+        </script>
     </div>
 </div>
 
