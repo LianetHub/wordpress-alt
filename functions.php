@@ -875,3 +875,49 @@ function load_more_posts_handler()
 
 	wp_die();
 }
+
+
+function alt_ltd_add_query_vars($vars)
+{
+	$vars[] = 'product_search';
+	return $vars;
+}
+add_filter('query_vars', 'alt_ltd_add_query_vars');
+
+function alt_ltd_search_products_in_category($query)
+{
+	if (! is_admin() && $query->is_main_query() && is_tax('product_cat')) {
+		$search_term = get_query_var('product_search');
+		if (! empty($search_term)) {
+
+			$query->set('s', sanitize_text_field($search_term));
+		}
+	}
+}
+add_action('pre_get_posts', 'alt_ltd_search_products_in_category');
+
+
+add_action('template_redirect', function () {
+	if (is_tax('product_cat') && isset($_GET['yith_wcan']) && !empty($_GET['product_search'])) {
+
+		$clean_url = remove_query_arg('product_search');
+		wp_redirect($clean_url);
+		exit;
+	}
+});
+
+
+add_action('template_redirect', function () {
+	if (is_tax('product_cat') && !empty($_GET['product_search'])) {
+
+		$filter_params = array_filter($_GET, function ($key) {
+			return preg_match('/^(filter_|query_type_|yith_wcan)/', $key);
+		}, ARRAY_FILTER_USE_KEY);
+
+		if (!empty($filter_params)) {
+			$clean_url = remove_query_arg(array_keys($filter_params));
+			wp_redirect($clean_url);
+			exit;
+		}
+	}
+});

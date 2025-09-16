@@ -397,6 +397,12 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
+		& img {
+			max-width: 100%;
+			max-height: 100%;
+			width: auto;
+			height: auto;
+		}
 	}
 	// .product__name
 	&__name {
