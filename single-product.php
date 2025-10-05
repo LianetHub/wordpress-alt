@@ -69,8 +69,8 @@ get_header();
 
 							if (!empty($attachment_ids)) {
 								foreach ($attachment_ids as $attachment_id) {
-									$image_full_url = wp_get_attachment_image_url($attachment_id, 'full'); // URL полного изображения
-									$image_thumbnail_url = wp_get_attachment_image_url($attachment_id, 'woocommerce_single'); // URL для основного изображения продукта
+									$image_full_url = wp_get_attachment_image_url($attachment_id, 'full');
+									$image_thumbnail_url = wp_get_attachment_image_url($attachment_id, 'woocommerce_single');
 									if ($image_full_url && $image_thumbnail_url) {
 										echo '<a href="' . esc_url($image_full_url) . '" class="product-card__slide swiper-slide" data-fancybox="product">';
 										echo '<img src="' . esc_url($image_thumbnail_url) . '" alt="' . esc_attr(get_post_meta($attachment_id, '_wp_attachment_image_alt', true) ?: $product->get_name()) . '">';
@@ -170,8 +170,6 @@ get_header();
 								<div class="product-card__desc-text"><?= wp_kses_post($application) ?></div>
 							</div>
 						<?php endif; ?>
-						<!-- otrasli -->
-
 					</div>
 					<a href="#request-quote" data-fancybox class="product-card__btn btn btn-primary btn-lg">Запросить стоимость</a>
 				</div>
@@ -179,174 +177,176 @@ get_header();
 		</div>
 	</section>
 
-	<div class="product-stats">
-		<div class="container">
-			<div class="product-stats__body">
-				<?php
-				$technical_specs_string = get_field('technical_specs');
-				$has_technical_specs = !empty($technical_specs_string) && !empty(array_filter(array_map('trim', explode("\n", $technical_specs_string))));
+	<?php
+	$technical_specs_string = get_field('technical_specs');
+	$has_technical_specs = !empty($technical_specs_string) && !empty(array_filter(array_map('trim', explode("\n", $technical_specs_string))));
 
-				$has_documentation = false;
-				$documentation_rows = get_field('product_documentation');
-				if (!empty($documentation_rows) && is_array($documentation_rows)) {
-					foreach ($documentation_rows as $doc_row) {
-						$doc_file_url = $doc_row['doc_file'] ?? '';
-						if (!empty($doc_file_url) && is_string($doc_file_url)) {
-							$has_documentation = true;
-							break;
-						}
-					}
-				}
+	$has_documentation = false;
+	$documentation_rows = get_field('product_documentation');
+	if (!empty($documentation_rows) && is_array($documentation_rows)) {
+		foreach ($documentation_rows as $doc_row) {
+			$doc_file_url = $doc_row['doc_file'] ?? '';
+			if (!empty($doc_file_url) && is_string($doc_file_url)) {
+				$has_documentation = true;
+				break;
+			}
+		}
+	}
 
-				$related_products_check = wc_get_related_products($product->get_id(), 6);
-				$has_analogs = !empty($related_products_check);
+	$upsell_ids = $product->get_upsell_ids();
+	$cross_sell_ids = $product->get_cross_sell_ids();
+	$analog_ids = array_unique(array_merge($upsell_ids, $cross_sell_ids));
+	$has_analogs = !empty($analog_ids);
 
-				$active_tab_class_tech = '';
-				$active_tab_class_docs = '';
-				$active_tab_class_analogs = '';
+	if ($has_technical_specs || $has_documentation || $has_analogs) :
+		$active_tab_class_tech = '';
+		$active_tab_class_docs = '';
+		$active_tab_class_analogs = '';
+		$active_content_class_tech = '';
+		$active_content_class_docs = '';
+		$active_content_class_analogs = '';
 
-				$active_content_class_tech = '';
-				$active_content_class_docs = '';
-				$active_content_class_analogs = '';
+		$default_tab_id = '';
+		if ($has_technical_specs) {
+			$default_tab_id = 'tech-specs';
+		} elseif ($has_documentation) {
+			$default_tab_id = 'documentation';
+		} elseif ($has_analogs) {
+			$default_tab_id = 'analogs';
+		}
 
-				$default_tab_id = '';
-				if ($has_technical_specs) {
-					$default_tab_id = 'tech-specs';
-				} elseif ($has_documentation) {
-					$default_tab_id = 'documentation';
-				} elseif ($has_analogs) {
-					$default_tab_id = 'analogs';
-				}
+		if ($default_tab_id === 'tech-specs') {
+			$active_tab_class_tech = 'active';
+			$active_content_class_tech = 'active';
+		} elseif ($default_tab_id === 'documentation') {
+			$active_tab_class_docs = 'active';
+			$active_content_class_docs = 'active';
+		} elseif ($default_tab_id === 'analogs') {
+			$active_tab_class_analogs = 'active';
+			$active_content_class_analogs = 'active';
+		}
+	?>
+		<div class="product-stats">
+			<div class="container">
+				<div class="product-stats__body">
+					<div class="product-stats__tabs">
+						<?php if ($has_technical_specs) : ?>
+							<button type="button" class="product-stats__tab <?= $active_tab_class_tech ?>" data-tab="tech-specs">Технические характеристики</button>
+						<?php endif; ?>
 
-				if ($default_tab_id === 'tech-specs') {
-					$active_tab_class_tech = 'active';
-					$active_content_class_tech = 'active';
-				} elseif ($default_tab_id === 'documentation') {
-					$active_tab_class_docs = 'active';
-					$active_content_class_docs = 'active';
-				} elseif ($default_tab_id === 'analogs') {
-					$active_tab_class_analogs = 'active';
-					$active_content_class_analogs = 'active';
-				}
-				?>
+						<?php if ($has_documentation) : ?>
+							<button type="button" class="product-stats__tab <?= $active_tab_class_docs ?>" data-tab="documentation">Документация</button>
+						<?php endif; ?>
 
-				<div class="product-stats__tabs">
-					<?php if ($has_technical_specs) : ?>
-						<button type="button" class="product-stats__tab <?= $active_tab_class_tech ?>" data-tab="tech-specs">Технические характеристики</button>
-					<?php endif; ?>
+						<?php if ($has_analogs) : ?>
+							<button type="button" class="product-stats__tab <?= $active_tab_class_analogs ?>" data-tab="analogs">Возможные аналоги</button>
+						<?php endif; ?>
+					</div>
 
-					<?php if ($has_documentation) : ?>
-						<button type="button" class="product-stats__tab <?= $active_tab_class_docs ?>" data-tab="documentation">Документация</button>
-					<?php endif; ?>
-
-					<?php if ($has_analogs) : ?>
-						<button type="button" class="product-stats__tab <?= $active_tab_class_analogs ?>" data-tab="analogs">Возможные аналоги</button>
-					<?php endif; ?>
-				</div>
-
-				<div class="product-stats__content">
-					<?php if ($has_technical_specs) : ?>
-						<div class="product-stats__block <?= $active_content_class_tech ?>" data-tab-content="tech-specs">
-							<?php if ($has_technical_specs) : ?>
-								<button type="button" class="product-stats__mobile-tab icon-next <?= $active_tab_class_tech ?>" data-tab="tech-specs">Технические характеристики</button>
-							<?php endif; ?>
-							<div class="product-stats__block-content">
-								<?php
-								$specs = array_filter(array_map('trim', explode("\n", $technical_specs_string)));
-								if (!empty($specs)) : ?>
-									<ul class="product-stats__list">
-										<?php foreach ($specs as $spec_item) : ?>
-											<li><?= esc_html($spec_item) ?></li>
-										<?php endforeach; ?>
-									</ul>
-								<?php else : ?>
-									<p>Технические характеристики отсутствуют.</p>
+					<div class="product-stats__content">
+						<?php if ($has_technical_specs) : ?>
+							<div class="product-stats__block <?= $active_content_class_tech ?>" data-tab-content="tech-specs">
+								<?php if ($has_technical_specs) : ?>
+									<button type="button" class="product-stats__mobile-tab icon-next <?= $active_tab_class_tech ?>" data-tab="tech-specs">Технические характеристики</button>
 								<?php endif; ?>
-							</div>
-						</div>
-					<?php endif; ?>
-
-					<?php if ($has_documentation) : ?>
-						<div class="product-stats__block <?= $active_content_class_docs ?>" data-tab-content="documentation">
-							<?php if ($has_documentation) : ?>
-								<button type="button" class="product-stats__mobile-tab icon-next <?= $active_tab_class_docs ?>" data-tab="documentation">Документация</button>
-							<?php endif; ?>
-							<div class="product-stats__block-content">
-								<div class="product-stats__docs">
+								<div class="product-stats__block-content">
 									<?php
-									if (!empty($documentation_rows) && is_array($documentation_rows)) :
-										foreach ($documentation_rows as $doc_row) :
-											$doc_file_url = $doc_row['doc_file'] ?? '';
-											$doc_title = $doc_row['doc_title'] ?? '';
+									$specs = array_filter(array_map('trim', explode("\n", $technical_specs_string)));
+									if (!empty($specs)) : ?>
+										<ul class="product-stats__list">
+											<?php foreach ($specs as $spec_item) : ?>
+												<li><?= esc_html($spec_item) ?></li>
+											<?php endforeach; ?>
+										</ul>
+									<?php else : ?>
+										<p>Технические характеристики отсутствуют.</p>
+									<?php endif; ?>
+								</div>
+							</div>
+						<?php endif; ?>
 
-											if (!empty($doc_file_url) && is_string($doc_file_url)) :
-												$display_title = !empty($doc_title) ? $doc_title : basename($doc_file_url);
-									?>
-												<a href="<?= esc_url($doc_file_url) ?>" download class="product-stats__doc icon-download">
-													<span><?= esc_html($display_title) ?></span>
-												</a>
+						<?php if ($has_documentation) : ?>
+							<div class="product-stats__block <?= $active_content_class_docs ?>" data-tab-content="documentation">
+								<?php if ($has_documentation) : ?>
+									<button type="button" class="product-stats__mobile-tab icon-next <?= $active_tab_class_docs ?>" data-tab="documentation">Документация</button>
+								<?php endif; ?>
+								<div class="product-stats__block-content">
+									<div class="product-stats__docs">
 										<?php
-											endif;
-										endforeach;
-									else :
-										?>
-										<p>Документация отсутствует.</p>
-									<?php
-									endif;
-									?>
-								</div>
-							</div>
-						</div>
-					<?php endif; ?>
+										if (!empty($documentation_rows) && is_array($documentation_rows)) :
+											foreach ($documentation_rows as $doc_row) :
+												$doc_file_url = $doc_row['doc_file'] ?? '';
+												$doc_title = $doc_row['doc_title'] ?? '';
 
-					<?php if ($has_analogs) : ?>
-						<div class="product-stats__block <?= $active_content_class_analogs ?>" data-tab-content="analogs">
-							<?php if ($has_analogs) : ?>
-								<button type="button" class="product-stats__mobile-tab icon-next <?= $active_tab_class_analogs ?>" data-tab="analogs">Возможные аналоги</button>
-							<?php endif; ?>
-							<div class="product-stats__block-content">
-								<div class="recommendation__body">
-									<div class="recommendation__slider swiper">
-										<div class="swiper-wrapper">
+												if (!empty($doc_file_url) && is_string($doc_file_url)) :
+													$display_title = !empty($doc_title) ? $doc_title : basename($doc_file_url);
+										?>
+													<a href="<?= esc_url($doc_file_url) ?>" download class="product-stats__doc icon-download">
+														<span><?= esc_html($display_title) ?></span>
+													</a>
 											<?php
-											foreach ($related_products_check as $related_product_id) {
-												$related_product = wc_get_product($related_product_id);
-												if ($related_product && $related_product->is_visible()) {
+												endif;
+											endforeach;
+										else :
 											?>
-													<div class="swiper-slide product">
-														<a href="<?= esc_url($related_product->get_permalink()) ?>" class="product__image">
-															<?= $related_product->get_image('medium') ?>
-														</a>
-														<a href="<?= esc_url($related_product->get_permalink()) ?>" class="product__name">
-															<?php
-															$product_full_title = get_field('product_full_title', $related_product->get_id());
-															if (empty($product_full_title)) {
-																$product_full_title = $related_product->get_name();
-															}
-															if (function_exists('fix_widows_after_prepositions')) {
-																echo fix_widows_after_prepositions(esc_html($product_full_title));
-															} else {
-																echo esc_html($product_full_title);
-															}
-															?>
-														</a>
-													</div>
-											<?php
-												}
-											}
-											?>
-										</div>
+											<p>Документация отсутствует.</p>
+										<?php
+										endif;
+										?>
 									</div>
-									<button type="button" class="recommendation__prev swiper-button-dark swiper-button-prev"></button>
-									<button type="button" class="recommendation__next swiper-button-dark swiper-button-next"></button>
 								</div>
 							</div>
-						</div>
-					<?php endif; ?>
+						<?php endif; ?>
+
+						<?php if ($has_analogs) : ?>
+							<div class="product-stats__block <?= $active_content_class_analogs ?>" data-tab-content="analogs">
+								<?php if ($has_analogs) : ?>
+									<button type="button" class="product-stats__mobile-tab icon-next <?= $active_tab_class_analogs ?>" data-tab="analogs">Возможные аналоги</button>
+								<?php endif; ?>
+								<div class="product-stats__block-content">
+									<div class="recommendation__body">
+										<div class="recommendation__slider swiper">
+											<div class="swiper-wrapper">
+												<?php
+												foreach ($analog_ids as $analog_id) {
+													$analog_product = wc_get_product($analog_id);
+													if ($analog_product && $analog_product->is_visible()) {
+												?>
+														<div class="swiper-slide product">
+															<a href="<?= esc_url($analog_product->get_permalink()) ?>" class="product__image">
+																<?= $analog_product->get_image('medium') ?>
+															</a>
+															<a href="<?= esc_url($analog_product->get_permalink()) ?>" class="product__name">
+																<?php
+																$product_full_title = get_field('product_full_title', $analog_product->get_id());
+																if (empty($product_full_title)) {
+																	$product_full_title = $analog_product->get_name();
+																}
+																if (function_exists('fix_widows_after_prepositions')) {
+																	echo fix_widows_after_prepositions(esc_html($product_full_title));
+																} else {
+																	echo esc_html($product_full_title);
+																}
+																?>
+															</a>
+														</div>
+												<?php
+													}
+												}
+												?>
+											</div>
+										</div>
+										<button type="button" class="recommendation__prev swiper-button-dark swiper-button-prev"></button>
+										<button type="button" class="recommendation__next swiper-button-dark swiper-button-next"></button>
+									</div>
+								</div>
+							</div>
+						<?php endif; ?>
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
+	<?php endif; ?>
 
 
 <?php endwhile;

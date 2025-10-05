@@ -76,6 +76,7 @@
                         <?php if (!empty($work_time)): ?>
                             <div class="header__top-worktime">График работы: <?= esc_html($work_time) ?></div>
                         <?php endif; ?>
+                        <?= do_shortcode('[gtranslate]'); ?>
                     </div>
                 </div>
             </div>
@@ -97,7 +98,6 @@
                                         <?= esc_html($email_address) ?>
                                     </a>
                                 <?php endif; ?>
-
                                 <?php if (!empty($phone_number)): ?>
                                     <a href="tel:<?= esc_attr($formatted_phone_number) ?>" class="header__contact icon-phone">
                                         <?= esc_html($phone_number) ?>
@@ -159,6 +159,7 @@
                                 <?php endif; ?>
                             </div>
                         </div>
+                        <?= do_shortcode('[gtranslate]'); ?>
                         <?php if (!empty($email_address) || !empty($phone_number)): ?>
                             <div class="header__contacts">
                                 <?php if (!empty($email_address)): ?>
@@ -169,11 +170,10 @@
                                 <?php endif; ?>
                             </div>
                         <?php endif; ?>
-                        <!-- <form action="<?php echo esc_url(home_url('/')); ?>" class="header__search">
-                            <input type="text" name="s" class="header__search-input" autocomplete="off" placeholder="Поиск по сайту">
-                            <button type="submit" class="header__search-btn icon-search"></button>
-                        </form> -->
-                        <?php echo do_shortcode('[wpdreams_ajaxsearchlite]'); ?>
+
+                        <div class="header__search">
+                            <?php echo do_shortcode('[wpdreams_ajaxsearchlite]'); ?>
+                        </div>
 
                         <a href="#callback" data-fancybox class="header__callback btn btn-primary">Обратный звонок</a>
                     </div>
