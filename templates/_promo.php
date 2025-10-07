@@ -92,6 +92,7 @@ $title_class = is_single() ? 'title' : 'title-lg';
 
 $title_tag = (is_tax('project_industry')) ? 'div' : 'h1';
 
+$is_partners_page = is_page(14541);
 ?>
 
 <section class="promo" <?= $style_attr ?>>
@@ -219,13 +220,19 @@ $title_tag = (is_tax('project_industry')) ? 'div' : 'h1';
                     if ($promo_hint) {
                     ?>
                         <div class="promo__hint title-sm"><?= esc_html($promo_hint) ?></div>
-                    <?php
+                        <?php
                     }
 
                     if ($promo_has_offer_btn) {
-                    ?>
-                        <a href="#commercial-offer" data-fancybox class="promo__btn btn btn-primary btn-lg">Получить КП</a>
+                        if ($is_partners_page) {
+                        ?>
+                            <a href="#partner-offer" data-fancybox class="promo__btn btn btn-primary btn-lg">Стать партнером</a>
+                        <?php
+                        } else {
+                        ?>
+                            <a href="#commercial-offer" data-fancybox class="promo__btn btn btn-primary btn-lg">Получить КП</a>
                     <?php
+                        }
                     }
                 }
                 if (is_single() && get_post_type() === 'post') {

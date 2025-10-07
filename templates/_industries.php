@@ -14,6 +14,10 @@ if (!empty($terms) && !is_wp_error($terms)) :
                 <div class="industries__slider swiper">
                     <div class="swiper-wrapper">
                         <?php foreach ($terms as $term) :
+                            if ($term->slug === 'professionalitet') {
+                                continue;
+                            }
+
                             $term_name = esc_html($term->name);
                             $term_link = esc_url(get_term_link($term));
 

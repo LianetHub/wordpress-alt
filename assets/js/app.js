@@ -4,7 +4,12 @@
 if (typeof Fancybox !== "undefined" && Fancybox !== null) {
     Fancybox.bind("[data-fancybox]", {
         dragToClose: false,
-        closeButton: false
+        closeButton: false,
+        on: {
+            "close": () => {
+                $('#manufacturer-logo-input').val('');
+            }
+        }
     });
 
     Fancybox.bind('[data-gallery="product"]', {
@@ -169,7 +174,19 @@ $(function () {
             synchronizeTabs(tabId, true);
         }
 
+        // Добавляет в модалку название лого
+        if ($target.closest('[data-manufacturer-name]').length) {
+            let manufacturerName = $target.closest('[data-manufacturer-name]').data('manufacturer-name');
+            $('#manufacturer-logo-input').val(manufacturerName);
+        }
 
+
+    });
+
+    $(document).on('close.fb', function (event, fancybox) {
+        if (fancybox.$container && fancybox.$container.attr('id') === 'manufactures-order') {
+            $('#manufacturer-logo-input').val('');
+        }
     });
 
     function getActiveTabId() {
@@ -448,35 +465,42 @@ $(function () {
     }
 
     if ($('.clients__slider').length) {
-        new Swiper('.clients__slider', {
-            spaceBetween: 8,
-            slidesPerView: 2,
-            navigation: {
-                prevEl: '.clients__slider-prev',
-                nextEl: '.clients__slider-next',
-            },
-            grid: {
-                rows: 2,
-                fill: 'row'
-            },
-            breakpoints: {
-                991.98: {
-                    slidesPerView: 3,
-                    spaceBetween: 20,
-                    grid: {
-                        rows: 2,
-                        fill: 'row'
-                    },
+        $('.clients__slider').each(function () {
+            const $thisSlider = $(this);
+            const $wrapper = $(this).closest('.clients');
+            const $prevBtn = $wrapper.find('.clients__slider-prev');
+            const $nextBtn = $wrapper.find('.clients__slider-next');
+
+            new Swiper($thisSlider[0], {
+                spaceBetween: 8,
+                slidesPerView: 2,
+                navigation: {
+                    prevEl: $prevBtn[0],
+                    nextEl: $nextBtn[0],
                 },
-                1199.98: {
-                    slidesPerView: 4,
-                    spaceBetween: 30,
-                    grid: {
-                        rows: 2,
-                        fill: 'row'
+                grid: {
+                    rows: 2,
+                    fill: 'row'
+                },
+                breakpoints: {
+                    991.98: {
+                        slidesPerView: 3,
+                        spaceBetween: 20,
+                        grid: {
+                            rows: 2,
+                            fill: 'row'
+                        },
                     },
+                    1199.98: {
+                        slidesPerView: 4,
+                        spaceBetween: 30,
+                        grid: {
+                            rows: 2,
+                            fill: 'row'
+                        },
+                    }
                 }
-            }
+            })
         })
     }
 

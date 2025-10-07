@@ -20,6 +20,12 @@
 			padding: rem(100) 0 rem(110);
 		}
 	}
+	.page-template-page-b2g-college & {
+		padding: rem(64) 0;
+		@media (min-width: $md3) {
+			padding: rem(100) 0 rem(110);
+		}
+	}
 	&:has(.article__sidebar--desktop) {
 		padding: rem(64) 0;
 		@media (min-width: $md3) {

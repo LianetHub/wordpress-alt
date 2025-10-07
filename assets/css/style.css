@@ -19,14 +19,6 @@
 @font-face {
   font-family: "Muller";
   font-display: swap;
-  src: url("../fonts/Muller-Light.woff") format("woff"), url("../fonts/Muller-Light.woff2") format("woff2");
-  font-weight: 300;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Muller";
-  font-display: swap;
   src: url("../fonts/Muller-BoldItalic.woff") format("woff"), url("../fonts/Muller-BoldItalic.woff2") format("woff2");
   font-weight: 700;
   font-style: italic;
@@ -43,8 +35,8 @@
 @font-face {
   font-family: "Muller";
   font-display: swap;
-  src: url("../fonts/Muller-Medium.woff") format("woff"), url("../fonts/Muller-Medium.woff2") format("woff2");
-  font-weight: 500;
+  src: url("../fonts/Muller-Light.woff") format("woff"), url("../fonts/Muller-Light.woff2") format("woff2");
+  font-weight: 300;
   font-style: normal;
 }
 
@@ -53,6 +45,14 @@
   font-display: swap;
   src: url("../fonts/Muller-Regular.woff") format("woff"), url("../fonts/Muller-Regular.woff2") format("woff2");
   font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Muller";
+  font-display: swap;
+  src: url("../fonts/Muller-Medium.woff") format("woff"), url("../fonts/Muller-Medium.woff2") format("woff2");
+  font-weight: 500;
   font-style: normal;
 }
 
@@ -3683,6 +3683,11 @@ header.scroll .header__search.focus .asl_w_container {
   margin-top: 1.5rem;
 }
 
+.principles__list.principles__list--arrows .principles__item-list {
+  list-style: none;
+  padding-left: 0;
+}
+
 .principles__item {
   counter-increment: num;
   border-radius: 1.25rem;
@@ -5172,6 +5177,10 @@ header.scroll .header__search.focus .asl_w_container {
 }
 
 .home .article {
+  padding: 4rem 0;
+}
+
+.page-template-page-b2g-college .article {
   padding: 4rem 0;
 }
 
@@ -7693,6 +7702,10 @@ div.asl_r p.showmore {
     margin-top: 0.94rem;
   }
 
+  .principles__list.principles__list--arrows {
+    margin-top: 2.5rem;
+  }
+
   .principles__list {
     margin-top: 3.5rem;
     -ms-grid-columns: (1fr)[2];
@@ -8832,6 +8845,10 @@ div.asl_r p.showmore {
     padding: 6.25rem 0 6.875rem;
   }
 
+  .page-template-page-b2g-college .article {
+    padding: 6.25rem 0 6.875rem;
+  }
+
   .article:has(.article__sidebar--desktop) {
     padding: 6.25rem 0 6.875rem;
   }
@@ -9748,6 +9765,38 @@ div.asl_r p.showmore {
     margin-top: 3.125rem;
     -ms-grid-columns: (1fr)[3];
     grid-template-columns: repeat(3, 1fr);
+  }
+
+  .principles__list.principles__list--arrows {
+    gap: 0;
+  }
+
+  .principles__list.principles__list--arrows .principles__item:nth-child(3n+1) {
+    clip-path: polygon(calc(100% - 3rem) 0%, 100% 50%, calc(100% - 3rem) 100%, 0% 100%, 0 50%, 0% 0%);
+  }
+
+  .principles__list.principles__list--arrows .principles__item:nth-child(3n+2) {
+    clip-path: polygon(calc(100% - 3rem) 0%, 100% 50%, calc(100% - 3rem) 100%, 0% 100%, 3rem 50%, 0% 0%);
+  }
+
+  .principles__list.principles__list--arrows .principles__item:nth-child(3n+2) .principles__item-list {
+    padding-left: 4.6875rem;
+  }
+
+  .principles__list.principles__list--arrows .principles__item:nth-child(3n+2) .principles__item-caption {
+    padding-left: 2.1rem;
+  }
+
+  .principles__list.principles__list--arrows .principles__item:nth-child(3n+3) {
+    clip-path: polygon(100% 0, 100% 50%, 100% 100%, 0% 100%, 3rem 50%, 0% 0%);
+  }
+
+  .principles__list.principles__list--arrows .principles__item:nth-child(3n+3) .principles__item-list {
+    padding-left: 4.6875rem;
+  }
+
+  .principles__list.principles__list--arrows .principles__item:nth-child(3n+3) .principles__item-caption {
+    padding-left: 2.1rem;
   }
 
   .principles__list {

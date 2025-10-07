@@ -137,6 +137,42 @@
 		display: grid;
 		gap: rem(8);
 		margin-top: 1.5rem;
+		&.principles__list--arrows {
+			@media (min-width: $md4) {
+				margin-top: rem(40);
+			}
+			.principles__item-list {
+				list-style: none;
+				padding-left: 0;
+			}
+			$arrow: 3rem;
+			@media (min-width: $md2) {
+				gap: 0;
+				.principles__item {
+					&:nth-child(3n + 1) {
+						clip-path: polygon(calc(100% - $arrow) 0%, 100% 50%, calc(100% - $arrow) 100%, 0% 100%, 0 50%, 0% 0%);
+					}
+					&:nth-child(3n + 2) {
+						clip-path: polygon(calc(100% - $arrow) 0%, 100% 50%, calc(100% - $arrow) 100%, 0% 100%, 3rem 50%, 0% 0%);
+						.principles__item-list {
+							padding-left: rem(75);
+						}
+						.principles__item-caption {
+							padding-left: 2.1rem;
+						}
+					}
+					&:nth-child(3n + 3) {
+						clip-path: polygon(100% 0, 100% 50%, 100% 100%, 0% 100%, $arrow 50%, 0% 0%);
+						.principles__item-list {
+							padding-left: rem(75);
+						}
+						.principles__item-caption {
+							padding-left: 2.1rem;
+						}
+					}
+				}
+			}
+		}
 		@media (min-width: $md4) {
 			margin-top: 3.5rem;
 			grid-template-columns: repeat(2, 1fr);

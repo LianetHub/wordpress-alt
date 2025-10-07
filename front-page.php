@@ -12,6 +12,7 @@ get_header();
 <?php require_once(TEMPLATE_PATH . '_clients.php'); ?>
 <?php require_once(TEMPLATE_PATH . '_reviews.php'); ?>
 <?php require_once(TEMPLATE_PATH . '_team.php'); ?>
+<?php require_once(TEMPLATE_PATH . '_manufacturers.php'); ?>
 <?php require_once(TEMPLATE_PATH . '_blog.php'); ?>
 <?php require_once(TEMPLATE_PATH . '_seo-block.php'); ?>
 <?php require_once(TEMPLATE_PATH . '_callback.php'); ?>

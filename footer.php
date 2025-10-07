@@ -6,6 +6,7 @@ $email_address = get_field('email_address', 'option');
 $organization_address = get_field('organization_address', 'option');
 $company_details_group = get_field('company_details', 'option');
 $current_year = date('Y');
+$is_partners_page = is_page(14541);
 ?>
 <footer class="footer">
     <div class="container">
@@ -138,6 +139,16 @@ $current_year = date('Y');
         <?= do_shortcode('[contact-form-7 id="8a52131" title="Контактная форма Запрос стоимости"]'); ?>
     </div>
 </div>
+<?php if ($is_partners_page): ?>
+    <div id="partner-offer" class="popup">
+        <button type="button" data-fancybox-close class="popup__close icon-cross"></button>
+        <div class="popup__title title text-uppercase">Стать партнером</div>
+        <p class="popup__subtitle">Оставьте свои контактные данные и мы свяжемся с вами в ближайшее время!</p>
+        <div class="popup__form">
+            <?= do_shortcode('[contact-form-7 id="cfe76b0" title="Контактная форма Стать партнером"]'); ?>
+        </div>
+    </div>
+<?php endif; ?>
 <? if (is_single()): ?>
     <div id="audit" class="popup">
         <button type="button" data-fancybox-close class="popup__close icon-cross"></button>
