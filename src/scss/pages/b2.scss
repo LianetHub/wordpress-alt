@@ -158,13 +158,13 @@
 							padding-left: rem(75);
 						}
 						.principles__item-caption {
-							padding-left: 2.1rem;
+							padding-inline: 2.1rem;
 						}
 					}
 					&:nth-child(3n + 3) {
 						clip-path: polygon(100% 0, 100% 50%, 100% 100%, 0% 100%, $arrow 50%, 0% 0%);
 						.principles__item-list {
-							padding-left: rem(75);
+							padding-inline: rem(75);
 						}
 						.principles__item-caption {
 							padding-left: 2.1rem;

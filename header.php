@@ -43,6 +43,51 @@
 
 
     <?php wp_head(); ?>
+    <script
+        src="https://smartcaptcha.yandexcloud.net/captcha.js?render=onload&onload=onloadFunction"
+        defer></script>
+
+    <script>
+        let captchaWidgets = new Map();
+
+        function onloadFunction() {
+            if (!window.smartCaptcha) return;
+
+
+            document.querySelectorAll('form.wpcf7-form').forEach((form, index) => {
+                const container = form.querySelector('.captcha-container');
+                if (!container) return;
+
+                const widgetId = window.smartCaptcha.render(container, {
+                    sitekey: 'ysc1_LrrI5Oz8SijRufoPedbwapQyfsDeHaEZcRQBCqFRea0438ed',
+                    invisible: true,
+                    hideShield: true,
+                    callback: function(token) {
+
+                        form.submit();
+                    }
+                });
+
+                captchaWidgets.set(form, widgetId);
+
+                form.addEventListener('submit', function(e) {
+                    if (form.dataset.captchaVerified === 'true') return;
+
+                    e.preventDefault();
+                    if (window.smartCaptcha && captchaWidgets.has(form)) {
+                        window.smartCaptcha.execute(captchaWidgets.get(form));
+                    }
+                });
+
+                document.addEventListener('wpcf7mailsent', function(event) {
+                    if (event.target === form) {
+                        form.dataset.captchaVerified = 'false';
+                    }
+                });
+            });
+        }
+    </script>
+
 </head>
 
 <body <?php body_class(); ?>>
