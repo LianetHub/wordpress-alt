@@ -31,6 +31,12 @@ function theme_enqueue_scripts()
 	wp_enqueue_script('swiper-js', get_template_directory_uri() . '/assets/js/libs/swiper-bundle.min.js', array(), null, true);
 	wp_enqueue_script('fancybox-js', get_template_directory_uri() . '/assets/js/libs/fancybox.umd.js', array(), null, true);
 
+	wp_enqueue_script('custom-gallery-ajax', get_template_directory_uri() . '/assets/js/gallery-ajax.js', array('jquery'), null, true);
+
+	wp_localize_script('custom-gallery-ajax', 'galleryAjax', array(
+		'ajaxurl' => admin_url('admin-ajax.php')
+	));
+
 	wp_enqueue_script('app-js', get_template_directory_uri() . '/assets/js/app.min.js', array(), null, true);
 }
 add_action('wp_enqueue_scripts', 'theme_enqueue_scripts');
@@ -854,7 +860,7 @@ function load_more_posts_handler()
 					<a href="<?php the_permalink(); ?>" class="blog__item-title title-sm"><?php the_title(); ?></a>
 				</div>
 			</li>
-<?php
+		<?php
 		endwhile;
 		$html = ob_get_clean();
 
@@ -921,3 +927,41 @@ add_action('template_redirect', function () {
 		}
 	}
 });
+
+
+function load_more_gallery_items()
+{
+	$page = intval($_POST['page']);
+	$images_per_page = 12;
+
+	$page_id = intval($_POST['post_id']);
+	$all_images = get_field('product_gallery_images', $page_id);
+
+	if (empty($all_images) || !is_array($all_images)) {
+		wp_send_json_error();
+		return;
+	}
+
+	$total_images = count($all_images);
+
+	$offset = ($page - 1) * $images_per_page;
+	$next_images = array_slice($all_images, $offset, $images_per_page);
+
+	if (!empty($next_images)) {
+		ob_start();
+		foreach ($next_images as $image) {
+		?>
+			<a href="<?php echo esc_url($image['url']); ?>" data-fancybox="product-gallery-group" class="gallery__link">
+				<img src="<?php echo esc_url($image['sizes']['medium']); ?>" alt="<?php echo esc_attr($image['alt']); ?>" class="cover-image">
+			</a>
+<?php
+		}
+		$html = ob_get_clean();
+
+		wp_send_json_success(array('html' => $html));
+	} else {
+		wp_send_json_error();
+	}
+}
+add_action('wp_ajax_load_more_gallery', 'load_more_gallery_items');
+add_action('wp_ajax_nopriv_load_more_gallery', 'load_more_gallery_items');

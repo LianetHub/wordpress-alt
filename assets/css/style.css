@@ -9,14 +9,6 @@
 }
 
 @font-face {
-  font-family: "Onest";
-  font-display: swap;
-  src: url("../fonts/Onest-Light.woff") format("woff"), url("../fonts/Onest-Light.woff2") format("woff2");
-  font-weight: 300;
-  font-style: normal;
-}
-
-@font-face {
   font-family: "icons";
   font-display: swap;
   src: url("../fonts/icons.woff") format("woff"), url("../fonts/icons.woff2") format("woff2");
@@ -27,16 +19,24 @@
 @font-face {
   font-family: "Onest";
   font-display: swap;
-  src: url("../fonts/Onest-Medium.woff") format("woff"), url("../fonts/Onest-Medium.woff2") format("woff2");
-  font-weight: 500;
+  src: url("../fonts/Onest-Regular.woff") format("woff"), url("../fonts/Onest-Regular.woff2") format("woff2");
+  font-weight: 400;
   font-style: normal;
 }
 
 @font-face {
   font-family: "Onest";
   font-display: swap;
-  src: url("../fonts/Onest-Regular.woff") format("woff"), url("../fonts/Onest-Regular.woff2") format("woff2");
-  font-weight: 400;
+  src: url("../fonts/Onest-Light.woff") format("woff"), url("../fonts/Onest-Light.woff2") format("woff2");
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Onest";
+  font-display: swap;
+  src: url("../fonts/Onest-Medium.woff") format("woff"), url("../fonts/Onest-Medium.woff2") format("woff2");
+  font-weight: 500;
   font-style: normal;
 }
 
@@ -1111,6 +1111,32 @@ body.lock-menu {
   width: 1.5rem;
   height: 1.5rem;
   font-size: 1.5rem;
+}
+
+._loading {
+  color: transparent !important;
+  pointer-events: none;
+}
+
+._loading::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  width: 20px;
+  height: 20px;
+  border: 3px solid #fff;
+  border-bottom-color: transparent;
+  border-radius: 50%;
+  -webkit-transform-origin: center;
+      -ms-transform-origin: center;
+          transform-origin: center;
+  -webkit-animation: rotation 1s linear infinite;
+          animation: rotation 1s linear infinite;
+  z-index: 3;
 }
 
 ::-webkit-scrollbar {
@@ -4850,6 +4876,11 @@ header.scroll .header__search.focus .asl_w_container {
   font-size: 1.75rem;
 }
 
+.product-card__note {
+  font-size: 1rem;
+  line-height: 140%;
+}
+
 .product-card__info {
   font-size: 1rem;
   line-height: 140%;
@@ -6113,6 +6144,76 @@ div.asl_r p.showmore {
   display: none !important;
 }
 
+.gallery {
+  padding: 2.5rem 0;
+}
+
+.gallery__items {
+  display: -ms-grid;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(18.125rem, 1fr));
+  gap: 1.25rem;
+}
+
+.gallery__link {
+  display: block;
+  border-radius: 1.25rem;
+  overflow: hidden;
+  aspect-ratio: 1.3393665158;
+}
+
+.gallery__link img {
+  -webkit-transition: -webkit-transform 0.3s ease;
+  transition: -webkit-transform 0.3s ease;
+  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, -webkit-transform 0.3s ease;
+}
+
+.gallery__more {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: 2.66rem;
+}
+
+.home-gallery-block {
+  padding: 2rem 0;
+}
+
+.home-gallery-block__content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.home-gallery-block__header {
+  display: contents;
+}
+
+.home-gallery-block__link {
+  -webkit-box-ordinal-group: 2;
+      -ms-flex-order: 1;
+          order: 1;
+  margin-top: 1rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.home-gallery-block__body {
+  margin-top: 1.5625rem;
+  position: relative;
+}
+
 @media (min-width: 359.98px) {
   .benefits__block {
     padding: 1.37rem 2.06rem 1.37rem 2rem;
@@ -6830,6 +6931,34 @@ div.asl_r p.showmore {
 
   .article__seo-block .seo-text-block__more {
     display: none;
+  }
+
+  .gallery__more {
+    margin-left: auto;
+    margin-right: auto;
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
+    width: fit-content;
+    margin-top: 5rem;
+    min-width: 23.75rem;
+  }
+
+  .home-gallery-block__header {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: flex-start;
+  }
+
+  .home-gallery-block__link {
+    margin-top: 0;
+    margin-left: 0;
+    margin-right: 0;
   }
 }
 
@@ -7892,6 +8021,12 @@ div.asl_r p.showmore {
             order: 0;
   }
 
+  .product-card__note {
+    line-height: 133.333%;
+    font-size: 1.125rem;
+    margin-top: 0.5rem;
+  }
+
   .product-card__info {
     line-height: 133.333%;
     font-size: 1.125rem;
@@ -8095,6 +8230,18 @@ div.asl_r p.showmore {
   div.asl_w .probox .prosettings {
     top: 1rem;
     right: 1.5rem;
+  }
+
+  .gallery {
+    padding: 5rem 0;
+  }
+
+  .gallery__items {
+    gap: 1.875rem;
+  }
+
+  .gallery__link {
+    aspect-ratio: 1.3427561837;
   }
 }
 
@@ -10588,5 +10735,11 @@ div.asl_r p.showmore {
 
   div.asl_r .results .item .asl_content:hover {
     color: #ea9d0f;
+  }
+
+  .gallery__link:hover img {
+    -webkit-transform: scale(1.05);
+        -ms-transform: scale(1.05);
+            transform: scale(1.05);
   }
 }

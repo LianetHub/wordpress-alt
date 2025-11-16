@@ -132,6 +132,16 @@
 			font-size: 2.625rem;
 		}
 	}
+	// .product-card__note
+	&__note {
+		font-size: 1rem;
+		line-height: 140%;
+		@media (min-width: $md4) {
+			line-height: 133.333%;
+			font-size: 1.125rem;
+			margin-top: rem(8);
+		}
+	}
 	// .product-card__info
 	&__info {
 		font-size: 1rem;

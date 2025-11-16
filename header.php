@@ -2,6 +2,38 @@
 <html lang="ru">
 
 <head>
+
+
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript">
+        (function(m, e, t, r, i, k, a) {
+            m[i] = m[i] || function() {
+                (m[i].a = m[i].a || []).push(arguments)
+            };
+            m[i].l = 1 * new Date();
+            for (var j = 0; j < document.scripts.length; j++) {
+                if (document.scripts[j].src === r) {
+                    return;
+                }
+            }
+            k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
+        })(window, document, 'script', 'https://mc.yandex.ru/metrika/tag.js?id=103465196', 'ym');
+
+        ym(103465196, 'init', {
+            ssr: true,
+            webvisor: true,
+            clickmap: true,
+            accurateTrackBounce: true,
+            trackLinks: true
+        });
+    </script>
+    <noscript>
+        <div><img src="https://mc.yandex.ru/watch/103465196" style="position:absolute; left:-9999px;" alt="" /></div>
+    </noscript>
+    <!-- /Yandex.Metrika counter -->
+
+
+
     <meta charset="UTF-8">
     <meta name="format-detection" content="telephone=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -90,7 +122,7 @@
 
 </head>
 
-<body <?php body_class(); ?>>
+<body <?php body_class(); ?> data-post-id="<?php echo get_the_ID(); ?>">
     <?php
     $phone_number = get_field('phone_number', 'option');
     $formatted_phone_number = preg_replace('/[^0-9+]/', '', $phone_number);

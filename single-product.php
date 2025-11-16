@@ -137,6 +137,15 @@ get_header();
 					<h1 class="product-card__title">
 						<?php the_title(); ?>
 					</h1>
+					<?php
+					$grsi_note = get_field('grsi_note');
+
+					if ($grsi_note) { ?>
+						<div class="product-card__note">
+							* <?= wp_kses_post($grsi_note) ?>
+						</div>
+					<?php }
+					?>
 					<div class="product-card__info">
 						<?php
 						$manufacturer = get_field('product_manufacturer');

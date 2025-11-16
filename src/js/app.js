@@ -567,6 +567,26 @@ $(function () {
         })
     }
 
+    if ($('.home-gallery-block__slider').length) {
+        new Swiper('.home-gallery-block__slider', {
+            spaceBetween: 30,
+            slidesPerView: 1,
+            watchOverflow: true,
+            navigation: {
+                prevEl: '.home-gallery-block__slider-prev',
+                nextEl: '.home-gallery-block__slider-next',
+            },
+            breakpoints: {
+                767.98: {
+                    slidesPerView: 2,
+                },
+                991.98: {
+                    slidesPerView: 3,
+                }
+            }
+        })
+    }
+
     if ($('.сertificates__slider').length) {
         new Swiper('.сertificates__slider', {
             spaceBetween: 30,

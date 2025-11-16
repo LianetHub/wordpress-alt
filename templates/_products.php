@@ -8,7 +8,7 @@
 
             if (! empty($chosen_attributes)) {
                 foreach ($chosen_attributes as $taxonomy_slug => $attribute_data) {
-                    if (isset($attribute_data['terms']) && is_array($attribute_data['terms'])) {
+                    if (isset($attribute_data['terms']) && is_array($attribute_data['terms']) && !empty($attribute_data['terms'])) {
                         $active_filters_count += count($attribute_data['terms']);
                     }
                 }
@@ -25,23 +25,17 @@
             if ($active_filters_count > 0 || $search_query_active || is_active_sidebar('product-filters-sidebar')) :
             ?>
                 <aside class="products__sidebar">
-                    <form role="search" method="get" class="products__search" action="<?php echo esc_url(home_url('/')); ?>">
-                        <input type="text" name="s" class="products__search-input" placeholder="Поиск по каталогу" value="<?php echo get_search_query(); ?>">
-                        <input type="hidden" name="post_type" value="product">
+                    <form role="search" method="get" class="products__search" action="<?php echo esc_url(get_term_link(get_queried_object(), 'product_cat')); ?>">
+                        <input type="text" name="product_search" class="products__search-input" placeholder="Поиск по каталогу" value="<?php echo get_query_var('product_search'); ?>">
                         <button type="submit" class="products__search-btn icon-search"></button>
                     </form>
-
                     <div class="products__filters">
                         <div class="products__filters-caption title-sm icon-next">
                             ФИЛЬТРЫ
                             <span class="products__filters-quantity">(<?php echo $active_filters_count; ?>)</span>
                         </div>
                         <div class="products__filters-blocks">
-                            <?php
-                            if (is_active_sidebar('product-filters-sidebar')) {
-                                dynamic_sidebar('product-filters-sidebar');
-                            }
-                            ?>
+                            <?php echo do_shortcode('[yith_wcan_filters slug="default-preset"]'); ?>
                         </div>
                     </div>
                 </aside>

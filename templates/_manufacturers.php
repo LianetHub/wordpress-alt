@@ -1,7 +1,7 @@
 <?php if (have_rows('manufactures_logos', 'option')): ?>
     <section class="clients">
         <div class="container">
-            <h2 class="clients__title title text-uppercase">Производители</h2>
+            <h2 class="clients__title title text-uppercase">Оборудование ведущих брендов</h2>
             <div class="clients__body">
                 <div class="clients__slider swiper">
                     <div class="swiper-wrapper">
