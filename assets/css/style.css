@@ -1,10 +1,18 @@
 @charset "UTF-8";
 
 @font-face {
-  font-family: "Muller";
+  font-family: "Onest";
   font-display: swap;
-  src: url("../fonts/Muller-Bold.woff") format("woff"), url("../fonts/Muller-Bold.woff2") format("woff2");
+  src: url("../fonts/Onest-Bold.woff") format("woff"), url("../fonts/Onest-Bold.woff2") format("woff2");
   font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Onest";
+  font-display: swap;
+  src: url("../fonts/Onest-Light.woff") format("woff"), url("../fonts/Onest-Light.woff2") format("woff2");
+  font-weight: 300;
   font-style: normal;
 }
 
@@ -17,41 +25,17 @@
 }
 
 @font-face {
-  font-family: "Muller";
+  font-family: "Onest";
   font-display: swap;
-  src: url("../fonts/Muller-BoldItalic.woff") format("woff"), url("../fonts/Muller-BoldItalic.woff2") format("woff2");
-  font-weight: 700;
-  font-style: italic;
-}
-
-@font-face {
-  font-family: "Muller";
-  font-display: swap;
-  src: url("../fonts/Muller-Light.woff") format("woff"), url("../fonts/Muller-Light.woff2") format("woff2");
-  font-weight: 300;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Muller";
-  font-display: swap;
-  src: url("../fonts/Muller-LightItalic.woff") format("woff"), url("../fonts/Muller-LightItalic.woff2") format("woff2");
-  font-weight: 300;
-  font-style: italic;
-}
-
-@font-face {
-  font-family: "Muller";
-  font-display: swap;
-  src: url("../fonts/Muller-Medium.woff") format("woff"), url("../fonts/Muller-Medium.woff2") format("woff2");
+  src: url("../fonts/Onest-Medium.woff") format("woff"), url("../fonts/Onest-Medium.woff2") format("woff2");
   font-weight: 500;
   font-style: normal;
 }
 
 @font-face {
-  font-family: "Muller";
+  font-family: "Onest";
   font-display: swap;
-  src: url("../fonts/Muller-Regular.woff") format("woff"), url("../fonts/Muller-Regular.woff2") format("woff2");
+  src: url("../fonts/Onest-Regular.woff") format("woff"), url("../fonts/Onest-Regular.woff2") format("woff2");
   font-weight: 400;
   font-style: normal;
 }
@@ -165,7 +149,7 @@ html {
 }
 
 body {
-  font-family: "Muller", Arial, sans-serif;
+  font-family: "Onest", Arial, sans-serif;
   font-size: 1rem;
   min-width: 320px;
   min-height: 100%;
@@ -637,7 +621,7 @@ body.lock-menu {
   -webkit-appearance: none;
      -moz-appearance: none;
           appearance: none;
-  font-family: "Muller";
+  font-family: "Onest";
 }
 
 .dropdown {
@@ -5955,7 +5939,7 @@ div.asl_w .probox .promagnifier {
   transition: border-color 0.3s ease 0s, color 0.3s ease 0s !important;
   width: 100% !important;
   font-weight: 400 !important;
-  font-family: "Muller" !important;
+  font-family: "Onest" !important;
   border: 0.0625rem solid #dfe1eb !important;
   border-radius: 0 !important;
   color: #141414 !important;
@@ -6070,7 +6054,7 @@ div.asl_r.vertical::before {
 
 div.asl_r .results .item .asl_content h3,
 div.asl_r .results .item .asl_content h3 a {
-  font-family: "Muller" !important;
+  font-family: "Onest" !important;
   font-size: 1.125rem !important;
   font-weight: 500 !important;
   line-height: 100% !important;
