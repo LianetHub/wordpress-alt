@@ -1,5 +1,6 @@
 </main>
 <?php
+
 $phone_number = get_field('phone_number', 'option');
 $formatted_phone_number = preg_replace('/[^0-9+]/', '', $phone_number);
 $email_address = get_field('email_address', 'option');
@@ -179,6 +180,29 @@ if (! isset($_COOKIE['user_has_consented_cookies']) || $_COOKIE['user_has_consen
 ?>
 </div>
 <?php wp_footer(); ?>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  var buttons = document.querySelectorAll('a.product__more[href="#request-quote"][data-fancybox]');
+  if (!buttons.length) return;
+
+  buttons.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var card = btn.closest('li.product');
+      if (!card) return;
+
+      var productLink = card.querySelector('a.product__name, a.product__image');
+      if (!productLink) return;
+
+      var fields = document.querySelectorAll('input[name="product-url"]');
+      if (!fields.length) return;
+
+      fields.forEach(function (field) {
+        field.value = productLink.href;
+      });
+    });
+  });
+});
+</script>
 </body>
 
 </html>

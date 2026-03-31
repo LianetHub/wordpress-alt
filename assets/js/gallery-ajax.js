@@ -7,6 +7,7 @@ jQuery(document).ready(function ($) {
         loadMoreButton.on('click', function (e) {
             e.preventDefault();
 
+
             const button = $(this);
             const container = button.closest('.gallery');
 

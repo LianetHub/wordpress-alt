@@ -91,7 +91,7 @@
                 if (!container) return;
 
                 const widgetId = window.smartCaptcha.render(container, {
-                    sitekey: 'ysc1_LrrI5Oz8SijRufoPedbwapQyfsDeHaEZcRQBCqFRea0438ed',
+                    sitekey: 'ysc1_8JZybnWbxbmWe3EiSRDyBvHqkBiY7hnpvjw2Fbi0f4d1a0c7',
                     invisible: true,
                     hideShield: true,
                     callback: function(token) {
