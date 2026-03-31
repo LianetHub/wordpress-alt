@@ -10,6 +10,7 @@ $args = array(
     'show_count'   => 0,
     'pad_counts'   => 0,
     'hierarchical' => 1,
+    'parent'       => 0,
     'title_li'     => '',
     'hide_empty'   => 1,
     'exclude'      => array(16)

@@ -5,12 +5,13 @@
         'show_count'   => 0,
         'pad_counts'   => 0,
         'hierarchical' => 1,
+        'parent'       => 0,
         'title_li'     => '',
         'hide_empty'   => 1,
         'exclude'      => array(16)
     );
-
-    $all_categories = get_terms($args); ?>
+    $all_categories = get_terms($args);
+    ?>
  <? if (! empty($all_categories) && ! is_wp_error($all_categories)) : ?>
      <section class="catalog">
          <div class="container">
